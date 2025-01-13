@@ -22,10 +22,10 @@
         --boxGry: #393939;
         --liColor1: #d03b3b;
         --link: #4e7075;
+        --btn-copy-bg:#ffffff11;
         /*other*/
         --textarea-h:200px;
         --tips-copy:'复制';
-        --btn-copy-bg:#ffffff11;
     }
 
     body {
@@ -103,6 +103,14 @@
         border-radius: 0 0 10px 10px;
         box-sizing: border-box;
         padding:10px 10px 30px 10px;
+        background-image: repeating-radial-gradient(
+            circle at center,  
+            rgba(0, 0, 0, 0.2) 0,
+            rgba(0, 0, 0, 0.2) 1px,
+            transparent 1px,
+            transparent 20px
+        );
+        background-size:10px 10px ;
     }
 
     .btn-text {
@@ -252,9 +260,10 @@
         background-color: var(--btn-copy-bg);
         border-radius: 4px;
         position: absolute;
+        box-sizing: border-box;
     }
     .btn-copy:hover{
-        border: 1px #ffffff77 solid;
+        border: 1px var(--boxBod) solid;
     }
     .re-tips-area{
         width: 100%;
@@ -447,7 +456,7 @@
             <div>©YNYU @lvynyu2.gmail.com</div></div>
         <div class="textarea-in-out" style="position: relative;" >
             <div class="textarea-box" id="textarea-in" style="height: 100%;--title:'· [ 输入 ]'">
-                <div class="AIloadding" ></div>
+                <div class="AIloadding" ><btn-re></btn-re></div>
                 <textarea id="import-info" placeholder="【敬请期待~】&nbsp;&nbsp;在此处输入带关键信息文本，点击提取标签，将进行模糊匹配" class="input-textarea noscrollbar" style="resize: none;--textarea-h:50%; border-radius: var(--top-r);"></textarea>
                 <div id="import-re" class="re-tips-area noscrollbar" style="border-radius: var(--bottom-r);"></div>
                 <div class="btn-copy" id="btn-ai" style="width: 10ch; right:4px; z-index: 2; animation:none; --tips-copy:'# 提取标签';" onclick="
@@ -678,6 +687,7 @@
     "boxGry":"#dddddd",
     "liColor1":"#d03b3b",
     "link":"#4e7075",
+    "btn-copy-bg":"#00000011",
     }
     var darkTheme = {
     "mainColor":"#acacac",
@@ -688,6 +698,7 @@
     "boxGry":"#393939",
     "liColor1":"#d03b3b",
     "link":"#4e7075",
+    "btn-copy-bg":"#ffffff11",
     }
     var styleKey = Object.keys(lightTheme);//主题色键值
     var styleValue = Object.values(lightTheme);//主题色色值
@@ -737,23 +748,39 @@
     customElements.define('btn-close', btnclose);
 
     class btncopy extends HTMLElement {
-      constructor() {
-        super();
-        this.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 11 11">
-            <g>
+        constructor() {
+            super();
+            this.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 11 11">
                 <g>
-                    <path d="M5,2L4,2L4,4L2,4L2,5L4,5L4,7L5,7L5,5L7,5L7,4L5,4L5,2Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
+                    <g>
+                        <path d="M5,2L4,2L4,4L2,4L2,5L4,5L4,7L5,7L5,5L7,5L7,4L5,4L5,2Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
+                    </g>
+                    <g>
+                        <path d="M0,2.5L0,6.5Q0,7.53553,0.732233,8.26777Q1.29574,8.83127,2.03888,8.96112Q2.16872,9.70426,2.73223,10.2678Q3.46447,11,4.5,11L8.5,11Q9.53553,11,10.2678,10.2678Q11,9.53553,11,8.5L11,4.5Q11,3.46447,10.2678,2.73223Q9.70426,2.16872,8.96112,2.03888Q8.83127,1.29574,8.26777,0.732233Q7.53553,0,6.5,0L2.5,0Q1.46447,0,0.732233,0.732233Q0,1.46447,0,2.5ZM9,3.08099L9,6.5Q9,7.53553,8.26777,8.26777Q7.53553,9,6.5,9L3.08099,9Q3.18864,9.30996,3.43934,9.56066Q3.87868,10,4.5,10L8.5,10Q9.12132,10,9.56066,9.56066Q10,9.12132,10,8.5L10,4.5Q10,3.87868,9.56066,3.43934Q9.30996,3.18864,9,3.08099ZM1.43934,7.56066Q1,7.12132,1,6.5L1,2.5Q1,1.87868,1.43934,1.43934Q1.87868,1,2.5,1L6.5,1Q7.12132,1,7.56066,1.43934Q8,1.87868,8,2.5L8,6.5Q8,7.12132,7.56066,7.56066Q7.12132,8,6.5,8L2.5,8Q1.87868,8,1.43934,7.56066Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
+                    </g>
                 </g>
-                <g>
-                    <path d="M0,2.5L0,6.5Q0,7.53553,0.732233,8.26777Q1.29574,8.83127,2.03888,8.96112Q2.16872,9.70426,2.73223,10.2678Q3.46447,11,4.5,11L8.5,11Q9.53553,11,10.2678,10.2678Q11,9.53553,11,8.5L11,4.5Q11,3.46447,10.2678,2.73223Q9.70426,2.16872,8.96112,2.03888Q8.83127,1.29574,8.26777,0.732233Q7.53553,0,6.5,0L2.5,0Q1.46447,0,0.732233,0.732233Q0,1.46447,0,2.5ZM9,3.08099L9,6.5Q9,7.53553,8.26777,8.26777Q7.53553,9,6.5,9L3.08099,9Q3.18864,9.30996,3.43934,9.56066Q3.87868,10,4.5,10L8.5,10Q9.12132,10,9.56066,9.56066Q10,9.12132,10,8.5L10,4.5Q10,3.87868,9.56066,3.43934Q9.30996,3.18864,9,3.08099ZM1.43934,7.56066Q1,7.12132,1,6.5L1,2.5Q1,1.87868,1.43934,1.43934Q1.87868,1,2.5,1L6.5,1Q7.12132,1,7.56066,1.43934Q8,1.87868,8,2.5L8,6.5Q8,7.12132,7.56066,7.56066Q7.12132,8,6.5,8L2.5,8Q1.87868,8,1.43934,7.56066Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
-                </g>
-            </g>
-        </svg>
-        `;
-      }
+            </svg>
+            `;
+        }
     }
     customElements.define('btn-copy', btncopy);
+
+    class btnre extends HTMLElement {
+        constructor() {
+            super();
+            this.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 20 20">
+                <g>
+                    <g>
+                        <path d="M12.2855,7.6273202612304685L11.71607,9.752400261230468L6.11928,3.5940002612304687L14.0454,1.0590667722304687L13.5682,2.8400802612304688C16.2837,4.193330261230469,18,6.966240261230468,18,10.000240261230468C18,12.14093026123047,17.142,14.192330261230468,15.618,15.695630261230468C15.8708,14.991330261230468,16,14.248530261230469,16,13.500230261230469C16,10.989500261230468,14.554,8.703270261230468,12.2855,7.6273202612304685ZM6.43178,17.16043026123047L5.95456,18.94143026123047L13.8807,16.40643026123047L8.28393,10.248070261230469L7.71452,12.373130261230468C5.446,11.29723026123047,4,9.010970261230469,4,6.500240261230469C4,5.751890261230469,4.12923,5.009170261230469,4.38199,4.304810261230468C2.857956,5.808120261230469,2,7.859530261230469,2,10.000240261230468C2,13.03423026123047,3.71629,15.80713026123047,6.43178,17.16043026123047Z" fill-rule="evenodd" fill="var(--boxBod)" fill-opacity="1"/>
+                    </g>
+                </g>
+            </svg>
+            `;
+        }
+    }
+    customElements.define('btn-re', btnre);
 
     window.onload = function(){
         addOption("select-area-",sheet,0);

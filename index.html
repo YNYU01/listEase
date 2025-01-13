@@ -77,7 +77,7 @@
     .page {
         width: calc(100% - 80px);
         max-width: 880px;
-        min-width: 300px;
+        min-width: 330px;
         min-height: 580px;
         height: calc(100% - 110px);
         display: flex;
@@ -429,7 +429,7 @@
                                 <div id="add-0-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(0,1,allKey[0]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(0,0,document.getElementById('select-img-0-1').value)"><btn-add></btn-add></div>
                                 <div id="close-0-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
                             </div>
-                            <select id="select-img-0" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px;" 
+                            <select id="select-img-0" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
                             onchange="reImgInfo(0,0,this.value)">
                             </select>
                         </div>
@@ -679,12 +679,12 @@
         node.className = "tags-exports";
         node.innerHTML = `
             <div class="list">
-                <div class="set" style="width: 50ch;">
+                <div class="set" style="width: 60ch;">
                     <div style="display: flex; gap:4px">
                         <div id="add-`+ e +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addList(`+ (e + 1) +`);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';"><btn-add></btn-add></div>
                         <div id="close-`+ e +`" class="btn-text" style="width: 17px; height: 17px;" onclick="closeList(`+ e +`);reImgInfo(`+ e +`,0,null);reClick('key',`+ (e - 1) +`);"><btn-close></btn-close></div>
                     </div>
-                    <select id="select-area-`+ e +`" class="input-btn-skill" name="渠道" style=" width: 20; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
+                    <select id="select-area-`+ e +`" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
                     onchange="reSelectImg(`+ e +`,this.value);reImgInfo(`+ e +`,0,null);reKeysInfo(`+ e +`,this.value);document.getElementById('imgs-`+ e +`').style.display = 'flex'">
                     ` + select +`
                     </select>
@@ -706,6 +706,13 @@
         `
 
         document.getElementById("page-main-1").appendChild(node);
+        toView("exports-" + e)
+    }
+
+    function toView(id){
+        document.getElementById(id).scrollIntoView({
+            behavior:'smooth'
+        })
     }
 
 
@@ -780,9 +787,7 @@
             }
         })
 
-        console.log('分组：',garoups)
-
-
+        //console.log('分组：',garoups)
         garoups.forEach(optG => {
             sheet[keys].forEach(item => {
                 if(item.name.split('-').length > 1){
@@ -800,13 +805,11 @@
             //console.log(optG)
         })
 
-
         /*
         sheet[keys].forEach(item => {
             selectImg += '<option value="' + item.name + '">' + item.name + '</option>'
         })
         */
-        
 
         allImg[e][ee] = ''
 
@@ -819,7 +822,7 @@
                 <div id="add-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,`+ (ee + 1) +`,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(`+ e +`,`+ ee +`,document.getElementById('select-img-`+ e +`-`+ (ee + 1) +`').value)"><btn-add></btn-add></div>
                 <div id="close-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none; "><btn-close></btn-close></div>
             </div>
-            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px;" 
+            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
             onchange="reImgInfo(`+ e +`,`+ ee +`,this.value)">
             ` + selectImg +`
             </select>
@@ -830,7 +833,7 @@
                 <div id="add-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,`+ (ee + 1) +`,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(`+ e +`,`+ ee +`,document.getElementById('select-img-`+ e +`-`+ (ee + 1) +`').value)"><btn-add></btn-add></div>
                 <div id="close-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick=" if((this.id.split('-')[2]) !== '0'){closeImg(`+ e +`,`+ ee +`)};reImgInfo(`+ e +`,`+ ee +`,null);reClick('img',`+ e +`,`+ (ee - 1) +`);"><btn-close></btn-close></div>
             </div>
-            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px;" 
+            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
             onchange="reImgInfo(`+ e +`,`+ ee +`,this.value)">
             ` + selectImg +`
             </select>
@@ -839,6 +842,7 @@
         
 
         document.getElementById("imgs-" + e).appendChild(node);
+        toView("img-" + e + "-" + ee)
     }
 
     function closeImg(e,ee){
@@ -852,11 +856,11 @@
         if (name && name !== '选择资源位'){
             if (name){
             allImg[e][ee] = name
-            console.log(666,name);
+            ///console.log(666,name);
             reExportInfo()
         } else {
             allImg[e]=''
-            console.log(777);
+            //console.log(777);
             reExportInfo()
         }
         }   
@@ -872,7 +876,7 @@
             } else {
                 var keys = '_' + key;
             }
-            console.log(keys)
+            //console.log(keys)
             allImg[e][0] = '';
             //console.log(allKey,allImg);
             reExportInfo()
@@ -884,7 +888,7 @@
     function reExportInfo(){
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
-        console.log(allImg)
+        //console.log(allImg)
         var numD = 0,numImg = 0,numView = 0;
         for(var i = 0; i < allKey.length; i ++){
             for(var ii = 0; ii < allImg[i].length; ii++){

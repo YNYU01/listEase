@@ -63,7 +63,16 @@
         display: none;
     }
 
-   
+    optgroup {
+        color:var(--mainColor3);
+        text-align: left;
+        font-size: 14px;
+    }
+    option {
+        color:var(--mainColor);
+        background-color: '';
+        font-size: 12px;
+    }
 
     .page {
         width: calc(100% - 80px);
@@ -405,16 +414,16 @@
         <div class="page-main noscrollbar" id="page-main-1" >
             <div class="tags-exports" id="exports-0">
                 <div class="list">
-                    <div class="set" style="width: 50ch;">
+                    <div class="set" style="width: 60ch;">
                         <div style="display: flex; gap:4px">
                             <div id="add-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addList(1);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';"><btn-add></btn-add></div>
                             <div id="close-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
                         </div>
-                        <select id="select-area-0" class="input-btn-skill" name="渠道" style=" width: 20ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
+                        <select id="select-area-0" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
                         onchange="reSelectImg(0,this.value);reImgInfo(0,0,null);reKeysInfo(0,this.value);document.getElementById('imgs-0').style.display = 'flex'">
                         </select>
                     </div>
-                    <div class="group" id="imgs-0" style="display: none;">
+                    <div class="group" id="imgs-0" style="display: none; max-width: 500px;">
                         <div class="set" id="img-0-0" >
                             <div style="display: flex; gap:4px">
                                 <div id="add-0-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(0,1,allKey[0]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(0,0,document.getElementById('select-img-0-1').value)"><btn-add></btn-add></div>
@@ -680,7 +689,7 @@
                     ` + select +`
                     </select>
                 </div>
-                <div class="group" id="imgs-`+ e +`" style="display:none">
+                <div class="group" id="imgs-`+ e +`" style="display:none; max-width: 500px;">
                     <div class="set" id="img-`+ e +`-0" >
                         <div style="display: flex; gap:4px">
                             <div id="add-`+ e +`-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,1,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none'; reImgInfo(`+ e +`,1,document.getElementById('select-img-`+ e +`-1').value)"><btn-add></btn-add></div>
@@ -758,22 +767,46 @@
         var names = sheet[keys].map(item => item.name);
         var garoups = [];
         names.forEach(item => {
+            var optionKey = '<optgroup label="' + item.split('-')[0] + '">';
+            var optionNor = '<optgroup label="通用">'
             if(item.split('-').length > 1){
-                if( !garoups.includes(item.split('-')[0])){
-                    garoups.push(item.split('-')[0])
-                }else{
-                    if(!garoups.includes('通用')){
-                        garoups = ['通用',...garoups]
-                    }
+                if( !garoups.includes(optionKey)){
+                    garoups.push(optionKey)
+                }
+            }else{
+                if(!garoups.includes(optionNor)){
+                    garoups = [optionNor,...garoups]
                 }
             }
         })
-        console.log('分组：',garoups)
-        //var newImags = sheet[keys].
 
+        console.log('分组：',garoups)
+
+
+        garoups.forEach(optG => {
+            sheet[keys].forEach(item => {
+                if(item.name.split('-').length > 1){
+                    if(optG.split('"')[1] == item.name.split('-')[0]){
+                        optG += '<option value="' + item.name + '">' + item.name + '</option>'
+                    } 
+                } else {
+                    if (optG.split('"')[1] == '通用') {
+                        optG += '<option value="' + item.name + '">' + item.name + '</option>'
+                    }
+                }
+            }) 
+            optG += '</optgroup>' ;
+            selectImg += optG
+            //console.log(optG)
+        })
+
+
+        /*
         sheet[keys].forEach(item => {
             selectImg += '<option value="' + item.name + '">' + item.name + '</option>'
         })
+        */
+        
 
         allImg[e][ee] = ''
 

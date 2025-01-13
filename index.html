@@ -36,7 +36,7 @@
         padding: 0px 10px;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
-        font-weight: 500;
+        font-weight: 700;
         color: var(--mainColor);
         position: relative;
         background-color: var(--boxBak);
@@ -45,6 +45,7 @@
         -moz-osx-font-smoothing: grayscale;
         letter-spacing: 0.01em;
         overflow: hidden;
+        font-weight: 500;
     }
     html,body,.noselect {
         -webkit-user-select: none;/* Safari */
@@ -88,6 +89,15 @@
         background-color: var(--boxGry);
         border-radius: 20px;
         padding: 20px 20px 30px 20px ;
+        font-weight: 700;
+    }
+
+    .page-box {
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        border-radius: 10px;
+        box-shadow: 0 0 2px var(--boxBod),0 0 10px var(--boxBod);
     }
 
     .page-main {
@@ -133,6 +143,8 @@
         background: var(--boxBak);
         font-size: 10px;
         animation: boxUp 0.5s;
+        border: var(--boxBod) 1px solid;
+        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
     }
 
     .tags-exports .list {
@@ -233,7 +245,7 @@
         border-radius:10px 10px  0 0 ;
         box-sizing: border-box;
         padding: 10px;
-        margin-bottom: -11px;
+        margin-bottom: -1px;
         background-color: var(--boxBak);
         position: relative;
     }
@@ -381,7 +393,7 @@
                 rgba(125, 248, 252, 0) 0,
                 rgba(125, 247, 252, 0) 4px,
                 rgba(119, 119, 119, 0) 8px
-            );
+            ),var(--boxBak);
         }
         50%{
             background: repeating-radial-gradient(
@@ -389,7 +401,7 @@
                 rgba(125, 248, 252, 0.705) 0,
                 rgba(125, 247, 252, 0.6) 4px,
                 rgba(119, 119, 119, 0.2) 8px
-            );
+            ),var(--boxBak);
         }
         100%{
             background: repeating-radial-gradient(
@@ -397,7 +409,7 @@
                 rgba(125, 248, 252, 0) 0,
                 rgba(125, 247, 252, 0) 4px,
                 rgba(119, 119, 119, 0) 8px
-            );
+            ),var(--boxBak);
         }
     }
 
@@ -573,52 +585,54 @@
                 <textarea id="export-info" placeholder="选择渠道和资源位后，将在此处输出标准格式，可用于规范提单和模板生成"  class="input-textarea noscrollbar"></textarea>
             </div>
         </div>
-        <div class="export-tips">
-            <div style="font-size: 12px;">· [ 选项 ]</div>
-            <div style="height: 18px; display: flex; justify-content: space-between; gap:4px; align-items: center;">
-                <span>
-                    切图:
-                    <span id="num-img">--</span>;&nbsp;
-                    效果图:
-                    <span id="num-view">--</span>;&nbsp;
-                    合计:
-                    <span id="num-all" style="color: var(--mainColor3);">--</span>;&nbsp;
-                    预估人天:
-                    <span id="num-d" style="color: var(--mainColor2);">--</span>;
-                </span>
-                <div class="btn-copy" id="btn-copy-info" style="width: 10ch; position: relative; top:0; right: 0; z-index: 2; display: none; animation:none; --tips-copy:'复制详情';" onclick="
-                    this.style.setProperty('--tips-copy','&quot✔&quot');
-                    this.style.setProperty('--btn-copy-bg','#77ff7777');
-                    setTimeout(() => { this.style.setProperty('--tips-copy','&quot复制详情&quot');
-                    this.style.setProperty('--btn-copy-bg','#ffffff11');},1000);
-                    navigator.clipboard.writeText(exportAllInfo) .then(function() { console.log('复制成功'); alert('复制详情成功，可用于需求信息汇总')});">
-                </div>
-            </div>
-            
-        </div>
-        <div style="height: 18px;display: flex; align-items: center; opacity: 0.5; transform: skewX(-8deg); position: absolute; bottom: 34px; right: 40px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div>
-        <!--此容器内自动添加子容器-->
-        <div class="page-main noscrollbar" id="page-main-1" >
-            <div class="tags-exports" id="exports-0">
-                <div class="list">
-                    <div class="set" style="width: 60ch;">
-                        <div style="display: flex; gap:4px">
-                            <div id="add-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addList(1);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';"><btn-add></btn-add></div>
-                            <div id="close-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
-                        </div>
-                        <select id="select-area-0" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
-                        onchange="reSelectImg(0,this.value);reImgInfo(0,0,null);reKeysInfo(0,this.value);document.getElementById('imgs-0').style.display = 'flex'">
-                        </select>
+        <div class="page-box" >
+            <div class="export-tips">
+                <div style="font-size: 12px;">· [ 选项 ]</div>
+                <div style="height: 18px; display: flex; justify-content: space-between; gap:4px; align-items: center;">
+                    <span>
+                        切图:
+                        <span id="num-img">--</span>;&nbsp;
+                        效果图:
+                        <span id="num-view">--</span>;&nbsp;
+                        合计:
+                        <span id="num-all" style="color: var(--mainColor3);">--</span>;&nbsp;
+                        预估人天:
+                        <span id="num-d" style="color: var(--mainColor2);">--</span>;
+                    </span>
+                    <div class="btn-copy" id="btn-copy-info" style="width: 10ch; position: relative; top:0; right: 0; z-index: 2; display: none; animation:none; --tips-copy:'复制详情';" onclick="
+                        this.style.setProperty('--tips-copy','&quot✔&quot');
+                        this.style.setProperty('--btn-copy-bg','#77ff7777');
+                        setTimeout(() => { this.style.setProperty('--tips-copy','&quot复制详情&quot');
+                        this.style.setProperty('--btn-copy-bg','#ffffff11');},1000);
+                        navigator.clipboard.writeText(exportAllInfo) .then(function() { console.log('复制成功'); alert('复制详情成功，可用于需求信息汇总')});">
                     </div>
-                    <div class="group" id="imgs-0" style="display: none; max-width: 500px;">
-                        <div class="set" id="img-0-0" >
+                </div>
+                
+            </div>
+            <div style="height: 18px;display: flex; align-items: center; opacity: 0.5; transform: skewX(-8deg); position: absolute; bottom: 34px; right: 40px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div>
+            <!--此容器内自动添加子容器-->
+            <div class="page-main noscrollbar" id="page-main-1" >
+                <div class="tags-exports" id="exports-0">
+                    <div class="list">
+                        <div class="set" style="width: 60ch;">
                             <div style="display: flex; gap:4px">
-                                <div id="add-0-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(0,1,allKey[0]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(0,0,document.getElementById('select-img-0-1').value)"><btn-add></btn-add></div>
-                                <div id="close-0-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
+                                <div id="add-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addList(1);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';"><btn-add></btn-add></div>
+                                <div id="close-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
                             </div>
-                            <select id="select-img-0" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
-                            onchange="reImgInfo(0,0,this.value)">
+                            <select id="select-area-0" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
+                            onchange="reSelectImg(0,this.value);reImgInfo(0,0,null);reKeysInfo(0,this.value);document.getElementById('imgs-0').style.display = 'flex'">
                             </select>
+                        </div>
+                        <div class="group" id="imgs-0" style="display: none; max-width: 500px;">
+                            <div class="set" id="img-0-0" >
+                                <div style="display: flex; gap:4px">
+                                    <div id="add-0-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(0,1,allKey[0]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(0,0,document.getElementById('select-img-0-1').value)"><btn-add></btn-add></div>
+                                    <div id="close-0-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
+                                </div>
+                                <select id="select-img-0" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
+                                onchange="reImgInfo(0,0,this.value)">
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

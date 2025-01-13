@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>提单助手</title>
+    <title>资源位标准格式转换器</title>
 
 <style>
     :root {
@@ -308,11 +308,13 @@
         z-index: 3;
         border-radius: 50%;
         border: var(--boxBod) 1px solid;
+        box-sizing: border-box;
+        padding: 2px;
     }
 
     .btn-theme {
         --theme-l:rgba(0,0,0,0);
-        --theme-d:var(--boxBod);
+        --theme-d:var(--mainColor);
     }
 
     .btn-theme:hover {
@@ -321,8 +323,100 @@
     }
 
     input[type="checkbox"]:checked+.btn-theme {
-        --theme-l:var(--boxBod);
+        --theme-l:var(--mainColor);
         --theme-d:rgba(0,0,0,0);
+    }
+
+    .tool-title{
+        width: 100%;
+        color: var(--mainColor);
+        font-weight: 700;
+        position: relative;
+        background:
+        repeating-radial-gradient(
+            circle at center,  
+            rgba(62, 62, 62, 0.2) 0,
+            rgba(62, 62, 62, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1.5px,
+            transparent 4px,
+            transparent 20px
+        ),var(--boxBak);
+        background-size:5px 5px;
+        padding: 2px 8px 3px 20px;
+        box-sizing: border-box;
+        border: 0.5px var(--boxBod) solid;
+        border-radius: 10px;
+        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
+    }
+    .tool-title::before{
+        content: '';
+        position: absolute;
+        top:5.5px;
+        left: 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 0.5px var(--boxBod) solid;
+        z-index: 2;
+        animation: lightup ease-in-out 1s infinite;
+    }
+    .tool-title::after{
+        content: '';
+        position: absolute;
+        top:5.5px;
+        left: 5px;
+        width: 8px;
+        height: 8px;
+        filter: blur(5px);
+        border-radius: 50%;
+        border: 0.5px var(--boxBod) solid;
+        z-index: 2;
+        animation: lightup ease-in-out 1s infinite;
+    }
+    @keyframes lightup {
+        0%{
+            background: repeating-radial-gradient(
+                circle at center,  
+                rgba(125, 248, 252, 0) 0,
+                rgba(125, 247, 252, 0) 4px,
+                rgba(119, 119, 119, 0) 8px
+            );
+        }
+        50%{
+            background: repeating-radial-gradient(
+                circle at center,  
+                rgba(125, 248, 252, 0.705) 0,
+                rgba(125, 247, 252, 0.6) 4px,
+                rgba(119, 119, 119, 0.2) 8px
+            );
+        }
+        100%{
+            background: repeating-radial-gradient(
+                circle at center,  
+                rgba(125, 248, 252, 0) 0,
+                rgba(125, 247, 252, 0) 4px,
+                rgba(119, 119, 119, 0) 8px
+            );
+        }
+    }
+
+    .btn-main{
+        background:
+        repeating-radial-gradient(
+            circle at center,  
+            rgba(62, 62, 62, 0.2) 0,
+            rgba(62, 62, 62, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1.5px,
+            transparent 4px,
+            transparent 20px
+        ),var(--boxBak);
+        background-size:5px 5px;
+        border: 0.5px var(--boxBod) solid;
+        border-radius: 20px;
+        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
+        padding: 4px;
     }
 
     #textarea-in{
@@ -394,9 +488,9 @@
 
 <body class="noselect">
     <div class="page"  >
-        <div style="width: 100%; display: flex; justify-content: space-between;">
-            <div></div>
-            <div style="width: 14px; height: 14px; margin-top: -2px;">
+        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+            <div class="tool-title">资源位标准格式转换器</div>
+            <div class="btn-main" style="width: 14px; height: 14px; margin-top: -2px;">
                 <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="
                 if(!this.checked){
                 console.log('浅色主题')

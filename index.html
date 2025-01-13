@@ -289,6 +289,18 @@
         box-shadow: 0 0 10px  #00000077 inset;
         animation: skewliner linear 5s infinite;
     }
+    .AIloadding{
+        position: absolute;
+        --wh:20px;
+        width: var(--wh);
+        height: var(--wh);
+        top: calc(50% - var(--wh)/2);
+        left: calc(50% - var(--wh)/2);
+        background-color: var(--boxBak);
+        z-index: 3;
+        border-radius: 50%;
+        border: var(--boxBod) 1px solid;
+    }
 
     #textarea-in{
         --r:8px;
@@ -364,6 +376,7 @@
             <div>©YNYU @lvynyu2.gmail.com</div></div>
         <div class="textarea-in-out" style="position: relative;" >
             <div class="textarea-box" id="textarea-in" style="height: 100%;--title:'· [ 输入 ]'">
+                <div class="AIloadding" ></div>
                 <textarea id="import-info" placeholder="【敬请期待~】&nbsp;&nbsp;在此处输入带关键信息文本，点击提取标签，将进行模糊匹配" class="input-textarea noscrollbar" style="resize: none;--textarea-h:50%; border-radius: var(--top-r);"></textarea>
                 <div id="import-re" class="re-tips-area noscrollbar" style="border-radius: var(--bottom-r);"></div>
                 <div class="btn-copy" id="btn-ai" style="width: 10ch; right:4px; z-index: 2; animation:none; --tips-copy:'# 提取标签';" onclick="
@@ -409,7 +422,7 @@
             </div>
             
         </div>
-        <div style="height: 18px;display: flex; align-items: center; opacity: 0.5; transform: skewX(-8deg); position: absolute; bottom: 40px; right: 34px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div>
+        <div style="height: 18px;display: flex; align-items: center; opacity: 0.5; transform: skewX(-8deg); position: absolute; bottom: 34px; right: 40px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div>
         <!--此容器内自动添加子容器-->
         <div class="page-main noscrollbar" id="page-main-1" >
             <div class="tags-exports" id="exports-0">
@@ -851,18 +864,19 @@
 
     
     function reImgInfo(e,ee,name){
-        console.log('reImgInfo');
+        console.log('reImgInfo',name);
         //console.log(e,ee,name);
-        if (name && name !== '选择资源位'){
+        if (name !== '选择资源位'){
             if (name){
-            allImg[e][ee] = name
-            ///console.log(666,name);
-            reExportInfo()
-        } else {
-            allImg[e]=''
-            //console.log(777);
-            reExportInfo()
-        }
+                allImg[e][ee] = name
+                ///console.log(666,name);
+                reExportInfo()
+            } else {
+                console.log('reImgInfo','删除');
+                allImg[e][ee] = ''
+                //console.log(777);
+                reExportInfo()
+            }
         }   
     }
 
@@ -886,9 +900,9 @@
     }
 
     function reExportInfo(){
+        console.log('reExportInfo')
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
-        //console.log(allImg)
         var numD = 0,numImg = 0,numView = 0;
         for(var i = 0; i < allKey.length; i ++){
             for(var ii = 0; ii < allImg[i].length; ii++){

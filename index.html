@@ -81,7 +81,7 @@
     }
     .ww{
         width: calc(100% - 80px);
-        max-width: 880px;
+        max-width: 1200px;
         min-width: 330px;
     }
 
@@ -100,6 +100,7 @@
     }
 
     .page-box {
+        width: 100%;
         height: 100%;
         display: flex;
         flex-flow: column;
@@ -298,7 +299,7 @@
         rgba(var(--bg-mask), 0.5) 25%,
         rgba(var(--bg-mask), 0.5) 75%,
         rgba(var(--bg-mask), 0.5) 100%),
-        linear-gradient(297deg,
+        linear-gradient(296.5deg,
         rgba(0,0,0,0) 16.7%,
         var(--boxGry) 16.7%,
         var(--boxGry) 33.3%,
@@ -363,8 +364,17 @@
         --theme-d:rgba(0,0,0,0);
     }
 
-    .tool-title{
+    .tool-top{
         width: calc(100% + 40px);
+        --tool-title-w:180px;
+        margin-left: -15px;
+        border: 0.5px var(--boxBod) solid;
+        background:/*linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(var(--bg-mask), 1) 40%,rgba(0,0,0,0) 100%),*/var(--bg-light);
+        border-radius: 12px;
+        /*box-shadow: 0 4px 10px  rgba(var(--bg-mask), 1) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);*/
+    }
+    .tool-title{
+        width: var(--tool-title-w,100%);
         color: var(--mainColor);
         font-weight: 700;
         position: relative;
@@ -372,7 +382,7 @@
         align-items: center;
         gap: 4px;
         background:
-        repeating-radial-gradient(
+        /*repeating-radial-gradient(
             circle at center,  
             rgba(62, 62, 62, 0.2) 0,
             rgba(62, 62, 62, 0.2) 1px,
@@ -380,13 +390,13 @@
             rgba(119, 119, 119, 0.2) 1.5px,
             transparent 4px,
             transparent 20px
-        ),var(--boxBak);
+        ),*/var(--boxBak);
         background-size:5px 5px;
         padding: 2px 8px 3px 20px;
         box-sizing: border-box;
         border: 0.5px var(--boxBod) solid;
         border-radius: 10px;
-        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
+        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.5) inset,0 0 1px  #6e6e6e/*, 0 2px 0 var(--boxBak)*/;
     }
     .tool-title::before{
         content: '';
@@ -454,7 +464,7 @@
     .tool-list {
         position: absolute;
         top:10px;
-        width: calc(100% - 24px);
+        width: var(--tool-title-w,100%);
         display: flex;
         flex-flow: column;
         padding:20px 10px 8px 10px;
@@ -480,6 +490,28 @@
         box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
         padding: 4px;
     }
+
+    .tips-all{
+        position: absolute;
+        bottom: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px 8px;
+        z-index: 20;
+        animation: boxUp 0.3s ease-out;
+    }
+    .tips-all .tips-box{
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        padding: 4px 20px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        opacity: 0.8;
+    }
+
 
     #textarea-in{
         --r:8px;
@@ -558,23 +590,50 @@
             transition: right ease-in-out 0.5s;
         }
     }
+    @media (min-width:880px){
+        .textarea-in-out{
+            flex-flow: column;
+            height: 100%;
+            max-width: 680px;
+        }
+        .page{
+            display: flex;
+            flex-flow: nowrap;
+        }
+        .tags-exports .list {
+            display: flex;
+            flex-flow: column;
+            gap:10px;
+            justify-content: left;
+        }
+    }
 
 </style>
 
 <body class="noselect">
+    <!--全局tips-->
+    <div id="tips-all" class="ww tips-all" style="display: none;">
+        <div id="tips-box" class="tips-box" >
+            温馨提示
+        </div>
+    </div>
     <!--顶栏-->
     <div class="ww" style=" display: flex; justify-content: space-between; align-items: center; position: relative;z-index: 10;">
-        <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
-            <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(1)">资源位标准格式转换器</div>
-            <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(2)">模板解析及批量延展器</div>
-            <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(3)">布局示意图批量生成器</div>
-        </div>
-        <div class="tool-title">
-            <span id="tool-name">资源位标准格式转换器</span>
-            <div  id="tool-change" class="btn-text" style="width: 18px; height: 12px; margin-top: 2px; background-color: var(--boxBak); border: var(--boxGry) 1px solid; border-radius: 6px;"  
-            onclick="document.getElementById('tool-list').style.display = 'flex'">
-            <btn-change></btn-change>
+        
+        <div class="tool-top" >
+            <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
+                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(1)">资源位标准格式转换器</div>
+                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(2)">模板解析及批量延展器</div>
+                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(3)">布局示意图批量生成器</div>
             </div>
+            <div class="tool-title">
+                <span id="tool-name">资源位标准格式转换器</span>
+                <div  id="tool-change" class="btn-text" style="width: 18px; height: 12px; margin-top: 2px; background-color: var(--boxBak); border: var(--boxGry) 1px solid; border-radius: 6px;"  
+                onclick="document.getElementById('tool-list').style.display = 'flex';">
+                <btn-change></btn-change>
+                </div>
+            </div>
+            
         </div>
         <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;">
             <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="
@@ -637,7 +696,7 @@
         <div class="textarea-in-out" style="position: relative;" >
             <div class="textarea-box" id="textarea-in" style="height: 100%;--title:'· [ 输入 ]'">
                 
-                <div class="AIloadding" onclick="this.style.animation = 'loading 1s linear infinite';AItoKeys()"><btn-re></btn-re></div>
+                <div id="btn-ai" class="AIloadding" onclick="this.style.animation = 'loading 1s linear infinite';AItoKeys(document.getElementById('import-info').value)"><btn-re></btn-re></div>
                 <textarea id="import-info" placeholder="输入带关键信息文本，点击转换进行规范匹配，确认无误后可生成标签" class="input-textarea noscrollbar" style="resize: none;--textarea-h:50%; border-radius: var(--top-r);"></textarea>
                 <div id="import-re" class="re-tips-area noscrollbar" style="border-radius: var(--bottom-r);">【敬请期待~】</div>
                 <div class="btn-copy" id="btn-totags" style="width: 10ch; right:4px;top: calc(var(--top,50%) + 4px); z-index: 2; animation:none; --tips-copy:'# 生成标签';" onclick="
@@ -1325,7 +1384,24 @@
 
             console.log(toTags)
         }
-        
+        if(input == ''){
+            setTimeout(()=>{
+                document.getElementById('btn-ai').style.animation = 'none'
+            },2000)
+            tipsAll('未检测到数据','2000')
+            
+        } 
+    }
+
+    function tipsAll(string,time){
+        var tips = document.getElementById('tips-all');
+        var text = document.getElementById('tips-box');
+        tips.style.display = "flex";
+        text.innerHTML = string;
+        setTimeout(()=>{
+            tips.style.display = "none";
+            text.innerHTML = '';
+        },time)
     }
 
     function viewPage(e){

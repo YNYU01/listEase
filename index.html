@@ -24,9 +24,10 @@
         --liColor1: #d03b3b;
         --link: #4e7075;
         --btn-copy-bg:#ffffff11;
-        --bg-mask:20,20,20;     
+        --bg-mask:20,20,20;   
+        --hl-op:0.4;
         /*other*/
-        --textarea-h:200px;
+        --textarea-h:160px;
         --tips-copy:'复制';
         --keysLiColor:#983e3e;
         --bg-light:#81818154;
@@ -68,6 +69,17 @@
     .noscrollbar::-webkit-scrollbar {
         display: none;
     }
+    .noise{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        filter:url(#sharpness),grayscale();
+        opacity: 0.07;
+        z-index: 20;
+        pointer-events: none;
+    }
 
     optgroup {
         color:var(--mainColor3);
@@ -82,14 +94,14 @@
     .ww{
         width: calc(100% - 80px);
         max-width: 1200px;
-        min-width: 330px;
+        min-width: 320px;
     }
 
     .page {
-        min-height: 580px;
+        min-height: 560px;
         height: calc(100% - 110px);
         display: flex;
-        flex-flow: column;
+        flex-flow: nowrap;
         gap:10px;
         justify-content: left;
         position: relative;
@@ -132,6 +144,71 @@
         background-size:10px 10px ;
     }
 
+    .model-box{
+        width: 224px;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .model-list{
+        display: flex;
+        flex-flow: column;
+        gap:10px;
+    }
+
+    .model-info{
+        width: 200px;
+        height: 130px;
+        border-radius: 8px;
+        border: var(--boxBod) 1px solid;
+        animation: boxUp 0.5s;
+        background: linear-gradient(to top,
+        rgba(var(--bg-mask), 0.5) 0%,
+        rgba(var(--bg-mask), 0.5) 25%,
+        rgba(var(--bg-mask), 0.5) 75%,
+        rgba(var(--bg-mask), 0.5) 100%),
+        linear-gradient(296.5deg,
+        rgba(0,0,0,0) 16.7%,
+        var(--boxGry) 16.7%,
+        var(--boxGry) 33.3%,
+        rgba(0,0,0,0) 33.3%,
+        rgba(0,0,0,0) 50%,
+        var(--boxGry) 50%,
+        var(--boxGry) 66.7%,
+        rgba(0,0,0,0) 66.7%,
+        rgba(0,0,0,0) 83.3%,
+        var(--boxGry) 83.3%
+        ) 0 0/100px 100px,var(--boxBak) 
+        ;
+        /*
+        background-size: 100px 100px;
+        background-repeat: repeat;
+        */
+        animation: skewliner linear 5s infinite;
+    }
+
+    .model-pick{
+        --model-img: '';
+        border-radius: 8px; 
+        overflow: hidden;
+        --model-info:0;
+    }
+    .model-pick:hover{
+        --model-info:1;
+    }
+
+    input[type="checkbox"]:checked+.model-pick {
+        --model-b: var(--mainColor) 1px solid;
+        --model-info:1;
+    }
+
+    .model-move-r,.model-move-l{
+        display: none;
+    }
+
     .btn-text {
         cursor: pointer;
         color: var(--mainColor);
@@ -158,9 +235,11 @@
 
     .tags-exports .list {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
         opacity: 0.8;
+        display: flex;
+        flex-flow: column;
+        gap:10px;
+        justify-content: left;
     }
     .tags-exports .set {
         width: 100%;
@@ -198,6 +277,8 @@
         display: flex;
         width: 100%;
         gap:4px;
+        flex-flow: column;
+        max-width: 680px;
     }
 
     .textarea-box{
@@ -223,11 +304,6 @@
         box-sizing: border-box;
     }
     .input-textarea {
-        width: 100%;
-        max-width: 100%;
-        height: var(--textarea-h);
-        min-height: var(--textarea-h);
-        max-height: 300px;
         border-radius: 8px;
         padding: 26px 4px 4px 10px;
         background-color: var(--boxBak);
@@ -249,6 +325,8 @@
     .export-tips{
         font-size: 10px;
         display: flex;
+        flex-flow: column;
+        gap:4px;
         justify-content: space-between;
         border: var(--boxBod) 1px solid;
         border-radius:10px 10px  0 0 ;
@@ -287,8 +365,6 @@
         border: 1px var(--boxBod) solid;
     }
     .re-tips-area{
-        width: 100%;
-        height: 50%;
         border-radius: 8px;
         padding: 4px 4px 4px 10px;
         font-size: 10px;
@@ -347,7 +423,43 @@
             transform:scale(1) rotateX(180deg) rotate(-360deg);
         }
     }
-
+    .btn-main{
+        background:
+        repeating-radial-gradient(
+            circle at center,  
+            rgba(62, 62, 62, 0.2) 0,
+            rgba(62, 62, 62, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1px,
+            rgba(119, 119, 119, 0.2) 1.5px,
+            transparent 4px,
+            transparent 20px
+        ),var(--boxBak);
+        background-size:5px 5px;
+        border: 0.5px var(--boxBod) solid;
+        border-radius: 20px;
+        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
+        padding: 4px;
+    }
+    .btn-mini{
+        width: 18px;
+        height: 18px;      
+        justify-content: center;
+        align-items: center;
+        font-size: 8px;
+        background:var(--boxBak);
+        background-size:5px 5px;
+        border-radius: 20px;
+        padding: 4px;
+        border: 0.5px var(--boxBod) solid;
+        box-sizing: border-box;
+    }
+    .btn-mini:hover{
+        font-size: 10px;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        --move:-2px
+    }
 
     .btn-theme {
         --theme-l:rgba(0,0,0,0);
@@ -362,6 +474,16 @@
     input[type="checkbox"]:checked+.btn-theme {
         --theme-l:var(--mainColor);
         --theme-d:rgba(0,0,0,0);
+    }
+
+    .btn-editor{
+        position: relative;
+        border-radius: 50%;
+        border: rgba(0, 0, 0, 0) 2px solid;
+        --btn-op: 0.2;
+    }
+    input[type="checkbox"]:checked+.btn-editor {
+        --btn-op: 1;
     }
 
     .tool-top{
@@ -396,7 +518,7 @@
         box-sizing: border-box;
         border: 0.5px var(--boxBod) solid;
         border-radius: 10px;
-        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.5) inset,0 0 1px  #6e6e6e/*, 0 2px 0 var(--boxBak)*/;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) inset,0 0 1px  #6e6e6e/*, 0 2px 0 var(--boxBak)*/;
     }
     .tool-title::before{
         content: '';
@@ -461,6 +583,14 @@
         --hover:var(--boxGry)
     }
 
+    .tool-option-pick{
+        width: 100%;
+        text-align: center;
+        background-color: rgba(70,220,210,0.2);
+        padding:4px 10px;
+        pointer-events: none;
+    }
+
     .tool-list {
         position: absolute;
         top:10px;
@@ -472,23 +602,6 @@
         background-color: var(--boxBak);
         border: var(--boxBod) 1px solid;
         border-radius:0 0 10px 10px;
-    }
-    .btn-main{
-        background:
-        repeating-radial-gradient(
-            circle at center,  
-            rgba(62, 62, 62, 0.2) 0,
-            rgba(62, 62, 62, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1.5px,
-            transparent 4px,
-            transparent 20px
-        ),var(--boxBak);
-        background-size:5px 5px;
-        border: 0.5px var(--boxBod) solid;
-        border-radius: 20px;
-        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
-        padding: 4px;
     }
 
     .tips-all{
@@ -512,6 +625,38 @@
         opacity: 0.8;
     }
 
+    .tags-search-toast {
+        width: var(--toastW, 100px);
+        text-align: center;
+        position: absolute;
+        bottom: 10px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        color: #ffffff;
+        background-color: #000000;
+        pointer-events: none;
+    }
+
+    .tags-search-toast-area {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        bottom: 1px;
+        right: -1px;
+        opacity: 00;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .tags-search-toast-area:hover {
+        opacity: 1;
+        transition: opacity 0.2s ease-out,background-color 0.5s ease-out;
+    }
+
+    .tags-search-toast-area:hover .tags-search-toast {
+        transform: translateY(-10px);
+        transition: transform 0.2s ease-out,background-color 0.5s ease-out;
+    }
 
     #textarea-in{
         --r:8px;
@@ -550,30 +695,21 @@
     }
 
     @media (max-width:750px){
+        :root{
+            --textarea-h:100px;
+        }
+        .page{
+            display: flex;
+            flex-flow: column;
+        }
         .tags-exports .list {
             display: flex;
             flex-flow: column;
             gap:10px;
             justify-content: left;
-        }
-        .textarea-in-out{
-            flex-flow: column;
-        }
-        .input-textarea {
-            height:100px;
-            max-height: 200px;
-        }
-        .export-tips{
-            flex-flow: column;
-            gap:4px;
-        }
-        #import-info{
-            height: 100px;
-            min-height: 100px;
-        }
-        .re-tips-area{
-            height: 100%;
-            min-height: 100px;
+        } 
+        #export-info{
+            --mh:100px
         }
         #textarea-in{
             display: flex;
@@ -589,28 +725,46 @@
             left: calc(50% - 14ch - 3px);
             transition: right ease-in-out 0.5s;
         }
-    }
-    @media (min-width:880px){
-        .textarea-in-out{
-            flex-flow: column;
-            height: 100%;
-            max-width: 680px;
+        #model-main{
+            padding: 10px;
+            overflow-x: scroll;
         }
-        .page{
+        .model-box{
+            width: 100%;
+            height: 200px;
+        }
+        .model-list{
+            width: fit-content;
+            flex-flow:nowrap;
+            
+        }
+        .model-info{
+            width: 150px;
+            height: 98px;
+        }
+        .model-move-r,.model-move-l{
             display: flex;
-            flex-flow: nowrap;
         }
+        
+    }
+
+    @media (min-width:1100px){
         .tags-exports .list {
             display: flex;
-            flex-flow: column;
-            gap:10px;
-            justify-content: left;
+            flex-flow: nowrap;
+            justify-content: space-between;
         }
+        .export-tips{
+            flex-flow: nowrap;
+        }
+        
     }
+
 
 </style>
 
 <body class="noselect">
+    <div id="noise" class="noise"></div>
     <!--全局tips-->
     <div id="tips-all" class="ww tips-all" style="display: none;">
         <div id="tips-box" class="tips-box" >
@@ -622,12 +776,12 @@
         
         <div class="tool-top" >
             <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
-                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(1)">资源位标准格式转换器</div>
-                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(2)">模板解析及批量延展器</div>
-                <div class="tool-option" onclick="document.getElementById('tool-name').innerHTML = this.innerHTML; viewPage(3)">布局示意图批量生成器</div>
+                <div id="tool-list-1" class="tool-option-pick" onclick="viewPage(1)">资源位标准格式转换器</div>
+                <div id="tool-list-2" class="tool-option" onclick="viewPage(2)">模板解析及批量延展器</div>
+                <div id="tool-list-3" class="tool-option" onclick="viewPage(3)">布局示意图批量生成器</div>
             </div>
             <div class="tool-title">
-                <span id="tool-name">资源位标准格式转换器</span>
+                <div id="tool-name" style="width:100%; "></div>
                 <div  id="tool-change" class="btn-text" style="width: 18px; height: 12px; margin-top: 2px; background-color: var(--boxBak); border: var(--boxGry) 1px solid; border-radius: 6px;"  
                 onclick="document.getElementById('tool-list').style.display = 'flex';">
                 <btn-change></btn-change>
@@ -635,7 +789,7 @@
             </div>
             
         </div>
-        <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;">
+        <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;margin-right: -15px;">
             <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="
             if(!this.checked){
             console.log('浅色主题')
@@ -691,14 +845,17 @@
         </div>
         
     </div>
+    <!--加载-->
+    <div class="ww page"  id="page-0" style="display: flex;"></div>
     <!--页面1-->
-    <div class="ww page"  id="page-1">
+    <div class="ww page"  id="page-1" style="display: none;">
         <div class="textarea-in-out" style="position: relative;" >
-            <div class="textarea-box" id="textarea-in" style="height: 100%;--title:'· [ 输入 ]'">
+            <div class="textarea-box" id="textarea-in" style="--title:'· [ 输入 ]';">
                 
                 <div id="btn-ai" class="AIloadding" onclick="this.style.animation = 'loading 1s linear infinite';AItoKeys(document.getElementById('import-info').value)"><btn-re></btn-re></div>
-                <textarea id="import-info" placeholder="输入带关键信息文本，点击转换进行规范匹配，确认无误后可生成标签" class="input-textarea noscrollbar" style="resize: none;--textarea-h:50%; border-radius: var(--top-r);"></textarea>
-                <div id="import-re" class="re-tips-area noscrollbar" style="border-radius: var(--bottom-r);">【敬请期待~】</div>
+                <textarea id="import-info" placeholder="选择要匹配的渠道，输入带关键信息的文本，点击转换进行规范匹配，确认无误后可生成标签" class="input-textarea noscrollbar" style="resize: none; border-radius: var(--top-r); width: 100%; height: var(--textarea-h);"></textarea>
+                <div id="import-re" class="re-tips-area noscrollbar" style="border-radius: var(--bottom-r);width: 100%; height: var(--textarea-h);">【敬请期待~】</div>
+                
                 <div class="btn-copy" id="btn-totags" style="width: 10ch; right:4px;top: calc(var(--top,50%) + 4px); z-index: 2; animation:none; --tips-copy:'# 生成标签';" onclick="
                     this.style.setProperty('--tips-copy','&quot~\(≧▽≦)/~&quot');
                     this.style.setProperty('--btn-copy-bg','#bb77ff77');
@@ -710,7 +867,7 @@
                 onchange="AItoKeysArea = this.value">
                 </select>
             </div>
-            <div class="textarea-box" id="textarea-out" style="--title:'· [ 输出 ]'">
+            <div class="textarea-box" id="textarea-out" style="--title:'· [ 输出 ]'; height: 100%;">
                 <div class="btn-copy" id="btn-copy" style="z-index: 2; display: none;" onclick="
                 this.style.setProperty('--tips-copy','&quot✔&quot');
                 this.style.setProperty('--btn-copy-bg','#77ff7777');
@@ -718,7 +875,9 @@
                 this.style.setProperty('--btn-copy-bg','#ffffff11');},1000);
                 navigator.clipboard.writeText(document.getElementById('export-info').value.trim()) .then(function() { console.log('复制成功'); alert('复制成功，可直接粘贴到表格，或模板生成插件')});">
                 </div>
-                <textarea id="export-info" placeholder="选择渠道和资源位后，将在此处输出标准格式，可用于规范提单和模板生成"  class="input-textarea noscrollbar"></textarea>
+                <textarea id="export-info" placeholder="选择渠道和资源位后，将在此处输出标准格式，可用于规范提单和模板生成"  
+                class="input-textarea noscrollbar" 
+                style="width: 100%; height: 100%;min-height: var(--mh,200px);max-height: calc(50vh - 15px); resize: none;"></textarea>
             </div>
         </div>
         <div class="page-box" >
@@ -775,12 +934,85 @@
             </div>
         </div>
     </div>
+    <!--页面2-->
+    <div class="ww page"  id="page-2" style="display: none;">
+        <div class="model-box" style="position: relative;overflow:visible">
+            <div class="export-tips">
+                <div style="font-size: 12px;">· [ 模板 ]</div>               
+            </div>
+            <!--此容器内自动添加子容器-->
+            <div class="page-main noscrollbar" id="model-main" style="background: var(--boxBak);" >
+                <div class="model-list" id="model-list" style="transition: transform 0.5s ease-in-out;">
+                    <div class="model-info" style="background: var(--boxBak);">
+                        <input type="file" id="model-pick-user" style="display: none;" />
+                        <label class="model-pick"  for="model-pick-user" style="position: relative;">
+                            <div style="position: absolute; bottom:-1px; background:rgba(0,0,0,0.2); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
+                            <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%;"><btn-add style="opacity: 0.6;"></btn-add></div>
+                            <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " ></div>
+                        </label>
+                    </div>
+                </div>      
+            </div>
+            <div class="model-move-r btn-mini" style="position: absolute; top:calc(50% + 8px + var(--move,0px));transform: translateX(-50%);"
+            onclick="var moveNum = Math.floor(this.parentNode.offsetWidth/162) * 162; modelMain.scrollTo({left:modelMain.scrollLeft - moveNum,behavior:'smooth'});"
+            >◀&nbsp;</div>
+            <div class="model-move-l btn-mini" style="position: absolute; top:calc(50% + 8px + var(--move,0px)); right: 0; transform: translateX(50%);"
+            onclick="var moveNum = Math.floor(this.parentNode.offsetWidth/162) * 162; modelMain.scrollTo({left:modelMain.scrollLeft + moveNum,behavior:'smooth'});"
+            >&nbsp;▶</div>
+        </div>
+        <div class="page-box" style="overflow:visible">
+            <div class="export-tips" >
+                <div style="font-size: 12px; min-width: fit-content;">· [ 编辑 ]</div>    
+                <div style="width: 100%; display: flex; justify-content: space-between; ">
+                    <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
+                    <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
+                        <input type="checkbox" style="display: none;" id="editor-data" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediV.checked = false}">
+                        <label class="btn-editor" for="editor-data">
+                            <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
+                            </div>
+                            <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
+                                <div class="tags-search-toast" style="width: 60px; right: -30px;z-index: 30;"> 参数模式</div>
+                            </div>
+                        </label>
+
+                        <input type="checkbox" style="display: none;" checked="true" id="editor-flow" onchange="this.checked = true;if(this.checked == true){ediD.checked = false;ediV.checked = false}">
+                        <label class="btn-editor" for="editor-flow" >
+                            <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
+                            </div>
+                            <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
+                                <div class="tags-search-toast" style="width: 60px; right: -30px;z-index: 30;"> 节点模式</div>
+                            </div>
+                        </label>
+
+                        <input type="checkbox" style="display: none;" id="editor-view" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediD.checked = false}">
+                        <label class="btn-editor" for="editor-view">
+                            <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
+                            </div>
+                            <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
+                                <div class="tags-search-toast" style="width: 60px; right: -20px;z-index: 30;"> 预览模式</div>
+                            </div>
+                        </label>
+                    </div>
+                  </div>           
+            </div>
+            <!--此容器内自动添加子容器-->
+            <div class="page-main noscrollbar" id="page-main-2" >
+
+            </div>
+        </div>
+    </div>
+    <!--页面3-->
+    <div class="ww page"  id="page-3" style="display: none;"></div>
     <!--底栏-->
     <div class="ww" style="opacity: 0.5; bottom: 8px; left:24px; font-size: 10px;display: flex; justify-content: space-between;">
         <div>提单助手 v0.1.0</div>
         <div>©YNYU @lvynyu2.gmail.com</div>
     </div>
-    
+    <svg style="display: none;">
+        <filter id="sharpness">
+            <feConvolveMatrix in="SourceGraphic"  order="3" kernelMatrix="0 -1 0 -1 2 -1 0 -1 0"/>
+        </filter>
+    </svg>
 <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js">//英文AI</script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">//模糊匹配</script>
 <script>
@@ -929,7 +1161,22 @@
     "DD":[...DD],
     }
 
+    const models = [
+        {name:"江湖快意",img:"url()"},
+        {name:"清新古风",img:"url()"},
+        {name:"暗黑神秘",img:"url()"},
+        {name:"科技硬核",img:"url()"},
+        {name:"搞怪有趣",img:"url()"},
+        {name:"唯美梦幻",img:"url()"},
+        {name:"雍容华贵",img:"url()"},
+        {name:"节日喜庆",img:"url()"},
+    ]
     const root = document.documentElement;
+    const modelList = document.getElementById('model-list');
+    const modelMain = document.getElementById('model-main');
+    const ediD = document.getElementById('editor-data');
+    const ediF = document.getElementById('editor-flow');
+    const ediV = document.getElementById('editor-view');
     var allKey = [];//记录所选择的key，一般就一个，除非是多渠道
     var allImg = [];//记录添加的资源位
     var exportAllInfo = '';//汇总信息
@@ -944,6 +1191,7 @@
     "link":"#4e7075",
     "btn-copy-bg":"#96fcb8",
     "bg-mask":"200,200,200",
+    "hl-op":"1"
     }
     var darkTheme = {
     "mainColor":"#acacac",
@@ -956,12 +1204,14 @@
     "link":"#4e7075",
     "btn-copy-bg":"#ffffff11",
     "bg-mask":"20,20,20",
+    "hl-op":"0.4"
     }
     var styleKey = Object.keys(lightTheme);//主题色键值
     var styleValue = Object.values(lightTheme);//主题色色值
     var styleKey2 = Object.keys(darkTheme);//主题色键值
     var styleValue2 = Object.values(darkTheme);//主题色色值
     var AItoKeysArea;
+    var modelPick = null;
     
 
     class btnadd extends HTMLElement {
@@ -1064,6 +1314,8 @@
         addOption("select-img-",[],0);
         allKey.push('');//默认值
         allImg[0] = '';//默认值
+        viewPage(2);
+        addModelList(models)
     }
 
     
@@ -1404,8 +1656,50 @@
         },time)
     }
 
-    function viewPage(e){
+    function addModelList(list){
+        list.forEach((value,index)=> {
+            var node = document.createElement('div')
+            node.className = "model-info"
+            node.innerHTML = `
+            <input type="checkbox" id="model-pick-` + index + `" style="display: none;" 
+            onchange="if(this.checked){
+            modelPick.push( ` + index + ` );
+            }else{
+            }"/>
+            <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
+                <div style="position: absolute; bottom:-1px; background:rgba(0,0,0,0.2); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">`+ value.name +`</div>
+                <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + (index + 1) + `</div>
+            </label>`;
+            modelList.appendChild(node);
+        })
+        var node = document.createElement('div');
+        node.style.width = "100%";
+        node.style.textAlign = "center";
+        node.style.opacity = 0.5;
+        node.innerHTML = "更多需要请联系定制~";
+        modelList.appendChild(node);
         
+    }
+
+    const pages = document.querySelectorAll('.page')
+    const toolN = document.getElementById('tool-name')
+    function viewPage(e){
+        console.log('页面-' + e)
+        pages.forEach((item,index) => {
+            if(index > 0){
+                if(item.id.split('-')[1] == e){
+                item.style.display = 'flex'
+                toolN.innerHTML = document.getElementById('tool-list-' + item.id.split('-')[1]).innerHTML
+                document.getElementById('tool-list-' + item.id.split('-')[1]).className = 'tool-option-pick'
+                } else {
+                    item.style.display = 'none'
+                    document.getElementById('tool-list-' + item.id.split('-')[1]).className = 'tool-option'
+                }
+            } else {
+                item.style.display = 'none'
+            }
+            
+        })
     }
 
     // 监听整个文档的点击事件
@@ -1419,6 +1713,28 @@
         })
     })
 
+    //添加噪点
+    noise()
+    function noise(){
+      var noiseV = 4;
+      var dom = document.createElement('canvas');
+      dom.width = 128;
+      dom.height = 128;
+      var ctx = dom.getContext('2d');
+      for (var i = 0; i < noiseV * dom.width * dom.height; i++) {
+        var x = Math.random() * dom.width;
+        var y = Math.random() * dom.height;
+        var color = Math.floor(Math.random() * 6 + (255 - 16)).toString(16);
+        //ctx.fillStyle = `#${color}${color}${color}`;
+        ctx.fillStyle = 'rgba(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255+ ',' + (Math.random() * 0.5 + 0.5) + ')';
+        ctx.beginPath();
+        ctx.arc(x, y, Math.random() * 0.1, 0, 4);
+        ctx.fill();
+    }
+      var url = dom.toDataURL(`image/png`, 1);
+      document.getElementById("noise").style.background = 'url("'+ url +'") 0 0/20px 20px,url("'+ url +'") 0 0/50px 50px'
+      
+    }
 </script>
 
 </body>

@@ -11,8 +11,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>提单助手</title>
-    <link rel="icon" href="https://mastergo.netease.com/mastergo-default/128405658053487/142634067922300/afd730bf13bf4bb25be55da2ed6d2735.png" type="image/png">
-
+    <link rel="icon" href="https://image-resource-nc.mastergo.com/119777467669341/119777652220024/91ebd23bb8ede210216b0fc98753f6d8.png" type="image/png">
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@refs/heads/master/css/litegraph.css" type="text/css"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">
+    
 <style>
     :root {
         --mainColor: #acacac;
@@ -76,7 +78,7 @@
         top: 0;
         left: 0;
         filter:url(#sharpness),grayscale();
-        background: url("https://raw.githubusercontent.com/YNYU01/listEase/refs/heads/main/img/noise.png") 0 0/100px 100px,url("https://raw.githubusercontent.com/YNYU01/listEase/refs/heads/main/img/noise.png") 0 0/200px 200px;
+        background: url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/100px 100px,url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/200px 200px;
         opacity: 0.07;
         z-index: 20;
         pointer-events: none;
@@ -125,6 +127,7 @@
     .page-main {
         width: 100%;
         height: 100%;
+        max-height: 100%;
         display: flex;
         flex-flow: column;
         justify-content: left;
@@ -486,9 +489,19 @@
     input[type="checkbox"]:checked+.btn-editor {
         --btn-op: 1;
     }
+    .TV{
+        width: calc(100% - 180px);
+        display: flex;
+        padding: 0 20px;
+        box-sizing: border-box;       
+        white-space: nowarp;
+        overflow: hidden;
+    }
 
     .tool-top{
         width: calc(100% + 40px);
+        display: flex;
+        align-items: center;
         --tool-title-w:180px;
         margin-left: -15px;
         border: 0.5px var(--boxBod) solid;
@@ -695,6 +708,12 @@
         }
     }
 
+    @media (max-width:375px){
+        body{
+            transform: scale(0.8);
+            transform-origin: top center;
+        }
+    }
     @media (max-width:750px){
         :root{
             --textarea-h:100px;
@@ -788,7 +807,10 @@
                 <btn-change></btn-change>
                 </div>
             </div>
-            
+            <div id="TV" class="TV">
+                    <span >💬公告：<span id="TV-info">测试阶段测试阶段测试阶段</span></span>
+                    
+            </div>
         </div>
         <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;margin-right: -15px;">
             <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="
@@ -797,11 +819,13 @@
             for (var i = 0; i < styleKey.length; i++) {
                 root.style.setProperty('--' + styleKey[i], styleValue[i])
             }
+            flowBg.clear_background_color = 'rgba(190,190,190,1)';
             } else {
             console.log('深色主题')
             for (var i = 0; i < styleKey2.length; i++) {
                 root.style.setProperty('--' + styleKey2[i], styleValue2[i])
             }
+            flowBg.clear_background_color = 'rgba(0,0,0,0)';
             }
         "></input>
             <label for="theme" class="btn-theme" style="position: relative;">
@@ -961,13 +985,13 @@
             onclick="var moveNum = Math.floor(this.parentNode.offsetWidth/162) * 162; modelMain.scrollTo({left:modelMain.scrollLeft + moveNum,behavior:'smooth'});"
             >&nbsp;▶</div>
         </div>
-        <div class="page-box" style="overflow:visible">
+        <div class="page-box" >
             <div class="export-tips" >
                 <div style="font-size: 12px; min-width: fit-content;">· [ 编辑 ]</div>    
                 <div style="width: 100%; display: flex; justify-content: space-between; ">
                     <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
                     <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
-                        <input type="checkbox" style="display: none;" id="editor-data" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediV.checked = false}">
+                        <input type="checkbox" style="display: none;" id="editor-data" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediV.checked = false; modelFlow.style.display = 'none'}">
                         <label class="btn-editor" for="editor-data">
                             <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
                             </div>
@@ -976,7 +1000,7 @@
                             </div>
                         </label>
 
-                        <input type="checkbox" style="display: none;" checked="true" id="editor-flow" onchange="this.checked = true;if(this.checked == true){ediD.checked = false;ediV.checked = false}">
+                        <input type="checkbox" style="display: none;" checked="true" id="editor-flow" onchange="this.checked = true;if(this.checked == true){ediD.checked = false;ediV.checked = false;modelFlow.style.display = 'block'}">
                         <label class="btn-editor" for="editor-flow" >
                             <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
                             </div>
@@ -985,7 +1009,7 @@
                             </div>
                         </label>
 
-                        <input type="checkbox" style="display: none;" id="editor-view" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediD.checked = false}">
+                        <input type="checkbox" style="display: none;" id="editor-view" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediD.checked = false; modelFlow.style.display = 'none'}">
                         <label class="btn-editor" for="editor-view">
                             <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
                             </div>
@@ -997,25 +1021,39 @@
                   </div>           
             </div>
             <!--此容器内自动添加子容器-->
-            <div class="page-main noscrollbar" id="page-main-2" >
-
+            <div class="page-main noscrollbar" id="page-main-2">
+                <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; background-color: #252525;">
+                    <canvas id="model-flow" width="1920" height="1080" style="width: 1920px; height: 1080px;" ></canvas>
+                </div>
             </div>
         </div>
     </div>
     <!--页面3-->
     <div class="ww page"  id="page-3" style="display: none;"></div>
     <!--底栏-->
-    <div class="ww" style="opacity: 0.5; bottom: 8px; left:24px; font-size: 10px;display: flex; justify-content: space-between;">
-        <div>提单助手 v0.1.0</div>
+    <div class="ww" style="opacity: 0.5; bottom: 8px; left:24px; font-size: 10px;display: flex; justify-content: space-between;align-items: center;">
+        <div style="display: flex; gap: 4px; align-items: center;">
+            <div style="width: 18px; height: 18px;">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 68 68">
+                    <path d="M11.500001907348633,18.999980926513672C7.357861907348633,18.999980926513672,4.000001907348633,15.642080926513671,4.000001907348633,11.499980926513672C4.000001907348633,7.357850926513672,7.357861907348633,3.999982833863672,11.500001907348633,3.999982833863672L37.47710190734863,3.999980926513672C40.66730190734863,3.999980926513672,43.70030190734863,5.384960926513672,45.789701907348636,7.7957409265136715L49.00000190734863,11.499980926513672C49.00000190734863,7.357840926513672,52.357901907348634,3.999980926513672,56.50000190734863,3.999980926513672C60.64210190734863,3.999980926513672,64.00000190734863,7.357840926513672,64.00000190734863,11.499980926513672L64.00000190734863,37.47708092651367C64.00000190734863,40.66728092651367,62.615001907348635,43.70028092651367,60.20420190734863,45.789680926513675L56.50000190734863,48.99998092651367C60.64210190734863,48.99998092651367,64.00000190734863,52.35788092651367,64.00000190734863,56.49998092651367C64.00000190734863,60.64208092651367,60.64210190734863,63.99998092651367,56.50000190734863,63.99998092651367L30.522901907348633,63.99998092651367C27.332701907348632,63.99998092651367,24.299701907348634,62.614980926513674,22.210301907348633,60.20418092651367L19.000001907348633,56.49998092651367C19.000001907348633,60.64208092651367,15.642101907348632,63.99998092651367,11.500001907348633,63.99998092651367C7.357861907348633,63.99998092651367,4.000001907348633,60.64208092651367,4.000001907348633,56.49998092651367L4.000001907348633,30.522880926513672C4.000001907348633,27.33268092651367,5.384981907348633,24.299680926513673,7.795761907348632,22.210280926513672L11.500001907348633,18.999980926513672ZM54.63480190734863,43.99998092651367L54.00000190734863,43.99998092651367L54.00000190734863,11.499980926513672Q54.00000190734863,10.464450926513672,54.73220190734863,9.732210926513673Q55.464501907348634,8.999980926513672,56.50000190734863,8.999980926513672Q57.53550190734863,8.999980926513672,58.267801907348634,9.732210926513673Q59.00000190734863,10.464450926513672,59.00000190734863,11.499980926513672L59.00000190734863,37.47708092651367Q59.00000190734863,40.216880926513674,56.92960190734863,42.011180926513674L54.63480190734863,43.99998092651367ZM44.00000190734863,13.365150926513673L44.00000190734863,13.999980926513672L11.500001907348633,13.999980926513672Q10.464471907348633,13.999980926513672,9.732231907348634,13.267750926513672Q9.000001907348633,12.535510926513671,9.000001907348633,11.499990926513671Q9.000001907348633,10.464450926513672,9.732231907348634,9.732210926513673Q10.464471907348633,8.999980926513672,11.500001907348633,8.999980926513672L37.47710190734863,8.999980926513672Q40.216901907348635,8.999980926513672,42.011201907348635,11.070400926513672L44.00000190734863,13.365150926513673ZM49.00000190734863,20.999980926513672Q49.00000190734863,20.171580926513673,48.414201907348634,19.58578092651367Q47.828401907348635,18.999980926513672,47.00000190734863,18.999980926513672L21.000001907348633,18.999980926513672Q20.171601907348634,18.999980926513672,19.585801907348632,19.58578092651367Q19.000001907348633,20.171580926513673,19.000001907348633,20.999980926513672L19.000001907348633,46.99998092651367Q19.000001907348633,47.828380926513674,19.585801907348632,48.41418092651367Q20.171601907348634,48.99998092651367,21.000001907348633,48.99998092651367L47.00000190734863,48.99998092651367Q47.828401907348635,48.99998092651367,48.414201907348634,48.41418092651367Q49.00000190734863,47.828380926513674,49.00000190734863,46.99998092651367L49.00000190734863,20.999980926513672ZM46.00000190734863,33.99998092651367L46.00000190734863,44.99998092651367C46.00000190734863,45.552280926513674,45.552301907348635,45.99998092651367,45.00000190734863,45.99998092651367L34.00000190734863,45.99998092651367C27.37260190734863,45.99998092651367,22.000001907348633,40.62738092651367,22.000001907348633,33.99998092651367C22.000001907348633,27.37258092651367,27.37260190734863,21.999980926513672,34.00000190734863,21.999980926513672C40.627401907348634,21.999980926513672,46.00000190734863,27.37258092651367,46.00000190734863,33.99998092651367ZM13.365171907348634,23.999980926513672L14.000001907348633,23.999980926513672L14.000001907348633,56.49998092651367Q14.000001907348633,57.53548092651367,13.267771907348633,58.26778092651367Q12.535531907348632,58.99998092651367,11.500001907348633,58.99998092651367Q10.464471907348633,58.99998092651367,9.732231907348634,58.26778092651367Q9.000001907348633,57.53548092651367,9.000001907348633,56.49998092651367L9.000001907348633,30.522880926513672Q9.000001907348633,27.783080926513673,11.070411907348632,25.988780926513673L13.365171907348634,23.999980926513672ZM32.00000190734863,39.99998092651367L32.00000190734863,35.99998092651367L28.000001907348633,35.99998092651367C26.89540190734863,35.99998092651367,26.000001907348633,35.10458092651368,26.000001907348633,33.99998092651367C26.000001907348633,32.89538092651367,26.89540190734863,31.999980926513672,28.000001907348633,31.999980926513672L32.00000190734863,31.999980926513672L32.00000190734863,27.999980926513672C32.00000190734863,26.89538092651367,32.89540190734863,25.999980926513672,34.00000190734863,25.999980926513672C35.10460190734864,25.999980926513672,36.00000190734863,26.89538092651367,36.00000190734863,27.999980926513672L36.00000190734863,31.999980926513672L40.00000190734863,31.999980926513672C41.10460190734863,31.999980926513672,42.00000190734863,32.89538092651367,42.00000190734863,33.99998092651367C42.00000190734863,35.10458092651368,41.10460190734863,35.99998092651367,40.00000190734863,35.99998092651367L36.00000190734863,35.99998092651367L36.00000190734863,39.99998092651367C36.00000190734863,41.10458092651367,35.10460190734864,41.99998092651367,34.00000190734863,41.99998092651367C32.89540190734863,41.99998092651367,32.00000190734863,41.10458092651367,32.00000190734863,39.99998092651367ZM24.000001907348633,54.63478092651367L24.000001907348633,53.99998092651367L56.50000190734863,53.99998092651367Q57.53550190734863,53.99998092651367,58.267801907348634,54.73218092651367Q59.00000190734863,55.46448092651367,59.00000190734863,56.49998092651367Q59.00000190734863,57.53548092651367,58.267801907348634,58.26778092651367Q57.53550190734863,58.99998092651367,56.50000190734863,58.99998092651367L30.522901907348633,58.99998092651367Q27.783101907348634,58.99998092651367,25.988801907348634,56.92958092651367L24.000001907348633,54.63478092651367Z" 
+                    fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
+                </svg>
+                <!--svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 60 60">
+                    <path d="M7.5,15L12,15L12,18L7.5,18L4.0821,20.7647L1.07284,24.5788L0,29.3171L0,52.5L2.1967,57.8033L7.5,60L12.8033,57.8033L15,52.5L15,48L18,48L18,52.5L20.7647,55.9179L24.5787,58.9272L29.317,60L52.5,60L57.8033,57.8033L60,52.5L57.8033,47.1967L52.5,45L48,45L48,42L52.5,42L55.9179,39.2353L58.9272,35.4213L60,30.683L60,7.50003L57.8033,2.19673L52.5,0.0000305176L47.1967,2.19673L45,7.50003L45,12L42,12L42,7.5L39.2353,4.0821L35.4213,1.07284L30.6829,0L7.5,0.00000190735L2.1967,2.1967L0,7.5L2.1967,12.8033L7.5,15ZM45,30L43.8212,24.1614L40.6066,19.3934L35.8387,16.1788L30,15L24.1613,16.1788L19.3934,19.3934L16.1788,24.1614L15,30L16.1788,35.8387L19.3934,40.6066L24.1613,43.8213L30,45L45,45L45,30ZM35.3479,7.2266L37,9.26907L37,10L7.5,10L5.73223,9.26777L5,7.50001L5.73223,5.73223L7.5,5L30.6829,5L33.2811,5.55665L35.3479,7.2266ZM50.7309,37L52.7734,35.3479L54.4434,33.2811L55,30.683L55,7.50003L54.2678,5.73227L52.5,5.00003L50.7322,5.73227L50,7.50003L50,37L50.7309,37ZM32.5,22L30,20L27.5,22L27.5,27.5L22,27.5L20,30L22,32.5L27.5,32.5L27.5,38L30,40L32.5,38L32.5,32.5L38,32.5L40,30L38,27.5L32.5,27.5L32.5,22ZM7.2266,24.6522L9.26907,23L10,23L10,52.5L9.26777,54.2678L7.5,55L5.73223,54.2678L5,52.5L5,29.3171L5.55665,26.7189L7.2266,24.6522ZM23,50.731L24.6521,52.7734L26.7189,54.4434L29.317,55L52.5,55L54.2678,54.2678L55,52.5L54.2678,50.7323L52.5,50L23,50L23,50.731Z" 
+                    fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
+                </svg-->
+            </div>
+            提单助手 v0.1.0</div>
         <div>©YNYU @lvynyu2.gmail.com</div>
     </div>
     <svg style="display: none;">
         <filter id="sharpness">
-            <feConvolveMatrix in="SourceGraphic"  order="3" kernelMatrix="0 -1 0 -1 2 -1 0 -1 0"/>
+            <feConvolveMatrix in="SourceGraphic"  order="3" kernelMatrix="0 -1.5 0 -1.5 27 -1.5 0 -1.5 0"/>
         </filter>
     </svg>
 <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js">//英文AI</script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">//模糊匹配</script>
+<script src="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@refs/heads/master/build/litegraph.min.js">//节点编辑</script>
 <script>
     //纯数字的键名要带下划线，避免被识别成数字序号
     const vivo = [
@@ -1173,6 +1211,7 @@
         {name:"节日喜庆",img:"url()"},
     ]
     const root = document.documentElement;
+    const modelFlow = document.getElementById('model-flow')
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
     const ediD = document.getElementById('editor-data');
@@ -1309,7 +1348,7 @@
     customElements.define('btn-change', btnchange);
 
 
-    window.onload = function(){
+    window.onload = ()=>{
         addOption("select-area-",sheet,0);
         addOption("select-area-",sheet,'ai');
         addOption("select-img-",[],0);
@@ -1317,8 +1356,8 @@
         allImg[0] = '';//默认值
         viewPage(2);
         addModelList(models)
+        addFlowEditor()
     }
-
     
     var btnAdd = '<btn-add></btn-add>';
     var btnClose = '<btn-close></btn-close>';
@@ -1703,6 +1742,38 @@
         })
     }
 
+    var flowBg;
+    //节点编辑器
+    function addFlowEditor(){
+        
+        var graph = new LGraph(); 
+        graph.WIDGET_BGCOLOR = "#fff";
+        var canvas = new LGraphCanvas("#model-flow", graph);
+        flowBg = canvas
+        //console.log(canvas)
+        //flowBg.clear_background_color = "rgba(256,256,256,1)"
+        //canvas.clear_background_color = "rgba(256,256,256,1)";
+        canvas.show_info = false;
+        //canvas.background_image = null;
+        graph.start()
+
+        //示例数据
+        var node_const = LiteGraph.createNode("basic/const");
+        node_const.pos = [200,200];
+        graph.add(node_const);
+        node_const.setValue(4.5);
+        node_const.title = 666
+
+        var node_watch = LiteGraph.createNode("basic/watch");
+        node_watch.pos = [700,200];
+        graph.add(node_watch);
+
+        node_const.connect(0, node_watch, 0 );
+    }
+   
+    
+
+    
     // 监听整个文档的点击事件
     document.addEventListener('mousedown', function (event) {
         var list = document.querySelectorAll('.tool-list')
@@ -1717,6 +1788,7 @@
     //添加噪点
     //noise()
     //https://raw.githubusercontent.com/YNYU01/listEase/refs/heads/main/img/noise.png
+    /*
     function noise(){
       var noiseV = 4;
       var dom = document.createElement('canvas');
@@ -1737,6 +1809,7 @@
       document.getElementById("noise").style.background = 'url("'+ url +'") 0 0/20px 20px,url("'+ url +'") 0 0/50px 50px'
       
     }
+    */
 </script>
 
 </body>

@@ -12,9 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="!!!自用工具，测试阶段!!! 全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具">
     <meta name="og:image" content="https://cdn.jsdelivr.net/gh/YNYU01/listEase@99441566fb366f977fe9074332df852a730821c4/img/Icon-ListEase_200-4.png">
-    <title>资源助手『云即·系列工具』 ListEase@YNYU</title>
+    <title>『云即·资源助手』 ListEase@YNYU</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@8457ff5ffc66e0240373b338e0ee9567f07f6a5f/img/Icon-ListEase_200-6.png" type="image/png">
-    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@refs/heads/master/css/litegraph.css" type="text/css"-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">
     
 <style>
@@ -73,6 +72,31 @@
     .noscrollbar::-webkit-scrollbar {
         display: none;
     }
+
+    /*自动布局*/
+    .df{
+        display: flex;
+    }
+    .df-ffc{
+        display: flex;
+        flex-flow: column;
+    }
+    .cc{
+        justify-content: center;
+        align-items: center;
+    }
+    .ovh{
+        overflow: hidden;
+    }
+    .wh100{
+        width: 100%;
+        height: 100%; 
+    }
+    .w100{
+        width: 100%;
+    }
+
+    /*其他*/
     .noise{
         width: 100%;
         height: 100%;
@@ -82,7 +106,7 @@
         filter:url(#sharpness),grayscale();
         background: url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/100px 100px,url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/200px 200px;
         opacity: 0.07;
-        z-index: 20;
+        z-index: 1000;
         pointer-events: none;
     }
 
@@ -140,13 +164,13 @@
         border-radius: 0 0 10px 10px;
         box-sizing: border-box;
         padding:10px 10px 30px 10px;
-        background-image: repeating-radial-gradient(
+        background: repeating-radial-gradient(
             circle at center,  
             rgba(0, 0, 0, 0.2) 0,
             rgba(0, 0, 0, 0.2) 1px,
             transparent 1px,
             transparent 20px
-        );
+        ),var(--boxBak);
         background-size:10px 10px ;
     }
 
@@ -674,6 +698,217 @@
         transition: transform 0.2s ease-out,background-color 0.5s ease-out;
     }
 
+    .moDside{
+        min-width: 280px;
+        max-width: 280px;
+        height: calc(100% - 71px);
+        padding: 10px;
+        background-color: var(--boxGry);
+        flex:0 0 auto;
+        border: var(--boxGry) 10px solid;
+        border-bottom: var(--boxGry) 40px solid;
+    }
+
+    .moDside-float{
+        min-width: 280px;
+        max-width: 280px;
+        padding: 10px;
+        background-color: var(--boxGry);
+        flex:0 0 auto;
+        border: var(--boxBod) 1px solid;
+        border-radius: 10px;
+        margin: 10px;
+        opacity: 0.5;
+    }
+
+    .moDside-float:hover{
+        opacity: 1;
+    }
+    .moDside p{
+        font-size: 13px;
+        opacity: 0.8;
+        margin-bottom: 6px;
+    }
+    .moDside a{
+        width: 5ch;
+        min-width: 4ch;
+        display: inline-block;
+        text-align-last: justify;
+    }
+    .btn{
+        width: 100%;
+        border-radius: 4px;
+        border: var(--boxGry) 1px solid;
+        padding: 2px;
+        color: var(--mainColor);
+        background-color: var(--boxGry);
+    }
+
+    .btn2{
+        width: 100%;
+        border-radius: 4px;
+        border: var(--boxBod) 1px solid;
+        padding: 2px;
+        color: #ffffff;
+        background-color: var(--boxBod);
+    }
+
+    .btn3{
+        width: 100%;
+        border: var(--boxBod) 1px solid;
+        border-radius: 4px;
+        padding: 2px;
+        color: var(--mainColor);
+        background-color: var(--boxBak);
+    }
+
+    .btn2:hover,.btn3:hover,.btn-viewSize:hover{
+        cursor: pointer;
+        opacity: 0.5;
+    }
+
+    .btn-viewSize{
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        border: var(--boxBod);
+        border-radius: 4px;
+        padding: 2px;
+        font-size: 16px;
+        color: var(--mainColor);
+        background-color: var(--boxGry);
+    }
+
+    .btn-big:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    input[type="checkbox"]:checked+.btn-big .path1 {
+        transform: translateY(6px) translateX(-6px);
+    }
+
+    input[type="checkbox"]:checked+.btn-big .path2 {
+        transform: translateX(6px) translateY(-6px);
+    }
+
+
+    .moDsearch-box {
+        width: 100%;
+        height: 22px;
+        font-size: 12px;
+        padding:0 0 1px 4px;
+        color: var(--boxBod);
+        border-radius: 4px;
+        background-color: var(--boxBak);
+        border: 1px solid var(--boxBod);
+        box-sizing: border-box;
+    }
+
+    .moDsearch-box:focus {
+        color: var(--mainColor);
+    }
+
+
+    *:focus {
+        outline: none;
+    }
+
+    .select {
+        width: 100%;
+        height: 22px;
+        font-size: 12px;
+        color: var(--boxBod);
+        border-radius: 4px;
+        background-color: var(--boxBak);
+        border: 1px solid var(--boxBod);
+        z-index: 20;
+    }
+
+    .select:focus {
+        color: var(--mainColor);
+    }
+
+    .chk-round{
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        opacity: 0.5;
+        --has:rgba(0,0,0,0);
+    }
+
+    input[type="checkbox"]:checked + .chk-round{
+        --has:var(--mainColor);
+        opacity: 1;
+    }
+
+    
+    /* 隐藏range控件默认样式 */
+    [type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        width: 80px;
+    }
+
+    /* 定义range控件轨道的样式 */
+    [type="range"]::-webkit-slider-runnable-track {
+        height: 2px;
+        border-radius: 1px;
+        background: var(--boxBod);
+    }
+
+    /* 定义range控件容器的样式 */
+    [type="range" i]::-webkit-slider-container {
+        height: 20px;
+        overflow: hidden;
+    }
+
+    /* 定义range控件拇指的样式 */
+    [type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 8px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: var(--boxBod);
+        margin-top: -7px;
+    }
+
+    #imgView-size{
+        bottom:40px;
+        right: 20px;
+        opacity: 0.5;
+        font-family: 'Roboto', Courier, monospace;
+    }
+    #imgView-size:hover{
+        opacity: 1;
+    }
+
+    #moDside{
+        position: absolute;
+    }
+
+    #imgView{
+        width: calc(100% - 300px);
+    }
+
+
+    .loadding{
+        animation: load 1s;
+    }
+
+    @keyframes load {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+
+
+
     #textarea-in{
         --r:8px;
         --top-r:var(--r) var(--r) 0 0;
@@ -766,6 +1001,29 @@
         }
         .model-move-r,.model-move-l{
             display: flex;
+        }
+        #model-data{
+            flex-flow: column;
+        }
+
+        #moDside{
+            --boxGry:rgba(25,25,25,0.9);
+            min-width: calc(100% - 40px);
+            max-height: calc(100% - 80px);
+            border-bottom: 10px var(--boxGry) solid;
+        }
+
+        #imgView{
+            width: 100%;
+        }
+
+        #imgView-box{
+            transform: scale(0.4);
+            transition: transform 0.5s ;
+        }
+
+        #imgView-size{
+            bottom: 80px;
         }
         
     }
@@ -993,39 +1251,208 @@
                 <div style="width: 100%; display: flex; justify-content: space-between; ">
                     <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
                     <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
-                        <input type="checkbox" style="display: none;" id="editor-data" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediV.checked = false; modelFlow.style.display = 'none'}">
+                        <input type="checkbox" checked="true" style="display: none;" id="editor-data" 
+                        onchange="this.checked = true;if(this.checked == true){
+                            ediF.checked = false;ediV.checked = false;
+                            modelFlow.style.display = 'none';
+                            modelData.style.display = 'flex';
+                            modelView.style.display = 'none';}">
                         <label class="btn-editor" for="editor-data">
                             <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
                             </div>
                             <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; right: -30px;z-index: 30;"> 参数模式</div>
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 参数模式</div>
                             </div>
                         </label>
 
-                        <input type="checkbox" style="display: none;" checked="true" id="editor-flow" onchange="this.checked = true;if(this.checked == true){ediD.checked = false;ediV.checked = false;modelFlow.style.display = 'block'}">
+                        <input type="checkbox" style="display: none;"  id="editor-flow" 
+                        onchange="this.checked = true;if(this.checked == true){
+                            ediD.checked = false;ediV.checked = false;
+                            modelFlow.style.display = 'block';
+                            modelView.style.display = 'none';
+                            modelData.style.display = 'none';}">
                         <label class="btn-editor" for="editor-flow" >
                             <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
                             </div>
                             <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; right: -30px;z-index: 30;"> 节点模式</div>
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 节点模式</div>
                             </div>
                         </label>
 
-                        <input type="checkbox" style="display: none;" id="editor-view" onchange="this.checked = true;if(this.checked == true){ediF.checked = false;ediD.checked = false; modelFlow.style.display = 'none'}">
+                        <input type="checkbox" style="display: none;" id="editor-view" 
+                        onchange="this.checked = true;if(this.checked == true){
+                            ediF.checked = false;ediD.checked = false;
+                            modelFlow.style.display = 'none';
+                            modelView.style.display = 'block';
+                            modelData.style.display = 'none';}">
                         <label class="btn-editor" for="editor-view">
                             <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
                             </div>
                             <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; right: -20px;z-index: 30;"> 预览模式</div>
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -20px;z-index: 30;"> 预览模式</div>
                             </div>
                         </label>
                     </div>
                   </div>           
             </div>
-            <!--此容器内自动添加子容器-->
-            <div class="page-main noscrollbar" id="page-main-2">
-                <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; background-color: #252525;">
-                    <canvas id="model-flow" width="1920" height="1080" style="width: 1920px; height: 1080px;" ></canvas>
+            <!--三种编辑视图-->
+            <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
+                <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; ">
+                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;" ></canvas>
+                    <div id="model-view" class="wh100" style="display: none;"></div>
+                    <div id="model-data" class="wh100 df" style="display: flex;">
+                        <!--侧边栏-->
+                        <div id="moDside" class="df-ffc moDside ovh" style="gap:20px; z-index: 20; ">
+                            <div class="df" style="justify-content: space-between;">
+                                <div class="w100" > ·配置项</div>
+                                <!--展开收起浮层-->
+                                <div style="width: 12px; height: 12px;position: relative; margin-top: -1px;">
+                                    <input id="big" type="checkbox" checked="true" style="display: none;" 
+                                    onchange="
+                                    if(this.checked){
+                                        modelTable.style.display = 'flex';
+                                        moDsideArea.style.display = 'flex';
+                                        moDside.style.overflow = 'hidden';
+                                        moDside.className = 'df-ffc moDside ovh';
+                                        imgViewInfo.style.top = '10px';
+                                    }else{
+                                        modelTable.style.display = 'none';
+                                        moDside.style.overflow = 'visible';
+                                        moDsideArea.style.display = 'none';
+                                        moDside.className = 'df-ffc moDside-float ovh';
+                                        imgView.style.width = '100%';
+                                        imgViewInfo.style.top = '60px';
+                                    };autoZoom();"></input>
+                                    <label for="big" class="btn-big" style="position: relative;">
+                                        <div class="tags-search-toast-area" style="right: 0; bottom:0;width: 20px;">
+                                        <div class="tags-search-toast" style="width: 120px;height: 18px; top: 30px; right: 0;"> 展开/收起浮层</div>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1"
+                                        width="100%" height="100%" viewBox="0 0 10 10">
+                                        <path class="path1" d="M5.5,2L8,2L8,4.5L10,4.5L10,0L5.5,0L5.5,2Z" fill="var(--boxBod)" fill-opacity="1" />
+                                        <path class="path2" d="M4.5,8L2,8L2,5.5L0,5.5L0,10L4.5,10L4.5,8Z" fill="var(--boxBod)" fill-opacity="1" />
+                                        </svg>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--配置项-->
+                            <div class="df-ffc noscrollbar" id="model-table" style="height:100%; gap: 10px; overflow-y: scroll; border-top: var(--boxBod) 1px solid;">
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <p>[-主标题-]</p>
+                                    <div class="df" style="gap:4px; position: relative;">
+                                        <a> 文案 </a><span> :</span>
+                                        <input type="text" id="title-main-1" class="moDsearch-box" maxlength="8" 
+                                        value="示例文案"/>
+                                        <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                            <span id="title-main-1-num"> 0 </span>/
+                                            <span>8</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <p>[-副标题-]</p>
+                                    <div class="df" style="gap:4px; position: relative;">
+                                        <a> 文案 </a><span> :</span>
+                                        <input type="text" id="title-main-1" class="moDsearch-box" maxlength="20" 
+                                        value="示例文案"/>
+                                        <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                            <span id="title-main-1-num"> 0 </span>/
+                                            <span>20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wh100"></div>
+                                <div style="min-height: 60px;"></div>
+                                <!--导出项-->
+                                <div class="df cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom: 20px; z-index: 20;">
+                                    <div id="moDside-mask" style="position: absolute; width: calc(100% + 40px); height: 50px; top: -10px; background:var(--boxGry);">
+                                        <!--div style=" position: absolute; font-size: 10px; bottom: -30px; opacity: 0.4;">
+                                            <li style="margin-bottom: -4px;">保存数据：导出表单为json文件;</li>
+                                            <li>导出图片：按规范库转图片，合并为一个zip压缩包导出;</li>
+                                        </div--> 
+                                    </div>
+                                    <button class="btn3" style="z-index: 2;" onclick="saveAll()"> 保存数据 </button>
+                                    <button class="btn2" style="z-index: 2;"  onclick="exportAll()"> 导出图片 </button>
+                                </div>
+                            </div> 
+                            
+                        </div>
+                        <!--侧边栏（展开时）占位-->
+                        <div class="moDside" id="moDside-area" style="background: none; border: none; margin: 10px;"></div>
+                        <!--画布-->
+                        <div id="imgView" class="df df-ffc cc ovh" style=" position: relative;">
+                            <div style="filter:drop-shadow(0 0 1px var(--mainColor)) drop-shadow(0 0 2px black)">
+                                <div id="imgView-box" class="df loadding" style="width: fit-content; transform: scale(0.4); transition: transform 0.5s ;  "
+                                onmousewheel="
+                                    var step = Math.abs(event.wheelDelta)/12 ;
+                                    if(event.wheelDelta > 0){
+                                        imgViewSlider.value = imgViewSlider.value*1 + step;
+                                    } else {
+                                        imgViewSlider.value = imgViewSlider.value*1 - step;
+                                    }
+                                    zoomNum.innerHTML = imgViewSlider.value;
+                                    zoom = imgViewSlider.value;
+                                    imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
+                                    this.style.transformOrigin = (clickX - this.left)/this.offsetWidth * 100 + '%' + (clickY - this.top)/this.offsetHeight * 100 + '%';"
+                                    
+                                onmousedown="if(window.event.button == 0){
+                                    isDragging = true;
+                                    clickX = window.event.clientX;
+                                    clickY = window.event.clientY;  
+                                    this.style.cursor = 'move';
+                                }"
+                                onmousemove="
+                                if(isDragging){
+                                    moveX = moveXX + window.event.clientX - clickX;
+                                    moveY = moveYY + window.event.clientY - clickY;
+                                    this.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';
+                                    
+                                }"
+                                onmouseup="isDragging = false; moveXX = moveX ; moveYY = moveY;this.style.cursor = 'default';">
+                                     <div style="width: 512px; height: 512px; background-color: #393939;"></div>
+                                </div>
+                            </div>
+                            
+                            <!--视窗信息-->
+                            <div id="imgView-info" class="df-ffc " style="gap: 10px; position: absolute; top:20px; left: 10px;">
+                                <div class="df-ffc" style="gap:2px; padding: 4px; opacity: 0.5; height: auto; font-size: 12px;">
+                                    <span>缩放：<span id="zoom-num">40</span> %</span>
+                                    <span>尺寸：--</span>
+                                    <span>渠道：--</span>
+                                    <span>游戏：--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--放大器-->
+                        <div id="imgView-size" class="df-ffc cc" style=" gap:10px; position: absolute;">
+                            <button class="btn-viewSize" onclick="
+                            imgViewSlider.value = imgViewSlider.value*1 + 10;
+                            zoomNum.innerHTML = imgViewSlider.value;
+                            zoom = imgViewSlider.value;
+                            imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
+                            ;"> 
+                            + </button>
+
+                            <div class="df cc" style="width: 20px; height: 80px;">
+                                <input type="range" min="20" max="150" value="40" id="slider-imgView" style="transform: rotate(-90deg);"
+                                oninput="imgViewBox.style.transform = 'scale( '+ this.value/100 + ')';zoom = imgViewSlider.value; zoomNum.innerHTML = imgViewSlider.value; ;" />
+                            </div>
+
+                            <button class="btn-viewSize" onclick="
+                            imgViewSlider.value -= 10;
+                            zoomNum.innerHTML = imgViewSlider.value;
+                            zoom = imgViewSlider.value;
+                            imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
+                            ;"> 
+                            - </button>
+
+                            <div style="height: 4px;"></div>
+                            <button class="btn-viewSize" style="font-size: 10px; font-weight: 700; border-radius: 30%; border: var(--boxBod) 2px solid;"
+                            onclick="autoZoom()">
+                                <span style="opacity: 0.8;">自动</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1049,7 +1476,7 @@
                     fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
                 </svg-->
             </div>
-            提单助手 v0.1.0</div>
+             ListEase 0.1.0 『云即·资源助手』 </div>
         <div>©YNYU @lvynyu2.gmail.com</div>
     </div>
     <svg style="display: none;">
@@ -1217,7 +1644,9 @@
         {name:"节日喜庆",img:"url()"},
     ]
     const root = document.documentElement;
-    const modelFlow = document.getElementById('model-flow')
+    const modelFlow = document.getElementById('model-flow');
+    const modelView = document.getElementById('model-view');
+    const modelData = document.getElementById('model-data');
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
     const ediD = document.getElementById('editor-data');
@@ -1258,7 +1687,54 @@
     var styleValue2 = Object.values(darkTheme);//主题色色值
     var AItoKeysArea;
     var modelPick = null;
+
+    const moDside = document.getElementById("moDside");
+    const moDsideArea = document.getElementById("moDside-area");
+    const imgView = document.getElementById("imgView");
+    const imgViewBox = document.getElementById("imgView-box");
+    const imgViewInfo = document.getElementById("imgView-info");
+    const imgViewSlider = document.getElementById("slider-imgView");
+    const modelTable = document.getElementById("model-table");
+    const zoomNum = document.getElementById("zoom-num");
+    const giftNum =  [null,null,'二','三','四','五','六','七','八','九','十']
     
+    //交互参数
+    var isDragging = false;//拖拽画布
+    var clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+    var zoom = 40;//缩放比例
+    var viewport = {
+        x:0,
+        y:0,
+        center:[0,0],
+    }//画布参数
+
+    //模拟数据
+    const userImgDta = {
+        title:["标题文案"],
+        sectitle:["副标题文案文案文案文案"],
+        style:{
+            titleStyle:{
+                color:"#fff",
+                fill:[],
+                fontfamily:"",
+                fontsize:36,   
+            },
+            sectitleStyle:{
+                color:"#fff",
+                fill:[],
+                fontfamily:"",
+                fontsize:24,
+            },
+        },
+        image:{
+            bg:"url()",
+            gift:["url()"]
+        },
+        tags:{
+            gift:[],
+            giftNumZh:[null,null,'二','三','四','五','六','七','八','九','十']
+        }
+    }
 
     class btnadd extends HTMLElement {
       constructor() {
@@ -1363,6 +1839,11 @@
         viewPage(2);
         addModelList(models)
         addFlowEditor()
+    }
+
+    window.onbeforeunload = ()=>{
+        window.event.preventDefault();
+        window.event.returnValue = '系统可能不会保存您所做的更改,如有需要，请先保存数据' ;
     }
     
     var btnAdd = '<btn-add></btn-add>';
@@ -1727,6 +2208,20 @@
         
     }
 
+    //自动缩放
+    function autoZoom(){
+        var size1 = imgView.offsetWidth/(imgViewBox.offsetWidth + 40);
+        var size2 = imgView.offsetHeight/(imgViewBox.offsetHeight + 40);
+        var size = size1 > size2 ? size2 : size1
+        imgViewSlider.value = size*100;
+        imgViewBox.style.transform = 'scale('+ size +')';
+        imgViewBox.parentNode.style.transform = 'translate(0,0)'
+        zoomNum.innerHTML = imgViewSlider.value;
+        zoom = imgViewSlider.value;
+        isDragging = false;
+        clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+    }
+
     const pages = document.querySelectorAll('.page')
     const toolN = document.getElementById('tool-name')
     function viewPage(e){
@@ -1748,6 +2243,51 @@
         })
     }
 
+
+    //有限字数文案节点
+    function limitedString() {
+        this.addOutput("string", "string");
+        this.addProperty("value", "",);//name, default_value,type,extra_info
+        this.widget = this.addWidget("text","Text","","value");  //link to property value
+        this.widgets_up = true;
+        this.size = [180, 30];
+    }
+
+    limitedString.title = "文案";
+    limitedString.desc = "输入带限定字数的文案";
+
+    limitedString.prototype.setValue = function(v){this.setProperty("value",v)}
+
+    limitedString.prototype.onExecute = function() {
+        this.setOutputData(0, this.properties["value"]);     
+    };
+
+    LiteGraph.registerNodeType("imginfo/string", limitedString);
+
+
+    //基础信息节点
+    function ImgInfoMain() {
+        this.addInput("主标题", "string"); // 主标题输入端口
+        this.addInput("副标题", "string"); // 副标题输入端口
+        this.addOutput("输出","string")
+        this.size = [180, 100];
+    }
+
+    ImgInfoMain.title = "配置项（基础）";
+    ImgInfoMain.desc = "接收主标题和副标题信息";
+
+    ImgInfoMain.prototype.onExecute = function () {
+        var mainTitle = this.getInputData(0); // 主标题
+        var subTitle = this.getInputData(1); // 副标题
+        this.setOutputData(0,"[" + mainTitle + "," + subTitle + "]") 
+    };
+
+    ImgInfoMain.prototype.setValue = function(v){this.setProperty("value",v)}
+
+
+    LiteGraph.registerNodeType("imginfo/main", ImgInfoMain);
+
+     
     var flowBg;
     //节点编辑器
     function addFlowEditor(){
@@ -1756,25 +2296,28 @@
         graph.WIDGET_BGCOLOR = "#fff";
         var canvas = new LGraphCanvas("#model-flow", graph);
         flowBg = canvas
-        //console.log(canvas)
-        //flowBg.clear_background_color = "rgba(256,256,256,1)"
-        //canvas.clear_background_color = "rgba(256,256,256,1)";
         canvas.show_info = false;
-        //canvas.background_image = null;
         graph.start()
 
         //示例数据
-        var node_const = LiteGraph.createNode("basic/const");
-        node_const.pos = [200,200];
-        graph.add(node_const);
-        node_const.setValue(4.5);
-        node_const.title = 666
+        var node_input1 = LiteGraph.createNode("imginfo/string","文案");
+        node_input1.pos = [200,200];
+        node_input1.setValue("示例文案") 
+        graph.add(node_input1);
 
-        var node_watch = LiteGraph.createNode("basic/watch");
-        node_watch.pos = [700,200];
-        graph.add(node_watch);
 
-        node_const.connect(0, node_watch, 0 );
+        var node_input3 = LiteGraph.createNode("imginfo/main");
+        node_input3.pos = [500,200];
+        graph.add(node_input3);
+
+        var node_input2 = LiteGraph.createNode("imginfo/string");
+        node_input2.pos = [200,300];
+        node_input2.setValue("示例文案") 
+        graph.add(node_input2);
+
+        node_input1.connect(0, node_input3, 0 );
+        node_input2.connect(0, node_input3, 1 )
+
     }
    
     
@@ -1791,31 +2334,6 @@
         })
     })
 
-    //添加噪点
-    //noise()
-    //https://raw.githubusercontent.com/YNYU01/listEase/refs/heads/main/img/noise.png
-    /*
-    function noise(){
-      var noiseV = 4;
-      var dom = document.createElement('canvas');
-      dom.width = 128;
-      dom.height = 128;
-      var ctx = dom.getContext('2d');
-      for (var i = 0; i < noiseV * dom.width * dom.height; i++) {
-        var x = Math.random() * dom.width;
-        var y = Math.random() * dom.height;
-        var color = Math.floor(Math.random() * 6 + (255 - 16)).toString(16);
-        //ctx.fillStyle = `#${color}${color}${color}`;
-        ctx.fillStyle = 'rgba(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255+ ',' + (Math.random() * 0.5 + 0.5) + ')';
-        ctx.beginPath();
-        ctx.arc(x, y, Math.random() * 0.1, 0, 4);
-        ctx.fill();
-    }
-      var url = dom.toDataURL(`image/png`, 1);
-      document.getElementById("noise").style.background = 'url("'+ url +'") 0 0/20px 20px,url("'+ url +'") 0 0/50px 50px'
-      
-    }
-    */
 </script>
 
 </body>

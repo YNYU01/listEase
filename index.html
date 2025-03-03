@@ -701,12 +701,12 @@
     .moDside{
         min-width: 280px;
         max-width: 280px;
-        height: calc(100% - 71px);
+        height: calc(100% - 51px);
         padding: 10px;
         background-color: var(--boxGry);
         flex:0 0 auto;
         border: var(--boxGry) 10px solid;
-        border-bottom: var(--boxGry) 40px solid;
+        border-bottom: var(--boxGry) 20px solid;
     }
 
     .moDside-float{
@@ -893,7 +893,6 @@
         width: calc(100% - 300px);
     }
 
-
     .loadding{
         animation: load 1s;
     }
@@ -1009,8 +1008,7 @@
         #moDside{
             --boxGry:rgba(25,25,25,0.9);
             min-width: calc(100% - 40px);
-            max-height: calc(100% - 80px);
-            border-bottom: 10px var(--boxGry) solid;
+            max-height: calc(100% - 40px);
         }
 
         #imgView{
@@ -1079,13 +1077,15 @@
             for (var i = 0; i < styleKey.length; i++) {
                 root.style.setProperty('--' + styleKey[i], styleValue[i])
             }
-            flowBg.clear_background_color = 'rgba(190,190,190,1)';
+            modelFlow.style.filter = 'invert(1) contrast(140%)'
+            //flowBg.clear_background_color = 'rgba(190,190,190,1)';
             } else {
             console.log('深色主题')
             for (var i = 0; i < styleKey2.length; i++) {
                 root.style.setProperty('--' + styleKey2[i], styleValue2[i])
             }
-            flowBg.clear_background_color = 'rgba(0,0,0,0)';
+            modelFlow.style.filter = ''
+            //flowBg.clear_background_color = 'rgba(0,0,0,0)';
             }
         "></input>
             <label for="theme" class="btn-theme" style="position: relative;">
@@ -1298,7 +1298,7 @@
             <!--三种编辑视图-->
             <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
                 <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; ">
-                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;" ></canvas>
+                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;  " ></canvas>
                     <div id="model-view" class="wh100" style="display: none;"></div>
                     <div id="model-data" class="wh100 df" style="display: flex;">
                         <!--侧边栏-->
@@ -1342,7 +1342,7 @@
                                     <div class="df" style="gap:4px; position: relative;">
                                         <a> 文案 </a><span> :</span>
                                         <input type="text" id="title-main-1" class="moDsearch-box" maxlength="8" 
-                                        value="示例文案"/>
+                                        value="标题文案"/>
                                         <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                             <span id="title-main-1-num"> 0 </span>/
                                             <span>8</span>
@@ -1354,7 +1354,7 @@
                                     <div class="df" style="gap:4px; position: relative;">
                                         <a> 文案 </a><span> :</span>
                                         <input type="text" id="title-main-1" class="moDsearch-box" maxlength="20" 
-                                        value="示例文案"/>
+                                        value="副标题文案文案文案文案"/>
                                         <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                             <span id="title-main-1-num"> 0 </span>/
                                             <span>20</span>
@@ -1364,13 +1364,8 @@
                                 <div class="wh100"></div>
                                 <div style="min-height: 60px;"></div>
                                 <!--导出项-->
-                                <div class="df cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom: 20px; z-index: 20;">
-                                    <div id="moDside-mask" style="position: absolute; width: calc(100% + 40px); height: 50px; top: -10px; background:var(--boxGry);">
-                                        <!--div style=" position: absolute; font-size: 10px; bottom: -30px; opacity: 0.4;">
-                                            <li style="margin-bottom: -4px;">保存数据：导出表单为json文件;</li>
-                                            <li>导出图片：按规范库转图片，合并为一个zip压缩包导出;</li>
-                                        </div--> 
-                                    </div>
+                                <div class="df cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom:0; z-index: 20;">
+                                    <div id="moDside-mask" style="position: absolute; width: calc(100% + 40px); height: 50px; top: -10px; background:var(--boxGry);"></div>
                                     <button class="btn3" style="z-index: 2;" onclick="saveAll()"> 保存数据 </button>
                                     <button class="btn2" style="z-index: 2;"  onclick="exportAll()"> 导出图片 </button>
                                 </div>
@@ -1381,7 +1376,7 @@
                         <div class="moDside" id="moDside-area" style="background: none; border: none; margin: 10px;"></div>
                         <!--画布-->
                         <div id="imgView" class="df df-ffc cc ovh" style=" position: relative;">
-                            <div style="filter:drop-shadow(0 0 1px var(--mainColor)) drop-shadow(0 0 2px black)">
+                            <div style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
                                 <div id="imgView-box" class="df loadding" style="width: fit-content; transform: scale(0.4); transition: transform 0.5s ;  "
                                 onmousewheel="
                                     var step = Math.abs(event.wheelDelta)/12 ;
@@ -1409,7 +1404,12 @@
                                     
                                 }"
                                 onmouseup="isDragging = false; moveXX = moveX ; moveYY = moveY;this.style.cursor = 'default';">
-                                     <div style="width: 512px; height: 512px; background-color: #393939;"></div>
+                                     <div id="imgTest" style="width: 1240px; height: 720px; background-color: var(--boxBak); color:var(--mainColor);">
+                                        <div class="cc df-ffc w100" style=" position: absolute; top: 30%;">
+                                            <div id="imgTest-title" style="font-size: 110px;">标题文案</div>
+                                            <div id="imgTest-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
+                                        </div>
+                                     </div>
                                 </div>
                             </div>
                             
@@ -1709,9 +1709,11 @@
     }//画布参数
 
     //模拟数据
-    const userImgDta = {
-        title:["标题文案"],
-        sectitle:["副标题文案文案文案文案"],
+    const userImgData = {
+        main:{
+            title:["标题文案"],
+            sectitle:["副标题文案文案文案文案"],
+        },
         style:{
             titleStyle:{
                 color:"#fff",
@@ -1839,6 +1841,10 @@
         viewPage(2);
         addModelList(models)
         addFlowEditor()
+    }
+
+    window.onresize = ()=>{
+        autoZoom()
     }
 
     window.onbeforeunload = ()=>{
@@ -2288,16 +2294,21 @@
     LiteGraph.registerNodeType("imginfo/main", ImgInfoMain);
 
      
-    var flowBg;
+    //var flowBg;
     //节点编辑器
-    function addFlowEditor(){
+    
+    function addFlowEditor(userImgData){
         
         var graph = new LGraph(); 
-        graph.WIDGET_BGCOLOR = "#fff";
+        //graph.WIDGET_BGCOLOR = "#fff";
+        // 假设你有一个 LiteGraph 的实例名为 graph
+        
         var canvas = new LGraphCanvas("#model-flow", graph);
-        flowBg = canvas
+        //flowBg = canvas
         canvas.show_info = false;
         graph.start()
+
+       
 
         //示例数据
         var node_input1 = LiteGraph.createNode("imginfo/string","文案");
@@ -2316,8 +2327,26 @@
         graph.add(node_input2);
 
         node_input1.connect(0, node_input3, 0 );
-        node_input2.connect(0, node_input3, 1 )
+        node_input2.connect(0, node_input3, 1 );
 
+        /*
+        var ctx = modelFlow.getContext('2d')
+        var imgData = ctx.getImageData(0,0,modelFlow.width,modelFlow.height)
+        var data = imgData.data;
+        for(var i = 0; i < data.length; i += 4){
+            var r = data[i];
+            var g = data[i + 1];
+            var b = data[i + 2];
+
+            if(Math.abs(r - g) < 10 && Math.abs(r - b) < 10 && Math.abs(b - g) < 10 ){
+                r = 255 - r;
+                g = 255 - g;
+                b = 255 - b;
+            }
+
+        }
+        ctx.putImageData(imgData,0,0)
+        */
     }
    
     

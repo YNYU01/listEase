@@ -34,6 +34,7 @@
         --tips-copy:'复制';
         --keysLiColor:#983e3e;
         --bg-light:#81818154;
+        --mod-table:rgba(25,25,25,0.9);
     }
 
     body {
@@ -73,6 +74,11 @@
         display: none;
     }
 
+    .ww{
+        width: calc(100% - 80px);
+        max-width: 1200px;
+        min-width: 320px;
+    }
     /*自动布局*/
     .df{
         display: flex;
@@ -120,11 +126,7 @@
         background-color: '';
         font-size: var(--select-fso,12px);
     }
-    .ww{
-        width: calc(100% - 80px);
-        max-width: 1200px;
-        min-width: 320px;
-    }
+    
 
     .page {
         min-height: 560px;
@@ -516,16 +518,16 @@
         --btn-op: 1;
     }
     .TV{
-        width: calc(100% - 180px);
-        display: flex;
+        width: calc(100% - 200px);
+        height: 18px;
         padding: 0 20px;
+        display: flex;
         box-sizing: border-box;       
-        white-space: nowarp;
         overflow: hidden;
     }
 
     .tool-top{
-        width: calc(100% + 40px);
+        width: calc(100% + 10px);
         display: flex;
         align-items: center;
         --tool-title-w:180px;
@@ -946,9 +948,16 @@
 
     @media (max-width:375px){
         body{
-            transform: scale(0.8);
-            transform-origin: top center;
+            transform: scale(0.9);
+            transform-origin: center center;
+            box-sizing: border-box;
+            filter: contrast(110%);
         }
+        .noise{
+            opacity: 0;
+        }
+
+        
     }
     @media (max-width:750px){
         :root{
@@ -1006,7 +1015,7 @@
         }
 
         #moDside{
-            --boxGry:rgba(25,25,25,0.9);
+            --boxGry:var(--mod-table);
             min-width: calc(100% - 40px);
             max-height: calc(100% - 40px);
         }
@@ -1020,10 +1029,9 @@
             transition: transform 0.5s ;
         }
 
-        #imgView-size{
-            bottom: 80px;
+        #imgView-size,#imgView-info{
+            display: none;
         }
-        
     }
 
     @media (min-width:1100px){
@@ -1066,8 +1074,10 @@
                 </div>
             </div>
             <div id="TV" class="TV">
-                    <span >💬公告：<span id="TV-info">测试阶段测试阶段</span></span>
-                    
+                <div class="df">
+                    <div style="min-width: 7ch;" >💬公告:</div>
+                    <div id="TV-info" class="df" style="width: 16ch;">测试阶段测试阶段</div>  
+                </div>  
             </div>
         </div>
         <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;margin-right: -15px;">
@@ -1377,7 +1387,7 @@
                         <!--画布-->
                         <div id="imgView" class="df df-ffc cc ovh" style=" position: relative;">
                             <div style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
-                                <div id="imgView-box" class="df loadding" style="width: fit-content; transform: scale(0.4); transition: transform 0.5s ;  "
+                                <div id="imgView-box" class="df loadding" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  "
                                 onmousewheel="
                                     var step = Math.abs(event.wheelDelta)/12 ;
                                     if(event.wheelDelta > 0){
@@ -1404,10 +1414,10 @@
                                     
                                 }"
                                 onmouseup="isDragging = false; moveXX = moveX ; moveYY = moveY;this.style.cursor = 'default';">
-                                     <div id="imgTest" style="width: 1240px; height: 720px; background-color: var(--boxBak); color:var(--mainColor);">
+                                     <div id="zy_w_h" style="width: 1240px; height: 720px; flex: 0,0,auto; background-color: var(--boxBak); color:var(--mainColor);">
                                         <div class="cc df-ffc w100" style=" position: absolute; top: 30%;">
-                                            <div id="imgTest-title" style="font-size: 110px;">标题文案</div>
-                                            <div id="imgTest-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
+                                            <div id="zy_w_h-title" style="font-size: 110px;">标题文案</div>
+                                            <div id="zy_w_h-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
                                         </div>
                                      </div>
                                 </div>
@@ -1487,6 +1497,7 @@
 <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js">//英文AI</script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">//模糊匹配</script>
 <script src="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@refs/heads/master/build/litegraph.min.js">//节点编辑</script>
+<script src="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@014400b8d1b339ca817924ba36ec48adb4a5914e/src/dom-to-image.js">//截图</script>
 <script>
     //纯数字的键名要带下划线，避免被识别成数字序号
     const vivo = [
@@ -1666,7 +1677,8 @@
     "link":"#4e7075",
     "btn-copy-bg":"#96fcb8",
     "bg-mask":"200,200,200",
-    "hl-op":"1"
+    "hl-op":"1",
+    "mod-table":"rgba(250,250,250,0.8)"
     }
     var darkTheme = {
     "mainColor":"#acacac",
@@ -1679,7 +1691,8 @@
     "link":"#4e7075",
     "btn-copy-bg":"#ffffff11",
     "bg-mask":"20,20,20",
-    "hl-op":"0.4"
+    "hl-op":"0.4",
+    "mod-table":"rgba(25,25,25,0.9)"
     }
     var styleKey = Object.keys(lightTheme);//主题色键值
     var styleValue = Object.values(lightTheme);//主题色色值
@@ -1710,22 +1723,35 @@
 
     //模拟数据
     const userImgData = {
+        zy:{
+            public:[],
+            user:[
+                {name:"测试-横",w:1280,h:720,channel:"大神",game:"模拟"},
+                {name:"测试-横",w:750,h:1200,channel:"大神",game:"模拟"}
+            ],
+        },
         main:{
             title:["标题文案"],
             sectitle:["副标题文案文案文案文案"],
         },
         style:{
-            titleStyle:{
-                color:"#fff",
-                fill:[],
-                fontfamily:"",
-                fontsize:36,   
+            fontsize:{//最小边决定字号
+                f64:[12,12,12],
+                f128:[12,12,24],
+                f256:[14,22,42],
+                f512:[20,36,86],
+                f720:[24,40,120],
+                f1080:[36,60,180],
             },
-            sectitleStyle:{
+            title:{
                 color:"#fff",
                 fill:[],
                 fontfamily:"",
-                fontsize:24,
+            },
+            sectitle:{
+                color:"#fff",
+                fill:[],
+                fontfamily:"",
             },
         },
         image:{
@@ -2249,6 +2275,88 @@
         })
     }
 
+
+    //导出
+    async function exportAll(){
+
+        var zyNode = document.getElementById("zy_w_h")
+        imgViewBox.style.transform = 'scale(1.04)';
+        var svgElem = zyNode.querySelectorAll('image');
+
+        if(svgElem && svgElem.length > 0){
+            svgElem.forEach(function(node,index) {
+                var href = node.getAttributeNS("http://www.w3.org/1999/xlink", "xlink:href");
+                if(!href){
+                    href = node.getAttribute('xlink:href');
+                }
+                if (href.split('http').length > 1){
+                    console.log('超链接',node.id)
+                    // 使用fetch获取图片
+                    fetch(href)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        var reader = new FileReader();
+                        reader.onloadend = async function() {
+                            var dataURL = reader.result;
+                            await node.setAttribute("href", dataURL);
+                            await node.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dataURL );
+                            if(index == svgElem.length - 1){
+                                setTimeout(()=>{
+                                    domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
+                                    .then(function (dataUrl) {
+                                        var link = document.createElement('a');
+                                        link.download = 'test.jpeg';
+                                        link.href = dataUrl;
+                                        link.click();
+                                    })
+                                    .catch(error => {});
+                                    imgViewBox.style.transform = 'scale('+ zoom/100 +')';
+                                },500)
+                                
+                            }
+                        };
+                        reader.readAsDataURL(blob);
+                    })
+                    .catch(error => console.error('Error loading image:', error));
+                }else{
+                    if(index == svgElem.length - 1){
+                        setTimeout(()=>{
+                            domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
+                            .then(function (dataUrl) {
+                                var link = document.createElement('a');
+                                link.download = 'test.jpeg';
+                                link.href = dataUrl;
+                                link.click();
+                            });
+                            imgViewBox.style.transform = 'scale('+ zoom/100 +')';
+                        },500)
+                        
+                    }
+                }
+                
+                
+            });
+        }else{
+            setTimeout(()=>{
+                domtoimage.toJpeg(imgViewBox, { quality: 1 })
+                .then(function (dataUrl) {
+                    var link = document.createElement('a');
+                    link.download = 'test.jpeg';
+                    link.href = dataUrl;
+                    link.click();
+                });
+                imgViewBox.style.transform = 'scale('+ zoom/100 +')';
+            },500)
+            
+
+        }
+
+    }
 
     //有限字数文案节点
     function limitedString() {

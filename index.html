@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-    <meta name="description" content="!!!自用工具，测试阶段!!! 全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具">
+    <meta name="description" content="!!!自用工具，测试阶段!!! 全渠道活动资源助手，可用于查阅、提单、衔接设计工具">
     <meta name="og:image" content="https://cdn.jsdelivr.net/gh/YNYU01/listEase@72b4f15f64a94e483c70a5fa14fd46e1ae5e8cbd/img/Icon-ListEase_200-3.png">
     <title>『云即·资源助手』 ListEase@YNYU</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
@@ -480,6 +480,10 @@
         box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
         padding: 4px;
     }
+
+    input[type="checkbox"]:checked+.more svg{
+        opacity: 0.5;
+    }
     .btn-mini{
         width: 18px;
         height: 18px;      
@@ -558,7 +562,7 @@
     }
 
     .tool-top{
-        width: calc(100% + 10px);
+        width: 100%;
         display: flex;
         align-items: center;
         --tool-title-w:180px;
@@ -926,6 +930,15 @@
         width: calc(100% - 300px);
     }
 
+    #imgView-size-range{
+        width: 20px; 
+        height: 80px;
+    }
+
+    #imgView-size-range input{
+        transform: rotate(-90deg);
+    }
+
     .loadding{
         animation: load 1s;
     }
@@ -1063,8 +1076,16 @@
             flex-flow: nowrap;
         }
 
-        #imgView-size div{
+        #imgView-size-up,#imgView-size-down{
             display: none;
+        }
+        #imgView-size-range{
+            width: 80px; 
+            height: 20px;
+        }
+        #imgView-size-range input{
+            transform: rotate(0deg);
+            transform-origin: left bottom;
         }
         /*
         #imgView-size,#imgView-info{
@@ -1129,68 +1150,67 @@
             <div id="TV" class="TV cc">
                 <div id="TV-move" class="df" >
                     <div style="min-width: 7ch;" >💬公告:</div>
-                    <div id="TV-info" class="df">[测试阶段]全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具</div>  
+                    <div id="TV-info" class="df">[测试阶段]全渠道活动资源助手，可用于查阅、提单、衔接设计工具</div>  
                 </div>  
             </div>
         </div>
-        <div class="btn-main" style="width: 14px; height: 14px; flex:0 0 auto; margin-top: -2px;margin-right: -15px;">
-            <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="
-            if(!this.checked){
-            console.log('浅色主题')
-            for (var i = 0; i < styleKey.length; i++) {
-                root.style.setProperty('--' + styleKey[i], styleValue[i])
-            }
-            modelFlow.style.filter = 'invert(1) contrast(140%)'
-            //flowBg.clear_background_color = 'rgba(190,190,190,1)';
-            } else {
-            console.log('深色主题')
-            for (var i = 0; i < styleKey2.length; i++) {
-                root.style.setProperty('--' + styleKey2[i], styleValue2[i])
-            }
-            modelFlow.style.filter = ''
-            //flowBg.clear_background_color = 'rgba(0,0,0,0)';
-            }
-        "></input>
-            <label for="theme" class="btn-theme" style="position: relative;">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 12 12">
-                <g>
-                <g>
-                    <rect x="5" y="9" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,6.1715640705951955,-0.07104350035297102)">
-                    <rect x="3.171539306640625" y="7.414215087890625" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g>
-                    <rect x="5.25" y="0" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g>
-                    <ellipse cx="6" cy="6" rx="2" ry="2" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,3.5355376705865638,-6.435017716257789)">
-                    <rect x="9.5355224609375" y="1.050262451171875" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(5.400848479553133e-8,1,-1,5.400848479553133e-8,16.999999351898182,-7.000000270042424)">
-                    <rect x="12" y="5" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-0.7071067690849304,25.434929892247965,8.535490881769874)">
-                    <rect x="10.94970703125" y="9.535491943359375" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(5.400848479553133e-8,1,-1,5.400848479553133e-8,7.999999837974546,1.999999729957576)">
-                    <rect x="3" y="5" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                <g transform="matrix(-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-0.7071067690849304,10.070989280409776,2.1715382450511242)">
-                    <rect x="4.58575439453125" y="3.171539306640625" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
-                </g>
-                </g>
-            </svg>
-            <svg style="position: absolute; top: -2px; left: 0;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 12 12">
-                <g>
-                <path d="M1.38229,8.82346Q1.51731,8.82346,1.65217,8.81683Q1.78702,8.81021,1.92139,8.79697Q2.05576,8.78374,2.18931,8.76393Q2.32287,8.74411,2.45529,8.71777Q2.58771,8.69143,2.71868,8.65863Q2.84966,8.62582,2.97886,8.58663Q3.10806,8.54743,3.23519,8.50195Q3.36231,8.45646,3.48705,8.40479Q3.61179,8.35312,3.73385,8.2954Q3.8559,8.23767,3.97498,8.17402Q4.09405,8.11038,4.20986,8.04096Q4.32567,7.97155,4.43793,7.89654Q4.55019,7.82153,4.65864,7.7411Q4.76709,7.66067,4.87146,7.57501Q4.97583,7.48936,5.07587,7.39869Q5.17591,7.30801,5.27138,7.21254Q5.36685,7.11707,5.45752,7.01703Q5.5482,6.91699,5.63385,6.81262Q5.7195,6.70825,5.79993,6.5998Q5.88036,6.49135,5.95538,6.37909Q6.03039,6.26683,6.0998,6.15102Q6.16921,6.03521,6.23286,5.91614Q6.29651,5.79706,6.35423,5.67501Q6.41196,5.55295,6.46363,5.42821Q6.5153,5.30347,6.56079,5.17635Q6.60627,5.04922,6.64547,4.92002Q6.68466,4.79082,6.71747,4.65985Q6.75027,4.52888,6.77661,4.39645Q6.80295,4.26403,6.82276,4.13047Q6.84258,3.99692,6.85581,3.86255Q6.86904,3.72818,6.87567,3.59333Q6.88229,3.45847,6.88229,3.32346Q6.88229,2.87639,6.81009,2.4352Q6.73789,1.99401,6.59539,1.57027Q6.45288,1.14653,6.24381,0.751369Q6.03474,0.356206,5.7646,-0.00000434251Q5.98378,0.0569073,6.19753,0.131643Q6.41128,0.206379,6.61817,0.298434Q6.82506,0.390488,7.02368,0.499238Q7.2223,0.607988,7.41131,0.732697Q7.60032,0.857406,7.77844,0.99723Q7.95655,1.13705,8.12257,1.29105Q8.28859,1.44504,8.44139,1.61216Q8.59419,1.77928,8.73274,1.95839Q8.87128,2.13751,8.99463,2.3274Q9.11798,2.5173,9.22531,2.71669Q9.33263,2.91609,9.4232,3.12363Q9.51377,3.33117,9.58698,3.54546Q9.66018,3.75974,9.71552,3.97932Q9.77086,4.19889,9.80796,4.42228Q9.84507,4.64566,9.86368,4.87134Q9.88229,5.09701,9.88229,5.32346Q9.88229,5.45847,9.87567,5.59333Q9.86904,5.72818,9.85581,5.86255Q9.84258,5.99692,9.82276,6.13047Q9.80295,6.26403,9.77661,6.39645Q9.75027,6.52888,9.71747,6.65985Q9.68466,6.79082,9.64546,6.92002Q9.60627,7.04922,9.56079,7.17635Q9.5153,7.30347,9.46363,7.42821Q9.41196,7.55295,9.35423,7.67501Q9.29651,7.79706,9.23286,7.91614Q9.16921,8.03521,9.0998,8.15102Q9.03039,8.26683,8.95538,8.37909Q8.88036,8.49135,8.79993,8.5998Q8.7195,8.70825,8.63385,8.81262Q8.5482,8.91699,8.45752,9.01703Q8.36685,9.11707,8.27138,9.21254Q8.17591,9.30801,8.07587,9.39869Q7.97583,9.48936,7.87146,9.57501Q7.76709,9.66067,7.65864,9.7411Q7.55019,9.82153,7.43793,9.89654Q7.32567,9.97155,7.20986,10.041Q7.09405,10.1104,6.97498,10.174Q6.8559,10.2377,6.73385,10.2954Q6.61179,10.3531,6.48705,10.4048Q6.36231,10.4565,6.23519,10.5019Q6.10806,10.5474,5.97886,10.5866Q5.84966,10.6258,5.71868,10.6586Q5.58771,10.6914,5.45529,10.7178Q5.32287,10.7441,5.18931,10.7639Q5.05576,10.7837,4.92139,10.797Q4.78702,10.8102,4.65217,10.8168Q4.51731,10.8235,4.38229,10.8235Q4.06502,10.8235,3.74985,10.787Q3.43469,10.7505,3.1258,10.678Q2.81692,10.6055,2.51842,10.498Q2.21992,10.3905,1.93577,10.2494Q1.65161,10.1082,1.38557,9.93536Q1.11953,9.76249,0.87513,9.56018Q0.630731,9.35786,0.411216,9.12879Q0.191702,8.89971,-0.0000144195,8.64691Q0.679868,8.82346,1.38229,8.82346Z" 
-                fill-rule="evenodd" fill="var(--theme-d)" fill-opacity="1"/>
-                </g>
-            </svg>
-            </label>
+        <div id="btn-main" class="btn-main df-ffc" style="position: absolute; top:0; right: 0; width: 14px; height: fit-content;flex:0 0 auto; gap: 4px; margin-right: -15px;">
+            <div style="width: 14px; height: 14px; ">
+                <input id="more" type="checkbox" style="display: none;" onchange="if(this.checked){btnTheme.style.display = 'block'} else {btnTheme.style.display = 'none'}"></input>
+                <label for="more" class="more">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%"  viewBox="0 0 14 14">
+                        <g>
+                            <rect x="1" y="2" width="12" height="2" rx="0" fill="var(--mainColor)" fill-opacity="1" />
+                            <rect x="1" y="6" width="12" height="2" rx="0" fill="var(--mainColor)" fill-opacity="1" />
+                            <rect x="1" y="10" width="12" height="2" rx="0" fill="var(--mainColor)" fill-opacity="1" />
+                        </g>
+                    </svg>
+                </label>
+            </div>
+            <div id="btn-theme" style="width: 14px; height: 14px; display: none; ">
+                <input id="theme" type="checkbox" checked="true" style="display: none;" onchange="setTheme(this)"></input>
+                <label for="theme" class="btn-theme" style="position: relative;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 12 12">
+                        <g>
+                        <g>
+                            <rect x="5" y="9" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,6.1715640705951955,-0.07104350035297102)">
+                            <rect x="3.171539306640625" y="7.414215087890625" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g>
+                            <rect x="5.25" y="0" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g>
+                            <ellipse cx="6" cy="6" rx="2" ry="2" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(0.7071067690849304,0.7071067690849304,-0.7071067690849304,0.7071067690849304,3.5355376705865638,-6.435017716257789)">
+                            <rect x="9.5355224609375" y="1.050262451171875" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(5.400848479553133e-8,1,-1,5.400848479553133e-8,16.999999351898182,-7.000000270042424)">
+                            <rect x="12" y="5" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-0.7071067690849304,25.434929892247965,8.535490881769874)">
+                            <rect x="10.94970703125" y="9.535491943359375" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(5.400848479553133e-8,1,-1,5.400848479553133e-8,7.999999837974546,1.999999729957576)">
+                            <rect x="3" y="5" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        <g transform="matrix(-0.7071067690849304,0.7071067690849304,-0.7071067690849304,-0.7071067690849304,10.070989280409776,2.1715382450511242)">
+                            <rect x="4.58575439453125" y="3.171539306640625" width="1.5" height="3" rx="0" fill="var(--theme-l)" fill-opacity="1" />
+                        </g>
+                        </g>
+                    </svg>
+                    <svg style="position: absolute; top: -2px; left: 0;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 12 12">
+                        <g>
+                        <path d="M1.38229,8.82346Q1.51731,8.82346,1.65217,8.81683Q1.78702,8.81021,1.92139,8.79697Q2.05576,8.78374,2.18931,8.76393Q2.32287,8.74411,2.45529,8.71777Q2.58771,8.69143,2.71868,8.65863Q2.84966,8.62582,2.97886,8.58663Q3.10806,8.54743,3.23519,8.50195Q3.36231,8.45646,3.48705,8.40479Q3.61179,8.35312,3.73385,8.2954Q3.8559,8.23767,3.97498,8.17402Q4.09405,8.11038,4.20986,8.04096Q4.32567,7.97155,4.43793,7.89654Q4.55019,7.82153,4.65864,7.7411Q4.76709,7.66067,4.87146,7.57501Q4.97583,7.48936,5.07587,7.39869Q5.17591,7.30801,5.27138,7.21254Q5.36685,7.11707,5.45752,7.01703Q5.5482,6.91699,5.63385,6.81262Q5.7195,6.70825,5.79993,6.5998Q5.88036,6.49135,5.95538,6.37909Q6.03039,6.26683,6.0998,6.15102Q6.16921,6.03521,6.23286,5.91614Q6.29651,5.79706,6.35423,5.67501Q6.41196,5.55295,6.46363,5.42821Q6.5153,5.30347,6.56079,5.17635Q6.60627,5.04922,6.64547,4.92002Q6.68466,4.79082,6.71747,4.65985Q6.75027,4.52888,6.77661,4.39645Q6.80295,4.26403,6.82276,4.13047Q6.84258,3.99692,6.85581,3.86255Q6.86904,3.72818,6.87567,3.59333Q6.88229,3.45847,6.88229,3.32346Q6.88229,2.87639,6.81009,2.4352Q6.73789,1.99401,6.59539,1.57027Q6.45288,1.14653,6.24381,0.751369Q6.03474,0.356206,5.7646,-0.00000434251Q5.98378,0.0569073,6.19753,0.131643Q6.41128,0.206379,6.61817,0.298434Q6.82506,0.390488,7.02368,0.499238Q7.2223,0.607988,7.41131,0.732697Q7.60032,0.857406,7.77844,0.99723Q7.95655,1.13705,8.12257,1.29105Q8.28859,1.44504,8.44139,1.61216Q8.59419,1.77928,8.73274,1.95839Q8.87128,2.13751,8.99463,2.3274Q9.11798,2.5173,9.22531,2.71669Q9.33263,2.91609,9.4232,3.12363Q9.51377,3.33117,9.58698,3.54546Q9.66018,3.75974,9.71552,3.97932Q9.77086,4.19889,9.80796,4.42228Q9.84507,4.64566,9.86368,4.87134Q9.88229,5.09701,9.88229,5.32346Q9.88229,5.45847,9.87567,5.59333Q9.86904,5.72818,9.85581,5.86255Q9.84258,5.99692,9.82276,6.13047Q9.80295,6.26403,9.77661,6.39645Q9.75027,6.52888,9.71747,6.65985Q9.68466,6.79082,9.64546,6.92002Q9.60627,7.04922,9.56079,7.17635Q9.5153,7.30347,9.46363,7.42821Q9.41196,7.55295,9.35423,7.67501Q9.29651,7.79706,9.23286,7.91614Q9.16921,8.03521,9.0998,8.15102Q9.03039,8.26683,8.95538,8.37909Q8.88036,8.49135,8.79993,8.5998Q8.7195,8.70825,8.63385,8.81262Q8.5482,8.91699,8.45752,9.01703Q8.36685,9.11707,8.27138,9.21254Q8.17591,9.30801,8.07587,9.39869Q7.97583,9.48936,7.87146,9.57501Q7.76709,9.66067,7.65864,9.7411Q7.55019,9.82153,7.43793,9.89654Q7.32567,9.97155,7.20986,10.041Q7.09405,10.1104,6.97498,10.174Q6.8559,10.2377,6.73385,10.2954Q6.61179,10.3531,6.48705,10.4048Q6.36231,10.4565,6.23519,10.5019Q6.10806,10.5474,5.97886,10.5866Q5.84966,10.6258,5.71868,10.6586Q5.58771,10.6914,5.45529,10.7178Q5.32287,10.7441,5.18931,10.7639Q5.05576,10.7837,4.92139,10.797Q4.78702,10.8102,4.65217,10.8168Q4.51731,10.8235,4.38229,10.8235Q4.06502,10.8235,3.74985,10.787Q3.43469,10.7505,3.1258,10.678Q2.81692,10.6055,2.51842,10.498Q2.21992,10.3905,1.93577,10.2494Q1.65161,10.1082,1.38557,9.93536Q1.11953,9.76249,0.87513,9.56018Q0.630731,9.35786,0.411216,9.12879Q0.191702,8.89971,-0.0000144195,8.64691Q0.679868,8.82346,1.38229,8.82346Z" 
+                        fill-rule="evenodd" fill="var(--theme-d)" fill-opacity="1"/>
+                        </g>
+                    </svg>
+                </label>
+            </div>
         </div>
+        
         
     </div>
     <!--加载-->
@@ -1308,8 +1328,8 @@
             onclick="var moveNum = Math.floor(this.parentNode.offsetWidth/162) * 162; modelMain.scrollTo({left:modelMain.scrollLeft + moveNum,behavior:'smooth'});"
             >&nbsp;▶</div>
         </div>
-        <div class="page-box" ondblclick="exportAll()" >
-            <div class="export-tips" >
+        <div class="page-box">
+            <div class="export-tips" ondblclick="exportAll()" >
                 <div style="font-size: 12px; min-width: fit-content;">· [ 编辑&导出 ]</div>    
                 <div style="width: 100%; display: flex; justify-content: space-between; ">
                     <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
@@ -1448,19 +1468,19 @@
                         </div>
                         <!--放大器-->
                         <div id="imgView-size" class="df-ffc cc" style=" gap:10px; position: absolute; transform: scale(0.8); transform-origin: right bottom;">
-                            <button class="btn-viewSize" onclick="
+                            <button id="imgView-size-up" class="btn-viewSize" onclick="
                             imgViewSlider.value = imgViewSlider.value*1 + 10;
                             reZoom();
                             imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
                             ;"> 
                             + </button>
 
-                            <div class="cc" style="width: 20px; height: 80px;">
-                                <input type="range" min="20" max="150" value="40" id="slider-imgView" style="transform: rotate(-90deg);"
+                            <div id="imgView-size-range" class="cc" >
+                                <input type="range" min="20" max="150" value="40" id="slider-imgView" 
                                 oninput="imgViewBox.style.transform = 'scale( '+ this.value/100 + ')';reZoom();" />
                             </div>
 
-                            <button class="btn-viewSize" onclick="
+                            <button id="imgView-size-down" class="btn-viewSize" onclick="
                             imgViewSlider.value -= 10;
                             reZoom();
                             imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
@@ -1468,7 +1488,7 @@
                             - </button>
 
                             <div style="height: 4px;"></div>
-                            <button class="btn-viewSize" style="font-size: 10px; font-weight: 700; border-radius: 30%; border: var(--boxBod) 2px solid;"
+                            <button  class="btn-viewSize" style="font-size: 10px; font-weight: 700; border-radius: 30%; border: var(--boxBod) 2px solid;"
                             onclick="moDautoZoom()">
                                 <span style="opacity: 0.8;">自动</span>
                             </button>
@@ -1674,6 +1694,7 @@
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
     const modelTable = document.getElementById('model-table');
+    const btnTheme = document.getElementById('btn-theme');
     const ediD = document.getElementById('editor-data');
     const ediF = document.getElementById('editor-flow');
     const ediV = document.getElementById('editor-view');
@@ -1945,8 +1966,7 @@
         imgViewBox.style.cursor = 'default';
     }
 
-    imgViewBox.ontouchstar = ()=> {
-        console.log(666)
+    imgViewBox.ontouchstart = ()=> {
         //if(window.event.button == 0){
         isDragging = true;
         clickX = window.event.touches[0].clientX;
@@ -1967,6 +1987,24 @@
         isDragging = false;
         moveXX = moveX;
         moveYY = moveY;
+    }
+
+    function setTheme(e){
+        if(!e.checked){
+            console.log('浅色主题')
+            for (var i = 0; i < styleKey.length; i++) {
+                root.style.setProperty('--' + styleKey[i], styleValue[i])
+            }
+            modelFlow.style.filter = 'invert(1) contrast(140%)'
+            //flowBg.clear_background_color = 'rgba(190,190,190,1)';
+            } else {
+            console.log('深色主题')
+            for (var i = 0; i < styleKey2.length; i++) {
+                root.style.setProperty('--' + styleKey2[i], styleValue2[i])
+            }
+            modelFlow.style.filter = ''
+            //flowBg.clear_background_color = 'rgba(0,0,0,0)';
+            }
     }
 
     function isMobile(){
@@ -2048,9 +2086,15 @@
         //console.log(nodeRect.top,boxRect.top + box.offsetHeight)
         if(nodeRect.top + node.offsetHeight*2 > boxRect.top + box.offsetHeight){
             //console.log("超出")
+            /*
             node.scrollIntoView({
-            behavior:'smooth'
-        })
+                behavior:'smooth'
+            })
+            */
+            box.scrollTo({
+                top:box.scrollTop + box.offsetHeight/4,
+                behavior:'smooth'
+            })
         }
         
     }
@@ -2110,7 +2154,7 @@
     }
 
     function addImg(e,ee,key){
-        console.log("addimg",e,ee)
+        //console.log("addimg",e,ee)
         var selectImg = '<option value="选择资源位" disabled selected>选择资源位</option>'; 
 
         if ( isNaN(key*1) ){
@@ -2215,7 +2259,7 @@
     }
 
     function reKeysInfo(e,key){
-        console.log('reKeysInfo');
+        //console.log('reKeysInfo');
         if ( key !== '选择渠道'){
             allKey[e] = key;
             allImg[e] = [];
@@ -2387,7 +2431,7 @@
     const pages = document.querySelectorAll('.page')
     const toolN = document.getElementById('tool-name')
     function viewPage(e){
-        console.log('页面-' + e)
+        //console.log('页面-' + e)
         pages.forEach((item,index) => {
             if(index > 0){
                 if(item.id.split('-')[1] == e){

@@ -9,7 +9,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta name="description" content="!!!自用工具，测试阶段!!! 全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具">
     <meta name="og:image" content="https://cdn.jsdelivr.net/gh/YNYU01/listEase@72b4f15f64a94e483c70a5fa14fd46e1ae5e8cbd/img/Icon-ListEase_200-3.png">
     <title>『云即·资源助手』 ListEase@YNYU</title>
@@ -37,6 +37,9 @@
         --tv-w:-150px;
     }
 
+    html,body{
+        touch-action: manipulation;
+    }
     body {
         display: flex;
         justify-content: center;
@@ -193,8 +196,8 @@
     }
 
     .model-info,.model-info-tips{
-        width: 180px;
-        height: 110px;
+        width: 150px;
+        height: 80px;
         border-radius: 8px;
         border: var(--boxBod) 1px solid;
         animation: boxUp 0.5s;
@@ -975,16 +978,20 @@
     }
 
     @media (max-width:375px){
+
         body{
-            transform: scale(0.9);
+            transform: scale(0.95);
             transform-origin: center center;
             box-sizing: border-box;
             filter:blur(0.1px) contrast(105%);
+            padding: 0;
         }
         .noise{
             opacity: 0;
         }
-
+        .page{
+            padding: 14px;
+        }
         
     }
     @media (max-width:750px){
@@ -1044,27 +1051,38 @@
             flex-flow: column;
         }
 
-        #moDside{
-            --boxGry:var(--mod-table);
-            min-width: calc(100% - 40px);
-            max-height: calc(100% - 40px);
-        }
-
         #imgView{
             width: 100%;
         }
 
-        #imgView-box{
-            transform: scale(0.4);
-            transition: transform 0.5s ;
+        #imgView-info span{
+            font-size: 10px;
         }
 
+        #imgView-size{
+            flex-flow: nowrap;
+        }
+
+        #imgView-size div{
+            display: none;
+        }
+        /*
         #imgView-size,#imgView-info{
             display: none;
         }
+            */
+        
+    }
+    @media (max-width:900px){
+        
         #TV-move{
             position: absolute;
             left: 100%;
+        }
+        #moDside{
+            --boxGry:var(--mod-table);
+            min-width: calc(100% - 40px);
+            max-height: calc(100% - 40px);
         }
     }
 
@@ -1077,7 +1095,7 @@
         .export-tips{
             flex-flow: nowrap;
         }
-        
+ 
     }
 
 
@@ -1111,7 +1129,7 @@
             <div id="TV" class="TV cc">
                 <div id="TV-move" class="df" >
                     <div style="min-width: 7ch;" >💬公告:</div>
-                    <div id="TV-info" class="df">！！！自用工具，测试阶段！！全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具</div>  
+                    <div id="TV-info" class="df">[测试阶段]全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具</div>  
                 </div>  
             </div>
         </div>
@@ -1408,32 +1426,7 @@
                         <!--画布-->
                         <div id="imgView" class="df-ffc cc ovh" style=" position: relative;">
                             <div class="loadding" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
-                                <div id="imgView-box" class="df" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  "
-                                onmousewheel="
-                                    var step = Math.abs(event.wheelDelta)/12 ;
-                                    if(event.wheelDelta > 0){
-                                        imgViewSlider.value = imgViewSlider.value*1 + step;
-                                    } else {
-                                        imgViewSlider.value = imgViewSlider.value*1 - step;
-                                    }
-                                    reZoom();
-                                    imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
-                                    this.style.transformOrigin = (clickX - this.left)/this.offsetWidth * 100 + '%' + (clickY - this.top)/this.offsetHeight * 100 + '%';"
-                                    
-                                onmousedown="if(window.event.button == 0){
-                                    isDragging = true;
-                                    clickX = window.event.clientX;
-                                    clickY = window.event.clientY;  
-                                    this.style.cursor = 'move';
-                                }"
-                                onmousemove="
-                                if(isDragging){
-                                    moveX = moveXX + window.event.clientX - clickX;
-                                    moveY = moveYY + window.event.clientY - clickY;
-                                    this.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';
-                                    
-                                }"
-                                onmouseup="isDragging = false; moveXX = moveX ; moveYY = moveY;this.style.cursor = 'default';">
+                                <div id="imgView-box" class="df" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  ">
                                      <div id="zy_w_h" style="width: 1240px; height: 720px; flex: 0,0,auto; background-color: var(--boxBak); color:var(--mainColor);">
                                         <div class="cc df-ffc w100" style=" position: absolute; top: 30%;">
                                             <div id="zy_w_h-title" style="font-size: 110px;">标题文案</div>
@@ -1914,8 +1907,70 @@
     var btnClose = '<btn-close></btn-close>';
     var btnCopy = '<btn-copy></btn-copy>';
       
+    
+    imgViewBox.onmousewheel = ()=>{
+        var step = Math.abs(event.wheelDelta)/12 ;
+        if(event.wheelDelta > 0){
+            imgViewSlider.value = imgViewSlider.value*1 + step;
+        } else {
+            imgViewSlider.value = imgViewSlider.value*1 - step;
+        }
+        reZoom();
+        imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
+        imgViewBox.style.transformOrigin = (clickX - imgViewBox.left)/imgViewBox.offsetWidth * 100 + '%' + (clickY - imgViewBox.top)/imgViewBox.offsetHeight * 100 + '%';
+    }
+ 
+    imgViewBox.onmousedown = ()=> {
+        if(window.event.button == 0){
+        isDragging = true;
+        clickX = window.event.clientX;
+        clickY = window.event.clientY;  
+        imgViewBox.style.cursor = 'move';
+        }
+    }
+
+    imgViewBox.onmousemove = ()=>{
+        if(isDragging){
+            moveX = moveXX + window.event.clientX - clickX;
+            moveY = moveYY + window.event.clientY - clickY;
+            imgViewBox.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';
+            
+        }
+    }
+
+    imgViewBox.onmouseup= ()=>{
+        isDragging = false;
+        moveXX = moveX;
+        moveYY = moveY;
+        imgViewBox.style.cursor = 'default';
+    }
+
+    imgViewBox.ontouchstar = ()=> {
+        console.log(666)
+        //if(window.event.button == 0){
+        isDragging = true;
+        clickX = window.event.touches[0].clientX;
+        clickY = window.event.touches[0].clientY;  
+        //}
+    }
+
+    imgViewBox.ontouchmove = ()=>{
+        if(isDragging){
+            moveX = moveXX + window.event.touches[0].clientX - clickX;
+            moveY = moveYY + window.event.touches[0].clientY - clickY;
+            imgViewBox.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';
+            
+        }
+    }
+
+    imgViewBox.ontouchend= ()=>{
+        isDragging = false;
+        moveXX = moveX;
+        moveYY = moveY;
+    }
+
     function isMobile(){
-        if(window.innerWidth <= 750){
+        if(window.innerWidth <= 900){
             moDshowSetBtn.checked = false;
             moDshowSet();
             TVInfo.style.width = TVInfo.textContent.length*12.5 + 'px';
@@ -1982,13 +2037,22 @@
         `
 
         document.getElementById("page-main-1").appendChild(node);
-        toView("exports-" + e)
+        toView("exports-" + e ,"page-main-1")
     }
 
-    function toView(id){
-        document.getElementById(id).scrollIntoView({
+    function toView(id,boxId){
+        var node = document.getElementById(id);
+        var box = document.getElementById(boxId);
+        var nodeRect = node.getBoundingClientRect();
+        var boxRect = box.getBoundingClientRect();
+        //console.log(nodeRect.top,boxRect.top + box.offsetHeight)
+        if(nodeRect.top + node.offsetHeight*2 > boxRect.top + box.offsetHeight){
+            //console.log("超出")
+            node.scrollIntoView({
             behavior:'smooth'
         })
+        }
+        
     }
 
 
@@ -2125,7 +2189,7 @@
         
 
         document.getElementById("imgs-" + e).appendChild(node);
-        toView("img-" + e + "-" + ee)
+        toView("img-" + e + "-" + ee,"page-main-1")
     }
 
     function closeImg(e,ee){
@@ -2134,7 +2198,7 @@
 
     
     function reImgInfo(e,ee,name){
-        console.log('reImgInfo',name);
+        //console.log('reImgInfo',name);
         //console.log(e,ee,name);
         if (name !== '选择资源位'){
             if (name){
@@ -2142,7 +2206,7 @@
                 ///console.log(666,name);
                 reExportInfo()
             } else {
-                console.log('reImgInfo','删除');
+                //console.log('reImgInfo','删除');
                 allImg[e][ee] = ''
                 //console.log(777);
                 reExportInfo()
@@ -2170,7 +2234,7 @@
     }
 
     function reExportInfo(){
-        console.log('reExportInfo')
+        //console.log('reExportInfo')
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
         var numD = 0,numImg = 0,numView = 0;

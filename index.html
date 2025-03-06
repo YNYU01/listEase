@@ -14,8 +14,7 @@
     <meta name="og:image" content="https://cdn.jsdelivr.net/gh/YNYU01/listEase@72b4f15f64a94e483c70a5fa14fd46e1ae5e8cbd/img/Icon-ListEase_200-3.png">
     <title>『云即·资源助手』 ListEase@YNYU</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">  
 <style>
     :root {
         --mainColor: #acacac;
@@ -35,6 +34,7 @@
         --keysLiColor:#983e3e;
         --bg-light:#81818154;
         --mod-table:rgba(25,25,25,0.9);
+        --tv-w:-150px;
     }
 
     body {
@@ -88,6 +88,7 @@
         flex-flow: column;
     }
     .cc{
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -191,9 +192,9 @@
         gap:10px;
     }
 
-    .model-info{
-        width: 200px;
-        height: 130px;
+    .model-info,.model-info-tips{
+        width: 180px;
+        height: 110px;
         border-radius: 8px;
         border: var(--boxBod) 1px solid;
         animation: boxUp 0.5s;
@@ -220,6 +221,10 @@
         background-repeat: repeat;
         */
         animation: skewliner linear 5s infinite;
+    }
+
+    .model-info-tips{
+        max-height: 60px;
     }
 
     .model-pick{
@@ -523,7 +528,30 @@
         padding: 0 20px;
         display: flex;
         box-sizing: border-box;       
-        overflow: hidden;
+        overflow: hidden; 
+        position: relative;
+    }
+
+
+
+    @keyframes tvMove {
+        /**
+        0%{
+            transform: translateX(100%);
+        }
+        50%{
+            transform: translateX(0%);
+        }
+        100%{
+            transform: translateX(-100%);
+        }
+        /**/
+        0%{
+            left: calc(100% + 10px);
+        }
+        100%{
+            left: var(--tv-w,-150px);
+        }
     }
 
     .tool-top{
@@ -701,8 +729,8 @@
     }
 
     .moDside{
-        min-width: 280px;
-        max-width: 280px;
+        min-width: 240px;
+        max-width: 240px;
         height: calc(100% - 51px);
         padding: 10px;
         background-color: var(--boxGry);
@@ -712,8 +740,8 @@
     }
 
     .moDside-float{
-        min-width: 280px;
-        max-width: 280px;
+        min-width: 240px;
+        max-width: 240px;
         padding: 10px;
         background-color: var(--boxGry);
         flex:0 0 auto;
@@ -878,8 +906,8 @@
     }
 
     #imgView-size{
-        bottom:40px;
-        right: 20px;
+        bottom:20px;
+        right: 10px;
         opacity: 0.5;
         font-family: 'Roboto', Courier, monospace;
     }
@@ -951,7 +979,7 @@
             transform: scale(0.9);
             transform-origin: center center;
             box-sizing: border-box;
-            filter: contrast(110%);
+            filter:blur(0.1px) contrast(105%);
         }
         .noise{
             opacity: 0;
@@ -1002,9 +1030,12 @@
             width: fit-content;
             flex-flow:nowrap;     
         }
-        .model-info{
+        .model-info,.model-info-tips{
             width: 120px;
             height: 60px;
+        }
+        .model-info-tips{
+            flex-flow: column;
         }
         .model-move-r,.model-move-l{
             display: flex;
@@ -1031,6 +1062,10 @@
         #imgView-size,#imgView-info{
             display: none;
         }
+        #TV-move{
+            position: absolute;
+            left: 100%;
+        }
     }
 
     @media (min-width:1100px){
@@ -1047,6 +1082,7 @@
 
 
 </style>
+</head>
 
 <body class="noselect">
     <div id="noise" class="noise"></div>
@@ -1072,10 +1108,10 @@
                 <btn-change></btn-change>
                 </div>
             </div>
-            <div id="TV" class="TV">
-                <div class="df">
+            <div id="TV" class="TV cc">
+                <div id="TV-move" class="df" >
                     <div style="min-width: 7ch;" >💬公告:</div>
-                    <div id="TV-info" class="df" style="width: 16ch;">测试阶段测试阶段</div>  
+                    <div id="TV-info" class="df">！！！自用工具，测试阶段！！全渠道活动资源规范条目，可用于查阅、提单、衔接设计工具</div>  
                 </div>  
             </div>
         </div>
@@ -1232,7 +1268,7 @@
     <div class="ww page"  id="page-2" style="display: none;">
         <div class="model-box" style="position: relative;overflow:visible">
             <div class="export-tips">
-                <div style="font-size: 12px;">· [ 模板 ]</div>               
+                <div style="font-size: 12px;">· [ 模板&主题 ]</div>               
             </div>
             <!--此容器内自动添加子容器-->
             <div class="page-main noscrollbar" id="model-main" style="background: var(--boxBak);" >
@@ -1256,7 +1292,7 @@
         </div>
         <div class="page-box" ondblclick="exportAll()" >
             <div class="export-tips" >
-                <div style="font-size: 12px; min-width: fit-content;">· [ 编辑 ]</div>    
+                <div style="font-size: 12px; min-width: fit-content;">· [ 编辑&导出 ]</div>    
                 <div style="width: 100%; display: flex; justify-content: space-between; ">
                     <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
                     <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
@@ -1359,7 +1395,7 @@
                                 <div class="wh100"></div>
                                 <!--div style="min-height: 60px;"></div-->
                                 <!--导出项-->
-                                <!--div class="df cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom:0; z-index: 20;">
+                                <!--div class="cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom:0; z-index: 20;">
                                     <div id="moDside-mask" style="position: absolute; width: calc(100% + 40px); height: 50px; top: -10px; background:var(--boxGry);"></div>
                                     <button class="btn3" style="z-index: 2;" onclick="saveAll()"> 保存数据 </button>
                                     <button class="btn2" style="z-index: 2;"  onclick="exportAll()"> 导出图片 </button>
@@ -1370,7 +1406,7 @@
                         <!--侧边栏（展开时）占位-->
                         <div class="moDside" id="moDside-area" style="background: none; border: none; margin: 10px;"></div>
                         <!--画布-->
-                        <div id="imgView" class="df df-ffc cc ovh" style=" position: relative;">
+                        <div id="imgView" class="df-ffc cc ovh" style=" position: relative;">
                             <div class="loadding" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
                                 <div id="imgView-box" class="df" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  "
                                 onmousewheel="
@@ -1380,8 +1416,7 @@
                                     } else {
                                         imgViewSlider.value = imgViewSlider.value*1 - step;
                                     }
-                                    zoomNum.innerHTML = imgViewSlider.value;
-                                    zoom = imgViewSlider.value;
+                                    reZoom();
                                     imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
                                     this.style.transformOrigin = (clickX - this.left)/this.offsetWidth * 100 + '%' + (clickY - this.top)/this.offsetHeight * 100 + '%';"
                                     
@@ -1409,34 +1444,32 @@
                             </div>
                             
                             <!--视窗信息-->
-                            <div id="imgView-info" class="df-ffc " style="gap: 10px; position: absolute; top:20px; left: 10px;">
-                                <div class="df-ffc" style="gap:2px; padding: 4px; opacity: 0.5; height: auto; font-size: 12px;">
-                                    <span>缩放：<span id="zoom-num">40</span> %</span>
-                                    <span>尺寸：--</span>
-                                    <span>渠道：--</span>
-                                    <span>游戏：--</span>
+                            <div id="imgView-info" style="position: absolute; top:20px; left: 10px;">
+                                <div class="df" style="min-width: 400px; gap:14px; padding: 4px; opacity: 0.5; height: auto; font-size: 12px;">
+                                    <span>缩放：<span id="zoom-num" style="color: var(--mainColor3);">40</span></span>
+                                    <span>尺寸：<span id="zy-info-size">1240*720</span></span>
+                                    <span>渠道：<span id="zy-info-channel">大神</span></span>
+                                    <span>游戏：<span id="zy-info-game">永劫无间</span></span>
                                 </div>
                             </div>
                         </div>
                         <!--放大器-->
-                        <div id="imgView-size" class="df-ffc cc" style=" gap:10px; position: absolute;">
+                        <div id="imgView-size" class="df-ffc cc" style=" gap:10px; position: absolute; transform: scale(0.8); transform-origin: right bottom;">
                             <button class="btn-viewSize" onclick="
                             imgViewSlider.value = imgViewSlider.value*1 + 10;
-                            zoomNum.innerHTML = imgViewSlider.value;
-                            zoom = imgViewSlider.value;
+                            reZoom();
                             imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
                             ;"> 
                             + </button>
 
-                            <div class="df cc" style="width: 20px; height: 80px;">
+                            <div class="cc" style="width: 20px; height: 80px;">
                                 <input type="range" min="20" max="150" value="40" id="slider-imgView" style="transform: rotate(-90deg);"
-                                oninput="imgViewBox.style.transform = 'scale( '+ this.value/100 + ')';zoom = imgViewSlider.value; zoomNum.innerHTML = imgViewSlider.value; ;" />
+                                oninput="imgViewBox.style.transform = 'scale( '+ this.value/100 + ')';reZoom();" />
                             </div>
 
                             <button class="btn-viewSize" onclick="
                             imgViewSlider.value -= 10;
-                            zoomNum.innerHTML = imgViewSlider.value;
-                            zoom = imgViewSlider.value;
+                            reZoom();
                             imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
                             ;"> 
                             - </button>
@@ -1640,11 +1673,14 @@
         {name:"节日喜庆",img:"url()"},
     ]
     const root = document.documentElement;
+    const TVMove = document.getElementById("TV-move");
+    const TVInfo = document.getElementById("TV-info");
     const modelFlow = document.getElementById('model-flow');
     const modelView = document.getElementById('model-view');
     const modelData = document.getElementById('model-data');
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
+    const modelTable = document.getElementById('model-table');
     const ediD = document.getElementById('editor-data');
     const ediF = document.getElementById('editor-flow');
     const ediV = document.getElementById('editor-view');
@@ -1693,7 +1729,6 @@
     const imgViewBox = document.getElementById("imgView-box");
     const imgViewInfo = document.getElementById("imgView-info");
     const imgViewSlider = document.getElementById("slider-imgView");
-    const modelTable = document.getElementById("model-table");
     const zoomNum = document.getElementById("zoom-num");
     const giftNum =  [null,null,'二','三','四','五','六','七','八','九','十']
     
@@ -1881,11 +1916,17 @@
       
     function isMobile(){
         if(window.innerWidth <= 750){
-            moDshowSetBtn.checked = false
-            moDshowSet()
+            moDshowSetBtn.checked = false;
+            moDshowSet();
+            TVInfo.style.width = TVInfo.textContent.length*12.5 + 'px';
+            TVMove.style.setProperty('--tv-w',TVMove.offsetWidth*-1 + 'px')
+            //要维持30px/s,将跑马灯宽度加上父容器宽度除以10即可
+            var speed = Math.floor((TVMove.parentNode.offsetWidth + TVMove.offsetWidth)/30);
+            TVMove.style.animation = "tvMove " + speed + "s linear infinite";
         } else {
-            moDshowSetBtn.checked = true
-            moDshowSet()
+            moDshowSetBtn.checked = true;
+            moDshowSet();
+            TVMove.style.animation = "none"
         }
     }
     function addList(e){
@@ -2227,8 +2268,10 @@
             node.className = "model-info"
             node.innerHTML = `
             <input type="checkbox" id="model-pick-` + index + `" style="display: none;" 
-            onchange="if(this.checked){
-            modelPick.push( ` + index + ` );
+            onchange="
+            if(this.checked){
+            onlyTab(this,this.parentNode.parentNode);
+            modelPick = ` + index + ` ;
             }else{
             }"/>
             <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
@@ -2238,12 +2281,9 @@
             modelList.appendChild(node);
         })
         var node = document.createElement('div');
-        node.style.width = "200px";
-        node.style.textAlign = "center";
-        node.style.opacity = 0.5;
-        node.innerHTML = "更多需要请联系定制~";
+        node.className = "model-info-tips cc";
+        node.innerHTML = `<div style="opacity:0.5;">更多需要</div><div style="opacity:0.5;">请联系定制~<div>`;
         modelList.appendChild(node);
-        
     }
 
     //展开配置项
@@ -2271,10 +2311,13 @@
         imgViewSlider.value = size*100;
         imgViewBox.style.transform = 'scale('+ size +')';
         imgViewBox.parentNode.style.transform = 'translate(0,0)'
-        zoomNum.innerHTML = imgViewSlider.value;
-        zoom = imgViewSlider.value;
+        reZoom();
         isDragging = false;
         clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+    }
+    function reZoom() {
+        zoomNum.innerHTML = imgViewSlider.value + '%';
+        zoom = imgViewSlider.value;
     }
 
     const pages = document.querySelectorAll('.page')
@@ -2295,6 +2338,21 @@
                 item.style.display = 'none'
             }
             
+        })
+    }
+
+    //单选tab
+    function onlyTab(node,parent){
+        var input = [];
+        parent.querySelectorAll('input').forEach(item =>{ 
+            if(item.type == 'checkbox'){
+                input.push(item)
+            } 
+        })
+        input.forEach(item => {
+            if (item.checked == true && item.id != node.id){
+                item.checked = false;
+            }
         })
     }
 
@@ -2497,5 +2555,5 @@
 </script>
 
 </body>
-</head>
+
 </html>

@@ -13,1113 +13,14 @@
     <meta name="description" content="!!!自用工具，测试阶段!!! 全渠道活动资源助手，可用于查阅、提单、衔接设计工具">
     <meta name="og:image" content="https://cdn.jsdelivr.net/gh/YNYU01/listEase@72b4f15f64a94e483c70a5fa14fd46e1ae5e8cbd/img/Icon-ListEase_200-3.png">
     <title>『云即·资源助手』 ListEase@YNYU</title>
+    <!--数据-->
+    <script src="src/zy_data.js"></script>
+    <script src="src/md_data.js"></script>
+    <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">  
 <style>
-    :root {
-        --mainColor: #acacac;
-        --mainColor2: #378360;
-        --mainColor3: #fff;
-        --boxBod: #5d5d5d;
-        --boxBak: #202020;
-        --boxGry: #393939;
-        --liColor1: #d03b3b;
-        --link: #4e7075;
-        --btn-copy-bg:#ffffff11;
-        --bg-mask:20,20,20;   
-        --hl-op:0.4;
-        /*other*/
-        --textarea-h:160px;
-        --tips-copy:'复制';
-        --keysLiColor:#983e3e;
-        --bg-light:#81818154;
-        --mod-table:rgba(25,25,25,0.9);
-        --tv-w:-150px;
-    }
-
-    html,body{
-        touch-action: manipulation;
-    }
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap:10px;
-        padding: 0px 10px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--mainColor);
-        position: relative;
-        background-color: var(--boxBak);
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        letter-spacing: 0.01em;
-        overflow: hidden;
-        font-weight: 500;
-    }
-    html,body,.noselect {
-        -webkit-user-select: none;/* Safari */
-        -moz-user-select: none;/* Firefox */
-        -ms-user-select: none;/* IE/Edge */
-        user-select: none;/* 标准语法 */
-    }
-
-    .noscrollbar {
-        scrollbar-width: none;
-    }
-
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar,
-    .noscrollbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .ww{
-        width: calc(100% - 80px);
-        max-width: 1640px;
-        min-width: 320px;
-    }
-    /*自动布局*/
-    .df{
-        display: flex;
-    }
-    .df-ffc{
-        display: flex;
-        flex-flow: column;
-    }
-    .cc{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .ovh{
-        overflow: hidden;
-    }
-    .wh100{
-        width: 100%;
-        height: 100%; 
-    }
-    .w100{
-        width: 100%;
-    }
-
-    /*其他*/
-    .noise{
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        filter:url(#sharpness),grayscale();
-        background: url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/100px 100px,url("https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png") 0 0/200px 200px;
-        opacity: 0.07;
-        z-index: 1000;
-        pointer-events: none;
-    }
-
-    optgroup {
-        color:var(--mainColor3);
-        text-align: left;
-        font-size: var(--select-fsg,14px);
-    }
-    option {
-        color:var(--mainColor);
-        background-color: '';
-        font-size: var(--select-fso,12px);
-    }
-    
-
-    .page {
-        min-height: 560px;
-        height: calc(100% - 110px);
-        display: flex;
-        flex-flow: nowrap;
-        gap:10px;
-        justify-content: left;
-        position: relative;
-        background-color: var(--boxGry);
-        border-radius: 20px;
-        padding:20px ;
-        font-weight: 700;
-    }
-
-    .page-box {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-flow: column;
-        border-radius: 10px;
-        box-shadow: 0 0 2px var(--bg-light),0 0 10px var(--bg-light);
-        overflow: hidden;
-    }
-
-    .page-main {
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        display: flex;
-        flex-flow: column;
-        justify-content: left;
-        gap:10px;
-        position: relative;
-        overflow-y: scroll;
-        border: var(--boxBod) 1px solid;
-        border-radius: 0 0 10px 10px;
-        box-sizing: border-box;
-        padding:10px 10px 30px 10px;
-        background: repeating-radial-gradient(
-            circle at center,  
-            rgba(0, 0, 0, 0.2) 0,
-            rgba(0, 0, 0, 0.2) 1px,
-            transparent 1px,
-            transparent 20px
-        ),var(--boxBak);
-        background-size:10px 10px ;
-    }
-
-    .model-box{
-        width: 224px;
-        height: 100%;
-        display: flex;
-        flex-flow: column;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .model-list{
-        display: flex;
-        flex-flow: column;
-        gap:10px;
-    }
-
-    .model-info,.model-info-tips{
-        width: 150px;
-        height: 80px;
-        border-radius: 8px;
-        border: var(--boxBod) 1px solid;
-        animation: boxUp 0.5s;
-        background: linear-gradient(to top,
-        rgba(var(--bg-mask), 0.5) 0%,
-        rgba(var(--bg-mask), 0.5) 25%,
-        rgba(var(--bg-mask), 0.5) 75%,
-        rgba(var(--bg-mask), 0.5) 100%),
-        linear-gradient(296.5deg,
-        rgba(0,0,0,0) 16.7%,
-        var(--boxGry) 16.7%,
-        var(--boxGry) 33.3%,
-        rgba(0,0,0,0) 33.3%,
-        rgba(0,0,0,0) 50%,
-        var(--boxGry) 50%,
-        var(--boxGry) 66.7%,
-        rgba(0,0,0,0) 66.7%,
-        rgba(0,0,0,0) 83.3%,
-        var(--boxGry) 83.3%
-        ) 0 0/100px 100px,var(--boxBak) 
-        ;
-        /*
-        background-size: 100px 100px;
-        background-repeat: repeat;
-        */
-        animation: skewliner linear 5s infinite;
-    }
-
-    .model-info-tips{
-        max-height: 60px;
-    }
-
-    .model-pick{
-        --model-img: '';
-        border-radius: 8px; 
-        overflow: hidden;
-        --model-info:0;
-    }
-    .model-pick:hover{
-        --model-info:1;
-    }
-
-    input[type="checkbox"]:checked+.model-pick {
-        --model-b: var(--mainColor) 1px solid;
-        --model-info:1;
-    }
-
-    .model-move-r,.model-move-l{
-        display: none;
-    }
-
-    .btn-text {
-        cursor: pointer;
-        color: var(--mainColor);
-        z-index: 2;
-    }
-
-    .btn-text:hover {
-        opacity: 0.5;
-    }
-
-    .tags-exports {
-        border-radius: 8px;
-        width: calc(100% - 20px);
-        display: flex;
-        flex-flow: column;
-        gap:10px;
-        padding: 6px 8px 8px 10px ;
-        background: var(--boxBak);
-        font-size: 10px;
-        animation: boxUp 0.5s;
-        border: var(--boxBod) 1px solid;
-        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
-    }
-
-    .tags-exports .list {
-        width: 100%;
-        opacity: 0.8;
-        display: flex;
-        flex-flow: column;
-        gap:10px;
-        justify-content: left;
-    }
-    .tags-exports .set {
-        width: 100%;
-        display: flex;
-        justify-content: left;
-        gap: 10px;
-        opacity: 0.8;
-        gap:4px;
-    }
-    .tags-exports .group {
-        width: 100%;
-        display: flex;
-        justify-content: left;
-        flex-flow: column;
-        gap: 10px;
-        opacity: 0.8;
-        gap:4px;
-    }
-  
-    .input-btn-skill {
-        width: 100%;
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        background-color: var(--boxBak);
-        border-radius: 4px;
-        border: var(--boxBod) 1px solid;
-        color: var(--mainColor);
-        outline: none;
-    }
-
-    .textarea-in-out{
-        display: flex;
-        width: 100%;
-        gap:4px;
-        flex-flow: column;
-        max-width: 680px;
-    }
-
-    .textarea-box{
-        width: 100%;
-        max-width: 100%;
-        position: relative;
-    }
-    .textarea-box::before{
-        content: var(--title,'· 标题');
-        width: var(--title-w,100%);
-        height: 24px;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        border-radius: var(--top-r,8px 8px 0 0);
-        border-bottom-left-radius: 0;
-        padding-left: 10px;
-        border: var(--boxBod) 1px solid;
-        top: 0;
-        left: 0;
-        background-color: var(--boxBak);
-        z-index: 2;
-        box-sizing: border-box;
-    }
-    .input-textarea {
-        border-radius: 8px;
-        padding: 26px 4px 4px 10px;
-        background-color: var(--boxBak);
-        color: var(--mainColor);
-        outline: none;
-        opacity: 0.7;
-        resize: vertical;
-        font-size: 10px;
-        box-shadow: 0 0 10px  #00000077 inset;
-        position: relative;
-    }
-    
-
-    .input-textarea:focus {
-        opacity: 1;
-    }
-
-
-    .export-tips{
-        font-size: 10px;
-        display: flex;
-        flex-flow: column;
-        gap:4px;
-        justify-content: space-between;
-        border: var(--boxBod) 1px solid;
-        border-radius:10px 10px  0 0 ;
-        box-sizing: border-box;
-        padding: 10px;
-        margin-bottom: -1px;
-        background-color: var(--boxBak);
-        position: relative;
-    }
-
-    .btn-copy{
-        color:var(--mainColor);
-        width: 30px;
-        height: 16px;
-        border-radius: 5px;
-        position: absolute;
-        right:10px;
-        top:4px;
-        animation: boxUp 1s;
-        border: 1px #ffffff00 solid;
-    }
-    .btn-copy::after{
-        content: var(--tips-copy);
-        width: 100%;
-        height: 16px;
-        font-size: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--btn-copy-bg);
-        border-radius: 4px;
-        position: absolute;
-        box-sizing: border-box;
-    }
-    .btn-copy:hover{
-        border: 1px var(--boxBod) solid;
-    }
-    .re-tips-area{
-        border-radius: 8px;
-        padding: 4px 4px 4px 10px;
-        font-size: 10px;
-        /*--bg-mask:20,20,20; */
-        background:
-        linear-gradient(to top,
-        rgba(var(--bg-mask), 0.5) 0%,
-        rgba(var(--bg-mask), 0.5) 25%,
-        rgba(var(--bg-mask), 0.5) 75%,
-        rgba(var(--bg-mask), 0.5) 100%),
-        linear-gradient(296.5deg,
-        rgba(0,0,0,0) 16.7%,
-        var(--boxGry) 16.7%,
-        var(--boxGry) 33.3%,
-        rgba(0,0,0,0) 33.3%,
-        rgba(0,0,0,0) 50%,
-        var(--boxGry) 50%,
-        var(--boxGry) 66.7%,
-        rgba(0,0,0,0) 66.7%,
-        rgba(0,0,0,0) 83.3%,
-        var(--boxGry) 83.3%
-        ),var(--boxBak);
-        background-size: 100px 100px;
-        background-repeat: repeat;
-        color: var(--mainColor);
-        box-sizing: border-box;
-        border: 1px var(--boxBod) solid;
-        box-shadow: 0 0 10px  #00000077 inset;
-        animation: skewliner linear 5s infinite;
-    }
-    .AIloadding{
-        position: absolute;
-        --wh:20px;
-        width: var(--wh);
-        height: var(--wh);
-        top: calc(50% - var(--wh)/2);
-        left: calc(50% - var(--wh)/2);
-        background-color: var(--boxBak);
-        z-index: 3;
-        border-radius: 50%;
-        border: var(--boxBod) 1px solid;
-        box-sizing: border-box;
-        padding: 2px;
-        transform: scale(1) rotateX(180deg);
-        box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
-    }
-    .AIloadding:hover{
-        --wh:24px;
-        cursor: pointer;
-        /*animation: loading 1s linear infinite;*/
-    }
-    @keyframes loading {
-        from{
-            transform:scale(1) rotateX(180deg) rotate(0deg);
-        }to{
-            transform:scale(1) rotateX(180deg) rotate(-360deg);
-        }
-    }
-    .btn-main{
-        background:
-        repeating-radial-gradient(
-            circle at center,  
-            rgba(62, 62, 62, 0.2) 0,
-            rgba(62, 62, 62, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1.5px,
-            transparent 4px,
-            transparent 20px
-        ),var(--boxBak);
-        background-size:5px 5px;
-        border: 0.5px var(--boxBod) solid;
-        border-radius: 20px;
-        box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
-        padding: 4px;
-    }
-
-    input[type="checkbox"]:checked+.more svg{
-        opacity: 0.5;
-    }
-    .btn-mini{
-        width: 18px;
-        height: 18px;      
-        justify-content: center;
-        align-items: center;
-        font-size: 8px;
-        background:var(--boxBak);
-        background-size:5px 5px;
-        border-radius: 20px;
-        padding: 4px;
-        border: 0.5px var(--boxBod) solid;
-        box-sizing: border-box;
-    }
-    .btn-mini:hover{
-        font-size: 10px;
-        width: 22px;
-        height: 22px;
-        cursor: pointer;
-        --move:-2px
-    }
-
-    .btn-theme {
-        --theme-l:rgba(0,0,0,0);
-        --theme-d:var(--mainColor);
-    }
-
-    .btn-theme:hover {
-        cursor: pointer;
-        opacity: 0.8;
-    }
-
-    input[type="checkbox"]:checked+.btn-theme {
-        --theme-l:var(--mainColor);
-        --theme-d:rgba(0,0,0,0);
-    }
-
-    .btn-editor{
-        position: relative;
-        border-radius: 50%;
-        border: rgba(0, 0, 0, 0) 2px solid;
-        --btn-op: 0.2;
-    }
-    input[type="checkbox"]:checked+.btn-editor {
-        --btn-op: 1;
-    }
-    .TV{
-        width: calc(100% - 200px);
-        height: 18px;
-        padding: 0 20px;
-        display: flex;
-        box-sizing: border-box;       
-        overflow: hidden; 
-        position: relative;
-    }
-
-
-
-    @keyframes tvMove {
-        /**
-        0%{
-            transform: translateX(100%);
-        }
-        50%{
-            transform: translateX(0%);
-        }
-        100%{
-            transform: translateX(-100%);
-        }
-        /**/
-        0%{
-            left: calc(100% + 10px);
-        }
-        100%{
-            left: var(--tv-w,-150px);
-        }
-    }
-
-    .tool-top{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        --tool-title-w:180px;
-        margin-left: -15px;
-        border: 0.5px var(--boxBod) solid;
-        background:/*linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(var(--bg-mask), 1) 40%,rgba(0,0,0,0) 100%),*/var(--bg-light);
-        border-radius: 12px;
-        /*box-shadow: 0 4px 10px  rgba(var(--bg-mask), 1) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);*/
-    }
-    .tool-title{
-        width: var(--tool-title-w,100%);
-        color: var(--mainColor);
-        font-weight: 700;
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        background:
-        /*repeating-radial-gradient(
-            circle at center,  
-            rgba(62, 62, 62, 0.2) 0,
-            rgba(62, 62, 62, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1px,
-            rgba(119, 119, 119, 0.2) 1.5px,
-            transparent 4px,
-            transparent 20px
-        ),*/var(--boxBak);
-        background-size:5px 5px;
-        padding: 2px 8px 3px 20px;
-        box-sizing: border-box;
-        border: 0.5px var(--boxBod) solid;
-        border-radius: 10px;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) inset,0 0 1px  #6e6e6e/*, 0 2px 0 var(--boxBak)*/;
-    }
-    .tool-title::before{
-        content: '';
-        position: absolute;
-        top:5.5px;
-        left: 5px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        border: 0.5px var(--boxBod) solid;
-        z-index: 2;
-        animation: lightup ease-in-out 1s infinite;
-    }
-    .tool-title::after{
-        content: '';
-        position: absolute;
-        top:5.5px;
-        left: 5px;
-        width: 8px;
-        height: 8px;
-        filter: blur(5px);
-        border-radius: 50%;
-        border: 0.5px var(--boxBod) solid;
-        z-index: 2;
-        animation: lightup ease-in-out 1s infinite;
-    }
-    @keyframes lightup {
-        0%{
-            background: repeating-radial-gradient(
-                circle at center,  
-                rgba(125, 248, 252, 0) 0,
-                rgba(125, 247, 252, 0) 4px,
-                rgba(119, 119, 119, 0) 8px
-            ),var(--boxBak);
-        }
-        50%{
-            background: repeating-radial-gradient(
-                circle at center,  
-                rgba(125, 248, 252, 0.705) 0,
-                rgba(125, 247, 252, 0.6) 4px,
-                rgba(119, 119, 119, 0.2) 8px
-            ),var(--boxBak);
-        }
-        100%{
-            background: repeating-radial-gradient(
-                circle at center,  
-                rgba(125, 248, 252, 0) 0,
-                rgba(125, 247, 252, 0) 4px,
-                rgba(119, 119, 119, 0) 8px
-            ),var(--boxBak);
-        }
-    }
-    .tool-option{
-        width: 100%;
-        text-align: center;
-        background-color: var(--hover,rgba(0,0,0,0));
-        padding:4px 10px;
-    }
-
-    .tool-option:hover {
-        cursor: pointer;
-        --hover:var(--boxGry)
-    }
-
-    .tool-option-pick{
-        width: 100%;
-        text-align: center;
-        background-color: rgba(70,220,210,0.2);
-        padding:4px 10px;
-        pointer-events: none;
-    }
-
-    .tool-list {
-        position: absolute;
-        top:10px;
-        width: var(--tool-title-w,100%);
-        display: flex;
-        flex-flow: column;
-        padding:20px 10px 8px 10px;
-        box-sizing: border-box;
-        background-color: var(--boxBak);
-        border: var(--boxBod) 1px solid;
-        border-radius:0 0 10px 10px;
-    }
-
-    .tips-all{
-        position: absolute;
-        bottom: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2px 8px;
-        z-index: 20;
-        animation: boxUp 0.3s ease-out;
-    }
-    .tips-all .tips-box{
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        padding: 4px 20px;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 15px;
-        opacity: 0.8;
-    }
-
-    .tags-search-toast {
-        width: var(--toastW, 100px);
-        text-align: center;
-        position: absolute;
-        bottom: 10px;
-        padding: 2px 4px;
-        border-radius: 4px;
-        color: #ffffff;
-        background-color: #000000;
-        pointer-events: none;
-    }
-
-    .tags-search-toast-area {
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        bottom: 1px;
-        right: -1px;
-        opacity: 00;
-        z-index: 2;
-        cursor: pointer;
-    }
-
-    .tags-search-toast-area:hover {
-        opacity: 1;
-        transition: opacity 0.2s ease-out,background-color 0.5s ease-out;
-    }
-
-    .tags-search-toast-area:hover .tags-search-toast {
-        transform: translateY(-10px);
-        transition: transform 0.2s ease-out,background-color 0.5s ease-out;
-    }
-
-    .moDside{
-        min-width: 240px;
-        max-width: 240px;
-        height: calc(100% - 51px);
-        padding: 10px;
-        background-color: var(--boxGry);
-        flex:0 0 auto;
-        border: var(--boxGry) 10px solid;
-        border-bottom: var(--boxGry) 20px solid;
-    }
-
-    .moDside-float{
-        min-width: 240px;
-        max-width: 240px;
-        padding: 10px;
-        background-color: var(--boxGry);
-        flex:0 0 auto;
-        border: var(--boxBod) 1px solid;
-        border-radius: 10px;
-        margin: 10px;
-        opacity: 0.5;
-    }
-
-    .moDside-float:hover{
-        opacity: 1;
-    }
-    .moDside p{
-        font-size: 13px;
-        opacity: 0.8;
-        margin-bottom: 6px;
-    }
-    .moDside a{
-        width: 5ch;
-        min-width: 4ch;
-        display: inline-block;
-        text-align-last: justify;
-    }
-    .btn{
-        width: 100%;
-        border-radius: 4px;
-        border: var(--boxGry) 1px solid;
-        padding: 2px;
-        color: var(--mainColor);
-        background-color: var(--boxGry);
-    }
-
-    .btn2{
-        width: 100%;
-        border-radius: 4px;
-        border: var(--boxBod) 1px solid;
-        padding: 2px;
-        color: #ffffff;
-        background-color: var(--boxBod);
-    }
-
-    .btn3{
-        width: 100%;
-        border: var(--boxBod) 1px solid;
-        border-radius: 4px;
-        padding: 2px;
-        color: var(--mainColor);
-        background-color: var(--boxBak);
-    }
-
-    .btn2:hover,.btn3:hover,.btn-viewSize:hover{
-        cursor: pointer;
-        opacity: 0.5;
-    }
-
-    .btn-viewSize{
-        width: 30px;
-        height: 30px;
-        flex: 0 0 auto;
-        border: var(--boxBod);
-        border-radius: 4px;
-        padding: 2px;
-        font-size: 16px;
-        color: var(--mainColor);
-        background-color: var(--boxGry);
-    }
-
-    .btn-big:hover {
-        cursor: pointer;
-        opacity: 0.8;
-    }
-
-    input[type="checkbox"]:checked+.btn-big .path1 {
-        transform: translateY(6px) translateX(-6px);
-    }
-
-    input[type="checkbox"]:checked+.btn-big .path2 {
-        transform: translateX(6px) translateY(-6px);
-    }
-
-
-    .moDsearch-box {
-        width: 100%;
-        height: 22px;
-        font-size: 12px;
-        padding:0 0 1px 4px;
-        color: var(--boxBod);
-        border-radius: 4px;
-        background-color: var(--boxBak);
-        border: 1px solid var(--boxBod);
-        box-sizing: border-box;
-    }
-
-    .moDsearch-box:focus {
-        color: var(--mainColor);
-    }
-
-
-    *:focus {
-        outline: none;
-    }
-
-    .select {
-        width: 100%;
-        height: 22px;
-        font-size: 12px;
-        color: var(--boxBod);
-        border-radius: 4px;
-        background-color: var(--boxBak);
-        border: 1px solid var(--boxBod);
-        z-index: 20;
-    }
-
-    .select:focus {
-        color: var(--mainColor);
-    }
-
-    .chk-round{
-        width: 18px;
-        height: 18px;
-        flex: 0 0 auto;
-        opacity: 0.5;
-        --has:rgba(0,0,0,0);
-    }
-
-    input[type="checkbox"]:checked + .chk-round{
-        --has:var(--mainColor);
-        opacity: 1;
-    }
-
-    
-    /* 隐藏range控件默认样式 */
-    [type="range"] {
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: transparent;
-        width: 80px;
-    }
-
-    /* 定义range控件轨道的样式 */
-    [type="range"]::-webkit-slider-runnable-track {
-        height: 2px;
-        border-radius: 1px;
-        background: var(--boxBod);
-    }
-
-    /* 定义range控件容器的样式 */
-    [type="range" i]::-webkit-slider-container {
-        height: 20px;
-        overflow: hidden;
-    }
-
-    /* 定义range控件拇指的样式 */
-    [type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 8px;
-        height: 16px;
-        border-radius: 4px;
-        background-color: var(--boxBod);
-        margin-top: -7px;
-    }
-
-    #imgView-size{
-        bottom:20px;
-        right: 10px;
-        opacity: 0.5;
-        font-family: 'Roboto', Courier, monospace;
-    }
-    #imgView-size:hover{
-        opacity: 1;
-    }
-
-    #moDside{
-        position: absolute;
-    }
-
-    #imgView{
-        width: calc(100% - 300px);
-    }
-
-    #imgView-size-range{
-        width: 20px; 
-        height: 80px;
-    }
-
-    #imgView-size-range input{
-        transform: rotate(-90deg);
-    }
-
-    .loadding{
-        animation: load 1s;
-    }
-
-    @keyframes load {
-        0%{
-            opacity: 0;
-        }
-        100%{
-            opacity: 1;
-        }
-    }
-
-
-
-    #textarea-in{
-        --r:8px;
-        --top-r:var(--r) var(--r) 0 0;
-        --bottom-r:0 0 var(--r) var(--r);
-    }
-
-    @keyframes skewliner {
-        0%{
-            background-position: 0 0;
-        }
-        100%{
-            background-position: 100px 0;
-        }
-    }
-
-    @keyframes boxUp{
-        0%{
-            transform: translateY(10px);
-            opacity: 0;
-        }
-        100%{
-            transform: translateY(0);
-            opacity: 1
-        }
-
-    }
-
-    @keyframes listclose {
-        0%{
-            transform: translateY(0);
-        }
-        100%{
-            transform: translateY(-30px);
-        }
-    }
-
-    @media (max-width:375px){
-
-        body{
-            transform: scale(0.95);
-            transform-origin: center center;
-            box-sizing: border-box;
-            filter:blur(0.1px) contrast(105%);
-            padding: 0;
-        }
-        .noise{
-            opacity: 0;
-        }
-        .page{
-            padding: 14px;
-        }
-        
-    }
-    @media (max-width:750px){
-        :root{
-            --textarea-h:100px;
-        }
-        .page{
-            display: flex;
-            flex-flow: column;
-        }
-        .tags-exports .list {
-            display: flex;
-            flex-flow: column;
-            gap:10px;
-            justify-content: left;
-        } 
-        #export-info{
-            --mh:100px
-        }
-        #textarea-in{
-            display: flex;
-            --title-w:50%;
-            --top-r:var(--r) 0 0 var(--r);
-            --bottom-r:0 var(--r) var(--r) 0;
-        }
-        #btn-totags{
-            /*left: calc(50% - 10ch - 4px);*/
-            --top:0px;
-        }
-        #select-area-ai{
-            left: calc(50% - 14ch - 3px);
-            transition: right ease-in-out 0.5s;
-        }
-        #model-main{
-            padding: 10px;
-            overflow-x: scroll;
-        }
-        .model-box{
-            width: 100%;
-            height: 140px;
-        }
-        .model-list{
-            width: fit-content;
-            flex-flow:nowrap;     
-        }
-        .model-info,.model-info-tips{
-            width: 120px;
-            height: 60px;
-        }
-        .model-info-tips{
-            flex-flow: column;
-        }
-        .model-move-r,.model-move-l{
-            display: flex;
-        }
-        #model-data{
-            flex-flow: column;
-        }
-
-        #imgView{
-            width: 100%;
-        }
-
-        #imgView-info span{
-            font-size: 10px;
-        }
-
-        #imgView-size{
-            flex-flow: nowrap;
-        }
-
-        #imgView-size-up,#imgView-size-down{
-            display: none;
-        }
-        #imgView-size-range{
-            width: 80px; 
-            height: 20px;
-        }
-        #imgView-size-range input{
-            transform: rotate(0deg);
-            transform-origin: left bottom;
-        }
-        /*
-        #imgView-size,#imgView-info{
-            display: none;
-        }
-            */
-        
-    }
-    @media (max-width:900px){
-        
-        #TV-move{
-            position: absolute;
-            left: 100%;
-        }
-        #moDside{
-            --boxGry:var(--mod-table);
-            min-width: calc(100% - 40px);
-            max-height: calc(100% - 40px);
-        }
-    }
-
-    @media (min-width:1100px){
-        .tags-exports .list {
-            display: flex;
-            flex-flow: nowrap;
-            justify-content: space-between;
-        }
-        .export-tips{
-            flex-flow: nowrap;
-        }
- 
-    }
-
-
+   
 </style>
 </head>
 
@@ -1136,9 +37,15 @@
         
         <div class="tool-top" >
             <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
-                <div id="tool-list-1" class="tool-option-pick" onclick="viewPage(1)">资源位标准格式转换器</div>
-                <div id="tool-list-2" class="tool-option" onclick="viewPage(2)">模板解析及批量延展器</div>
-                <div id="tool-list-3" class="tool-option" onclick="viewPage(3)">布局示意图批量生成器</div>
+                <div id="tool-list-1" class="tool-option-pick" onclick="viewPage(1);">
+                    资源位标准格式转换器
+                </div>
+                <div id="tool-list-2" class="tool-option" onclick="viewPage(2);">
+                    模板解析及批量延展器
+                </div>
+                <div id="tool-list-3" class="tool-option" onclick="viewPage(3);">
+                    布局示意图批量生成器
+                </div>
             </div>
             <div class="tool-title">
                 <div id="tool-name" style="width:100%; "></div>
@@ -1335,11 +242,8 @@
                     <div style=" opacity: 0.8;margin-top: 2px;">*切换模式以编辑模板</div>
                     <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
                         <input type="checkbox" checked="true" style="display: none;" id="editor-data" 
-                        onchange="this.checked = true;if(this.checked == true){
-                            ediF.checked = false;ediV.checked = false;
-                            modelFlow.style.display = 'none';
-                            modelData.style.display = 'flex';
-                            modelView.style.display = 'none';}">
+                        onchange="onlyTab(this,this.parentNode,true);
+                        changeDisplay([['model-flow','none'],['model-data','flex'],['model-view','none']]);">
                         <label class="btn-editor" for="editor-data">
                             <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
                             </div>
@@ -1349,11 +253,8 @@
                         </label>
 
                         <input type="checkbox" style="display: none;"  id="editor-flow" 
-                        onchange="this.checked = true;if(this.checked == true){
-                            ediD.checked = false;ediV.checked = false;
-                            modelFlow.style.display = 'block';
-                            modelView.style.display = 'none';
-                            modelData.style.display = 'none';}">
+                        onchange="onlyTab(this,this.parentNode,true);
+                        changeDisplay([['model-flow','block'],['model-data','none'],['model-view','none']]);">
                         <label class="btn-editor" for="editor-flow" >
                             <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
                             </div>
@@ -1363,11 +264,8 @@
                         </label>
 
                         <input type="checkbox" style="display: none;" id="editor-view" 
-                        onchange="this.checked = true;if(this.checked == true){
-                            ediF.checked = false;ediD.checked = false;
-                            modelFlow.style.display = 'none';
-                            modelView.style.display = 'block';
-                            modelData.style.display = 'none';}">
+                        onchange="onlyTab(this,this.parentNode,true);
+                        changeDisplay([['model-flow','none'],['model-data','none'],['model-view','block']]);">
                         <label class="btn-editor" for="editor-view">
                             <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
                             </div>
@@ -1529,19 +427,13 @@
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">//模糊匹配</script>
 <script src="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@refs/heads/master/build/litegraph.min.js">//节点编辑</script>
 <script src="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@014400b8d1b339ca817924ba36ec48adb4a5914e/src/dom-to-image.js">//截图</script>
-
-<!--数据-->
-<script src="src/zy_data.js"></script>
-<script src="src/md_data.js"></script>
-
+<script src="src/md_edit.js"></script>
+<script src="src/component.js"></script>
 <script>
     
     const root = document.documentElement;
     const TVMove = document.getElementById("TV-move");
     const TVInfo = document.getElementById("TV-info");
-    const modelFlow = document.getElementById('model-flow');
-    const modelView = document.getElementById('model-view');
-    const modelData = document.getElementById('model-data');
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
     const modelTable = document.getElementById('model-table');
@@ -1595,162 +487,17 @@
     const imgViewInfo = document.getElementById("imgView-info");
     const imgViewSlider = document.getElementById("slider-imgView");
     const zoomNum = document.getElementById("zoom-num");
-    const giftNum =  [null,null,'二','三','四','五','六','七','八','九','十']
     
     //交互参数
     var isDragging = false;//拖拽画布
     var clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+    var touchXY = 0,touchScale = 1,touchSS = 1;
     var zoom = 40;//缩放比例
     var viewport = {
         x:0,
         y:0,
         center:[0,0],
     }//画布参数
-
-    //模拟数据
-    const userImgData = {
-        main:{
-            zy:[/*有哪些资源位*/
-                {
-                    name:"测试-横",
-                    w:1280,
-                    h:720,
-                    title:[true,0,true,0],/*主标题,主标题文案序号,副标题,副标题文案序号*/
-                    gift:0,/*奖励数量，0则隐藏*/
-                },
-            ],
-            title:["标题文案",""],/*标题文案，允许配置多个文案，为不同尺寸提供选项*/
-            sectitle:["副标题文案文案文案文案",""],/*副标题文案，允许配置多个文案，为不同尺寸提供选项*/
-            channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-            game:["模拟",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-            bg:{/*base64*/
-                image:"",/*用户上传，自动转base64*/
-            },
-            gift:{/*按资源位给定的数量按顺序显示*/
-                icon:["","","","",],/*用户上传，最多4个，自动转base64*/
-                tags:[0,0,0,0,],/*按顺序给定数量，0则隐藏*/
-                tagsZh:[null,null,'二','三','四','五','六','七','八','九','十']/*数字转中文*/
-            }
-        },
-        style:{
-            fontsize:[//将最小字号、副标题字号、标题字号分6级
-                [12,12,12],
-                [12,12,24],
-                [14,22,42],
-                [20,36,86],
-                [24,40,120],
-                [36,60,180], 
-            ],
-            framesize:{//将画布按竖版（含方版）和横板分6级，用于对应6级字号,中间值向上取值
-                ww:[64,128,256,512,720,1080],
-                hh:[50,70,140,280,360,440],
-            },
-            title:{/*默认样式*/
-                color:"#fff",
-                fill:[],
-                fontfamily:"",
-            },
-            sectitle:{/*默认样式*/
-                color:"#fff",
-                fill:[],
-                fontfamily:"",
-            },
-        },
-    }
-
-    class btnadd extends HTMLElement {
-      constructor() {
-        super();
-        this.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 17 17">
-            <g>
-                <g>
-                    <rect x="7.5" y="3.5" width="2" height="10" rx="0" fill="var(--mainColor)" fill-opacity="1"/>
-                </g>
-                <g>
-                    <rect x="3.5" y="7.5" width="10" height="2" rx="0" fill="var(--mainColor)" fill-opacity="1"/>
-                </g>
-                <g>
-                    <ellipse cx="8.5" cy="8.5" rx="8" ry="8" fill-opacity="0" stroke-opacity="1" stroke="var(--mainColor)" fill="none" stroke-width="1"/>
-                </g>
-            </g>
-        </svg>
-        `;
-      }
-    }
-    customElements.define('btn-add', btnadd);
-
-    class btnclose extends HTMLElement {
-      constructor() {
-        super();
-        this.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 17 17">
-            <g>
-                <g>
-                    <rect x="3.5" y="7.5" width="10" height="2" rx="0" fill="var(--mainColor)" fill-opacity="1"/>
-                </g>
-                <g>
-                    <ellipse cx="8.5" cy="8.5" rx="8" ry="8" fill-opacity="0" stroke-opacity="1" stroke="var(--mainColor)" fill="none" stroke-width="1"/>
-                </g>
-            </g>
-        </svg>
-        `;
-      }
-    }
-    customElements.define('btn-close', btnclose);
-
-    class btncopy extends HTMLElement {
-        constructor() {
-            super();
-            this.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 11 11">
-                <g>
-                    <g>
-                        <path d="M5,2L4,2L4,4L2,4L2,5L4,5L4,7L5,7L5,5L7,5L7,4L5,4L5,2Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
-                    </g>
-                    <g>
-                        <path d="M0,2.5L0,6.5Q0,7.53553,0.732233,8.26777Q1.29574,8.83127,2.03888,8.96112Q2.16872,9.70426,2.73223,10.2678Q3.46447,11,4.5,11L8.5,11Q9.53553,11,10.2678,10.2678Q11,9.53553,11,8.5L11,4.5Q11,3.46447,10.2678,2.73223Q9.70426,2.16872,8.96112,2.03888Q8.83127,1.29574,8.26777,0.732233Q7.53553,0,6.5,0L2.5,0Q1.46447,0,0.732233,0.732233Q0,1.46447,0,2.5ZM9,3.08099L9,6.5Q9,7.53553,8.26777,8.26777Q7.53553,9,6.5,9L3.08099,9Q3.18864,9.30996,3.43934,9.56066Q3.87868,10,4.5,10L8.5,10Q9.12132,10,9.56066,9.56066Q10,9.12132,10,8.5L10,4.5Q10,3.87868,9.56066,3.43934Q9.30996,3.18864,9,3.08099ZM1.43934,7.56066Q1,7.12132,1,6.5L1,2.5Q1,1.87868,1.43934,1.43934Q1.87868,1,2.5,1L6.5,1Q7.12132,1,7.56066,1.43934Q8,1.87868,8,2.5L8,6.5Q8,7.12132,7.56066,7.56066Q7.12132,8,6.5,8L2.5,8Q1.87868,8,1.43934,7.56066Z" fill-rule="evenodd" fill="var(--mainColor)" fill-opacity="1"/>
-                    </g>
-                </g>
-            </svg>
-            `;
-        }
-    }
-    customElements.define('btn-copy', btncopy);
-
-    class btnre extends HTMLElement {
-        constructor() {
-            super();
-            this.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 20 20">
-                <g>
-                    <g>
-                        <path d="M12.2855,7.6273202612304685L11.71607,9.752400261230468L6.11928,3.5940002612304687L14.0454,1.0590667722304687L13.5682,2.8400802612304688C16.2837,4.193330261230469,18,6.966240261230468,18,10.000240261230468C18,12.14093026123047,17.142,14.192330261230468,15.618,15.695630261230468C15.8708,14.991330261230468,16,14.248530261230469,16,13.500230261230469C16,10.989500261230468,14.554,8.703270261230468,12.2855,7.6273202612304685ZM6.43178,17.16043026123047L5.95456,18.94143026123047L13.8807,16.40643026123047L8.28393,10.248070261230469L7.71452,12.373130261230468C5.446,11.29723026123047,4,9.010970261230469,4,6.500240261230469C4,5.751890261230469,4.12923,5.009170261230469,4.38199,4.304810261230468C2.857956,5.808120261230469,2,7.859530261230469,2,10.000240261230468C2,13.03423026123047,3.71629,15.80713026123047,6.43178,17.16043026123047Z" fill-rule="evenodd" fill="var(--boxBod)" fill-opacity="1"/>
-                    </g>
-                </g>
-            </svg>
-            `;
-        }
-    }
-    customElements.define('btn-re', btnre);
-
-    class btnchange extends HTMLElement {
-        constructor() {
-            super();
-            this.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 18 12">
-                <g>
-                    <g>
-                        <path d="M7.84606,8.545449999999999L7.84606,10L3.9999561143,8.25454L3.9999561143,7.09091L7.07693,7.09091L7.84606,7.09091L13.99991,7.09091L13.99991,8.545449999999999L7.84606,8.545449999999999ZM10.15385,3.4545500000000002L10.15385,2L13.99996,3.74546L13.99996,4.90909L10.15385,4.90909L4,4.90909L4,3.4545500000000002L10.15385,3.4545500000000002Z" 
-                        fill-rule="evenodd" fill="var(--mainColor3)" fill-opacity="1"/>
-                    </g>
-                </g>
-            </svg>
-            `;
-        }
-    }
-    customElements.define('btn-change', btnchange);
-
 
     window.onload = ()=>{
         addOption("select-area-",sheet,0);
@@ -1775,11 +522,7 @@
         window.event.returnValue = '系统可能不会保存您所做的更改,如有需要，请先保存数据' ;
     }
     
-    var btnAdd = '<btn-add></btn-add>';
-    var btnClose = '<btn-close></btn-close>';
-    var btnCopy = '<btn-copy></btn-copy>';
       
-    
     imgViewBox.onmousewheel = ()=>{
         var step = Math.abs(event.wheelDelta)/12 ;
         if(event.wheelDelta > 0){
@@ -1818,23 +561,59 @@
     }
 
     imgViewBox.ontouchstart = ()=> {
-        //if(window.event.button == 0){
         isDragging = true;
         clickX = window.event.touches[0].clientX;
-        clickY = window.event.touches[0].clientY;  
-        //}
+        clickY = window.event.touches[0].clientY;
     }
 
     imgViewBox.ontouchmove = ()=>{
         if(isDragging){
             moveX = moveXX + window.event.touches[0].clientX - clickX;
             moveY = moveYY + window.event.touches[0].clientY - clickY;
-            imgViewBox.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';
-            
+            imgViewBox.parentNode.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';  
         }
     }
 
     imgViewBox.ontouchend= ()=>{
+        isDragging = false;
+        moveXX = moveX;
+        moveYY = moveY;
+    }
+
+    modelFlow.ontouchstart = ()=> {
+
+        isDragging = true;
+        if(window.event.touches.length >= 2){
+            var dx = window.event.touches[1].clientX - window.event.touches[0].clientX;
+            var dy = window.event.touches[1].clientY - window.event.touches[0].clientY;
+            touchXY = Math.sqrt(dx * dx + dy * dy);
+            touchScale = touchSS;
+        } else {
+            clickX = window.event.touches[0].clientX;
+            clickY = window.event.touches[0].clientY;
+        }
+
+    }
+
+    modelFlow.ontouchmove = ()=>{
+        if(isDragging){
+            window.event.preventDefault(); 
+            if(window.event.touches.length >= 2){
+                var dxs = window.event.touches[1].clientX - window.event.touches[0].clientX;
+                var dys = window.event.touches[1].clientY - window.event.touches[0].clientY;
+                var touchXYs = Math.sqrt(dxs * dxs + dys * dys);
+                touchSS = touchScale * (touchXYs/touchXY);
+                modelFlow.style.transform = 'scale(' + touchSS + ')'
+            } else {
+                moveX = moveXX + window.event.touches[0].clientX - clickX;
+                moveY = moveYY + window.event.touches[0].clientY - clickY;
+                modelFlow.style.transform = 'translate(' + moveX +'px,' + moveY + 'px)';  
+            }
+            
+        }
+    }
+
+    modelFlow.ontouchend= ()=>{
         isDragging = false;
         moveXX = moveX;
         moveYY = moveY;
@@ -1955,14 +734,14 @@
         document.getElementById("exports-" + e).remove()
     }
 
-    function addOption(type,list,e){
+    function addOption(type,list,key){
         if (!Array.isArray(list)){
             var option = document.createElement('option');
             option.disabled = true;
             option.selected = true;
             option.value = '选择渠道';
             option.innerHTML = '选择渠道';
-            document.getElementById(type + e).appendChild(option)
+            document.getElementById(type + key).appendChild(option)
             Object.keys(list).forEach(item => {
                 var option = document.createElement('option');
                 if ( item == '大神' || item == 'CC' || item == 'DD'){
@@ -1979,7 +758,7 @@
                         option.innerHTML = item;
                     }
                 }
-                document.getElementById(type + e).appendChild(option)
+                document.getElementById(type + key).appendChild(option)
             })
         } else {
             var option = document.createElement('option');
@@ -1987,12 +766,12 @@
             option.selected = true;
             option.value = '选择资源位';
             option.innerHTML = '选择资源位';
-            document.getElementById(type + e).appendChild(option);
+            document.getElementById(type + key).appendChild(option);
             list.forEach(item => {
                 var option = document.createElement('option');
                 option.value = item.name;
                 option.innerHTML = item.name;
-                document.getElementById(type + e).appendChild(option)
+                document.getElementById(type + key).appendChild(option)
             })
         
         }
@@ -2171,7 +950,7 @@
         }
     }
 
-
+    
     function AItoKeys(input){
         //console.log(input)
         var keywords = []
@@ -2301,7 +1080,7 @@
     }
 
     //单选tab
-    function onlyTab(node,parent){
+    function onlyTab(node,parent,isMustOne){
         var input = [];
         parent.querySelectorAll('input').forEach(item =>{ 
             if(item.type == 'checkbox'){
@@ -2313,192 +1092,20 @@
                 item.checked = false;
             }
         })
-    }
-
-
-    //导出
-    async function exportAll(){
-
-        var zyNode = document.getElementById("zy_w_h")
-        imgViewBox.style.transform = 'scale(1.04)';
-        var svgElem = zyNode.querySelectorAll('image');
-
-        if(svgElem && svgElem.length > 0){
-            svgElem.forEach(function(node,index) {
-                var href = node.getAttributeNS("http://www.w3.org/1999/xlink", "xlink:href");
-                if(!href){
-                    href = node.getAttribute('xlink:href');
-                }
-                if (href.split('http').length > 1){
-                    console.log('超链接',node.id)
-                    // 使用fetch获取图片
-                    fetch(href)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.blob();
-                    })
-                    .then(blob => {
-                        var reader = new FileReader();
-                        reader.onloadend = async function() {
-                            var dataURL = reader.result;
-                            await node.setAttribute("href", dataURL);
-                            await node.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dataURL );
-                            if(index == svgElem.length - 1){
-                                setTimeout(()=>{
-                                    domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
-                                    .then(function (dataUrl) {
-                                        var link = document.createElement('a');
-                                        link.download = 'test.jpeg';
-                                        link.href = dataUrl;
-                                        link.click();
-                                    })
-                                    .catch(error => {});
-                                    imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-                                },500)
-                                
-                            }
-                        };
-                        reader.readAsDataURL(blob);
-                    })
-                    .catch(error => console.error('Error loading image:', error));
-                }else{
-                    if(index == svgElem.length - 1){
-                        setTimeout(()=>{
-                            domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
-                            .then(function (dataUrl) {
-                                var link = document.createElement('a');
-                                link.download = 'test.jpeg';
-                                link.href = dataUrl;
-                                link.click();
-                            });
-                            imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-                        },500)
-                        
-                    }
-                }
-                
-                
-            });
-        }else{
-            setTimeout(()=>{
-                domtoimage.toJpeg(imgViewBox, { quality: 1 })
-                .then(function (dataUrl) {
-                    var link = document.createElement('a');
-                    link.download = 'test.jpeg';
-                    link.href = dataUrl;
-                    link.click();
-                });
-                imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-            },500)
-            
-
+        if(isMustOne){
+            node.checked = true;
         }
-
     }
 
-    //有限字数文案节点
-    function limitedString() {
-        this.addOutput("string", "string");
-        this.addProperty("value", "",);//name, default_value,type,extra_info
-        this.widget = this.addWidget("text","Text","","value");  //link to property value
-        this.widgets_up = true;
-        this.size = [180, 30];
+    //批量修改display
+    function changeDisplay(array){
+        array.forEach(item => {
+            document.getElementById(item[0]).style.display = item[1]
+        })
     }
 
-    limitedString.title = "文案";
-    limitedString.desc = "输入带限定字数的文案";
-
-    limitedString.prototype.setValue = function(v){this.setProperty("value",v)}
-
-    limitedString.prototype.onExecute = function() {
-        this.setOutputData(0, this.properties["value"]);     
-    };
-
-    LiteGraph.registerNodeType("imginfo/string", limitedString);
-
-
-    //基础信息节点
-    function ImgInfoMain() {
-        this.addInput("主标题", "string"); // 主标题输入端口
-        this.addInput("副标题", "string"); // 副标题输入端口
-        this.addOutput("输出","string")
-        this.size = [180, 100];
-    }
-
-    ImgInfoMain.title = "配置项（基础）";
-    ImgInfoMain.desc = "接收主标题和副标题信息";
-
-    ImgInfoMain.prototype.onExecute = function () {
-        var mainTitle = this.getInputData(0); // 主标题
-        var subTitle = this.getInputData(1); // 副标题
-        this.setOutputData(0,"[" + mainTitle + "," + subTitle + "]") 
-    };
-
-    ImgInfoMain.prototype.setValue = function(v){this.setProperty("value",v)}
-
-
-    LiteGraph.registerNodeType("imginfo/main", ImgInfoMain);
-
-     
-    //var flowBg;
-    //节点编辑器
     
-    function addFlowEditor(userImgData){
-        
-        var graph = new LGraph(); 
-        //graph.WIDGET_BGCOLOR = "#fff";
-        // 假设你有一个 LiteGraph 的实例名为 graph
-        
-        var canvas = new LGraphCanvas("#model-flow", graph);
-        //flowBg = canvas
-        canvas.show_info = false;
-        graph.start()
-
-       
-
-        //示例数据
-        var node_input1 = LiteGraph.createNode("imginfo/string","文案");
-        node_input1.pos = [200,200];
-        node_input1.setValue("示例文案") 
-        graph.add(node_input1);
-
-
-        var node_input3 = LiteGraph.createNode("imginfo/main");
-        node_input3.pos = [500,200];
-        graph.add(node_input3);
-
-        var node_input2 = LiteGraph.createNode("imginfo/string");
-        node_input2.pos = [200,300];
-        node_input2.setValue("示例文案") 
-        graph.add(node_input2);
-
-        node_input1.connect(0, node_input3, 0 );
-        node_input2.connect(0, node_input3, 1 );
-
-        /*
-        var ctx = modelFlow.getContext('2d')
-        var imgData = ctx.getImageData(0,0,modelFlow.width,modelFlow.height)
-        var data = imgData.data;
-        for(var i = 0; i < data.length; i += 4){
-            var r = data[i];
-            var g = data[i + 1];
-            var b = data[i + 2];
-
-            if(Math.abs(r - g) < 10 && Math.abs(r - b) < 10 && Math.abs(b - g) < 10 ){
-                r = 255 - r;
-                g = 255 - g;
-                b = 255 - b;
-            }
-
-        }
-        ctx.putImageData(imgData,0,0)
-        */
-    }
    
-    
-
     
     // 监听整个文档的点击事件
     document.addEventListener('mousedown', function (event) {

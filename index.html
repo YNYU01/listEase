@@ -279,7 +279,7 @@
             <!--三种编辑视图-->
             <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
                 <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; ">
-                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;  " ></canvas>
+                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;" ></canvas>
                     <div id="model-view" class="wh100" style="display: none;"></div>
                     <div id="model-data" class="wh100 df" style="display: flex;">
                         <!--侧边栏-->
@@ -532,7 +532,9 @@
         }
         reZoom();
         imgViewBox.style.transform = 'scale( '+ imgViewSlider.value/100 + ')';
-        imgViewBox.style.transformOrigin = (clickX - imgViewBox.left)/imgViewBox.offsetWidth * 100 + '%' + (clickY - imgViewBox.top)/imgViewBox.offsetHeight * 100 + '%';
+        //console.log(window.event.clientX - imgViewBox.getBoundingClientRect().left, imgViewBox.offsetWidth*imgViewSlider.value/100)
+        //只测试了理想缩放中心的偏移值，还没算上前一次偏移值
+        //imgViewBox.parentNode.style.transform = 'translate(' + (window.event.clientX - imgViewBox.getBoundingClientRect().left) +'px,' + (window.event.clientY - imgViewBox.getBoundingClientRect().top) + 'px)';  
     }
  
     imgViewBox.onmousedown = ()=> {
@@ -603,7 +605,8 @@
                 var dys = window.event.touches[1].clientY - window.event.touches[0].clientY;
                 var touchXYs = Math.sqrt(dxs * dxs + dys * dys);
                 touchSS = touchScale * (touchXYs/touchXY);
-                modelFlow.style.transform = 'scale(' + touchSS + ')'
+                modelFlow.style.transformOrigin = modelFlow.parentNode.offsetWidth/2 + 'px ' + modelFlow.parentNode.offsetHeight/2 + 'px'
+                modelFlow.style.transform = 'scale(' + touchSS + ')';
             } else {
                 moveX = moveXX + window.event.touches[0].clientX - clickX;
                 moveY = moveYY + window.event.touches[0].clientY - clickY;
@@ -615,7 +618,7 @@
 
     modelFlow.ontouchend= ()=>{
         isDragging = false;
-        touchScale = touchSS
+        touchScale = touchSS;
         moveXX = moveX;
         moveYY = moveY;
     }
@@ -1048,6 +1051,7 @@
         var size2 = imgView.offsetHeight/(imgViewBox.offsetHeight + 200);
         var size = size1 > size2 ? size2 : size1
         imgViewSlider.value = size*100;
+        imgViewBox.style.transformOrigin = '50% 50%';
         imgViewBox.style.transform = 'scale('+ size +')';
         imgViewBox.parentNode.style.transform = 'translate(0,0)'
         reZoom();

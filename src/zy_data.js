@@ -117,11 +117,35 @@ const vivo = [
     const 腾讯游戏 = [{name:"测试1"},{name:"测试2"}];
     const 微信 = [{name:"测试1"},{name:"测试2"}];
     const 手机管家 = [{name:"测试1"},{name:"测试2"}];
-    const 大神 = [{name:"测试1"},{name:"测试2"}];
+    const 大神 = [
+    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.1,view:false,safa:[[135,210,810,1120]]},
+    {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,safa:[]},
+    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.02,view:false,safa:[]},
+    {name:"活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,safa:[]},
+    {name:"聊天广告",w:84,h:84,s:"300k",type:"png",d:0.01,view:false,safa:[]},
+    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.02,view:false,safa:[]},
+    {name:"负一屏-预约组件资源图",w:969,h:228,s:"300k",type:"jpg",d:0.05,view:false,safa:[]},
+    {name:"负一屏-专题图",w:686,h:492,s:"300k",type:"jpg",d:0.05,view:false,safa:[[0,0,686,256]]},
+    {name:"负一屏-大横屏banner",w:686,h:320,s:"300k",type:"jpg",d:0.05,view:false,safa:[]},
+    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.05,view:false,safa:[[46,24,937,132]]},
+    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.02,view:false,safa:[]},
+    {name:"搜索页-直达卡",w:686,h:240,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"内容流-双图(旧)",w:335,h:188,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"内容流-单图(旧)",w:690,h:188,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.1,view:false,safa:[[0,23,168,121],[168,23,358,121],[526,23,176,121]]},
+    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.1,view:false,safa:[[18,80,620,210]]},
+    {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+{name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    ];
     const CC = [{name:"测试1"},{name:"测试2"}];
     const DD = [{name:"测试1"},{name:"测试2"}];
 
     const sheet = {
+    "大神":[...大神],
+    "CC":[...CC],
+    "DD":[...DD],
     "vivo":[...vivo],
     "华为":[...华为],
     "九游":[...九游],
@@ -138,9 +162,7 @@ const vivo = [
     "腾讯游戏":[...腾讯游戏],
     "微信":[...微信],
     "手机管家":[...手机管家],
-    "大神":[...大神],
-    "CC":[...CC],
-    "DD":[...DD],
+    
     }
 
     //模拟数据

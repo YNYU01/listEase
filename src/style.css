@@ -233,12 +233,12 @@ option {
     --model-info:0;
 }
 .model-pick:hover{
-    --model-info:1;
+    --model-info:0.8;
 }
 
 input[type="checkbox"]:checked+.model-pick {
     --model-b: var(--mainColor) 1px solid;
-    --model-info:1;
+    --model-info:0;
 }
 
 .model-move-r,.model-move-l{

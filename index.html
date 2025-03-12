@@ -61,7 +61,7 @@
                 </div>  
             </div>
         </div>
-        <div id="btn-main" class="btn-main df-ffc" style="position: absolute; top:0; right: 0; width: 14px; height: fit-content;flex:0 0 auto; gap: 4px; margin-right: -15px;">
+        <div id="btn-main" class="btn-main df-ffc" style="position: absolute; top:0; right: 0; width: 14px; height: fit-content;flex:0 0 auto; gap: 10px; margin-right: -15px;">
             <div style="width: 14px; height: 14px; ">
                 <input id="more" type="checkbox" style="display: none;" onchange="if(this.checked){btnTheme.style.display = 'block'} else {btnTheme.style.display = 'none'}"></input>
                 <label for="more" class="more">
@@ -221,7 +221,7 @@
                     <div class="model-info" style="background: var(--boxBak);">
                         <input type="file" id="model-pick-user" style="display: none;" />
                         <label class="model-pick"  for="model-pick-user" style="position: relative;">
-                            <div style="position: absolute; bottom:-1px; background:rgba(0,0,0,0.2); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
+                            <div style="position: absolute; bottom:-1px; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
                             <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%;"><btn-add style="opacity: 0.6;"></btn-add></div>
                             <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " ></div>
                         </label>
@@ -1024,7 +1024,7 @@
             }"/>
             <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
                 `+ setimg +`
-                <div style="position: absolute; bottom:-1px; background:rgba(0,0,0,0.6); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">`+ value.name +`</div>
+                <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">`+ value.name +`</div>
                 <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + index + `</div>
             </label>`;
             modelList.appendChild(node);

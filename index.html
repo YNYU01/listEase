@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet">
 <style>
    
 </style>
@@ -35,24 +38,27 @@
     <!--顶栏-->
     <div class="ww" style=" display: flex; justify-content: space-between; align-items: center; position: relative;z-index: 10;">
         
-        <div class="tool-top" >
-            <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
-                <div id="tool-list-1" class="tool-option-pick" onclick="viewPage(1);">
-                    资源位标准格式转换器
+        <div class="tool-top" > 
+            <div class="tool-title pos-r" id="tool-title" >
+                <div id="tool-list" class="tool-list" style=" align-items: center; display: none;">
+                    <div id="tool-list-1" class="tool-option-pick" onclick="viewPage(1);">
+                        资源位标准格式转换器
+                    </div>
+                    <div id="tool-list-2" class="tool-option" onclick="viewPage(2);">
+                        模板解析及批量延展器
+                    </div>
+                    <div id="tool-list-3" class="tool-option" onclick="viewPage(3);">
+                        AI助理及H5模板生成器
+                    </div>
                 </div>
-                <div id="tool-list-2" class="tool-option" onclick="viewPage(2);">
-                    模板解析及批量延展器
-                </div>
-                <div id="tool-list-3" class="tool-option" onclick="viewPage(3);">
-                    布局示意图批量生成器
-                </div>
-            </div>
-            <div class="tool-title">
                 <div id="tool-name" style="width:100%; "></div>
-                <div  id="tool-change" class="btn-text" style="width: 18px; height: 12px; margin-top: 2px; background-color: var(--boxBak); border: var(--boxGry) 1px solid; border-radius: 6px;"  
-                onclick="document.getElementById('tool-list').style.display = 'flex';">
-                <btn-change></btn-change>
-                </div>
+                <input  id="tool-change" type="checkbox"   style="display: none;"  onchange="if(this.checked){toolList.style.display = 'flex';} else {toolList.style.display = 'none';}"></input>
+                <label for="tool-change" class="btn-text pos-a df"  style="width: calc(100% - 26px); justify-content: space-between;">
+                    <div></div>
+                    <div style="width: 22px; height: 14px; background-color: var(--boxBak); border: var(--boxGry) 1px solid; border-radius: 6px;">
+                        <btn-change ></btn-change>
+                    </div>
+                </label>
             </div>
             <div id="TV" class="TV cc">
                 <div id="TV-move" class="df" >
@@ -61,9 +67,9 @@
                 </div>  
             </div>
         </div>
-        <div id="btn-main" class="btn-main df-ffc" style="position: absolute; top:0; right: 0; width: 14px; height: fit-content;flex:0 0 auto; gap: 10px; margin-right: -15px;">
+        <div id="btn-main" class="btn-main df-ffc cc pos-a" style="align-items: center; top:-2px; right: 0; width: 18px; min-height: 18px; height: fit-content; flex:0 0 auto; gap: 20px; margin-right: -15px;">
             <div style="width: 14px; height: 14px; ">
-                <input id="more" type="checkbox" style="display: none;" onchange="if(this.checked){btnTheme.style.display = 'block'} else {btnTheme.style.display = 'none'}"></input>
+                <input id="more" type="checkbox" style="display: none;" onchange="if(this.checked){changeDisplay([['btn-theme','block'],['btn-user','block']])} else {changeDisplay([['btn-theme','none'],['btn-user','none']])}"></input>
                 <label for="more" class="more">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%"  viewBox="0 0 14 14">
                         <g>
@@ -113,6 +119,62 @@
                         <path d="M1.38229,8.82346Q1.51731,8.82346,1.65217,8.81683Q1.78702,8.81021,1.92139,8.79697Q2.05576,8.78374,2.18931,8.76393Q2.32287,8.74411,2.45529,8.71777Q2.58771,8.69143,2.71868,8.65863Q2.84966,8.62582,2.97886,8.58663Q3.10806,8.54743,3.23519,8.50195Q3.36231,8.45646,3.48705,8.40479Q3.61179,8.35312,3.73385,8.2954Q3.8559,8.23767,3.97498,8.17402Q4.09405,8.11038,4.20986,8.04096Q4.32567,7.97155,4.43793,7.89654Q4.55019,7.82153,4.65864,7.7411Q4.76709,7.66067,4.87146,7.57501Q4.97583,7.48936,5.07587,7.39869Q5.17591,7.30801,5.27138,7.21254Q5.36685,7.11707,5.45752,7.01703Q5.5482,6.91699,5.63385,6.81262Q5.7195,6.70825,5.79993,6.5998Q5.88036,6.49135,5.95538,6.37909Q6.03039,6.26683,6.0998,6.15102Q6.16921,6.03521,6.23286,5.91614Q6.29651,5.79706,6.35423,5.67501Q6.41196,5.55295,6.46363,5.42821Q6.5153,5.30347,6.56079,5.17635Q6.60627,5.04922,6.64547,4.92002Q6.68466,4.79082,6.71747,4.65985Q6.75027,4.52888,6.77661,4.39645Q6.80295,4.26403,6.82276,4.13047Q6.84258,3.99692,6.85581,3.86255Q6.86904,3.72818,6.87567,3.59333Q6.88229,3.45847,6.88229,3.32346Q6.88229,2.87639,6.81009,2.4352Q6.73789,1.99401,6.59539,1.57027Q6.45288,1.14653,6.24381,0.751369Q6.03474,0.356206,5.7646,-0.00000434251Q5.98378,0.0569073,6.19753,0.131643Q6.41128,0.206379,6.61817,0.298434Q6.82506,0.390488,7.02368,0.499238Q7.2223,0.607988,7.41131,0.732697Q7.60032,0.857406,7.77844,0.99723Q7.95655,1.13705,8.12257,1.29105Q8.28859,1.44504,8.44139,1.61216Q8.59419,1.77928,8.73274,1.95839Q8.87128,2.13751,8.99463,2.3274Q9.11798,2.5173,9.22531,2.71669Q9.33263,2.91609,9.4232,3.12363Q9.51377,3.33117,9.58698,3.54546Q9.66018,3.75974,9.71552,3.97932Q9.77086,4.19889,9.80796,4.42228Q9.84507,4.64566,9.86368,4.87134Q9.88229,5.09701,9.88229,5.32346Q9.88229,5.45847,9.87567,5.59333Q9.86904,5.72818,9.85581,5.86255Q9.84258,5.99692,9.82276,6.13047Q9.80295,6.26403,9.77661,6.39645Q9.75027,6.52888,9.71747,6.65985Q9.68466,6.79082,9.64546,6.92002Q9.60627,7.04922,9.56079,7.17635Q9.5153,7.30347,9.46363,7.42821Q9.41196,7.55295,9.35423,7.67501Q9.29651,7.79706,9.23286,7.91614Q9.16921,8.03521,9.0998,8.15102Q9.03039,8.26683,8.95538,8.37909Q8.88036,8.49135,8.79993,8.5998Q8.7195,8.70825,8.63385,8.81262Q8.5482,8.91699,8.45752,9.01703Q8.36685,9.11707,8.27138,9.21254Q8.17591,9.30801,8.07587,9.39869Q7.97583,9.48936,7.87146,9.57501Q7.76709,9.66067,7.65864,9.7411Q7.55019,9.82153,7.43793,9.89654Q7.32567,9.97155,7.20986,10.041Q7.09405,10.1104,6.97498,10.174Q6.8559,10.2377,6.73385,10.2954Q6.61179,10.3531,6.48705,10.4048Q6.36231,10.4565,6.23519,10.5019Q6.10806,10.5474,5.97886,10.5866Q5.84966,10.6258,5.71868,10.6586Q5.58771,10.6914,5.45529,10.7178Q5.32287,10.7441,5.18931,10.7639Q5.05576,10.7837,4.92139,10.797Q4.78702,10.8102,4.65217,10.8168Q4.51731,10.8235,4.38229,10.8235Q4.06502,10.8235,3.74985,10.787Q3.43469,10.7505,3.1258,10.678Q2.81692,10.6055,2.51842,10.498Q2.21992,10.3905,1.93577,10.2494Q1.65161,10.1082,1.38557,9.93536Q1.11953,9.76249,0.87513,9.56018Q0.630731,9.35786,0.411216,9.12879Q0.191702,8.89971,-0.0000144195,8.64691Q0.679868,8.82346,1.38229,8.82346Z" 
                         fill-rule="evenodd" fill="var(--theme-d)" fill-opacity="1"/>
                         </g>
+                    </svg>
+                </label>
+            </div>
+            <div id="btn-user" class="ovh" style="width: 18px; height: 18px; border-radius: 50%; display: none; margin-bottom: 2px; border: 2px var(--boxBod) solid; box-sizing: border-box;">
+                <input id="user" type="checkbox" checked="true" style="display: none;" onchange=""></input>
+                <label for="user"  style="position: relative;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="100%" height="100%" viewBox="0 0 280 280">
+                        <path d="M40,0L0,0L0,40L40,40L40,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,0L40,0L40,40L80,40L80,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M120,0L80,0L80,40L120,40L120,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M160,0L120,0L120,40L160,40L160,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M200,0L160,0L160,40L200,40L200,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M240,0L200,0L200,40L240,40L240,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M280,0L240,0L240,40L280,40L280,0Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,40L0,40L0,80L40,80L40,40Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,40L40,40L40,80L80,80L80,40Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M120,40L80,40L80,80L120,80L120,40Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M160,40L120,40L120,80L160,80L160,40Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M200,40L160,40L160,80L200,80L200,40Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M240,40L200,40L200,80L240,80L240,40Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M280,40L240,40L240,80L280,80L280,40Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,80L0,80L0,120L40,120L40,80Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,80L40,80L40,120L80,120L80,80Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M120,80L80,80L80,120L120,120L120,80Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M160,80L120,80L120,120L160,120L160,80Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M200,80L160,80L160,120L200,120L200,80Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M240,80L200,80L200,120L240,120L240,80Z" fill="#000000" fill-opacity="1"/>
+                        <path d="M280,80L240,80L240,120L280,120L280,80Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,120L0,120L0,160L40,160L40,120Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,120L40,120L40,160L80,160L80,120Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M120,120L80,120L80,160L120,160L120,120Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M160,120L120,120L120,160L160,160L160,120Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M200,120L160,120L160,160L200,160L200,120Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M240,120L200,120L200,160L240,160L240,120Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M280,120L240,120L240,160L280,160L280,120Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,160L0,160L0,200L40,200L40,160Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,160L40,160L40,200L80,200L80,160Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M120,160L80,160L80,200L120,200L120,160Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M160,160L120,160L120,200L160,200L160,160Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M200,160L160,160L160,200L200,200L200,160Z" fill="#D7B69E" fill-opacity="1"/>
+                        <path d="M240,160L200,160L200,200L240,200L240,160Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M280,160L240,160L240,200L280,200L280,160Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,200L0,200L0,240L40,240L40,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M80,200L40,200L40,240L80,240L80,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M120,200L80,200L80,240L120,240L120,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M160,200L120,200L120,240L160,240L160,200Z" fill="#C0997D" fill-opacity="1"/>
+                        <path d="M200,200L160,200L160,240L200,240L200,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M240,200L200,200L200,240L240,240L240,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M280,200L240,200L240,240L280,240L280,200Z" fill="#3F4468" fill-opacity="1"/>
+                        <path d="M40,240L0,240L0,280L40,280L40,240Z" fill="#FFF6E6" fill-opacity="1"/>
+                        <path d="M80,240L40,240L40,280L80,280L80,240Z" fill="#FFF6E6" fill-opacity="1"/>
+                        <path d="M120,240L80,240L80,280L120,280L120,240Z" fill="#FFF6E6" fill-opacity="1"/>
+                        <path d="M160,240L120,240L120,280L160,280L160,240Z" fill="#C0997D" fill-opacity="1"/>
+                        <path d="M200,240L160,240L160,280L200,280L200,240Z" fill="#FFF6E6" fill-opacity="1"/>
+                        <path d="M240,240L200,240L200,280L240,280L240,240Z" fill="#FFF6E6" fill-opacity="1"/>
+                        <path d="M280,240L240,240L240,280L280,280L280,240Z" fill="#FFF6E6" fill-opacity="1"/>
                     </svg>
                 </label>
             </div>
@@ -179,7 +241,7 @@
                 </div>
                 
             </div>
-            <div style="height: 18px;display: flex; align-items: center; opacity: 0.5; transform: skewX(-8deg); position: absolute; bottom: 34px; right: 40px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div>
+            <!--div class="pos-a" style="height: 18px;align-items: center; opacity: 0.5; transform: skewX(-8deg); bottom: 34px; right: 40px; font-size:10px;">*选择渠道后显示对应资源位选项,切换渠道将清空资源位选项</div-->
             <!--此容器内自动添加子容器-->
             <div class="page-main noscrollbar" id="page-main-1" >
                 <div class="tags-exports" id="exports-0">
@@ -207,6 +269,15 @@
                     </div>
                 </div>
             </div>
+            <div class="pos-a df cc" id="to-model"  onclick="viewPage(2)">
+                <a>转至模板</a>
+                <div class="ovh" style="transform:rotate(45deg); border-radius: 2px;">
+                    <div style="width: 16px; height: 16px; box-shadow:-4px 4px 0 inset #2b2b2b;box-sizing: border-box;">
+                        <div class="pos-a-cc" style="height: 4px; width:calc(100% + 6px); background: #2b2b2b; transform:translate(-50%, -50%) rotate(-45deg) translateX(-2px);"></div>
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
     <!--页面2-->
@@ -221,8 +292,8 @@
                     <div class="model-info" style="background: var(--boxBak);">
                         <input type="file" id="model-pick-user" style="display: none;" />
                         <label class="model-pick"  for="model-pick-user" style="position: relative;">
-                            <div style="position: absolute; bottom:-1px; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
-                            <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%;"><btn-add style="opacity: 0.6;"></btn-add></div>
+                            <div style="position: absolute; z-index: 2; bottom:0; background:rgba(27, 27, 27, 0.6); color: #ffffff; width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
+                            <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%; z-index: 1;"><btn-add style="opacity: 0.6;"></btn-add></div>
                             <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " ></div>
                         </label>
                     </div>
@@ -438,7 +509,13 @@
     const modelList = document.getElementById('model-list');
     const modelMain = document.getElementById('model-main');
     const modelTable = document.getElementById('model-table');
+    const btnChange = document.getElementById('tool-change');
+    const toolTitle = document.getElementById('tool-title');
+    const toolList = document.getElementById('tool-list');
+    const btnMain = document.getElementById('btn-main');
+    const more = document.getElementById('more');
     const btnTheme = document.getElementById('btn-theme');
+    const btnUser = document.getElementById('btn-user');
     const ediD = document.getElementById('editor-data');
     const ediF = document.getElementById('editor-flow');
     const ediV = document.getElementById('editor-view');
@@ -506,11 +583,20 @@
         addOption("select-img-",[],0);
         allKey.push('');//默认值
         allImg[0] = '';//默认值
-        viewPage(2);
+        viewPage(1);
         addModelList(models);
         addFlowEditor();
         isMobile()
         moDautoZoom(); 
+        /*加载思源黑字体*/
+        (function(d) {
+          var config = {
+            kitId: 'dpd0cfl',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
     }
 
     window.onresize = ()=>{
@@ -752,8 +838,9 @@
                 if ( item == '大神' /* || item == 'CC' || item == 'DD'*/){
                     option.value = item;
                     option.innerHTML = item;
-                    option.style.color = "#ffffff88";
-                    option.style.backgroundColor = "var(--keysLiColor)";
+                    option.style.color = "var(--keysLiColor)";
+                    //option.style.color = "#ffffff88";
+                    //option.style.backgroundColor = "var(--keysLiColor)";
                 } else {
                     if( item.split("_").length > 1){
                         option.value = item.replace("_","");
@@ -816,7 +903,7 @@
         //console.log('分组：',garoups)
         garoups.forEach(optG => {
             sheet[keys].forEach(item => {
-                var names = item.name + '&nbsp;&nbsp;' + item.w + '×' + item.h ;
+                var names = item.name;// + '&nbsp;&nbsp;' + item.w + '×' + item.h ;
                 if(item.name.split('-').length > 1){
                     if(optG.split('"')[1] == item.name.split('-')[0]){
                         optG += '<option value="' + item.name + '">' + names + '</option>'
@@ -918,11 +1005,21 @@
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
         var numD = 0,numImg = 0,numView = 0;
+        var nameStep = [];
+        var nameIndex = 0,namess = '';
         for(var i = 0; i < allKey.length; i ++){
+            
             for(var ii = 0; ii < allImg[i].length; ii++){
+                
                 if(allImg[i][ii] && allImg[i][ii].length > 0){
-                    var img = sheet[allKey[i]].find(item => item.name == allImg[i][ii])
-                    exports += allKey[i] + "/" + img.name + '\t' + img.w + '\t' + img.h + '\t' + img.s + '\t' + img.type + '\n';  
+                    var img = sheet[allKey[i]].find(item => item.name == allImg[i][ii]);
+                    namess = img.name;
+                    if(nameStep.includes(allKey[i] + "/" + img.name)){
+                        nameIndex++;
+                        namess = img.name + nameIndex;
+                    }
+                    exports += allKey[i] + "/" + namess + '\t' + img.w + '\t' + img.h + '\t' + img.s + '\t' + img.type + '\n';  
+                    nameStep.push(allKey[i] + "/" + img.name);
                     numD += img.d * 100;
                     numImg++;
                     if(img.view){
@@ -1090,6 +1187,10 @@
             }
             
         })
+        if(e == 2){
+            moDautoZoom()
+        }
+
     }
 
     //单选tab
@@ -1123,10 +1224,15 @@
     // 监听整个文档的点击事件
     document.addEventListener('mousedown', function (event) {
         var list = document.querySelectorAll('.tool-list')
-        var btn = document.getElementById('tool-change')
+        if(more.checked && !btnMain.contains(event.target) && document.activeElement){
+            btnUser.style.display = 'none';
+            btnTheme.style.display = 'none';
+            more.checked = false;
+        }
         list.forEach(item => {
-            if(!item.contains(event.target) && !btn.contains(event.target) && document.activeElement){
+            if(btnChange.checked  && !toolTitle.contains(event.target) && document.activeElement){
                 item.style.display = 'none';
+                btnChange.checked = false;
             }
         })
     })

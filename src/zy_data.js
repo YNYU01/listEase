@@ -1,4 +1,35 @@
 //纯数字的键名要带下划线，避免被识别成数字序号
+const 大神 = [
+    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.1,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+    {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[]},
+    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.02,view:false,info:[1,1,1,1,0],safa:[]},
+    {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"游戏页活动icon图",w:160,h:64,s:"300k",type:"png",d:0.01,view:false,info:[1,0,0,0,0],safa:[]},
+    {name:"聊天广告",w:84,h:84,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.02,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"负一屏-预约组件资源图",w:969,h:228,s:"300k",type:"jpg",d:0.05,view:false,info:[1,0,0,0,0],safa:[]},
+    {name:"负一屏-专题图",w:686,h:492,s:"300k",type:"jpg",d:0.05,view:false,info:[1,1,0,0,0],safa:[[0,0,686,256]]},
+    {name:"负一屏-大横屏banner",w:686,h:320,s:"300k",type:"jpg",d:0.05,view:false,info:[1,0,0,1,0],safa:[]},
+    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.05,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
+    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.02,view:false,info:[1,1,0,1,0],safa:[]},
+    {name:"搜索页-直达卡",w:686,h:240,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[]},
+    {name:"内容流-双图(旧)",w:335,h:188,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,0,0],safa:[]},
+    {name:"内容流-单图(旧)",w:690,h:188,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,0,0],safa:[]},
+    {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
+    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.1,view:false,info:[1,0,0,0,0],safa:[[0,23,702,121,1],[168,23,358,121]]},
+    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
+    {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,1,0],safa:[]},
+    {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[]},
+];
+const CC = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const DD = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
 const vivo = [
     {name:"游戏中心-悬浮窗",w:280,h:280,s:"200k",type:"png",d:0.01,view:false},
     {name:"游戏中心-精选页banner1",w:1080,h:380,s:"150k",type:"jpg",d:0.07,view:false},
@@ -43,13 +74,28 @@ const vivo = [
     {name:"预约头图",w:1080,h:1400,s:"200k",type:"jpg",d:0.07,view:false},
     {name:"弹窗1",w:885,h:930,s:"500k",type:"png",d:0.1,view:false},
     {name:"弹窗2",w:1668,h:849,s:"500k",type:"png",d:0.1,view:false},
-    ];
-    const 华为 = [{name:"测试1"},{name:"测试2"}];
-    const 九游 = [{name:"测试1"},{name:"测试2"}];
-    const 联想 = [{name:"测试1"},{name:"测试2"}];
-    const _233 = [{name:"测试1"},{name:"测试2"}];
-    const 荣耀 = [{name:"测试1"},{name:"测试2"}];
-    const oppo = [
+];
+const 华为 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 九游 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 联想 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const _233 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 荣耀 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const oppo = [
     {name:"信息流-横版视频",w:1280,h:720,s:"150k",type:"jpg",d:0.01,view:false},
     {name:"信息流-竖版视频",w:720,h:1280,s:"150k",type:"jpg",d:0.07,view:false},
     {name:"信息流-横版大图",w:1280,h:720,s:"150k",type:"jpg",d:0.07,view:false},
@@ -107,40 +153,44 @@ const vivo = [
     {name:"opush-精彩推荐",w:984,h:465,s:"150k",type:"jpg",d:0.1,view:false},
     {name:"自动化短信图",w:936,h:526,s:"500k",type:"jpg",d:0.1,view:false},
     {name:"短信图",w:936,h:526,s:"200k",type:"jpg",d:0.1,view:false},
-    ];
-    const _4399 = [{name:"测试1"},{name:"测试2"}];
-    const 小米 = [{name:"测试1"},{name:"测试2"}];
-    const 好游快爆 = [{name:"测试1"},{name:"测试2"}];
-    const 手机QQ = [{name:"测试1"},{name:"测试2"}];
-    const 应用宝 = [{name:"测试1"},{name:"测试2"}];
-    const QQ浏览器 = [{name:"测试1"},{name:"测试2"}];
-    const 腾讯游戏 = [{name:"测试1"},{name:"测试2"}];
-    const 微信 = [{name:"测试1"},{name:"测试2"}];
-    const 手机管家 = [{name:"测试1"},{name:"测试2"}];
-    const 大神 = [
-    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.1,view:false,safa:[[135,210,810,1120]]},
-    {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,safa:[]},
-    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.02,view:false,safa:[]},
-    {name:"活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,safa:[]},
-    {name:"聊天广告",w:84,h:84,s:"300k",type:"png",d:0.01,view:false,safa:[]},
-    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.02,view:false,safa:[]},
-    {name:"负一屏-预约组件资源图",w:969,h:228,s:"300k",type:"jpg",d:0.05,view:false,safa:[]},
-    {name:"负一屏-专题图",w:686,h:492,s:"300k",type:"jpg",d:0.05,view:false,safa:[[0,0,686,256]]},
-    {name:"负一屏-大横屏banner",w:686,h:320,s:"300k",type:"jpg",d:0.05,view:false,safa:[]},
-    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.05,view:false,safa:[[46,24,937,132]]},
-    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.02,view:false,safa:[]},
-    {name:"搜索页-直达卡",w:686,h:240,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    {name:"内容流-双图(旧)",w:335,h:188,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    {name:"内容流-单图(旧)",w:690,h:188,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.1,view:false,safa:[[0,23,168,121],[168,23,358,121],[526,23,176,121]]},
-    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.1,view:false,safa:[[18,80,620,210]]},
-    {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-{name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
-    ];
-    const CC = [{name:"测试1"},{name:"测试2"}];
-    const DD = [{name:"测试1"},{name:"测试2"}];
+];
+const _4399 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 小米 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 好游快爆 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 手机QQ = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 应用宝 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const QQ浏览器 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 腾讯游戏 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 微信 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+const 手机管家 = [
+    {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+    {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+];
+    
 
     const sheet = {
     "大神":[...大神],
@@ -162,56 +212,74 @@ const vivo = [
     "腾讯游戏":[...腾讯游戏],
     "微信":[...微信],
     "手机管家":[...手机管家],
-    
     }
 
-    //模拟数据
-    const userImgData = {
-        main:{
-            zy:[/*有哪些资源位*/
-                {
-                    name:"测试-横",
-                    w:1280,
-                    h:720,
-                    title:[true,0,true,0],/*主标题,主标题文案序号,副标题,副标题文案序号*/
-                    gift:0,/*奖励数量，0则隐藏*/
-                },
-            ],
-            title:["标题文案",""],/*标题文案，允许配置多个文案，为不同尺寸提供选项*/
-            sectitle:["副标题文案文案文案文案",""],/*副标题文案，允许配置多个文案，为不同尺寸提供选项*/
-            channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-            game:["模拟",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-            bg:{/*base64*/
-                image:"",/*用户上传，自动转base64*/
+//模拟数据
+const userImgData = {
+    main:{/*全局配置项*/
+        title:["标题文案标题文案",""],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
+        sectitle:["副标题文案文案文案文案",""],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
+        channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+        game:["模拟",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+        layout:{/*图层*/
+            bg:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:"",
+                async:"",
             },
-            gift:{/*按资源位给定的数量按顺序显示*/
-                icon:["","","","",],/*用户上传，最多4个，自动转base64*/
-                tags:[0,0,0,0,],/*按顺序给定数量，0则隐藏*/
-                tagsZh:[null,null,'二','三','四','五','六','七','八','九','十']/*数字转中文*/
-            }
-        },
-        style:{
-            fontsize:[//将最小字号、副标题字号、标题字号分6级
-                [12,12,12],
-                [12,12,24],
-                [14,22,42],
-                [20,36,86],
-                [24,40,120],
-                [36,60,180], 
-            ],
-            framesize:{//将画布按竖版（含方版）和横板分6级，用于对应6级字号,中间值向上取值
-                ww:[64,128,256,512,720,1080],
-                hh:[50,70,140,280,360,440],
+            bg_gift:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:"",
+                async:"",
             },
-            title:{/*默认样式*/
-                color:"#fff",
-                fill:[],
-                fontfamily:"",
-            },
-            sectitle:{/*默认样式*/
-                color:"#fff",
-                fill:[],
-                fontfamily:"",
+            bg_secTitle:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:"",
+                async:"",
             },
         },
-    }
+        gift:{/*按资源位给定的数量按顺序显示*/
+            icon:["","","","",],/*用户上传，最多4个，自动转base64*/
+            name:["","","","",],/*用户编辑*/
+            tags:[0,0,0,0,],/*按顺序给定数量，0则隐藏*/
+            tagsZh:[null,null,'二','三','四','五','六','七','八','九','十'],/*数字转中文*/
+        }
+    },
+    public:{/*全局规范*/
+        fontsize:[//将最小字号(实际字高)、副标题字号(实际字高)、标题字号分6级(实际字高)
+            [12,12,12],
+            [12,12,24],
+            [14,22,42],
+            [20,36,86],
+            [24,40,120],
+            [36,60,180], 
+        ],
+        framesize:{//将画布按竖版（含方版）和横板分6级，用于对应6级字号,中间值向上取值
+            ww:[64,128,256,512,720,1080],
+            hh:[50,70,140,280,360,440],
+        },
+    },
+    style:{
+        title:{/*默认样式*/
+            type:"COLOR",/* COLOR | COMPONENT */
+            color:"#fff",
+            fontfamily:"",
+            async:"",
+        },
+        sectitle:{/*默认样式*/
+            type:"COLOR",/* COLOR | COMPONENT */
+            color:"#fff",
+            fontfamily:"",
+            async:"",
+        },
+    },
+    zy:[/*有哪些资源位*/
+        {
+            img:{},
+            set:{
+                titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
+                gift:0,/*奖励数量，0则隐藏*/
+            },
+        },
+    ],
+}

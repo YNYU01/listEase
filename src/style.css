@@ -88,6 +88,15 @@ body::-webkit-scrollbar,
     width: 100%;
 }
 
+.pos-r{
+    position: relative;
+}
+
+.pos-a{
+    position: absolute;
+}
+
+
 /*其他*/
 .noise{
     width: 100%;

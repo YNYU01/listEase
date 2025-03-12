@@ -5,16 +5,20 @@ async function exportAll(){
 
     var zyNode = document.getElementById("zy_w_h")
     imgViewBox.style.transform = 'scale(1.04)';
-    var svgElem = zyNode.querySelectorAll('image');
-
+    var svgElem = [...zyNode.querySelectorAll('image'),...zyNode.querySelectorAll('img')];
+    console.log(svgElem)
     if(svgElem && svgElem.length > 0){
         svgElem.forEach(function(node,index) {
             var href = node.getAttributeNS("http://www.w3.org/1999/xlink", "xlink:href");
             if(!href){
                 href = node.getAttribute('xlink:href');
+                if(!href){
+                    href = node.src
+                    console.log(href)
+                }
             }
-            if (href.split('http').length > 1){
-                console.log('超链接',node.id)
+            if (href.split('/').length > 1){
+                console.log('链接',node.id)
                 // 使用fetch获取图片
                 fetch(href)
                 .then(response => {
@@ -67,10 +71,10 @@ async function exportAll(){
         });
     }else{
         setTimeout(()=>{
-            domtoimage.toJpeg(imgViewBox, { quality: 1 })
+            domtoimage.toPng(imgViewBox, { quality: 1 })/* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
             .then(function (dataUrl) {
                 var link = document.createElement('a');
-                link.download = 'test.jpeg';
+                link.download = 'test.png';
                 link.href = dataUrl;
                 link.click();
             });

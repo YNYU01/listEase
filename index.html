@@ -350,7 +350,7 @@
                                             <div id="zy_w_h-title" style="font-size: 110px;">标题文案</div>
                                             <div id="zy_w_h-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
                                         </div>
-                                        <img src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png" class="pos-a" style="top: calc(50% - 512px/2); left: calc(50% - 512px/2);"/>
+                                        <img src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/noise.png" class="pos-a-cc" />
                                      </div>
                                 </div>
                             </div>
@@ -1019,8 +1019,9 @@
             }else{
             }"/>
             <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
+                <img class="pos-a-cc"  height="50px"  src="` + value.img + `" />
                 <div style="position: absolute; bottom:-1px; background:rgba(0,0,0,0.2); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">`+ value.name +`</div>
-                <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + (index + 1) + `</div>
+                <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + index + `</div>
             </label>`;
             modelList.appendChild(node);
         })
@@ -1064,6 +1065,7 @@
         zoomNum.innerHTML = imgViewSlider.value + '%';
         zoom = imgViewSlider.value;
     }
+
 
     const pages = document.querySelectorAll('.page')
     const toolN = document.getElementById('tool-name')

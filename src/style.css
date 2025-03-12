@@ -96,6 +96,11 @@ body::-webkit-scrollbar,
     position: absolute;
 }
 
+.pos-a-cc{
+    position: absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%)
+}
 
 /*其他*/
 .noise{

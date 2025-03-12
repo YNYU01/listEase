@@ -1,4 +1,4 @@
-const modelFlow = document.getElementById('model-flow')
+const modelFlow = document.getElementById('model-flow');
 
 //导出
 async function exportAll(){
@@ -34,18 +34,7 @@ async function exportAll(){
                         await node.setAttribute("href", dataURL);
                         await node.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dataURL );
                         if(index == svgElem.length - 1){
-                            setTimeout(()=>{
-                                domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
-                                .then(function (dataUrl) {
-                                    var link = document.createElement('a');
-                                    link.download = 'test.jpeg';
-                                    link.href = dataUrl;
-                                    link.click();
-                                })
-                                .catch(error => {});
-                                imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-                            },500)
-                            
+                            exportOneAs(imgViewBox,'png','test')
                         }
                     };
                     reader.readAsDataURL(blob);
@@ -53,37 +42,43 @@ async function exportAll(){
                 .catch(error => console.error('Error loading image:', error));
             }else{
                 if(index == svgElem.length - 1){
-                    setTimeout(()=>{
-                        domtoimage.toJpeg(imgViewBox, { quality: 0.95 })
-                        .then(function (dataUrl) {
-                            var link = document.createElement('a');
-                            link.download = 'test.jpeg';
-                            link.href = dataUrl;
-                            link.click();
-                        });
-                        imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-                    },500)
-                    
+                    exportOneAs(imgViewBox,'png','test')
                 }
             }
             
             
         });
     }else{
+        exportOneAs(imgViewBox,'png','test')
+    }
+
+}
+
+function exportOneAs(node,type,name){
+    if(type == 'jpeg'){
         setTimeout(()=>{
-            domtoimage.toPng(imgViewBox, { quality: 1 })/* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
+            domtoimage.toJpeg(node, { quality: 1 })/* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
             .then(function (dataUrl) {
                 var link = document.createElement('a');
-                link.download = 'test.png';
+                link.download = name + '.jpg';
                 link.href = dataUrl;
                 link.click();
             });
-            imgViewBox.style.transform = 'scale('+ zoom/100 +')';
+            node.style.transform = 'scale('+ zoom/100 +')';
         },500)
-        
-
     }
-
+    if(type == 'png'){
+        setTimeout(()=>{
+            domtoimage.toPng(node)/* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
+            .then(function (dataUrl) {
+                var link = document.createElement('a');
+                link.download = name + '.png';
+                link.href = dataUrl;
+                link.click();
+            });
+            node.style.transform = 'scale('+ zoom/100 +')';
+        },500)
+    }
 }
 
 /*---------------自定义节点----------------------*/

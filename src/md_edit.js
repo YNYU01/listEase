@@ -1,4 +1,19 @@
 const modelFlow = document.getElementById('model-flow');
+const modelList = document.getElementById('model-list');
+const modelMain = document.getElementById('model-main');
+const modelTable = document.getElementById('model-table');
+
+function addZYtable(){
+    var zys = userImgData.zy;
+    zys.forEach((item,index) => {
+        if(index == 1){
+            var node = document.createElement("div")
+            node.id = 'zy_' 
+        } else {
+
+        }
+    })
+}
 
 //导出
 async function exportAll(){

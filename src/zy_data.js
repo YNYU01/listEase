@@ -1,26 +1,26 @@
 //纯数字的键名要带下划线，避免被识别成数字序号
 const 大神 = [
-    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.1,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
     {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[]},
-    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.02,view:false,info:[1,1,1,1,0],safa:[]},
+    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,1,1,0],safa:[]},
     {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
-    {name:"游戏页活动icon图",w:160,h:64,s:"300k",type:"png",d:0.01,view:false,info:[1,0,0,0,0],safa:[]},
-    {name:"聊天广告",w:84,h:84,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
-    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.02,view:false,info:[0,0,0,0,0],safa:[]},
-    {name:"负一屏-预约组件资源图",w:969,h:228,s:"300k",type:"jpg",d:0.05,view:false,info:[1,0,0,0,0],safa:[]},
-    {name:"负一屏-专题图",w:686,h:492,s:"300k",type:"jpg",d:0.05,view:false,info:[1,1,0,0,0],safa:[[0,0,686,256]]},
-    {name:"负一屏-大横屏banner",w:686,h:320,s:"300k",type:"jpg",d:0.05,view:false,info:[1,0,0,1,0],safa:[]},
-    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.05,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
-    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.02,view:false,info:[1,1,0,1,0],safa:[]},
-    {name:"搜索页-直达卡",w:686,h:240,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[]},
-    {name:"内容流-双图(旧)",w:335,h:188,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,0,0],safa:[]},
-    {name:"内容流-单图(旧)",w:690,h:188,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,0,0],safa:[]},
-    {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,0,0],safa:[]},
-    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
-    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.1,view:false,info:[1,0,0,0,0],safa:[[0,23,702,121,1],[168,23,358,121]]},
-    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
-    {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.1,view:false,info:[0,0,0,1,0],safa:[]},
-    {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.1,view:false,info:[1,1,0,1,0],safa:[]},
+    {name:"游戏页活动icon图",w:160,h:64,s:"300k",type:"png",d:0.02,view:false,info:[1,0,0,0,0],safa:[]},
+    {name:"聊天广告",w:84,h:84,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"负一屏-预约banner",w:969,h:228,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
+    {name:"负一屏-专题图",w:686,h:492,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[0,0,686,256]]},
+    {name:"负一屏-大横屏banner",w:686,h:320,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,1,0],safa:[]},
+    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
+    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+    {name:"搜索页-直达卡",w:686,h:240,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+    {name:"内容流-双图(旧)",w:335,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
+    {name:"内容流-单图(旧)",w:690,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
+    {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
+    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
+    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.03,view:false,info:[1,0,0,0,0],safa:[[0,23,702,121,1],[168,23,358,121]]},
+    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
+    {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,1,0],safa:[]},
+    {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
 ];
 const CC = [
     {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
@@ -219,10 +219,9 @@ const userImgData = {
     main:{/*全局配置项*/
         title:["标题文案标题文案",""],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
         sectitle:["副标题文案文案文案文案",""],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
-        channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         game:["模拟",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-        layout:{/*图层*/
-            bg:{
+        bg:{/*图层*/
+            bg_bg:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
                 image:"",
                 async:"",
@@ -275,7 +274,8 @@ const userImgData = {
     },
     zy:[/*有哪些资源位*/
         {
-            img:{},
+            img:{name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
+            channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
             set:{
                 titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
                 gift:0,/*奖励数量，0则隐藏*/

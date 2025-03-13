@@ -210,7 +210,7 @@
                 this.style.setProperty('--btn-copy-bg','#77ff7777');
                 setTimeout(() => { this.style.setProperty('--tips-copy','&quot;复制&quot;');
                 this.style.setProperty('--btn-copy-bg','#ffffff11');},1000);
-                navigator.clipboard.writeText(document.getElementById('export-info').value.trim()) .then(function() { console.log('复制成功'); alert('复制成功，可直接粘贴到表格，或模板生成插件')});">
+                navigator.clipboard.writeText(document.getElementById('export-info').value.trim()) .then(function() { console.log('复制成功'); alert('复制成功，可直接粘贴到表格或模板生成插件')});">
                 </div>
                 <textarea id="export-info" placeholder="选择渠道和资源位后，将在此处输出标准格式，可用于规范提单和模板生成"  
                 class="input-textarea noscrollbar" 
@@ -228,7 +228,7 @@
                         <span id="num-view">--</span>;&nbsp;
                         合计:
                         <span id="num-all" style="color: var(--mainColor3);">--</span>;&nbsp;
-                        预估人天:
+                        延展人天:
                         <span id="num-d" style="color: var(--mainColor2);">--</span>;
                     </span>
                     <div class="btn-copy" id="btn-copy-info" style="width: 10ch; position: relative; top:0; right: 0; z-index: 2; display: none; animation:none; --tips-copy:'复制详情';" onclick="
@@ -252,10 +252,10 @@
                                 <div id="close-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;" ><btn-close></btn-close></div>
                             </div>
                             <select id="select-area-0" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
-                            onchange="reSelectImg(0,this.value);reImgInfo(0,0,null);reKeysInfo(0,this.value);document.getElementById('imgs-0').style.display = 'flex'">
+                            onchange="reSelectImg(0,this.value);reImgInfo(0,0,null);reKeysInfo(0,this.value);">
                             </select>
                         </div>
-                        <div class="group" id="imgs-0" style="display: none; max-width: 500px;">
+                        <div class="group" id="imgs-0" style="max-width: 500px;">
                             <div class="set" id="img-0-0" >
                                 <div style="display: flex; gap:4px">
                                     <div id="add-0-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(0,1,allKey[0]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(0,0,document.getElementById('select-img-0-1').value)"><btn-add></btn-add></div>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pos-a df cc" id="to-model"  onclick="viewPage(2)">
+            <div class="pos-a df cc" id="to-model"  onclick="viewPage(2)" style="display: none;">
                 <a>转至模板</a>
                 <div class="ovh" style="transform:rotate(45deg); border-radius: 2px;">
                     <div style="width: 16px; height: 16px; box-shadow:-4px 4px 0 inset #2b2b2b;box-sizing: border-box;">
@@ -374,39 +374,62 @@
                                 </div>
                             </div>
                             <!--配置项-->
-                            <div class="df-ffc noscrollbar" id="model-table" style="height:100%; gap: 10px; overflow-y: scroll; border-top: var(--boxBod) 1px solid;">
+                            <div class="df-ffc noscrollbar" id="model-table" style="height:100%; gap: 0px; overflow-y: scroll; border-top: var(--boxBod) 1px solid;">
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
-                                    <p>[-主标题-]</p>
-                                    <div class="df" style="gap:4px; position: relative;">
-                                        <a> 文案 </a><span> :</span>
-                                        <input type="text" id="title-main-1" class="moDsearch-box" maxlength="8" 
-                                        value="标题文案"/>
-                                        <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                            <span id="title-main-1-num"> 0 </span>/
-                                            <span>8</span>
+                                    <div class="w100">
+                                        <input id="title-main-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'block'">
+                                        <label for="title-main-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry); margin-top: 4px;">[-主标题-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="w100 df-ffc" style="gap:4px;">
+                                        <div class="df" style="gap:4px; position: relative;">
+                                            <input type="text" id="title-main-1" class="moDsearch-box" maxlength="10" 
+                                            value="主要标题文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                                <span id="title-main-1-num"> 6 </span>/
+                                                <span>10</span>
+                                            </div>
+                                        </div>
+                                        <div class="df" style="gap:4px; position: relative;">
+                                            <input type="text" id="title-main-2" class="moDsearch-box" maxlength="10" 
+                                            value="备用标题文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                                <span id="title-main-2-num"> 6 </span>/
+                                                <span>10</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
+                                    </div>
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
-                                    <p>[-副标题-]</p>
-                                    <div class="df" style="gap:4px; position: relative;">
-                                        <a> 文案 </a><span> :</span>
-                                        <input type="text" id="title-main-1" class="moDsearch-box" maxlength="20" 
-                                        value="副标题文案文案文案文案"/>
-                                        <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                            <span id="title-main-1-num"> 0 </span>/
-                                            <span>20</span>
+                                    <div class="w100">
+                                        <input id="sectitle-main-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'block'">
+                                        <label for="sectitle-main-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-副标题-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="w100">
+                                        <div class="df" style="gap:4px; position: relative;">
+                                            <input type="text" id="sectitle-main-1" class="moDsearch-box" maxlength="18" 
+                                            value="主要副标题文案文案文案文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                                <span id="sectitle-main-1-num"> 13 </span>/
+                                                <span>18</span>
+                                            </div>
+                                        </div>
+                                        <div class="df" style="gap:4px; position: relative;">
+                                            <input type="text" id="sectitle-main-2" class="moDsearch-box" maxlength="18" 
+                                            value="备用副标题文案文案文案文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
+                                                <span id="sectitle-main-2-num"> 13 </span>/
+                                                <span>18</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                 </div>
                                 <div class="wh100"></div>
-                                <!--div style="min-height: 60px;"></div-->
-                                <!--导出项-->
-                                <!--div class="cc" style="gap:10px; width: calc(100% - 20px); position: absolute; bottom:0; z-index: 20;">
-                                    <div id="moDside-mask" style="position: absolute; width: calc(100% + 40px); height: 50px; top: -10px; background:var(--boxGry);"></div>
-                                    <button class="btn3" style="z-index: 2;" onclick="saveAll()"> 保存数据 </button>
-                                    <button class="btn2" style="z-index: 2;"  onclick="exportAll()"> 导出图片 </button>
-                                </div-->
                             </div> 
                             
                         </div>
@@ -416,13 +439,13 @@
                         <div id="imgView" class="df-ffc cc ovh" style=" position: relative;">
                             <div class="loadding" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
                                 <div id="imgView-box" class="df pos-r ovh" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  ">
-                                     <div id="zy_w_h" class="ovh" style="width: 1240px; height: 720px; flex: 0,0,auto;  color:var(--mainColor);">
+                                     <!--div id="zy_w_h" class="ovh" style="width: 1240px; height: 720px; flex: 0,0,auto;  color:var(--mainColor);">
                                         <div class="cc df-ffc w100" style=" position: absolute; top: 30%;">
                                             <div id="zy_w_h-title" style="font-size: 110px;">标题文案</div>
                                             <div id="zy_w_h-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
                                         </div>
                                         <img width="512px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
-                                     </div>
+                                     </div-->
                                 </div>
                             </div>
                             
@@ -506,9 +529,6 @@
     const root = document.documentElement;
     const TVMove = document.getElementById("TV-move");
     const TVInfo = document.getElementById("TV-info");
-    const modelList = document.getElementById('model-list');
-    const modelMain = document.getElementById('model-main');
-    const modelTable = document.getElementById('model-table');
     const btnChange = document.getElementById('tool-change');
     const toolTitle = document.getElementById('tool-title');
     const toolList = document.getElementById('tool-list');
@@ -559,7 +579,7 @@
 
     const moDside = document.getElementById("moDside");
     const moDsideArea = document.getElementById("moDside-area");
-    const moDshowSetBtn = document.getElementById("show-set")
+    const moDshowSetBtn = document.getElementById("show-set");
     const imgView = document.getElementById("imgView");
     const imgViewBox = document.getElementById("imgView-box");
     const imgViewInfo = document.getElementById("imgView-info");
@@ -583,7 +603,7 @@
         addOption("select-img-",[],0);
         allKey.push('');//默认值
         allImg[0] = '';//默认值
-        viewPage(1);
+        viewPage(2);
         addModelList(models);
         addFlowEditor();
         isMobile()
@@ -775,11 +795,11 @@
                         <div id="close-`+ e +`" class="btn-text" style="width: 17px; height: 17px;" onclick="closeList(`+ e +`);reImgInfo(`+ e +`,0,null);reClick('key',`+ (e - 1) +`);"><btn-close></btn-close></div>
                     </div>
                     <select id="select-area-`+ e +`" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
-                    onchange="reSelectImg(`+ e +`,this.value);reImgInfo(`+ e +`,0,null);reKeysInfo(`+ e +`,this.value);document.getElementById('imgs-`+ e +`').style.display = 'flex'">
+                    onchange="reSelectImg(`+ e +`,this.value);reImgInfo(`+ e +`,0,null);reKeysInfo(`+ e +`,this.value);">
                     ` + select +`
                     </select>
                 </div>
-                <div class="group" id="imgs-`+ e +`" style="display:none; max-width: 500px;">
+                <div class="group" id="imgs-`+ e +`" style="max-width: 500px;">
                     <div class="set" id="img-`+ e +`-0" >
                         <div style="display: flex; gap:4px">
                             <div id="add-`+ e +`-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,1,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none'; reImgInfo(`+ e +`,1,document.getElementById('select-img-`+ e +`-1').value)"><btn-add></btn-add></div>
@@ -1004,6 +1024,8 @@
         //console.log('reExportInfo')
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
+        var exportAllname = 'KV+\n';
+        var exportAllchannel = [];
         var numD = 0,numImg = 0,numView = 0;
         var nameStep = [];
         var nameIndex = 0,namess = '';
@@ -1018,7 +1040,12 @@
                         nameIndex++;
                         namess = img.name + nameIndex;
                     }
+                    if(!exportAllchannel.includes(allKey[i])){
+                        exportAllchannel.push(allKey[i])
+                        exportAllname += allKey[i] + '-资源位：' + '\n';
+                    }
                     exports += allKey[i] + "/" + namess + '\t' + img.w + '\t' + img.h + '\t' + img.s + '\t' + img.type + '\n';  
+                    exportAllname += namess + ' ' + img.w + '×' + img.h + '\n';
                     nameStep.push(allKey[i] + "/" + img.name);
                     numD += img.d * 100;
                     numImg++;
@@ -1034,12 +1061,13 @@
         if (exports){
             document.getElementById('btn-copy').style.display = 'flex';
             document.getElementById('btn-copy-info').style.display = 'flex';
+            document.getElementById('to-model').style.display = 'flex';
         }
         document.getElementById("num-img").innerHTML = numImg;
         document.getElementById("num-view").innerHTML = numView;
         document.getElementById("num-all").innerHTML = (numView*1 + numImg*1);
         document.getElementById("num-d").innerHTML = numD/100 + "d";
-        exportAllInfo = '渠道：' + [...allKey] + '\n' + "切图:" +  numImg + "; 效果图：" + numView +  "; 合计：" + (numView*1 + numImg*1) + ';\n' +  "预估人天：" + numD/100 + "d";
+        exportAllInfo = exportAllname + "延展合计：" + (numView*1 + numImg*1) + "\n预估人天：" + (numD + 60)/100 + "d";
     }
 
     function reClick(type,e,ee){
@@ -1167,6 +1195,13 @@
         zoom = imgViewSlider.value;
     }
 
+    function getTextNum(e){
+        document.getElementById(e.id + '-num').textContent = e.value.trim().length;
+    }
+    function setTextMust(e,text){
+        e.value.trim() === ''? e.value = text : ()=>{};
+        getTextNum(e);
+    }
 
     const pages = document.querySelectorAll('.page')
     const toolN = document.getElementById('tool-name')

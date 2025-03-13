@@ -527,6 +527,32 @@ input[type="checkbox"]:checked+.btn-theme {
 input[type="checkbox"]:checked+.btn-editor {
     --btn-op: 1;
 }
+
+.show{
+    position: relative;
+}
+.show::after{
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    opacity: var(--show-o,1);
+    top:8px;
+    right: 4px;
+    border-radius: 2px;
+    background:linear-gradient(-45deg,var(--mainColor) 0%,var(--mainColor) 50%,rgba(0,0,0,0) 51%,rgba(0,0,0,0) 100%);
+    transform: rotate(var(--show-r,45deg)) translate(var(--show-t,0),var(--show-t,0));
+}
+
+.show:hover{
+    --show-o: 0.5;
+}
+
+input[type="checkbox"]:checked+.show {
+    --show-r:-135deg;
+    --show-t:-4px;
+}
+
 .TV{
     width: calc(100% - 200px);
     height: 18px;
@@ -962,6 +988,7 @@ input[type="checkbox"]:checked + .chk-round{
     box-sizing: border-box;
     border-radius: 20px;
     background: var(--mainColor2);
+    animation: boxUp 0.5s;
 }
 
 #to-model a{

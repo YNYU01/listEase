@@ -194,7 +194,6 @@ option {
 .model-info,.model-info-tips{
     width: 150px;
     height: 80px;
-    position: relative;
     border-radius: 8px;
     border: var(--boxBod) 1px solid;
     animation: boxUp 0.5s;

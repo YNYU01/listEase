@@ -131,6 +131,7 @@ option {
 .page {
     min-height: 560px;
     height: calc(100% - 110px);
+    max-height: calc(100% - 110px);
     display: flex;
     flex-flow: nowrap;
     gap:10px;

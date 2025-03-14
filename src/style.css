@@ -761,8 +761,8 @@ input[type="checkbox"]:checked+.show {
 }
 
 .moDside{
-    min-width: 240px;
-    max-width: 240px;
+    min-width: 260px;
+    max-width: 260px;
     height: calc(100% - 51px);
     padding: 10px;
     background-color: var(--boxGry);
@@ -772,8 +772,8 @@ input[type="checkbox"]:checked+.show {
 }
 
 .moDside-float{
-    min-width: 240px;
-    max-width: 240px;
+    min-width: 260px;
+    max-width: 260px;
     padding: 10px;
     background-color: var(--boxGry);
     flex:0 0 auto;

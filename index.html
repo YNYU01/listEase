@@ -385,7 +385,7 @@
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="title-main-1" class="moDsearch-box" maxlength="10" 
-                                            value="主要标题文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="主要标题文案" oninput="getTextNum(this);setimgMain('title',this.value,1);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="title-main-1-num"> 6 </span>/
                                                 <span>10</span>
@@ -393,7 +393,7 @@
                                         </div>
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="title-main-2" class="moDsearch-box" maxlength="10" 
-                                            value="备用标题文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="备用标题文案" oninput="getTextNum(this);setimgMain('title',this.value,2);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="title-main-2-num"> 6 </span>/
                                                 <span>10</span>
@@ -412,7 +412,7 @@
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="sectitle-main-1" class="moDsearch-box" maxlength="18" 
-                                            value="主要副标题文案文案文案文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="主要副标题文案文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,1);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="sectitle-main-1-num"> 13 </span>/
                                                 <span>18</span>
@@ -420,7 +420,7 @@
                                         </div>
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="sectitle-main-2" class="moDsearch-box" maxlength="18" 
-                                            value="备用副标题文案文案文案文案" oninput="getTextNum(this)" onchange="setTextMust(this,'文案文案文案文案文案文案');" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="备用副标题文案文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,2);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="sectitle-main-2-num"> 13 </span>/
                                                 <span>18</span>
@@ -438,9 +438,18 @@
                                         </label>
                                     </div>
                                     <div class="df" style="gap:4px; position: relative;">
-                                        <select id="select-zy" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" onchange="">
-                                            <option value="选择资源位" disabled="" selected="">选择资源位</option>
-                                        </select>
+                                        <div class="w100 df" style="gap:4px;">
+                                            <select id="select-zy" class="input-btn-skill" name="资源位" style=" color: var(--mainColor); font-size: 12px; text-align: left;" 
+                                            onchange="pickImg(this.value);">
+                                                <!--在此填充选项项-->
+                                            </select>
+                                            <div class="btn-text cc" onclick="viewPage(1)" style="width: 12ch; border-radius: 10px;border:1px var(--boxBod) solid;padding: 0 4px 0 3px;"> 
+                                                <div class="cc" style="gap:2px; font-size: 10px;opacity: 0.6;">
+                                                    <div style="width: 12px; height: 12px;"><btn-add></btn-add></div>
+                                                    <div style="margin-top: 1px; line-height: 12px;">前往添加</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!--在此填充配置项-->
                                     </div>
                                     
@@ -455,13 +464,7 @@
                         <div id="imgView" class="df-ffc cc ovh" style=" position: relative;">
                             <div class="loadding" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
                                 <div id="imgView-box" class="df pos-r ovh" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  ">
-                                     <!--div id="zy_w_h" class="ovh" style="width: 1240px; height: 720px; flex: 0,0,auto;  color:var(--mainColor);">
-                                        <div class="cc df-ffc w100" style=" position: absolute; top: 30%;">
-                                            <div id="zy_w_h-title" style="font-size: 110px;">标题文案</div>
-                                            <div id="zy_w_h-sectitle" style="font-size: 60px;">副标题文案文案文案文案</div>
-                                        </div>
-                                        <img width="512px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
-                                     </div-->
+
                                 </div>
                             </div>
                             
@@ -469,9 +472,9 @@
                             <div id="imgView-info" style="position: absolute; top:20px; left: 10px;">
                                 <div class="df" style="min-width: 400px; gap:14px; padding: 4px; opacity: 0.5; height: auto; font-size: 12px;">
                                     <span>缩放：<span id="zoom-num" style="color: var(--mainColor3);">40</span></span>
-                                    <span>尺寸：<span id="zy-info-size">1240*720</span></span>
-                                    <span>渠道：<span id="zy-info-channel">大神</span></span>
-                                    <span>游戏：<span id="zy-info-game">永劫无间</span></span>
+                                    <span>尺寸：<span id="zy-info-size">--</span></span>
+                                    <span>渠道：<span id="zy-info-channel">--</span></span>
+                                    <span>游戏：<span id="zy-info-game">--</span></span>
                                 </div>
                             </div>
                         </div>
@@ -485,7 +488,7 @@
                             + </button>
 
                             <div id="imgView-size-range" class="cc" >
-                                <input type="range" min="20" max="150" value="40" id="slider-imgView" 
+                                <input type="range" min="10" max="200" value="40" id="slider-imgView" 
                                 oninput="imgViewBox.style.transform = 'scale( '+ this.value/100 + ')';reZoom();" />
                             </div>
 
@@ -1049,6 +1052,7 @@
         var numD = 0,numImg = 0,numView = 0;
         var nameStep = [];
         var nameIndex = 0,namess = '';
+        userImgData.zy = [];
         for(var i = 0; i < allKey.length; i ++){
             
             for(var ii = 0; ii < allImg[i].length; ii++){
@@ -1072,6 +1076,14 @@
                     if(img.view){
                         numView++
                     } 
+                    userImgData.zy.push({
+                        img:img,
+                        channel:[allKey[i],0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+                        set:{
+                            titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
+                            gift:0,/*奖励数量，0则隐藏*/
+                        },
+                    })
                 }
                 
                  
@@ -1088,6 +1100,7 @@
         document.getElementById("num-all").innerHTML = (numView*1 + numImg*1);
         document.getElementById("num-d").innerHTML = numD/100 + "d";
         exportAllInfo = exportAllname + "延展合计：" + (numView*1 + numImg*1) + "\n预估人天：" + (numD + 60)/100 + "d";
+        
     }
 
     function reClick(type,e,ee){
@@ -1243,7 +1256,8 @@
             
         })
         if(e == 2){
-            moDautoZoom()
+            addZYtable();
+            moDautoZoom(); 
         }
 
     }

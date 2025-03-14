@@ -236,7 +236,7 @@
                         this.style.setProperty('--btn-copy-bg','#77ff7777');
                         setTimeout(() => { this.style.setProperty('--tips-copy','&quot复制详情&quot');
                         this.style.setProperty('--btn-copy-bg','#ffffff11');},1000);
-                        navigator.clipboard.writeText(exportAllInfo) .then(function() { console.log('复制成功'); alert('复制详情成功，可用于需求信息汇总')});">
+                        navigator.clipboard.writeText(exportAllInfo) .then(function() { console.log('复制成功'); /*alert('复制详情成功，可用于需求信息汇总')*/});">
                     </div>
                 </div>
                 
@@ -392,7 +392,7 @@
                                             </div>
                                         </div>
                                         <div class="df" style="gap:4px; position: relative;">
-                                            <input type="text" id="title-main-2" class="moDsearch-box" maxlength="10" 
+                                            <input type="text" id="title-main-2" class="moDsearch-box" maxlength="14" 
                                             value="备用标题文案" oninput="getTextNum(this);setimgMain('title',this.value,2);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="title-main-2-num"> 6 </span>/

@@ -109,7 +109,7 @@ function addZYtable(){
             <div id="` + imgid +`-title" style="font-size:` + fontsizes[2] + `px;" data-title="0">` + userImgData.main.title[0] +`</div>
             <div id="` + imgid +`-sectitle" style="font-size: ` + fontsizes[1] + `px;" data-sectitle="0">` + userImgData.main.sectitle[0] +`</div>
         </div>
-        <img width="`+ Math.min(w,h) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@refs/heads/main/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
+        <img width="`+ Math.min(w,h) +`px" src="img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
                                      
     `
     },100)

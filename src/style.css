@@ -24,7 +24,6 @@ html,body{
 }
 body {
     display: flex;
-    max-height:100vh;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -132,7 +131,6 @@ option {
 .page {
     min-height: 560px;
     height: calc(100% - 110px);
-    max-height: calc(100% - 110px);
     display: flex;
     flex-flow: nowrap;
     gap:10px;
@@ -160,7 +158,6 @@ option {
     max-height: 100%;
     display: flex;
     flex-flow: column;
-    flex:0 0 auto;
     justify-content: left;
     gap:10px;
     position: relative;
@@ -197,6 +194,7 @@ option {
 .model-info,.model-info-tips{
     width: 150px;
     height: 80px;
+    position: relative;
     border-radius: 8px;
     border: var(--boxBod) 1px solid;
     animation: boxUp 0.5s;

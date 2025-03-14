@@ -429,6 +429,22 @@
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                 </div>
+
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <div class="w100">
+                                        <input id="set-zy-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'block'">
+                                        <label for="set-zy-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-资源位设置-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="df" style="gap:4px; position: relative;">
+                                        <select id="select-zy" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" onchange="">
+                                            <option value="选择资源位" disabled="" selected="">选择资源位</option>
+                                        </select>
+                                        <!--在此填充配置项-->
+                                    </div>
+                                    
+                                </div>
                                 <div class="wh100"></div>
                             </div> 
                             
@@ -606,7 +622,7 @@
         viewPage(2);
         addModelList(models);
         addFlowEditor();
-        isMobile()
+        isMobile(true)
         moDautoZoom(); 
         /*加载思源黑字体*/
         (function(d) {
@@ -748,18 +764,22 @@
             }
     }
 
-    function isMobile(){
+    function isMobile(isNew){
         if(window.innerWidth <= 900){
-            moDshowSetBtn.checked = false;
-            moDshowSet();
+            if(isNew){
+                moDshowSetBtn.checked = false;
+                moDshowSet();
+            }
             TVInfo.style.width = TVInfo.textContent.length*12.5 + 'px';
             TVMove.style.setProperty('--tv-w',TVMove.offsetWidth*-1 + 'px')
             //要维持30px/s,将跑马灯宽度加上父容器宽度除以10即可
             var speed = Math.floor((TVMove.parentNode.offsetWidth + TVMove.offsetWidth)/30);
             TVMove.style.animation = "tvMove " + speed + "s linear infinite";
         } else {
-            moDshowSetBtn.checked = true;
-            moDshowSet();
+            if(isNew){
+                moDshowSetBtn.checked = true;
+                moDshowSet();
+            }
             TVMove.style.animation = "none"
         }
     }
@@ -1024,7 +1044,7 @@
         //console.log('reExportInfo')
         var start = "name\tw\th\ts\ttype\n";
         var exports = '';
-        var exportAllname = 'KV+\n';
+        exportAllname = 'KV+\n';
         var exportAllchannel = [];
         var numD = 0,numImg = 0,numView = 0;
         var nameStep = [];

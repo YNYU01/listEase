@@ -2,15 +2,47 @@ const modelFlow = document.getElementById('model-flow');
 const modelList = document.getElementById('model-list');
 const modelMain = document.getElementById('model-main');
 const modelTable = document.getElementById('model-table');
+const selectZY = document.getElementById('select-zy');
+//var imgOptions = []
+var exportAllname = '';
 
 function addZYtable(){
     var zys = userImgData.zy;
-    zys.forEach((item,index) => {
-        if(index == 1){
-            var node = document.createElement("div")
-            node.id = 'zy_' 
+    /*资源切换option*/
+    var allname = exportAllname.split('\n');
+    var num = 0;
+    var options = '';
+    for(var i = 0; i < allname.length; i++){
+        if(allname[i].split('×').length == 1){
+            options += '<optgroup label="' + allname[i].split('-')[0] + '">'
+        } else if (allname[i + 1] && allname[i + 1].split('×').length == 1) {
+            num++
+            options += '<option value="' + 'zy_'+ num + '">' + allname[i] + '</option></optgroup>'
         } else {
+            num++
+            options += '<option value="' + 'zy_'+ num + '">' + allname[i] + '</option>'
+        }
+    }
+    
 
+    zys.forEach((item,index) => {
+        /*资源位节点*/
+        var imgnode = document.createElement("div");
+        imgnode.id = 'zy_'+ index + '_' + item.img.w + '_' + item.img.w;
+        /*资源位配置节点*/
+        var setnode = document.createElement("div");
+        setnode.id = 'zy_'+ index + '_set';
+        setnode.className = 'df-ffc';
+        setnode.style.gap = '2px';
+        
+        
+        if(index == 0){
+            
+
+            
+        } else {
+            imgnode.style.display = 'none';
+            setnode.style.display = 'none';
         }
     })
 }

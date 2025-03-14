@@ -158,6 +158,7 @@ option {
     max-height: 100%;
     display: flex;
     flex-flow: column;
+    flex:0 0 auto;
     justify-content: left;
     gap:10px;
     position: relative;

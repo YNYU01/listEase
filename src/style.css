@@ -1175,16 +1175,18 @@ input[type="checkbox"]:checked + .chk-round{
 
     #imgView-size{
         flex-flow: nowrap;
+        width:100%;
     }
 
     #imgView-size-up,#imgView-size-down{
         display: none;
     }
     #imgView-size-range{
-        width: 80px; 
+        width: calc(100vw - 60px); 
         height: 20px;
     }
     #imgView-size-range input{
+        width:100%;
         transform: rotate(0deg);
         transform-origin: left bottom;
     }

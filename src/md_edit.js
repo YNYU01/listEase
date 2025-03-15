@@ -11,10 +11,14 @@ function addZYtable(){
     imgViewBox.innerHTML = '';
     zyAllname = [];
     var zys = userImgData.zy;
-    //console.log(zys)
+
     /*资源切换option*/
-    if(exportAllname){
-        allname = exportAllname.split('KV+\n')[1].split('\n');
+    if(exportAllname || zys.length > 0){
+        if(exportAllname){
+            allname = exportAllname.split('KV+\n')[1].split('\n');
+        }else{
+            allname = [zys[0].img.name + ' ' + zys[0].img.w + '×' + zys[0].img.h]
+        }
         var num = 0;
         var options = '';
         for(var i = 0; i < allname.length; i++){
@@ -38,7 +42,7 @@ function addZYtable(){
         /*资源位节点*/
         var imgnode = document.createElement("div");
         var imgid = 'zy_'+ (index + 1) + '_' + item.img.w + '_' + item.img.h;
-        setImgLayout(imgnode,imgid,item.img.w,item.img.h,item.img.type,item.img.safa)
+        setImgLayout(imgnode,imgid,item.img)
         /*资源位配置节点*/
         var setnode = document.createElement("div");
         setnode.id = 'zy_'+ (index + 1)  + '_set';
@@ -48,6 +52,9 @@ function addZYtable(){
         if(index == 0){
             imgnode.style.display = 'block';
             setnode.style.display = 'flex';  
+            document.getElementById('zy-info-size').textContent = item.img.w + '×' + item.img.h;
+            document.getElementById('zy-info-channel').textContent = item.channel[0];
+            document.getElementById('zy-info-game').textContent = userImgData.main.game[0];
         } else {
             imgnode.style.display = 'none';
             setnode.style.display = 'none';
@@ -58,10 +65,8 @@ function addZYtable(){
     })
 }
 
- function setImgLayout(node,imgid,w,h,type,safa){
-    node.id = imgid;
-    node.style.width = w + 'px';
-    node.style.height = h + 'px';
+ function setImgLayout(node,imgid,imgInfo){
+    var w = imgInfo.w, h = imgInfo.h, type = imgInfo.type, safa = imgInfo.safa , info = imgInfo.info;
     var fontsizes = [0,0,0];
     var ww = w, hh = h
     //console.log(111)
@@ -85,9 +90,10 @@ function addZYtable(){
         })
     } else {
         var findH = userImgData.public.framesize.hh.map(item => Math.abs(ww - item) )
+        
         findH.forEach((item,index) => {
             if(item == Math.min(...findH)){
-                
+                console.log(ww,hh,findH,userImgData.public.fontsize[index])
                 if((index - 1) < 0){
                     fontsizes =  userImgData.public.fontsize[0]
                 } else {
@@ -101,18 +107,28 @@ function addZYtable(){
     if(type != 'png'){
         node.style.background = 'var(--boxGry)';
     }
+    
+    var titleNode = '',sectitleNode = '';
+    if (info[0] == 1) {
+        titleNode = `<div id="` + imgid +`-title" style="font-size:` + fontsizes[2] + `px;" data-title="0">` + userImgData.main.title[0].replace('，','<br>') +`</div>`;
+    }
+    if (info[1] == 1) {
+        sectitleNode = `<div id="` + imgid +`-sectitle" style="font-size: ` + fontsizes[1] + `px;" data-sectitle="0">` + userImgData.main.sectitle[0].replace('，','<br>') +`</div>`;
+    }
+    
+    node.id = imgid;
+    node.style.width = w + 'px';
+    node.style.height = h + 'px';
     node.style.flex = '0,0,auto';
-    node.className = 'ovh pos-r'
-    setTimeout(()=>{
-        node.innerHTML = `
-        <div class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
-            <div id="` + imgid +`-title" style="font-size:` + fontsizes[2] + `px;" data-title="0">` + userImgData.main.title[0] +`</div>
-            <div id="` + imgid +`-sectitle" style="font-size: ` + fontsizes[1] + `px;" data-sectitle="0">` + userImgData.main.sectitle[0] +`</div>
-        </div>
-        <img width="`+ Math.min(w,h) +`px" src="img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
-                                     
+    node.className = 'ovh pos-r zySSS';
+
+    node.innerHTML = `
+    <div class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
+    `+ titleNode + sectitleNode +`
+    </div>
+    <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
     `
-    },100)
+
 
 }
 
@@ -126,36 +142,39 @@ function pickImg(key){
         img.style.display = 'none';
     }
     document.getElementById('zy_' + num + '_' + zys[(num - 1)].img.w + '_' + zys[(num - 1)].img.h).style.display = 'flex'
-    //document.getElementById('zy_' + key.split('_')[1] + '_set').style.display = 'flex'
     moDautoZoom();
     document.getElementById('zy-info-size').textContent = zys[(num - 1)].img.w + '×' + zys[(num - 1)].img.h;
     document.getElementById('zy-info-channel').textContent = zys[(num - 1)].channel[0];
-    //document.getElementById('zy-info-game').textContent =
+    document.getElementById('zy-info-game').textContent = userImgData.main.game[0];
 }
 
 function setimgMain(type,value,num){
-    //console.log((type + num))
+    
     var title1 = document.querySelectorAll('[data-title="0"]');
     var title2 = document.querySelectorAll('[data-title="1"]');
     var sectitle1 = document.querySelectorAll('[data-sectitle="0"]');
     var sectitle2 = document.querySelectorAll('[data-sectitle="1"]');
-    
+    var title = []
     if((type + num) == 'title1'){
+        userImgData.main.title[0] = value;
         title1.forEach(item => {
-            item.textContent = value;
+            item.innerHTML = value.replace('，','<br>');
         })
     }
     if((type + num) == 'title2'){
+        userImgData.main.title[1] = value;
         title2.forEach(item => {
-            item.textContent = value;
+            item.textContent = value.replace('，','<br>');
         })
     }
     if((type + num) == 'sectitle1'){
+        userImgData.main.sectitle[0] = value;
         sectitle1.forEach(item => {
             item.textContent = value;
         })
     }
     if((type + num) == 'sectitle2'){
+        userImgData.main.sectitle[1] = value;
         sectitle2.forEach(item => {
             item.textContent = value;
         })
@@ -201,7 +220,7 @@ async function exportOne(e){
                 }
             }
             if (href.split('/').length > 1){
-                console.log('链接',node.id)
+                //console.log('链接',node.id)
                 // 使用fetch获取图片
                 fetch(href)
                 .then(response => {

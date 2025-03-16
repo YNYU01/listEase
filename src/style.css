@@ -15,6 +15,7 @@
     --keysLiColor:#983e3e;
     --bg-light:#81818154;
     --mod-table:rgba(25,25,25,0.9);
+    --mod-filter:brightness(120%) contrast(180%);
     --tv-w:-150px;
 }
 
@@ -234,7 +235,7 @@ option {
 }
 
 .model-box{
-    width: 224px;
+    width: 180px;
     height: 100%;
     display: flex;
     flex-flow: column;
@@ -299,6 +300,10 @@ input[type="checkbox"]:checked+.model-pick {
 
 .model-move-r,.model-move-l{
     display: none;
+}
+
+.model-img{
+    filter: var(--mod-filter);
 }
 
 .btn-text {

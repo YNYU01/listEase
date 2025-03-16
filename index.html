@@ -1,10 +1,10 @@
 <!--
- - [提单助手]
- - ©版权所有：2024-2025 YNYU @lvynyu2.gmail.com
- - 禁止未授权的商用及二次编辑
- - 禁止用于违法行为，如有，与作者无关
- - 二次编辑需将引用部分开源
- - 引用开源库的部分应遵循对应许可
+- [提单助手]
+- ©版权所有：2024-2025 YNYU @lvynyu2.gmail.com
+- 禁止未授权的商用及二次编辑
+- 禁止用于违法行为，如有，与作者无关
+- 二次编辑需将引用部分开源
+- 引用开源库的部分应遵循对应许可
 -->
 <html lang="zh">
 <head>
@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet">
 <style>
-   
+
 </style>
 </head>
 
@@ -184,13 +184,15 @@
     </div>
     <!--加载-->
     <div class="ww page pos-r"  id="page-0" style="display: flex;">
-        <div class="pos-a-cc df-ffc cc" style="gap: 20px;">
-            <div class="load-box" >
-                <svg width="100%" height="100%" style="opacity: 0.5;">
-                    <use xlink:href="#icon_mini_stroke"></use>
-                </svg>
+        <div id="load" class="page-main noscrollbar" style="border-radius: 10px; display: none;">
+            <div class="pos-a-cc df-ffc cc" style="gap: 20px;">
+                <div class="load-box" >
+                    <svg width="100%" height="100%" style="opacity: 0.5;">
+                        <use xlink:href="#icon_mini_stroke"></use>
+                    </svg>
+                </div>
+                <div class="load-line pos-r"></div>
             </div>
-            <div class="load-line pos-r"></div>
         </div>
     </div>
     <!--页面1-->
@@ -298,9 +300,8 @@
                     <div class="model-info" style="background: var(--boxBak);">
                         <input type="file" id="model-pick-user" style="display: none;" />
                         <label class="model-pick"  for="model-pick-user" style="position: relative;">
-                            <div style="position: absolute; z-index: 2; bottom:0; background:rgba(27, 27, 27, 0.6); color: #ffffff; width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">本地模板</div>
-                            <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%; z-index: 1;"><btn-add style="opacity: 0.6;"></btn-add></div>
                             <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " ></div>
+                            <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info); border-top: 1px solid var(--boxBod);z-index: 2; ">本地模板</div>                            <div class="btn-text" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%; z-index: 1;"><btn-add style="opacity: 0.6;"></btn-add></div>
                         </label>
                     </div>
                 </div>      
@@ -351,7 +352,7 @@
                             </div>
                         </label>
                     </div>
-                  </div>           
+                </div>           
             </div>
             <!--三种编辑视图-->
             <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
@@ -406,6 +407,25 @@
                                                 <span>14</span>
                                             </div>
                                         </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 字体 </a><span> :</span>
+                                            <select id="title-font" class="select"
+                                            onchange="">
+                                                <!--option value="FZYaSongS-B-GB">方正粗雅宋</option>
+                                                <option value="FZJinLS-B-GB">方正粗金陵</option>
+                                                <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
+                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option-->
+                                            </select>
+                                        </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 副色 </a><span> :</span>
+                                            <input id="title-colorBox" type="color" class="moDsearch-box" style="width: 80px;padding: 2px;" value="#acacac" 
+                                            oninput=""/>
+                                            <input id="title-color" class="moDsearch-box" type="text" value="#acacac" 
+                                            onKeyPress="if(window.event.keyCode==13){this.blur();
+                                            reColorText(this);
+                                            document.getElementById('sectitle-colorBox').value = this.value;}"/>
+                                        </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                     </div>
@@ -433,6 +453,38 @@
                                                 <span>18</span>
                                             </div>
                                         </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 字体 </a><span> :</span>
+                                            <select id="sectitle-font" class="select"
+                                            onchange="">
+                                                <!--option value="FZYaSongS-B-GB">方正粗雅宋</option>
+                                                <option value="FZJinLS-B-GB">方正粗金陵</option>
+                                                <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
+                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option-->
+                                            </select>
+                                        </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 副色 </a><span> :</span>
+                                            <input id="sectitle-colorBox" type="color" class="moDsearch-box" style="width: 80px;padding: 2px;" value="#acacac" 
+                                            oninput=""/>
+                                            <input id="sectitle-color" class="moDsearch-box" type="text" value="#acacac" 
+                                            onKeyPress="if(window.event.keyCode==13){this.blur();
+                                            reColorText(this);
+                                            document.getElementById('sectitle-colorBox').value = this.value;}"/>
+                                        </div>
+                                    </div>
+                                    <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
+                                </div>
+
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <div class="w100">
+                                        <input id="gift-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <label for="gift-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-奖励-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="w100 df-ffc" style="gap:2px;">
+                                        
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                 </div>
@@ -535,7 +587,7 @@
                     <use xlink:href="#icon_mini_fill"></use>
                 </svg>
             </div>
-             ListEase 0.1.0 『云即·资源助手』 </div>
+            ListEase 0.1.0 『云即·资源助手』 </div>
         <div>©YNYU @lvynyu2.gmail.com</div>
     </div>
     <svg style="display: none;">
@@ -552,6 +604,7 @@
 <script>
     
     const root = document.documentElement;
+    const load = document.getElementById("load");
     const TVMove = document.getElementById("TV-move");
     const TVInfo = document.getElementById("TV-info");
     const btnChange = document.getElementById('tool-change');
@@ -578,7 +631,8 @@
     "link":"#4e7075",
     "bg-mask":"200,200,200",
     "hl-op":"1",
-    "mod-table":"rgba(250,250,250,0.8)"
+    "mod-table":"rgba(250,250,250,0.8)",
+    "mod-filter":"brightness(80%) contrast(180%)"
     }
     var darkTheme = {
     "mainColor":"#acacac",
@@ -591,7 +645,8 @@
     "link":"#4e7075",
     "bg-mask":"20,20,20",
     "hl-op":"0.4",
-    "mod-table":"rgba(25,25,25,0.9)"
+    "mod-table":"rgba(25,25,25,0.9)",
+    "mod-filter":"brightness(120%) contrast(180%)"
     }
     var styleKey = Object.keys(lightTheme);//主题色键值
     var styleValue = Object.values(lightTheme);//主题色色值
@@ -637,14 +692,17 @@
         
         if(localStorage.getItem('userTime')){
             var getUserTime = localStorage.getItem('userTime').split(','); 
-            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 0){
+            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 10){
+                load.style.display = 'block';
                 setTimeout(() => {
                     viewPage(2);
                 },1800);
             } else {
+                load.style.display = 'none';
                 viewPage(2);
             }
         } else {
+            load.style.display = 'block';
             setTimeout(() => {
                 viewPage(2);
             },1800);
@@ -657,12 +715,12 @@
         moDautoZoom(); 
         /*加载思源黑字体*/
         (function(d) {
-          var config = {
+        var config = {
             kitId: 'dpd0cfl',
             scriptTimeout: 3000,
             async: true
-          },
-          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
         })(document);
     }
 
@@ -676,7 +734,7 @@
         window.event.returnValue = '系统可能不会保存您所做的更改,如有需要，请先保存数据' ;
     }
     
-      
+    
     imgViewBox.onmousewheel = ()=>{
         var step = Math.abs(event.wheelDelta)/12 ;
         if(event.wheelDelta > 0){
@@ -690,7 +748,7 @@
         //只测试了理想缩放中心的偏移值，还没算上前一次偏移值
         //imgViewBox.parentNode.style.transform = 'translate(' + (window.event.clientX - imgViewBox.getBoundingClientRect().left) +'px,' + (window.event.clientY - imgViewBox.getBoundingClientRect().top) + 'px)';  
     }
- 
+
     imgViewBox.onmousedown = ()=> {
         if(window.event.button == 0){
         isDragging = true;
@@ -1116,7 +1174,7 @@
                     })
                 }
                 
-                 
+                
             }
         }
         document.getElementById("export-info").value = start + exports;
@@ -1198,7 +1256,7 @@
         list.forEach((value,index)=> {
             var setimg = "";
             if(value.img){
-                setimg = `<img class="pos-a-cc"  height="80%"  src="` + value.img + `" />`;
+                setimg = `<img class="pos-a-cc model-img"  height="60%"  src="` + value.img + `" />`;
             }
             var node = document.createElement('div')
             node.className = "model-info"
@@ -1212,7 +1270,7 @@
             }"/>
             <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
                 `+ setimg +`
-                <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info) ; ">`+ value.name +`</div>
+                <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info); border-top: 1px solid var(--boxBod); ">`+ value.name +`</div>
                 <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + index + `</div>
             </label>`;
             modelList.appendChild(node);
@@ -1264,6 +1322,65 @@
     function setTextMust(e,text){
         e.value.trim() === ''? e.value = text : ()=>{};
         getTextNum(e);
+    }
+
+    //重置输入色值
+    function reColorText(e) {
+
+        if (e.value == '') {
+        e.value = "#000000"
+        }
+        if (e.value.length < 7) {
+        if (e.value[0] == '#') {
+            var a = e.value.split("#")[1]
+            if (a.length == 3) {
+            e.value = "#" + a + a
+            }
+            if (a.length == 2) {
+            e.value = "#" + a + a + a
+            }
+            if (a.length == 1) {
+            e.value = "#" + a + a + a + a + a + a
+            }
+            if (a.length == 4) {
+            e.value = "#" + a + "00"
+            }
+            if (a.length == 5) {
+            e.value = "#" + a + "0"
+            }
+        } else {
+            var c = e.value
+            if (e.value.length == 3) {
+            e.value = "#" + c + c
+            }
+            if (e.value.length == 2) {
+            e.value = "#" + c + c + c
+            }
+            if (e.value.length == 1) {
+            e.value = "#" + c + c + c + c + c + c
+            }
+            if (e.value.length == 4) {
+            e.value = "#" + c + "00"
+            }
+            if (e.value.length == 5) {
+            e.value = "#" + c + "0"
+            }
+            if (e.value.length == 6) {
+            e.value = "#" + c
+            }
+        }
+        } else if (e.value.length > 7) {
+        if (e.value[0] == '#' && e.value[1] == '#') {
+            e.value = e.value.substring(1, 8)
+        } else {
+            e.value = "#000000"
+        }
+        } else if (e.value.length = 7) {
+        e.value = e.value
+        } else {
+        e.value = "#000000"
+        }
+
     }
 
     const pages = document.querySelectorAll('.page')
@@ -1318,7 +1435,7 @@
     }
 
     
-   
+
     
     // 监听整个文档的点击事件
     document.addEventListener('mousedown', function (event) {

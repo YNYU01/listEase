@@ -2,6 +2,9 @@
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
 info的值分别对应[主标题，副标题，奖励图，LOGO，按钮]，1表示允许，0表示不允许；
+s的值要带k,作为string传入；
+safa记录安全区数据，每组数据对应[x,y,w,h,noInfo],其中noInfo既非文字安全区，用1表示，正常的文字安全区该值可为空；
+每个渠道配备一个用户自定义尺寸集，用渠道加_user区分，首次生成需用户保存预设，也支持手动导入预设
  */
 const 大神 = [
     {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
@@ -26,6 +29,7 @@ const 大神 = [
     {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,1,0],safa:[]},
     {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
 ];
+var 大神_user = [];
 const CC = [
     {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
@@ -196,8 +200,8 @@ const 手机管家 = [
 ];
     
 
-    const sheet = {
-    "大神":[...大神],
+var sheet = {
+    "大神":[...大神,...大神_user],
     "CC":[...CC],
     "DD":[...DD],
     "vivo":[...vivo],

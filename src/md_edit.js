@@ -287,6 +287,7 @@ function cloneImg(){
 
 //导出
 async function exportAll(){
+    /*
     imgViewBox.style.transform = 'scale(1)';
     var zys = userImgData.zy;
     for(var i = 0; i < zys.length; i++){
@@ -297,12 +298,22 @@ async function exportAll(){
             },1000)
         }
     }
+        */
+    zyAllId.forEach((item,index)=>{
+        var scale = window.getComputedStyle(document.getElementById(item + '-clone')).transform.split('(')[1].split(')')[0];
+        document.getElementById(item + '-clone').style.transform = 'scale(1)';
+        await exportOne(index);
+        setTimeout(()=>{
+            imgViewBox.style.transform = 'scale('+ scale +')';
+        },1000)
+
+    })
 }
 
 async function exportOne(e){
     var w = userImgData.zy[e].img.w;
     var h = userImgData.zy[e].img.h
-    var imgid = 'zy_' + (e + 1) + '_' + w + '_' + h;
+    var imgid = 'zy_' + (e + 1) + '_' + w + '_' + h + '-clone';
     var zyNode = document.getElementById(imgid);
     //console.log(zyNode)
     var zyType = userImgData.zy[e].img.type;

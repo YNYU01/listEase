@@ -302,7 +302,7 @@ async function exportAll(){
     zyAllId.forEach((item,index)=>{
         var scale = window.getComputedStyle(document.getElementById(item + '-clone')).transform.split('(')[1].split(')')[0];
         document.getElementById(item + '-clone').style.transform = 'scale(1)';
-        await exportOne(index);
+        exportOne(index);
         setTimeout(()=>{
             imgViewBox.style.transform = 'scale('+ scale +')';
         },1000)

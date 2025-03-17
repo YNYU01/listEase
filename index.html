@@ -17,6 +17,7 @@
     <script src="src/zy_data.js"></script>
     <script src="src/md_data.js"></script>
     <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/font.css">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@0555a2f2a3df5d4657593c6d45eb192359888195/css/litegraph.css">  
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -357,8 +358,23 @@
             <!--三种编辑视图-->
             <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
                 <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; ">
-                    <canvas id="model-flow" width="1920" height="1080" style="display: none; width: 1920px; height: 1080px;" ></canvas>
-                    <div id="model-view" class="wh100" style="display: none;"></div>
+                    <div id="model-view" class="wh100 noscrollbar"  style="overflow-y: scroll; box-sizing: border-box;  display: none;">
+                        <div  class="df" style="padding: 10px; gap: 10px;">
+                            <div id="cloneImg-view-1" class="df-ffc" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-2" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-3" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-4" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="model-flow" width="2560" height="2560" style="display: none; width: 2560px; height: 2560px;" ></canvas>
                     <div id="model-data" class="wh100 df" style="display: flex;">
                         <!--侧边栏-->
                         <div id="moDside" class="df-ffc moDside ovh" style="gap:20px; z-index: 20; ">
@@ -410,21 +426,34 @@
                                         <div class="df cc" style="gap:4px;">
                                             <a> 字体 </a><span> :</span>
                                             <select id="title-font" class="select"
-                                            onchange="">
-                                                <!--option value="FZYaSongS-B-GB">方正粗雅宋</option>
+                                            onchange="setimgMain('fontFamily-main',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
+                                            <optgroup label="通用">
+                                                <option value="SourceHanSansSC">思源黑体</option>
+                                                <option value="SourceHanSerifCN">思源宋体</option>
+                                            </optgroup>
+                                            <optgroup id="fontList-smain" label="风格">
+                                                <option value="FZYaSongS-B-GB">方正粗雅宋</option>
                                                 <option value="FZJinLS-B-GB">方正粗金陵</option>
                                                 <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
-                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option-->
+                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option>
+                                            </optgroup>
                                             </select>
                                         </div>
                                         <div class="df cc" style="gap:4px;">
-                                            <a> 副色 </a><span> :</span>
+                                            <a> 染色 </a><span> :</span>
                                             <input id="title-colorBox" type="color" class="moDsearch-box" style="width: 80px;padding: 2px;" value="#acacac" 
-                                            oninput=""/>
+                                            oninput="
+                                            document.getElementById('title-color').value = this.value;
+                                            setimgMain('fontColor-main',this.value);"/>
                                             <input id="title-color" class="moDsearch-box" type="text" value="#acacac" 
                                             onKeyPress="if(window.event.keyCode==13){this.blur();
                                             reColorText(this);
-                                            document.getElementById('sectitle-colorBox').value = this.value;}"/>
+                                            document.getElementById('title-colorBox').value = this.value;
+                                            setimgMain('fontColor-main',this.value);}"
+                                            onchange="
+                                            reColorText(this);
+                                            document.getElementById('title-colorBox').value = this.value;
+                                            setimgMain('fontColor-main',this.value);"/>
                                         </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
@@ -456,21 +485,34 @@
                                         <div class="df cc" style="gap:4px;">
                                             <a> 字体 </a><span> :</span>
                                             <select id="sectitle-font" class="select"
-                                            onchange="">
-                                                <!--option value="FZYaSongS-B-GB">方正粗雅宋</option>
+                                            onchange="setimgMain('fontFamily-sec',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
+                                            <optgroup label="通用">
+                                                <option value="SourceHanSansSC">思源黑体</option>
+                                                <option value="SourceHanSerifCN">思源宋体</option>
+                                            </optgroup>
+                                            <optgroup id="fontList-sec" label="风格">
+                                                <option value="FZYaSongS-B-GB">方正粗雅宋</option>
                                                 <option value="FZJinLS-B-GB">方正粗金陵</option>
                                                 <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
-                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option-->
+                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option>
+                                            </optgroup>
                                             </select>
                                         </div>
                                         <div class="df cc" style="gap:4px;">
-                                            <a> 副色 </a><span> :</span>
+                                            <a> 染色 </a><span> :</span>
                                             <input id="sectitle-colorBox" type="color" class="moDsearch-box" style="width: 80px;padding: 2px;" value="#acacac" 
-                                            oninput=""/>
+                                            oninput="
+                                            document.getElementById('sectitle-color').value = this.value;
+                                            setimgMain('fontColor-sec',this.value);"/>
                                             <input id="sectitle-color" class="moDsearch-box" type="text" value="#acacac" 
                                             onKeyPress="if(window.event.keyCode==13){this.blur();
                                             reColorText(this);
-                                            document.getElementById('sectitle-colorBox').value = this.value;}"/>
+                                            document.getElementById('sectitle-colorBox').value = this.value;};
+                                            setimgMain('fontColor-sec',this.value);"
+                                            onchange="
+                                            reColorText(this);
+                                            document.getElementById('sectitle-colorBox').value = this.value;
+                                            setimgMain('fontColor-sec',this.value);"/>
                                         </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
@@ -692,7 +734,7 @@
         
         if(localStorage.getItem('userTime')){
             var getUserTime = localStorage.getItem('userTime').split(','); 
-            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 10){
+            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 30){
                 load.style.display = 'block';
                 setTimeout(() => {
                     viewPage(2);
@@ -713,15 +755,6 @@
         addFlowEditor();
         isMobile(true)
         moDautoZoom(); 
-        /*加载思源黑字体*/
-        (function(d) {
-        var config = {
-            kitId: 'dpd0cfl',
-            scriptTimeout: 3000,
-            async: true
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-        })(document);
     }
 
     window.onresize = ()=>{
@@ -843,16 +876,30 @@
             }
             modelFlow.style.filter = '  brightness(80%) hue-rotate(210deg) invert(1) contrast(130%) saturate(200%) ';
             localStorage.setItem('userTheme','light');
-            //flowBg.clear_background_color = 'rgba(190,190,190,1)';
-            } else {
+            if(document.getElementById('title-colorBox').value == darkTheme.mainColor ){
+                document.getElementById('title-colorBox').value = lightTheme.mainColor;
+                document.getElementById('title-color').value = lightTheme.mainColor;
+            }
+            if(document.getElementById('sectitle-colorBox').value == darkTheme.mainColor ){
+                document.getElementById('sectitle-colorBox').value = lightTheme.mainColor;
+                document.getElementById('sectitle-color').value = lightTheme.mainColor;
+            }
+        } else {
             //console.log('深色主题')
             for (var i = 0; i < styleKey2.length; i++) {
                 root.style.setProperty('--' + styleKey2[i], styleValue2[i])
             }
             modelFlow.style.filter = '';
             localStorage.setItem('userTheme','dark');
-            //flowBg.clear_background_color = 'rgba(0,0,0,0)';
+            if(document.getElementById('title-colorBox').value == lightTheme.mainColor){
+                document.getElementById('title-colorBox').value = darkTheme.mainColor;
+                document.getElementById('title-color').value = darkTheme.mainColor;
             }
+            if(document.getElementById('sectitle-colorBox').value == lightTheme.mainColor){
+                document.getElementById('sectitle-colorBox').value = darkTheme.mainColor;
+                document.getElementById('sectitle-color').value = darkTheme.mainColor;
+            }
+        }
     }
 
     function isMobile(isNew){
@@ -1240,16 +1287,48 @@
             
         } 
     }
+    var tipsTime = [];
 
-    function tipsAll(string,time){
+    function tipsAll(string,time,num){
         var tips = document.getElementById('tips-all');
         var text = document.getElementById('tips-box');
-        tips.style.display = "flex";
-        text.innerHTML = string;
-        setTimeout(()=>{
-            tips.style.display = "none";
-            text.innerHTML = '';
-        },time)
+        if(num){
+            if(tipsTime.some(item => item.split('#')[0] == string )){
+            //console.log(tipsTime)
+            tipsTime.forEach((item,index)=> {
+                if(item.split('#')[0] == string){
+                    if( item.split('#')[1]*1 > 1){
+                        tipsTime[index] = item.split('#')[0] + '#' + (item.split('#')[1]*1 - 1);
+                        //console.log(item.split('#')[0] + '#' + (item.split('#')[1]*1 - 1))
+                        tips.style.display = "flex";
+                        text.innerHTML = string;
+                        setTimeout(()=>{
+                            tips.style.display = "none";
+                            text.innerHTML = '';
+                        },time)
+                    }
+                }
+            })
+            } else {
+                tipsTime.push(string + '#' + num);
+                tips.style.display = "flex";
+                text.innerHTML = string;
+                setTimeout(()=>{
+                    tips.style.display = "none";
+                    text.innerHTML = '';
+                },time)
+            }
+        } else {
+            tips.style.display = "flex";
+                text.innerHTML = string;
+                setTimeout(()=>{
+                    tips.style.display = "none";
+                    text.innerHTML = '';
+                },time)
+        }
+        
+
+        
     }
 
     function addModelList(list){
@@ -1326,60 +1405,60 @@
 
     //重置输入色值
     function reColorText(e) {
-
-        if (e.value == '') {
-        e.value = "#000000"
-        }
-        if (e.value.length < 7) {
-        if (e.value[0] == '#') {
-            var a = e.value.split("#")[1]
-            if (a.length == 3) {
-            e.value = "#" + a + a
-            }
-            if (a.length == 2) {
-            e.value = "#" + a + a + a
-            }
-            if (a.length == 1) {
-            e.value = "#" + a + a + a + a + a + a
-            }
-            if (a.length == 4) {
-            e.value = "#" + a + "00"
-            }
-            if (a.length == 5) {
-            e.value = "#" + a + "0"
-            }
+        var values = '#' +  e.value.replace(/[#]/g,'');
+        if (values == '#' || values.replace(/[0-9a-fA-F]/g,'').trim().length > 1) {
+        e.value = "#000000";
+        tipsAll('请输入正确的色值','1000');
         } else {
-            var c = e.value
-            if (e.value.length == 3) {
-            e.value = "#" + c + c
+            if (e.value.length < 7) {
+            if (e.value[0] == '#') {
+                var a = e.value.replace(/[#]/g,'');
+                if (a.length == 3) {
+                e.value = "#" + a + a
+                }
+                if (a.length == 2) {
+                e.value = "#" + a + a + a
+                }
+                if (a.length == 1) {
+                e.value = "#" + a + a + a + a + a + a
+                }
+                if (a.length == 4) {
+                e.value = "#" + a + "00"
+                }
+                if (a.length == 5) {
+                e.value = "#" + a + "0"
+                }
+            } else {
+                var c = e.value.replace(/[#]/g,'')
+                if (c.length == 3) {
+                e.value = "#" + c + c
+                }
+                if (c.length == 2) {
+                e.value = "#" + c + c + c
+                }
+                if (c.length == 1) {
+                e.value = "#" + c + c + c + c + c + c
+                }
+                if (c.length == 4) {
+                e.value = "#" + c + "00"
+                }
+                if (c.length == 5) {
+                e.value = "#" + c + "0"
+                }
+                if (c.length == 6) {
+                e.value = "#" + c
+                }
             }
-            if (e.value.length == 2) {
-            e.value = "#" + c + c + c
-            }
-            if (e.value.length == 1) {
-            e.value = "#" + c + c + c + c + c + c
-            }
-            if (e.value.length == 4) {
-            e.value = "#" + c + "00"
-            }
-            if (e.value.length == 5) {
-            e.value = "#" + c + "0"
-            }
-            if (e.value.length == 6) {
-            e.value = "#" + c
+            } else {
+                if (e.value.replace(/[#]/g,'').replace(/[^0-9a-fA-F]/g,'').trim().length >= 6) {
+                    e.value = '#' + e.value.replace(/[#]/g,'').replace(/[^0-9a-fA-F]/g,'').trim().substring(0, 6);
+                } else {
+                    e.value = "#000000"
+                    tipsAll('请输入正确的色值','1000');
+                }
             }
         }
-        } else if (e.value.length > 7) {
-        if (e.value[0] == '#' && e.value[1] == '#') {
-            e.value = e.value.substring(1, 8)
-        } else {
-            e.value = "#000000"
-        }
-        } else if (e.value.length = 7) {
-        e.value = e.value
-        } else {
-        e.value = "#000000"
-        }
+        
 
     }
 

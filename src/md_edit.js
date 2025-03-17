@@ -1,15 +1,22 @@
 const modelFlow = document.getElementById('model-flow');
 const modelList = document.getElementById('model-list');
+const modelView = document.getElementById('model-view');
+const modelData = document.getElementById('model-data');
 const modelMain = document.getElementById('model-main');
 const modelTable = document.getElementById('model-table');
 const selectZY = document.getElementById('select-zy');
-//var imgOptions = []
+const cloneImgView1 = document.getElementById('cloneImg-view-1');
+const cloneImgView2 = document.getElementById('cloneImg-view-2');
+const cloneImgView3 = document.getElementById('cloneImg-view-3');
+const cloneImgView4 = document.getElementById('cloneImg-view-4');
 var exportAllname = '';
 var zyAllname = [];
+var zyAllId = [];
 
 function addZYtable(){
     imgViewBox.innerHTML = '';
     zyAllname = [];
+    zyAllId = [];
     var zys = userImgData.zy;
 
     /*资源切换option*/
@@ -42,6 +49,7 @@ function addZYtable(){
         /*资源位节点*/
         var imgnode = document.createElement("div");
         var imgid = 'zy_'+ (index + 1) + '_' + item.img.w + '_' + item.img.h;
+        zyAllId.push(imgid)
         setImgLayout(imgnode,imgid,item.img)
         /*资源位配置节点*/
         var setnode = document.createElement("div");
@@ -62,7 +70,8 @@ function addZYtable(){
 
         imgViewBox.appendChild(imgnode);
         //console.log(imgnode)
-    })
+    });
+    cloneImg();
 }
 
  function setImgLayout(node,imgid,imgInfo){
@@ -110,10 +119,26 @@ function addZYtable(){
     
     var titleNode = '',sectitleNode = '';
     if (info[0] == 1) {
-        titleNode = `<div id="` + imgid +`-title" style="font-size:` + fontsizes[2] + `px;" data-title="0">` + userImgData.main.title[0].replace('，','<br>') +`</div>`;
+        titleNode = `<div 
+        id="` + imgid +`-title" 
+        style="font-size:` + fontsizes[2] + `px; 
+        color:` + userImgData.style.title.color + `;
+        font-family:'` + userImgData.style.title.fontfamily + `';
+        font-weight: 900;" 
+        data-title="0">`
+         + userImgData.main.title[0].replace('，','<br>') +
+        `</div>`;
     }
     if (info[1] == 1) {
-        sectitleNode = `<div id="` + imgid +`-sectitle" style="font-size: ` + fontsizes[1] + `px;" data-sectitle="0">` + userImgData.main.sectitle[0].replace('，','<br>') +`</div>`;
+        sectitleNode = `<div 
+        id="` + imgid +`-sectitle" 
+        style="font-size: ` + fontsizes[1] + `px; 
+        color:` + userImgData.style.title.color + `;
+        font-family:'` + userImgData.style.sectitle.fontfamily + `';
+        font-weight: 700;" 
+        data-sectitle="0">` 
+        + userImgData.main.sectitle[0].replace('，','<br>') +
+        `</div>`;
     }
     
     node.id = imgid;
@@ -131,8 +156,6 @@ function addZYtable(){
 
 
 }
-
-
 
 function pickImg(key){
     var zys = userImgData.zy;
@@ -179,7 +202,87 @@ function setimgMain(type,value,num){
             item.textContent = value;
         })
     }
+    if(type == 'fontColor-main'){
+        userImgData.style.title.color = value;
+        title1.forEach(item => {
+            item.style.color = value;
+        })
+        title2.forEach(item => {
+            item.style.color = value;
+        })
+    }
+    if(type == 'fontColor-sec'){
+        userImgData.style.sectitle.color = value;
+        sectitle1.forEach(item => {
+            item.style.color = value;
+        })
+        sectitle2.forEach(item => {
+            item.style.color = value;
+        })
+    }
+    if(type == 'fontFamily-main'){
+        userImgData.style.title.fontFamily = value;
+        title1.forEach(item => {
+            item.style.fontFamily = "\'" + value + "\'";
+        })
+        title2.forEach(item => {
+            item.style.fontFamily = "\'" + value + "\'";
+        })
+    }
+    if(type == 'fontFamily-sec'){
+        userImgData.style.sectitle.fontFamily = value;
+        sectitle1.forEach(item => {
+            item.style.fontFamily = "\'" + value + "\'";
+        })
+        sectitle2.forEach(item => {
+            item.style.fontFamily = "\'" + value + "\'";
+        })
+    }
     
+}
+
+
+function cloneImg(){
+    var cloneViews = [cloneImgView1];
+    if(window.getComputedStyle(cloneImgView2).display !== 'none'){
+        cloneViews = [cloneImgView1,cloneImgView2]
+    };
+    if(window.getComputedStyle(cloneImgView3).display !== 'none'){
+        cloneViews = [cloneImgView1,cloneImgView2,cloneImgView3]
+    };
+    if(window.getComputedStyle(cloneImgView4).display !== 'none'){
+        cloneViews = [cloneImgView1,cloneImgView2,cloneImgView3,cloneImgView4]
+    };
+
+    zyAllId.forEach((item,index)=>{
+        var cloneImgViewBoxs = document.createElement('div')
+        cloneImgViewBoxs.style.width = "100%";
+        cloneImgViewBoxs.style.background = "var(--boxGry)";
+        cloneImgViewBoxs.className = 'df-ffc';
+        
+        //console.log(window.getComputedStyle(document.getElementById(item)).width)
+        var cloneImg = document.getElementById(item).cloneNode(true);
+        if(cloneImg.id){
+            cloneImg.id = cloneImg.id + '-clone';
+        }
+        cloneImg.style.display = 'flex';
+        //console.log((modelData.offsetWidth - 30)/cloneViews.length)
+        var imgW = (modelData.offsetWidth - 30)/cloneViews.length;
+        cloneImg.style.transform = 'scale(' + imgW/window.getComputedStyle(document.getElementById(item)).width.split('px')[0] + ')';
+        var imgViewBox = document.createElement('div');
+        imgViewBox.className = 'df cc ovh';
+        imgViewBox.style.width =  imgW + "px";
+        imgViewBox.style.height = window.getComputedStyle(document.getElementById(item)).height.split('px')[0] * imgW/window.getComputedStyle(document.getElementById(item)).width.split('px')[0] + 'px';
+        imgViewBox.appendChild(cloneImg);
+        
+        cloneImgViewBoxs.appendChild(imgViewBox);
+        cloneImgViewBoxs.innerHTML += `<div>` + zyAllname[index] +` </div>`;
+        cloneViews[index%cloneViews.length].innerHTML = '';
+        cloneViews[index%cloneViews.length].appendChild(cloneImgViewBoxs);
+    })
+
+    
+
 }
 
 //导出

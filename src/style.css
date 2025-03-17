@@ -72,6 +72,11 @@ body::-webkit-scrollbar,
     display: flex;
     flex-flow: column;
 }
+.df-grid{
+    display: grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr)) ;
+    grid-gap: 10px;
+}
 .cc{
     display: flex;
     justify-content: center;
@@ -232,6 +237,7 @@ option {
     -webkit-user-drag: none;
     pointer-events: none;
     text-align: center;
+    flex: 0 0 auto;
 }
 
 .model-box{
@@ -768,7 +774,7 @@ input[type="checkbox"]:checked+.show {
     justify-content: center;
     align-items: center;
     padding: 2px 8px;
-    z-index: 20;
+    z-index: 1000;
     animation: boxUp 0.3s ease-out;
 }
 .tips-all .tips-box{
@@ -1019,6 +1025,10 @@ input[type="checkbox"]:checked + .chk-round{
     transform: rotate(-90deg);
 }
 
+#cloneImg-view-4,#cloneImg-view-3,#cloneImg-view-2{
+    display: none;
+}
+
 .loadding{
     animation: load 1s;
 }
@@ -1111,6 +1121,7 @@ input[type="checkbox"]:checked + .chk-round{
         padding: 14px;
     }
     
+    
 }
 @media (max-width:750px){
     :root{
@@ -1195,13 +1206,16 @@ input[type="checkbox"]:checked + .chk-round{
         transform: rotate(0deg);
         transform-origin: left bottom;
     }
-    /*
-    #imgView-size,#imgView-info{
-        display: none;
-    }
-        */
     
 }
+
+@media (min-width:800px) {
+    #cloneImg-view-2{
+        display: flex;
+    }
+}
+
+
 @media (max-width:900px){
     
     #TV-move{
@@ -1215,6 +1229,18 @@ input[type="checkbox"]:checked + .chk-round{
     }
 }
 
+@media (min-width:1100px) {
+    #cloneImg-view-3{
+        display: flex
+    }
+}
+
+@media (min-width:1500px) {
+    #cloneImg-view-4{
+        display: flex;
+    }
+}
+
 @media (min-width:1100px){
     .tags-exports .list {
         display: flex;
@@ -1224,5 +1250,6 @@ input[type="checkbox"]:checked + .chk-round{
     .export-tips{
         flex-flow: nowrap;
     }
+    
 
 }

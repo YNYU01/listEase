@@ -15,9 +15,60 @@
     src: url('https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@9a80a07c7439b840a578718c882cc69d6bc44de6/fonts/%E6%B1%89%E4%BB%AA%E5%B0%8F%E9%9A%B6%E4%B9%A6.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'SourceHanSerifCN';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/source-file/otf/SourceHanSerifCN-Heavy.otf') format('opentype');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'SourceHanSerifCN';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSerifCN-Bold.otf') format('opentype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'SourceHanSerifCN';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSerifCN-Medium-Min.otf') format('opentype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'SourceHanSerifCN';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSerifCN-Regular-Min.otf') format('opentype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'SourceHanSansSC';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/source-file/ttf/SourceHanSansSC-Heavy.ttf') format('truetype');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'SourceHanSansSC';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSansSC-Bold-Min.ttf') format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'SourceHanSansSC';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSansSC-Medium-Min.ttf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'SourceHanSansSC';
+    src: url('https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/min-output/SourceHanSansSC-Normal-Min.ttf') format('truetype');
+    font-weight: 400;
+}
+
 .noto-serif-sc {
     font-family: "Noto Serif SC", serif;
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
 }
+
+/*
+font-family: source-han-sans-simplified-c, sans-serif;
+font-weight: 900;
+font-style: normal;
+
+font-family: source-han-serif-cn-subset, sans-serif;
+font-weight: 900;
+font-style: normal;
+*/

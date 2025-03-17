@@ -227,7 +227,7 @@ const userImgData = {
     main:{/*全局配置项*/
         title:["主要标题文案","备用标题文案"],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
         sectitle:["主要副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
-        game:["测试",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+        game:["--",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         bg:{/*图层*/
             bg_bg:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
@@ -274,21 +274,21 @@ const userImgData = {
     style:{
         title:{/*默认样式*/
             type:"COLOR",/* COLOR | COMPONENT */
-            color:"#fff",
-            fontfamily:"",
+            color:"var(--mainColor)",
+            fontfamily:"SourceHanSansSC",
             async:"",
         },
         sectitle:{/*默认样式*/
             type:"COLOR",/* COLOR | COMPONENT */
-            color:"#fff",
-            fontfamily:"",
+            color:"var(--mainColor)",
+            fontfamily:"SourceHanSansSC",
             async:"",
         },
     },
     zy:[/*有哪些资源位*/
         {
-            img:{name:"KV",w:1920,h:1080,s:"",type:"jpg",d:0.6,view:false,info:[1,1,1,1,0],safa:[]},
-            channel:["通用",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+            img:{name:"KV-示例",w:1920,h:1080,s:"",type:"jpg",d:0.6,view:false,info:[1,1,1,1,0],safa:[]},
+            channel:["--",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
             set:{
                 titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
                 gift:0,/*奖励数量，0则隐藏*/

@@ -95,8 +95,8 @@ window.onload = ()=>{
 window.onresize = ()=>{
     moDautoZoom();
     isMobile();
-    appendImg();
     if(window.getComputedStyle(modelView).display !== 'none'){
+        appendImg();
         imgAutoScale()
     }
     

@@ -256,6 +256,7 @@ function addZYtable(){
     if (info[0] == 1) {
         titleNode = `<div 
         style="font-size:` + fontsizes[2] + `px; 
+        line-hight:` + fontsizes[2] + `px; 
         color:` + userImgData.style.title.color + `;
         font-family:'` + userImgData.style.title.fontfamily + `';
         font-weight: 900;" 
@@ -375,7 +376,7 @@ function addZYtable(){
     node.className = 'ovh pos-r zySSS';
 
     node.innerHTML = `
-    <div id="`+ imgid +`-info" class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
+    <div class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
     `+ titleNode + sectitleNode + giftNode +`
     </div>
     <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
@@ -478,7 +479,7 @@ function cloneImgs(){
         cloneImg.style.display = 'flex';
         var scale = 200/cloneImg.id.split('_')[2];
         cloneImg.style.transform = 'scale(' + scale + ')';//先统一缩小到宽度为200
-        cloneImg.style.transition = 'transform 0.5s'
+        cloneImg.style.transition = 'transform 0.5s';
         zyClones.push({node:cloneImg,width:cloneImg.id.split('_')[2],height:cloneImg.id.split('_')[3].split('-')[0],scale:scale,name:zyAllname[index],type:userImgData.zy[index].img.type})
     })
     //zyClones = zyClones.sort((a, b) => b.width - a.width).sort((a, b) => b.width * b.height - a.width * a.height);

@@ -258,6 +258,7 @@ option {
     align-items: center;
     width: 100%;
     height: calc(100% - 40px);
+    top:0;
     background-color: var(--boxGry);
 }
 

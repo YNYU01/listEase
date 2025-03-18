@@ -1,10 +1,21 @@
+/*
+- [云即·资源助手]
+- ©版权所有：2024-2025 YNYU @lvynyu2.gmail.com
+- 禁止未授权的商用及二次编辑
+- 禁止用于违法行为，如有，与作者无关
+- 二次编辑需将引用部分开源
+- 引用开源库的部分应遵循对应许可
+- 使用当前代码时禁止删除或修改本声明
+*/
+
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
 info的值分别对应[主标题，副标题，奖励图，LOGO，按钮]，1表示允许，0表示不允许；
 s的值要带k,作为string传入；
 safa记录安全区数据，每组数据对应[x,y,w,h,noInfo],其中noInfo既非文字安全区，用1表示，正常的文字安全区该值可为空；
-每个渠道配备一个用户自定义尺寸集，用渠道加_user区分，首次生成需用户保存预设，也支持手动导入预设
+每个渠道配备一个用户预设，用渠道加_user区分，首次生成需用户保存预设，也支持手动导入预设；
+允许添加用户自定义尺寸集，首次生成需用户保存设置，也支持手动导入；
  */
 const 大神 = [
     {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
@@ -296,3 +307,28 @@ const userImgData = {
         },
     ],
 }
+
+const userZy = [
+    {
+        name:"预设1",
+        group:{
+            channel:"大神",
+            zy:[
+                {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+                {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[]},
+                {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,1,1,0],safa:[]},
+                {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
+                {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
+                {name:"负一屏-预约banner",w:969,h:228,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
+                {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
+                {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+                {name:"内容流-双图",w:335,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
+                {name:"内容流-单图",w:690,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
+                {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
+                {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
+                {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+            ]
+        }
+    }
+    
+]

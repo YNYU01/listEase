@@ -1,10 +1,11 @@
 <!--
-- [提单助手]
+- [云即·资源助手]
 - ©版权所有：2024-2025 YNYU @lvynyu2.gmail.com
 - 禁止未授权的商用及二次编辑
 - 禁止用于违法行为，如有，与作者无关
 - 二次编辑需将引用部分开源
 - 引用开源库的部分应遵循对应许可
+- 使用当前代码时禁止删除或修改本声明
 -->
 <html lang="zh">
 <head>
@@ -16,6 +17,13 @@
     <!--数据-->
     <script src="src/zy_data.js"></script>
     <script src="src/md_data.js"></script>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/source-file/ttf/SourceHanSansSC-Heavy.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/SourceHanSansCN-TTF-Min@fc209d1b81aafdd218d5adb83edad7a09e6105ab/source-file/otf/SourceHanSerifCN-Heavy.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@9a80a07c7439b840a578718c882cc69d6bc44de6/fonts/%E6%96%B9%E6%AD%A3%E7%B2%97%E9%87%91%E9%99%B5.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@9a80a07c7439b840a578718c882cc69d6bc44de6/fonts/%E6%96%B9%E6%AD%A3%E7%B2%97%E9%9B%85%E5%AE%8B.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@9a80a07c7439b840a578718c882cc69d6bc44de6/fonts/%E6%96%B9%E6%AD%A3%E7%9B%9B%E4%B8%96%E6%A5%B7%E4%B9%A6.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@9a80a07c7439b840a578718c882cc69d6bc44de6/fonts/%E6%B1%89%E4%BB%AA%E5%B0%8F%E9%9A%B6%E4%B9%A6.ttf" as="font" type="font/ttf" crossorigin>
+    
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/font.css">
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/YNYU01/listEase@c3e9f7dd256280ce4d7e531a7e65f1001ccdb1d4/img/Icon-ListEase_200-6.png" type="image/png">
@@ -224,7 +232,7 @@
                 </div>
                 <textarea id="export-info" placeholder="选择渠道和资源位后，将在此处输出标准格式，可用于规范提单和模板生成"  
                 class="input-textarea noscrollbar" 
-                style="width: 100%; height: 100%;min-height: var(--mh,200px);max-height: 100%; resize: none;"></textarea>
+                style="width: 100%; height: 100%;min-height: var(--mh,200px);max-height: 100%; resize: none; "></textarea>
             </div>
         </div>
         <div class="page-box" >
@@ -322,7 +330,7 @@
                     <div id="styleLinkAndNew" style="display: flex; gap: 8px; align-items: center;">
                         <input type="checkbox" checked="true" style="display: none;" id="editor-data" 
                         onchange="onlyTab(this,this.parentNode,true);
-                        changeDisplay([['model-flow','none'],['model-data','flex'],['model-view','none']]);">
+                        changeDisplay([['model-flow','none'],['model-data','flex'],['model-view','none']]);moDautoZoom();">
                         <label class="btn-editor" for="editor-data">
                             <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
                             </div>
@@ -344,7 +352,7 @@
 
                         <input type="checkbox" style="display: none;" id="editor-view" 
                         onchange="onlyTab(this,this.parentNode,true);
-                        changeDisplay([['model-flow','none'],['model-data','none'],['model-view','block']]);">
+                        changeDisplay([['model-flow','none'],['model-data','none'],['model-view','block']]);imgAutoScale()">
                         <label class="btn-editor" for="editor-view">
                             <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
                             </div>
@@ -696,6 +704,7 @@
     var styleValue2 = Object.values(darkTheme);//主题色色值
     var AItoKeysArea;
     var modelPick = null;
+    var tipsTime = [];//记录有限次数提示
 
     const moDside = document.getElementById("moDside");
     const moDsideArea = document.getElementById("moDside-area");
@@ -706,16 +715,7 @@
     const imgViewSlider = document.getElementById("slider-imgView");
     const zoomNum = document.getElementById("zoom-num");
     
-    //交互参数
-    var isDragging = false;//拖拽画布
-    var clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
-    var touchXY = 0,touchScale = 1,touchSS = 1;
-    var zoom = 40;//缩放比例
-    var viewport = {
-        x:0,
-        y:0,
-        center:[0,0],
-    }//画布参数
+
 
     window.onload = ()=>{
         if(localStorage.getItem('userTheme') == 'light'){
@@ -751,15 +751,20 @@
         }
         localStorage.setItem('userTime',M + ',' + N + ',' + HHMMSS); 
         
-        addModelList(models);
+        addModelList();
         addFlowEditor();
         isMobile(true)
         moDautoZoom(); 
     }
 
     window.onresize = ()=>{
-        moDautoZoom()
-        isMobile()
+        moDautoZoom();
+        isMobile();
+        appendImg();
+        if(window.getComputedStyle(modelView).display !== 'none'){
+            imgAutoScale()
+        }
+        
     }
 
     window.onbeforeunload = ()=>{
@@ -921,61 +926,8 @@
             TVMove.style.animation = "none"
         }
     }
-    function addList(e){
-
-        var select = '<option value="选择渠道" disabled selected>选择渠道</option>'; 
-        Object.keys(sheet).forEach(item => {
-            if ( item == '大神' /*|| item == 'CC' || item == 'DD'*/){
-                select += '<option style="color:var(--keysLiColor)" value="' + item + '">' + item + '</option>'
-            } else {
-                if( item.split("_").length > 1){
-                    select += '<option value="' + item.replace("_","") + '">' + item.replace("_","") + '</option>'
-                } else {
-                    select += '<option value="' + item + '">' + item + '</option>'
-                }
-            }
-            
-        })
-
-        var selectImg = '<option value="选择资源位" disabled selected>选择资源位</option>'; 
-
-        allKey[e] = '';
-        allImg[e] = '';
-        
-        var node = document.createElement('div');
-        node.id = "exports-" + e;
-        node.className = "tags-exports";
-        node.innerHTML = `
-            <div class="list">
-                <div class="set" style="width: 60ch;">
-                    <div style="display: flex; gap:4px">
-                        <div id="add-`+ e +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addList(`+ (e + 1) +`);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';"><btn-add></btn-add></div>
-                        <div id="close-`+ e +`" class="btn-text" style="width: 17px; height: 17px;" onclick="closeList(`+ e +`);reImgInfo(`+ e +`,0,null);reClick('key',`+ (e - 1) +`);"><btn-close></btn-close></div>
-                    </div>
-                    <select id="select-area-`+ e +`" class="input-btn-skill" name="渠道" style=" width: 26ch; min-width: 20ch; color: var(--mainColor); font-size: 12px;" 
-                    onchange="reSelectImg(`+ e +`,this.value);reImgInfo(`+ e +`,0,null);reKeysInfo(`+ e +`,this.value);">
-                    ` + select +`
-                    </select>
-                </div>
-                <div class="group" id="imgs-`+ e +`" style="max-width: 500px;">
-                    <div class="set" id="img-`+ e +`-0" >
-                        <div style="display: flex; gap:4px">
-                            <div id="add-`+ e +`-0" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,1,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none'; reImgInfo(`+ e +`,1,document.getElementById('select-img-`+ e +`-1').value)"><btn-add></btn-add></div>
-                            <div id="close-`+ e +`-0" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none;"><btn-close></btn-close></div>
-                        </div>
-                        <select id="select-img-`+ e +`-0" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px;" 
-                        onchange="reImgInfo(`+ e +`,0,this.value)">
-                        ` + selectImg +`
-                        </select>
-                    </div>
-                </div>
-            </div>
-            </div>
-        `
-
-        document.getElementById("page-main-1").appendChild(node);
-        toView("exports-" + e ,"page-main-1")
-    }
+    
+    
 
     function toView(id,boxId){
         var node = document.getElementById(id);
@@ -998,256 +950,6 @@
         
     }
 
-
-    function closeList(e){
-        document.getElementById("exports-" + e).remove()
-    }
-
-    function addOption(type,list,key){
-        if (!Array.isArray(list)){
-            var option = document.createElement('option');
-            option.disabled = true;
-            option.selected = true;
-            option.value = '选择渠道';
-            option.innerHTML = '选择渠道';
-            document.getElementById(type + key).appendChild(option)
-            Object.keys(list).forEach(item => {
-                var option = document.createElement('option');
-                if ( item == '大神' /* || item == 'CC' || item == 'DD'*/){
-                    option.value = item;
-                    option.innerHTML = item;
-                    option.style.color = "var(--keysLiColor)";
-                    //option.style.color = "#ffffff88";
-                    //option.style.backgroundColor = "var(--keysLiColor)";
-                } else {
-                    if( item.split("_").length > 1){
-                        option.value = item.replace("_","");
-                        option.innerHTML = item.replace("_","");
-                    } else {
-                        option.value = item;
-                        option.innerHTML = item;
-                    }
-                }
-                document.getElementById(type + key).appendChild(option)
-            })
-        } else {
-            var option = document.createElement('option');
-            option.disabled = true;
-            option.selected = true;
-            option.value = '选择资源位';
-            option.innerHTML = '选择资源位';
-            document.getElementById(type + key).appendChild(option);
-            list.forEach(item => {
-                var option = document.createElement('option');
-                option.value = item.name;
-                option.innerHTML = item.name;
-                document.getElementById(type + key).appendChild(option)
-            })
-        
-        }
-        
-    }
-
-    function reSelectImg(e,key){
-        document.getElementById("imgs-" + e).innerHTML = ''
-        addImg(e,0,key)
-    }
-
-    function addImg(e,ee,key){
-        //console.log("addimg",e,ee)
-        var selectImg = '<option value="选择资源位" disabled selected>选择资源位</option>'; 
-
-        if ( isNaN(key*1) ){
-            var keys = key
-        } else {
-            var keys = '_' + key;
-        }
-        var names = sheet[keys].map(item => item.name);
-        var garoups = [];
-        names.forEach(item => {
-            var optionKey = '<optgroup label="' + item.split('-')[0] + '">';
-            var optionNor = '<optgroup label="通用">'
-            if(item.split('-').length > 1){
-                if( !garoups.includes(optionKey)){
-                    garoups.push(optionKey)
-                }
-            }else{
-                if(!garoups.includes(optionNor)){
-                    garoups = [optionNor,...garoups]
-                }
-            }
-        })
-
-        //console.log('分组：',garoups)
-        garoups.forEach(optG => {
-            sheet[keys].forEach(item => {
-                var names = item.name  + '&nbsp;&nbsp;' + item.w + '×' + item.h ;
-                if(item.name.split('-').length > 1){
-                    if(optG.split('"')[1] == item.name.split('-')[0]){
-                        optG += '<option value="' + item.name + '">' + names + '</option>'
-                    } 
-                } else {
-                    if (optG.split('"')[1] == '通用') {
-                        optG += '<option value="' + item.name + '">' + names + '</option>'
-                    }
-                }
-            }) 
-            optG += '</optgroup>' ;
-            selectImg += optG
-            //console.log(optG)
-        })
-
-        /*
-        sheet[keys].forEach(item => {
-            selectImg += '<option value="' + item.name + '">' + item.name + '</option>'
-        })
-        */
-
-        allImg[e][ee] = ''
-
-        var node = document.createElement('div');
-        node.id = "img-" + e + "-" + ee;
-        node.className = "set";
-        if (ee == 0){
-            node.innerHTML = `
-            <div style="display: flex; gap:4px">
-                <div id="add-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,`+ (ee + 1) +`,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(`+ e +`,`+ ee +`,document.getElementById('select-img-`+ e +`-`+ (ee + 1) +`').value)"><btn-add></btn-add></div>
-                <div id="close-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px; opacity:0.222; pointer-events: none; "><btn-close></btn-close></div>
-            </div>
-            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
-            onchange="reImgInfo(`+ e +`,`+ ee +`,this.value)">
-            ` + selectImg +`
-            </select>
-        `
-        } else {
-            node.innerHTML = `
-            <div style="display: flex; gap:4px">
-                <div id="add-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick="addImg(`+ e +`,`+ (ee + 1) +`,allKey[`+ e +`]);this.parentNode.style.opacity = 0.222; this.parentNode.style.pointerEvents = 'none';reImgInfo(`+ e +`,`+ ee +`,document.getElementById('select-img-`+ e +`-`+ (ee + 1) +`').value)"><btn-add></btn-add></div>
-                <div id="close-`+ e +`-`+ ee +`" class="btn-text" style="width: 17px; height: 17px;" onclick=" if((this.id.split('-')[2]) !== '0'){closeImg(`+ e +`,`+ ee +`)};reImgInfo(`+ e +`,`+ ee +`,null);reClick('img',`+ e +`,`+ (ee - 1) +`);"><btn-close></btn-close></div>
-            </div>
-            <select id="select-img-`+ e +`-`+ ee +`" class="input-btn-skill" name="资源位" style=" width: calc(100% - 8ch); color: var(--mainColor); font-size: 12px; text-align: left;" 
-            onchange="reImgInfo(`+ e +`,`+ ee +`,this.value)">
-            ` + selectImg +`
-            </select>
-        `
-        }
-        
-
-        document.getElementById("imgs-" + e).appendChild(node);
-        toView("img-" + e + "-" + ee,"page-main-1")
-    }
-
-    function closeImg(e,ee){
-        document.getElementById("img-" + e + "-" + ee).remove()
-    }
-
-    
-    function reImgInfo(e,ee,name){
-        //console.log('reImgInfo',name);
-        //console.log(e,ee,name);
-        if (name !== '选择资源位'){
-            if (name){
-                allImg[e][ee] = name
-                ///console.log(666,name);
-                reExportInfo()
-            } else {
-                //console.log('reImgInfo','删除');
-                allImg[e][ee] = ''
-                //console.log(777);
-                reExportInfo()
-            }
-        }   
-    }
-
-    function reKeysInfo(e,key){
-        //console.log('reKeysInfo');
-        if ( key !== '选择渠道'){
-            allKey[e] = key;
-            allImg[e] = [];
-            if ( isNaN(key*1) ){
-                var keys = key
-            } else {
-                var keys = '_' + key;
-            }
-            //console.log(keys)
-            allImg[e][0] = '';
-            //console.log(allKey,allImg);
-            reExportInfo()
-        }
-        
-
-    }
-
-    function reExportInfo(){
-        //console.log('reExportInfo')
-        var start = "name\tw\th\ts\ttype\n";
-        var exports = '';
-        exportAllname = 'KV+\n';
-        var exportAllchannel = [];
-        var numD = 0,numImg = 0,numView = 0;
-        var nameStep = [];
-        var nameIndex = 0,namess = '';
-        userImgData.zy = [];
-        for(var i = 0; i < allKey.length; i ++){
-            
-            for(var ii = 0; ii < allImg[i].length; ii++){
-                
-                if(allImg[i][ii] && allImg[i][ii].length > 0){
-                    var img = sheet[allKey[i]].find(item => item.name == allImg[i][ii]);
-                    namess = img.name;
-                    if(nameStep.includes(allKey[i] + "/" + img.name)){
-                        nameIndex++;
-                        namess = img.name + nameIndex;
-                    }
-                    if(!exportAllchannel.includes(allKey[i])){
-                        exportAllchannel.push(allKey[i])
-                        exportAllname += allKey[i] + '-资源位：' + '\n';
-                    }
-                    exports += allKey[i] + "/" + namess + '\t' + img.w + '\t' + img.h + '\t' + img.s + '\t' + img.type + '\n';  
-                    exportAllname += namess + ' ' + img.w + '×' + img.h + '\n';
-                    nameStep.push(allKey[i] + "/" + img.name);
-                    numD += img.d * 100;
-                    numImg++;
-                    if(img.view){
-                        numView++
-                    } 
-                    userImgData.zy.push({
-                        img:img,
-                        channel:[allKey[i],0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-                        set:{
-                            titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
-                            gift:0,/*奖励数量，0则隐藏*/
-                        },
-                    })
-                }
-                
-                
-            }
-        }
-        document.getElementById("export-info").value = start + exports;
-        if (exports){
-            document.getElementById('btn-copy').style.display = 'flex';
-            document.getElementById('btn-copy-info').style.display = 'flex';
-            document.getElementById('to-model').style.display = 'flex';
-        }
-        document.getElementById("num-img").innerHTML = numImg;
-        document.getElementById("num-view").innerHTML = numView;
-        document.getElementById("num-all").innerHTML = (numView*1 + numImg*1);
-        document.getElementById("num-d").innerHTML = numD/100 + "d";
-        exportAllInfo = exportAllname + "延展合计：" + (numView*1 + numImg*1) + "\n预估人天：" + (numD + 60)/100 + "d";
-        
-    }
-
-    function reClick(type,e,ee){
-        if (type == 'img'){
-            document.getElementById("add-" + e + "-" + ee).parentNode.style.opacity = 1;
-            document.getElementById("add-" + e + "-" + ee).parentNode.style.pointerEvents = 'auto'
-        }
-        if (type == 'key'){
-            document.getElementById("add-" + e).parentNode.style.opacity = 1;
-            document.getElementById("add-" + e).parentNode.style.pointerEvents = 'auto'
-        }
-    }
 
     
     function AItoKeys(input){
@@ -1287,8 +989,8 @@
             
         } 
     }
-    var tipsTime = [];
-
+    
+    //全局提示
     function tipsAll(string,time,num){
         var tips = document.getElementById('tips-all');
         var text = document.getElementById('tips-box');
@@ -1330,74 +1032,11 @@
 
         
     }
-
-    function addModelList(list){
-        list.forEach((value,index)=> {
-            var setimg = "";
-            if(value.img){
-                setimg = `<img class="pos-a-cc model-img"  height="60%"  src="` + value.img + `" />`;
-            }
-            var node = document.createElement('div')
-            node.className = "model-info"
-            node.innerHTML = `
-            <input type="checkbox" id="model-pick-` + index + `" style="display: none;" 
-            onchange="
-            if(this.checked){
-            onlyTab(this,this.parentNode.parentNode);
-            modelPick = ` + index + ` ;
-            }else{
-            }"/>
-            <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
-                `+ setimg +`
-                <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info); border-top: 1px solid var(--boxBod); ">`+ value.name +`</div>
-                <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + index + `</div>
-            </label>`;
-            modelList.appendChild(node);
-        })
-        var node = document.createElement('div');
-        node.className = "model-info-tips cc";
-        node.innerHTML = `<div style="opacity:0.5;">更多需要</div><div style="opacity:0.5;">请联系定制~<div>`;
-        modelList.appendChild(node);
-    }
-
-    //展开配置项
-    function moDshowSet(){
-        if(moDshowSetBtn.checked){
-            modelTable.style.display = 'flex';
-            moDsideArea.style.display = 'flex';
-            moDside.style.overflow = 'hidden';
-            moDside.className = 'df-ffc moDside ovh';
-            imgViewInfo.style.top = '10px';
-        }else{
-            modelTable.style.display = 'none';
-            moDside.style.overflow = 'visible';
-            moDsideArea.style.display = 'none';
-            moDside.className = 'df-ffc moDside-float ovh';
-            imgView.style.width = '100%';
-            imgViewInfo.style.top = '60px';
-        };
-    }
-    //自动缩放
-    function moDautoZoom(){
-        var size1 = imgView.offsetWidth/(imgViewBox.offsetWidth + 200);
-        var size2 = imgView.offsetHeight/(imgViewBox.offsetHeight + 200);
-        var size = size1 > size2 ? size2 : size1
-        imgViewSlider.value = size*100;
-        imgViewBox.style.transformOrigin = '50% 50%';
-        imgViewBox.style.transform = 'scale('+ size +')';
-        imgViewBox.parentNode.style.transform = 'translate(0,0)'
-        reZoom();
-        isDragging = false;
-        clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
-    }
-    function reZoom() {
-        zoomNum.innerHTML = imgViewSlider.value + '%';
-        zoom = imgViewSlider.value;
-    }
-
+    //获取输入字符的长度
     function getTextNum(e){
         document.getElementById(e.id + '-num').textContent = e.value.trim().length;
     }
+    //设置输入为空时的默认值
     function setTextMust(e,text){
         e.value.trim() === ''? e.value = text : ()=>{};
         getTextNum(e);
@@ -1512,8 +1151,6 @@
             document.getElementById(item[0]).style.display = item[1]
         })
     }
-
-    
 
     
     // 监听整个文档的点击事件

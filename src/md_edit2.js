@@ -1,18 +1,103 @@
-const modelFlow = document.getElementById('model-flow');
-const modelList = document.getElementById('model-list');
-const modelView = document.getElementById('model-view');
+/*
+- [云即·资源助手]
+- ©版权所有：2024-2025 YNYU @lvynyu2.gmail.com
+- 禁止未授权的商用及二次编辑
+- 禁止用于违法行为，如有，与作者无关
+- 二次编辑需将引用部分开源
+- 引用开源库的部分应遵循对应许可
+- 使用当前代码时禁止删除或修改本声明
+*/
+
+const modelFlow = document.getElementById('model-flow');//节点模式的窗口
+const modelList = document.getElementById('model-list');//编辑模式的窗口
+const modelView = document.getElementById('model-view');//预览模式的窗口
 const modelData = document.getElementById('model-data');
 const modelMain = document.getElementById('model-main');
 const modelTable = document.getElementById('model-table');
 const selectZY = document.getElementById('select-zy');
-const cloneImgView1 = document.getElementById('cloneImg-view-1');
+const cloneImgView1 = document.getElementById('cloneImg-view-1');//克隆所选资源生成的node到预览界面
 const cloneImgView2 = document.getElementById('cloneImg-view-2');
 const cloneImgView3 = document.getElementById('cloneImg-view-3');
 const cloneImgView4 = document.getElementById('cloneImg-view-4');
-var exportAllname = '';
-var zyAllname = [];
-var zyAllId = [];
-var zyClones = []
+var exportAllname = '';//提单信息中的资源名汇总，格式应该为：KV+ XXX资源位：资源名称(+重复编号) 宽×高
+var zyAllname = [];//所选资源生成的node所对应的名称，格式应该为:资源名称(+重复编号) 宽×高
+var zyAllId = [];//所选资源生成的node所对应的ID，格式应该为:zy_序号_宽_高
+var zyClones = [];
+
+//交互参数
+var isDragging = false;//拖拽画布
+var clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+var touchXY = 0,touchScale = 1,touchSS = 1;
+var zoom = 40;//缩放比例
+var viewport = {
+    x:0,
+    y:0,
+    center:[0,0],
+}//画布参数
+
+//展开配置项
+function moDshowSet(){
+    if(moDshowSetBtn.checked){
+        modelTable.style.display = 'flex';
+        moDsideArea.style.display = 'flex';
+        moDside.style.overflow = 'hidden';
+        moDside.className = 'df-ffc moDside ovh';
+        imgViewInfo.style.top = '10px';
+    }else{
+        modelTable.style.display = 'none';
+        moDside.style.overflow = 'visible';
+        moDsideArea.style.display = 'none';
+        moDside.className = 'df-ffc moDside-float ovh';
+        imgView.style.width = '100%';
+        imgViewInfo.style.top = '60px';
+    };
+}
+//自动缩放
+function moDautoZoom(){
+    var size1 = imgView.offsetWidth/(imgViewBox.offsetWidth + 200);
+    var size2 = imgView.offsetHeight/(imgViewBox.offsetHeight + 200);
+    var size = size1 > size2 ? size2 : size1
+    imgViewSlider.value = size*100;
+    imgViewBox.style.transformOrigin = '50% 50%';
+    imgViewBox.style.transform = 'scale('+ size +')';
+    imgViewBox.parentNode.style.transform = 'translate(0,0)'
+    reZoom();
+    isDragging = false;
+    clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
+}
+function reZoom() {
+    zoomNum.innerHTML = imgViewSlider.value + '%';
+    zoom = imgViewSlider.value;
+}
+
+function addModelList(){
+    models.forEach((value,index)=> {
+        var setimg = "";
+        if(value.img){
+            setimg = `<img class="pos-a-cc model-img"  height="60%"  src="` + value.img + `" />`;
+        }
+        var node = document.createElement('div')
+        node.className = "model-info"
+        node.innerHTML = `
+        <input type="checkbox" id="model-pick-` + index + `" style="display: none;" 
+        onchange="
+        if(this.checked){
+        onlyTab(this,this.parentNode.parentNode);
+        modelPick = ` + index + ` ;
+        }else{
+        }"/>
+        <label class="model-pick"  for="model-pick-` + index + `" style="position: relative;">
+            `+ setimg +`
+            <div style="position: absolute; bottom:0; background:var(--boxBak); width:100%; height:30px; display:flex; justify-content: center;align-items: center; border-radius:0 0 8px 8px; opacity:var(--model-info); border-top: 1px solid var(--boxBod); ">`+ value.name +`</div>
+            <div style="width:100%; height:100%; box-sizing: border-box; background:var(--model-img); border-radius: 8px; border:var(--model-b); padding:4px " >` + index + `</div>
+        </label>`;
+        modelList.appendChild(node);
+    })
+    var node = document.createElement('div');
+    node.className = "model-info-tips cc";
+    node.innerHTML = `<div style="opacity:0.5;">更多需要</div><div style="opacity:0.5;">请联系定制~<div>`;
+    modelList.appendChild(node);
+}
 
 function addZYtable(){
     imgViewBox.innerHTML = '';
@@ -73,6 +158,10 @@ function addZYtable(){
         //console.log(imgnode)
     });
     cloneImgs();
+    appendImg();
+    if(window.getComputedStyle(modelView).display !== 'none'){
+        imgAutoScale()
+    }
 }
 
  function setImgLayout(node,imgid,imgInfo){
@@ -89,7 +178,7 @@ function addZYtable(){
         var findW = userImgData.public.framesize.ww.map(item => Math.abs(hh - item) )
         findW.forEach((item,index) => {
             if(item == Math.min(...findW)){
-                console.log(ww,hh,findW,userImgData.public.fontsize[index])
+                //console.log(ww,hh,findW,userImgData.public.fontsize[index])
                 if((index - 1) < 0){
                     fontsizes =  userImgData.public.fontsize[0]
                 }else {
@@ -103,7 +192,7 @@ function addZYtable(){
         
         findH.forEach((item,index) => {
             if(item == Math.min(...findH)){
-                console.log(ww,hh,findH,userImgData.public.fontsize[index])
+                //console.log(ww,hh,findH,userImgData.public.fontsize[index])
                 if((index - 1) < 0){
                     fontsizes =  userImgData.public.fontsize[0]
                 } else {
@@ -152,7 +241,7 @@ function addZYtable(){
     <div class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
     `+ titleNode + sectitleNode +`
     </div>
-    <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
+    <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
     `
 
 
@@ -244,45 +333,19 @@ function setimgMain(type,value,num){
 
 
 function cloneImgs(){
-    
-    //console.log();
-    /*
-    zyAllId.forEach((item,index)=>{
-        var cloneImgViewBoxs = document.createElement('div')
-        cloneImgViewBoxs.style.width = "100%";
-        cloneImgViewBoxs.style.background = "var(--boxGry)";
-        cloneImgViewBoxs.className = 'df-ffc';
-        
-        //console.log(window.getComputedStyle(document.getElementById(item)).width)
-        var cloneImg = document.getElementById(item).cloneNode(true);
-        if(cloneImg.id){
-            cloneImg.id = cloneImg.id + '-clone';
-        }
-        cloneImg.style.display = 'flex';
-        //console.log((modelData.offsetWidth - 30)/cloneViews.length)
-        //var imgW = (modelData.offsetWidth - 30)/cloneViews.length;
-        //cloneImg.style.transform = 'scale(' + imgW/window.getComputedStyle(document.getElementById(item)).width.split('px')[0] + ')';
-        var imgViewBox = document.createElement('div');
-        imgViewBox.className = 'df cc ovh';
-        imgViewBox.style.width =  imgW + "px";
-        imgViewBox.style.height = window.getComputedStyle(document.getElementById(item)).height.split('px')[0] * imgW/window.getComputedStyle(document.getElementById(item)).width.split('px')[0] + 'px';
-        imgViewBox.appendChild(cloneImg);
-        
-        cloneImgViewBoxs.appendChild(imgViewBox);
-        cloneImgViewBoxs.innerHTML += `<div>` + zyAllname[index] +` </div>`;
-        //cloneViews[index%cloneViews.length].appendChild(cloneImgViewBoxs);
-    })
-        */
-
+    zyClones = []
+    //console.log(zyAllId);
     zyAllId.forEach((item,index)=>{
         var cloneImg = document.getElementById(item).cloneNode(true);
         cloneImg.id = cloneImg.id + '-clone';
         cloneImg.style.display = 'flex';
         var scale = 200/cloneImg.id.split('_')[2];
-        cloneImg.style.transform = 'scale(' + scale + ')';//先统一缩小到宽度为100
-        zyClones.push({node:cloneImg,width:cloneImg.id.split('_')[2],height:cloneImg.id.split('_')[3],scale:scale,name:zyAllname[index],type:userImgData.zy[index].img.type})
+        cloneImg.style.transform = 'scale(' + scale + ')';//先统一缩小到宽度为200
+        cloneImg.style.transition = 'transform 0.5s'
+        zyClones.push({node:cloneImg,width:cloneImg.id.split('_')[2],height:cloneImg.id.split('_')[3].split('-')[0],scale:scale,name:zyAllname[index],type:userImgData.zy[index].img.type})
     })
-    zyClones = zyClones.sort((a, b) => b.width - a.width).sort((a, b) => b.width * b.height - a.width * a.height);
+    //zyClones = zyClones.sort((a, b) => b.width - a.width).sort((a, b) => b.width * b.height - a.width * a.height);
+    //console.log(zyClones)
 }
 
 function appendImg(){
@@ -300,28 +363,29 @@ function appendImg(){
     if(window.getComputedStyle(cloneImgView4).display !== 'none'){
         cloneViews = [cloneImgView1,cloneImgView2,cloneImgView3,cloneImgView4]
     };
-    /*
-    var imgW = (modelData.offsetWidth - 30)/cloneViews.length;//装载预览的容器是动态变化的
-    if(!imgW || imgW == 0){
-        imgW = (modelView.offsetWidth - 30)/cloneViews.length;
-        if(!imgW || imgW == 0){
-            imgW = 200;//保证能有个有效值
-        }
-    }
-    */
+    //console.log(zyAllId,cloneImgView1.innerHTML);
+    var zyClonsBoxs = []
     zyClones.forEach((item,index) => {
         var cloneImgViewBoxs = document.createElement('div')
         cloneImgViewBoxs.style.width = "100%";
-        cloneImgViewBoxs.className = 'df-ffc';
+        cloneImgViewBoxs.className = 'df-ffc cc';
+
         var imgViewBox = document.createElement('div');
         imgViewBox.className = 'df cc ovh';
         imgViewBox.style.width =  "200px";
-        imgViewBox.style.height = item.name.split('×')[1] * scale + 'px';
+        imgViewBox.style.height = item.name.split('×')[1] * item.scale + 'px';
+        imgViewBox.style.flex = '0 0 auto'
+        //console.log(item.name.split('×')[1] * item.scale)
         imgViewBox.appendChild(item.node);
         
         cloneImgViewBoxs.appendChild(imgViewBox);
-        cloneImgViewBoxs.innerHTML += `<div>` + item.name + '.' + item.type +` </div>`;
-        cloneViews[index%cloneViews.length].appendChild(cloneImgViewBoxs);
+        cloneImgViewBoxs.innerHTML += `<div class="wh100 df" style="padding:4px" >` + item.name + '.' + item.type +` </div>`;
+        zyClonsBoxs.push({node:cloneImgViewBoxs,hh:item.name.split('×')[1] * item.scale,})
+        //cloneViews[index%cloneViews.length].appendChild(cloneImgViewBoxs);
+    })
+    zyClonsBoxs = zyClonsBoxs.sort((a, b) => a.hh - b.hh);
+    zyClonsBoxs.forEach((item,index) => {
+        cloneViews[index%cloneViews.length].appendChild(item.node);
     })
 }
 
@@ -329,6 +393,8 @@ function imgAutoScale(){
     zyAllId.forEach((item,index)=>{
         var node = document.getElementById(item + '-clone');
         var scale = node.parentNode.parentNode.offsetWidth/item.split('_')[2];
+        if(scale < 0.2){scale = 0.2};
+        if(scale > 1.5){scale = 1.5}
         node.parentNode.style.width = item.split('_')[2] * scale + 'px';
         node.parentNode.style.height = item.split('_')[3] * scale + 'px';
         node.style.transform = 'scale(' + scale + ')';
@@ -337,24 +403,15 @@ function imgAutoScale(){
 
 //导出
 async function exportAll(){
-    /*
-    imgViewBox.style.transform = 'scale(1)';
-    var zys = userImgData.zy;
-    for(var i = 0; i < zys.length; i++){
-        exportOne(i)
-        if( i == zys.length - 1){
-            setTimeout(()=>{
-                imgViewBox.style.transform = 'scale('+ zoom/100 +')';
-            },1000)
-        }
-    }
-        */
     zyAllId.forEach((item,index)=>{
-        var scale = window.getComputedStyle(document.getElementById(item + '-clone')).transform.split('(')[1].split(')')[0];
-        document.getElementById(item + '-clone').style.transform = 'scale(1)';
+        var node = document.getElementById(item + '-clone');
+        node.parentNode.style.filter = 'blur(10px)';
+        node.parentNode.style.transition = 'filter 0.5s';
+        node.style.transform = 'scale(1)';
         exportOne(index);
         setTimeout(()=>{
-            imgViewBox.style.transform = 'scale('+ scale +')';
+            imgAutoScale();
+            node.parentNode.style.filter = 'blur(0)';
         },1000)
 
     })

@@ -734,7 +734,7 @@
         
         if(localStorage.getItem('userTime')){
             var getUserTime = localStorage.getItem('userTime').split(','); 
-            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 30){
+            if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 600){
                 load.style.display = 'block';
                 setTimeout(() => {
                     viewPage(2);

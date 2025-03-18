@@ -256,7 +256,7 @@ function addZYtable(){
     if (info[0] == 1) {
         titleNode = `<div 
         style="font-size:` + fontsizes[2] + `px; 
-        line-hight:` + fontsizes[2] + `px; 
+        line-height:` + fontsizes[2] + `px; 
         color:` + userImgData.style.title.color + `;
         font-family:'` + userImgData.style.title.fontfamily + `';
         font-weight: 900;" 

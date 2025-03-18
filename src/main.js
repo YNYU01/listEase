@@ -7,8 +7,13 @@ const toolTitle = document.getElementById('tool-title');
 const toolList = document.getElementById('tool-list');
 const btnMain = document.getElementById('btn-main');
 const more = document.getElementById('more');
+const theme = document.getElementById('theme');
+const user = document.getElementById('user')
 const btnTheme = document.getElementById('btn-theme');
 const btnUser = document.getElementById('btn-user');
+const toolList1 = document.getElementById('tool-list-1');
+const toolList2 = document.getElementById('tool-list-2');
+const toolList3 = document.getElementById('tool-list-3');
 
 var lightTheme = {
 "mainColor":"#2b2b2b",
@@ -196,20 +201,34 @@ modelFlow.ontouchmove = ()=>{
     }
 }
 
-modelFlow.ontouchend= ()=>{
+modelFlow.ontouchend = ()=>{
     isDragging = false;
     touchScale = touchSS;
     moveXX = moveX;
     moveYY = moveY;
 }
 
+toolList1.onclick = ()=>{viewPage(1)};
+toolList2.onclick = ()=>{viewPage(2)};
+toolList3.onclick = ()=>{viewPage(3)};
+
+more.onchange = ()=>{
+    if(more.checked){
+        changeDisplay([[btnTheme,'block'],[btnUser,'block']]);
+    } else {
+        changeDisplay([[btnTheme,'none'],[btnUser,'none']]);
+    }
+}
+theme.onchange = ()=>{setTheme(theme)};
+user.onchange = ()=>{}
+
 function setTheme(e){
     if(!e.checked){
-        //console.log('浅色主题')
+        console.log('浅色主题')
         for (var i = 0; i < styleKey.length; i++) {
             root.style.setProperty('--' + styleKey[i], styleValue[i])
         }
-        modelFlow.style.filter = '  brightness(80%) hue-rotate(210deg) invert(1) contrast(130%) saturate(200%) ';
+        modelFlow.style.filter = 'brightness(86%) hue-rotate(180deg) invert(1) contrast(128%) saturate(400%)';
         localStorage.setItem('userTheme','light');
         if(document.getElementById('title-colorBox').value == darkTheme.mainColor ){
             document.getElementById('title-colorBox').value = lightTheme.mainColor;
@@ -220,7 +239,7 @@ function setTheme(e){
             document.getElementById('sectitle-color').value = lightTheme.mainColor;
         }
     } else {
-        //console.log('深色主题')
+        console.log('深色主题')
         for (var i = 0; i < styleKey2.length; i++) {
             root.style.setProperty('--' + styleKey2[i], styleValue2[i])
         }
@@ -474,7 +493,11 @@ function onlyTab(node,parent,isMustOne){
 //批量修改display
 function changeDisplay(array){
     array.forEach(item => {
-        document.getElementById(item[0]).style.display = item[1]
+        if(typeof item[0] == 'string'){
+            document.getElementById(item[0]).style.display = item[1];
+        } else {
+            item[0].style.display = item[1];
+        }
     })
 }
 

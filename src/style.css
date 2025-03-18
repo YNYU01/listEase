@@ -82,6 +82,13 @@ body::-webkit-scrollbar,
     justify-content: center;
     align-items: center;
 }
+
+.cspb{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .ovh{
     overflow: hidden;
 }
@@ -240,6 +247,27 @@ option {
     flex: 0 0 auto;
 }
 
+.downing{
+    position: relative;
+}
+.downing::after{
+    content: '下载中';
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 40px);
+    background-color: var(--boxGry);
+}
+
+.cloneimg{
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--boxBod);
+    box-sizing: border-box;
+}
+
 .model-box{
     width: 180px;
     height: 100%;
@@ -310,6 +338,22 @@ input[type="checkbox"]:checked+.model-pick {
 
 .model-img{
     filter: var(--mod-filter);
+}
+
+.gift-box{
+    background:var(--gift-bg,rgba(0,0,0,0));
+    border: var(--gift-bod,4px) solid var(--boxBod);
+}
+
+.gift-tag{
+    background:var(--gift-tag-bg,rgb(236, 64, 64));
+    border-radius: var(--gift-tag-r,4px);
+    top:0;
+    right:0;
+    /*
+    width: var(--gift-tag-w,40px);
+    height: var(--gift-tag-h,40px);
+    */
 }
 
 .btn-text {
@@ -544,6 +588,11 @@ input[type="checkbox"]:checked+.model-pick {
     border-radius: 20px;
     box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2) inset,0 0 1px  #6e6e6e, 0 2px 0 var(--boxBak);
     padding: 4px;
+    cursor: pointer;
+}
+
+.more{
+    cursor: pointer;
 }
 
 input[type="checkbox"]:checked+.more svg{
@@ -585,6 +634,17 @@ input[type="checkbox"]:checked+.more svg{
 input[type="checkbox"]:checked+.btn-theme {
     --theme-l:var(--mainColor);
     --theme-d:rgba(0,0,0,0);
+}
+
+.btn-user{
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: none;
+    margin-bottom: 2px;
+    border: 2px var(--boxBod) solid;
+    box-sizing: border-box;
 }
 
 .btn-editor{

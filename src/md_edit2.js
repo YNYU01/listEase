@@ -199,6 +199,8 @@ function addZYtable(){
 
  function setImgLayout(node,imgid,imgInfo,imgNum){
     var w = imgInfo.w, h = imgInfo.h, type = imgInfo.type, safa = imgInfo.safa , info = imgInfo.info;
+    if(!info){info = [1,1,0,1,0]};
+    if(!type){type = "jpg"};
     var fontsizes = [0,0,0];
     var ww = w, hh = h
     //console.log(111)
@@ -547,13 +549,13 @@ async function exportAll(){
         node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
         node.style.transform = 'scale(1)';
         exportOne(index);
-        setTimeout(()=>{
-            imgAutoScale();
+        setTimeout(()=>{        
             node.parentNode.style.filter = '';
             node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
         },1000)
 
-    })
+    });
+    imgAutoScale();
 }
 
 async function exportOne(e){

@@ -90,3 +90,52 @@ class btnchange extends HTMLElement {
     }
 }
 customElements.define('btn-change', btnchange);
+
+
+/*---------------自定义节点----------------------*/
+
+//有限字数文案节点
+function limitedString() {
+    this.addOutput("string", "string");
+    this.addProperty("value", "",);//name, default_value,type,extra_info
+    this.widget = this.addWidget("text","Text","","value");  //link to property value
+    this.widgets_up = true;
+    this.size = [180, 30];
+}
+
+limitedString.title = "文案";
+limitedString.desc = "输入带限定字数的文案";
+
+limitedString.prototype.setValue = function(v){this.setProperty("value",v)}
+
+limitedString.prototype.onExecute = function() {
+    this.setOutputData(0, this.properties["value"]);     
+};
+
+LiteGraph.registerNodeType("imginfo/string", limitedString);
+
+
+//基础信息节点
+function ImgInfoMain() {
+    this.addInput("主标题", "string"); // 主标题输入端口
+    this.addInput("副标题", "string"); // 副标题输入端口
+    this.addOutput("输出","string")
+    this.size = [180, 100];
+}
+
+ImgInfoMain.title = "配置项（基础）";
+ImgInfoMain.desc = "接收主标题和副标题信息";
+
+ImgInfoMain.prototype.onExecute = function () {
+    var mainTitle = this.getInputData(0); // 主标题
+    var subTitle = this.getInputData(1); // 副标题
+    this.setOutputData(0,"[" + mainTitle + "," + subTitle + "]") 
+};
+
+ImgInfoMain.prototype.setValue = function(v){this.setProperty("value",v)}
+
+
+LiteGraph.registerNodeType("imginfo/main", ImgInfoMain);
+
+ 
+

@@ -7,6 +7,11 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
+
+var allKey = [];//记录所选择的key，一般就一个，除非是多渠道
+var allImg = [];//记录添加的资源位
+var exportAllInfo = '';//汇总信息
+
 function addList(e){
 
     var select = '<option value="选择渠道" disabled selected>选择渠道</option>'; 

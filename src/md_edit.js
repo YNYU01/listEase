@@ -9,20 +9,30 @@
 */
 
 const modelFlow = document.getElementById('model-flow');//节点模式的窗口
-const modelList = document.getElementById('model-list');//编辑模式的窗口
 const modelView = document.getElementById('model-view');//预览模式的窗口
-const modelData = document.getElementById('model-data');
-const modelMain = document.getElementById('model-main');
-const modelTable = document.getElementById('model-table');
-const selectZY = document.getElementById('select-zy');
-const cloneImgView1 = document.getElementById('cloneImg-view-1');//克隆所选资源生成的node到预览界面
+const modelData = document.getElementById('model-data');//编辑模式的窗口
+const modelList = document.getElementById('model-list');//模板主题列表
+const modelTable = document.getElementById('model-table');//模板配置项
+const selectZY = document.getElementById('select-zy');//模板下单个资源的配置项
+const ediD = document.getElementById('editor-data');//切换为编辑模式的按钮
+const ediF = document.getElementById('editor-flow');//切换为节点模式的按钮
+const ediV = document.getElementById('editor-view');//切换为预览模式的按钮
+const cloneImgView1 = document.getElementById('cloneImg-view-1');//克隆所选资源生成的node到预览界面（仿瀑布流）
 const cloneImgView2 = document.getElementById('cloneImg-view-2');
 const cloneImgView3 = document.getElementById('cloneImg-view-3');
 const cloneImgView4 = document.getElementById('cloneImg-view-4');
+const moDside = document.getElementById("moDside");//模板配置项侧边栏
+const moDsideArea = document.getElementById("moDside-area");//模板配置项侧边栏占位，用于布局
+const moDshowSetBtn = document.getElementById("show-set");//模板配置项侧边栏展开/收起按钮，实际区域为整个顶部
+const imgView = document.getElementById("imgView");//编辑模式下资源展示容器，仅显示选中的资源
+const imgViewBox = document.getElementById("imgView-box");//编辑模式下资源包裹容器，用于裁剪因缩放产生的空白区域
+const imgViewInfo = document.getElementById("imgView-info");//编辑模式下展示资源的主要信息
+const imgViewSlider = document.getElementById("slider-imgView");//控制资源缩放的滑杆
+const zoomNum = document.getElementById("zoom-num");//显示当前缩放大小的容器
 var exportAllname = '';//提单信息中的资源名汇总，格式应该为：KV+ XXX资源位：资源名称(+重复编号) 宽×高
 var zyAllname = [];//所选资源生成的node所对应的名称，格式应该为:资源名称(+重复编号) 宽×高
 var zyAllId = [];//所选资源生成的node所对应的ID，格式应该为:zy_序号_宽_高
-var zyClones = [];
+var zyClones = [];//所选资源生成的node所对应的克隆集合
 
 //交互参数
 var isDragging = false;//拖拽画布
@@ -65,11 +75,12 @@ function moDautoZoom(){
     isDragging = false;
     clickX = 0,clickY = 0,moveX = 0,moveY = 0,moveXX = 0,moveYY = 0;
 }
+//修改窗口展示的缩放数值
 function reZoom() {
     zoomNum.innerHTML = imgViewSlider.value + '%';
     zoom = imgViewSlider.value;
 }
-
+//动态添加模板主题
 function addModelList(){
     models.forEach((value,index)=> {
         var setimg = "";
@@ -99,6 +110,7 @@ function addModelList(){
     modelList.appendChild(node);
 }
 
+//动态生成资源
 function addZYtable(){
     imgViewBox.innerHTML = '';
     zyAllname = [];
@@ -519,79 +531,3 @@ async function exportOneAs(node,type,name,w,h){
     }
 }
 
-/*---------------自定义节点----------------------*/
-
-//有限字数文案节点
-function limitedString() {
-    this.addOutput("string", "string");
-    this.addProperty("value", "",);//name, default_value,type,extra_info
-    this.widget = this.addWidget("text","Text","","value");  //link to property value
-    this.widgets_up = true;
-    this.size = [180, 30];
-}
-
-limitedString.title = "文案";
-limitedString.desc = "输入带限定字数的文案";
-
-limitedString.prototype.setValue = function(v){this.setProperty("value",v)}
-
-limitedString.prototype.onExecute = function() {
-    this.setOutputData(0, this.properties["value"]);     
-};
-
-LiteGraph.registerNodeType("imginfo/string", limitedString);
-
-
-//基础信息节点
-function ImgInfoMain() {
-    this.addInput("主标题", "string"); // 主标题输入端口
-    this.addInput("副标题", "string"); // 副标题输入端口
-    this.addOutput("输出","string")
-    this.size = [180, 100];
-}
-
-ImgInfoMain.title = "配置项（基础）";
-ImgInfoMain.desc = "接收主标题和副标题信息";
-
-ImgInfoMain.prototype.onExecute = function () {
-    var mainTitle = this.getInputData(0); // 主标题
-    var subTitle = this.getInputData(1); // 副标题
-    this.setOutputData(0,"[" + mainTitle + "," + subTitle + "]") 
-};
-
-ImgInfoMain.prototype.setValue = function(v){this.setProperty("value",v)}
-
-
-LiteGraph.registerNodeType("imginfo/main", ImgInfoMain);
-
- 
-
-/*---------------从数据生成节点----------------------*/
-
-function addFlowEditor(userImgData){
-    
-    var graph = new LGraph();   
-    var canvas = new LGraphCanvas("#model-flow", graph);
-    canvas.show_info = false;
-    graph.start()
-
-    //示例数据
-    var node_input1 = LiteGraph.createNode("imginfo/string","文案");
-    node_input1.pos = [200,200];
-    node_input1.setValue("示例文案") 
-    graph.add(node_input1);
-
-
-    var node_input3 = LiteGraph.createNode("imginfo/main");
-    node_input3.pos = [500,200];
-    graph.add(node_input3);
-
-    var node_input2 = LiteGraph.createNode("imginfo/string");
-    node_input2.pos = [200,300];
-    node_input2.setValue("示例文案") 
-    graph.add(node_input2);
-
-    node_input1.connect(0, node_input3, 0 );
-    node_input2.connect(0, node_input3, 1 );
-
-}

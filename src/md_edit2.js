@@ -567,10 +567,12 @@ async function exportAll(){
         setTimeout(()=>{        
             node.parentNode.style.filter = '';
             node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-        },1000)
-
+        },1000 * (zyAllId.length - index))
+        if(index == zyAllId.length - 1){
+            imgAutoScale();
+        }
     });
-    imgAutoScale();
+    //imgAutoScale();
 }
 
 async function exportOne(e){

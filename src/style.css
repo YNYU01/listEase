@@ -2,6 +2,7 @@
     --mainColor: #acacac;
     --mainColor2: #378360;
     --mainColor3: #fff;
+    --mainColor4: #805dab;
     --boxBod: #5d5d5d;
     --boxBak: #202020;
     --boxGry: #393939;
@@ -34,7 +35,7 @@ body {
     font-weight: 700;
     color: var(--mainColor);
     position: relative;
-    background:url('../img/YNJI_watermark.png'),var(--boxBak);
+    background:/*url('../img/YNJI_watermark.png'),*/var(--boxBak);
     background-repeat: repeat;
     background-size: 80px 80px;
     text-rendering: optimizeLegibility;
@@ -131,7 +132,18 @@ body::-webkit-scrollbar,
 }
 
 .watermark{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter:grayscale();
     background: url('../img/YNJI_watermark.png');
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    opacity: 0.6;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 optgroup {
@@ -145,6 +157,31 @@ option {
     font-size: var(--select-fso,12px);
 }
 
+input[type="file" i]{
+    background: var(--boxBak);
+    color: var(--mainColor);
+    border: 1px solid var(--boxBod);
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+}
+
+input[type="file" i]::after{
+    content: var(--file-type,'选择文件');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 10ch;
+    height: 100%;
+    background: var(--boxBak);
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    border-right: 1px solid var(--boxBod);
+    border-radius: 4px;
+    font-weight: 700;
+}
 
 .page {
     min-height: 560px;
@@ -349,7 +386,7 @@ input[type="checkbox"]:checked+.model-pick {
 
 .gift-box{
     background:var(--gift-bg,rgba(0,0,0,0));
-    border: var(--gift-bod,4px) solid var(--boxBod);
+    /*border: var(--gift-bod,4px) solid var(--boxBod);*/
 }
 
 .gift-tag{
@@ -361,6 +398,18 @@ input[type="checkbox"]:checked+.model-pick {
     width: var(--gift-tag-w,40px);
     height: var(--gift-tag-h,40px);
     */
+}
+
+.chk-pick{
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    cursor: pointer;
+    --has: rgba(0, 0, 0, 0);
+}
+
+input[type="checkbox"]:checked + .chk-pick {
+    --has:var(--mainColor);
 }
 
 .btn-text {

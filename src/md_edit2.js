@@ -190,11 +190,7 @@ function addZYtable(){
         imgViewBox.appendChild(imgnode);
         //console.log(imgnode)
     });
-    cloneImgs();
-    appendImg();
-    if(window.getComputedStyle(modelView).display !== 'none'){
-        imgAutoScale()
-    }
+    reimgClone();
 }
 
  function setImgLayout(node,imgid,imgInfo,imgNum){
@@ -202,13 +198,13 @@ function addZYtable(){
     if(!info){info = [1,1,0,1,0]};
     if(!type){type = "jpg"};
     var fontsizes = [0,0,0];
-    var ww = w, hh = h
+    var ww = w, hh = h;
     //console.log(111)
     if(safa && safa[0]){
         ww = safa[0][2];
         //hh = safa[0][3];
         //console.log(222)
-    }
+    };
     if(ww > hh){
         var findW = userImgData.public.framesize.ww.map(item => Math.abs(hh - item) )
         findW.forEach((item,index) => {
@@ -248,13 +244,13 @@ function addZYtable(){
                 
             }
         })
-    }
+    };
 
     if(type != 'png'){
         node.style.background = 'var(--boxGry)';
-    }
+    };
     
-    var titleNode = '',sectitleNode = '',giftNode = '';
+    var titleNode = '',sectitleNode = '',giftNode = '',mainLayout = '',bgLayout = '';
     if (info[0] == 1) {
         titleNode = `<div 
         style="font-size:` + fontsizes[2] + `px; 
@@ -265,17 +261,18 @@ function addZYtable(){
         data-title="0">`
          + userImgData.main.title[0].replace('，','<br>') +
         `</div>`;
-    }
+    };
     if (info[1] == 1) {
         sectitleNode = `<div 
         style="font-size: ` + fontsizes[1] + `px; 
+        line-height:` + fontsizes[1] + `px; 
         color:` + userImgData.style.sectitle.color + `;
         font-family:'` + userImgData.style.sectitle.fontfamily + `';
         font-weight: 700;" 
         data-sectitle="0">` 
         + userImgData.main.sectitle[0].replace('，','<br>') +
         `</div>`;
-    }
+    };
     if(info[2] == 1){
         giftNode = `
         <div class="cc w100" style="gap:` + fontsizes[1] + `px;">
@@ -369,8 +366,15 @@ function addZYtable(){
             
 
         </div>`
-    }
+    };
     
+    if(userImgData.main.layout.bg_main.image){
+        mainLayout = '<img width="100%" height="100" src="" data-layout-main/>'
+    };
+    if(userImgData.main.layout.bg_bg.image){
+        bgLayout = '<img width="100%" height="100" src="" data-layout-bg/>'
+    };
+
     node.id = imgid;
     node.style.width = w + 'px';
     node.style.height = h + 'px';
@@ -378,11 +382,11 @@ function addZYtable(){
     node.className = 'ovh pos-r zySSS';
 
     node.innerHTML = `
-    <div class="cc df-ffc pos-a-cc w100" style=" position: absolute;">
+    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px">
     `+ titleNode + sectitleNode + giftNode +`
     </div>
     <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
-    `
+    ` + mainLayout + bgLayout
 
 
 }
@@ -407,7 +411,11 @@ function setimgMain(type,value,num){
     var title2 = document.querySelectorAll('[data-title="1"]');
     var sectitle1 = document.querySelectorAll('[data-sectitle="0"]');
     var sectitle2 = document.querySelectorAll('[data-sectitle="1"]');
-    var title = []
+    var giftname1 = document.querySelectorAll('[data-title="0"]');
+    var giftname2 = document.querySelectorAll('[data-title="1"]');
+    var giftname3 = document.querySelectorAll('[data-sectitle="0"]');
+    var giftname4 = document.querySelectorAll('[data-sectitle="1"]');
+
     if((type + num) == 'title1'){
         userImgData.main.title[0] = value;
         title1.forEach(item => {
@@ -471,6 +479,13 @@ function setimgMain(type,value,num){
     
 }
 
+function reimgClone(){
+    cloneImgs();
+    appendImg();
+    if(window.getComputedStyle(modelView).display !== 'none'){
+        imgAutoScale();
+    }
+}
 
 function cloneImgs(){
     zyClones = []
@@ -532,7 +547,7 @@ function imgAutoScale(){
     zyAllId.forEach((item,index)=>{
         var node = document.getElementById(item + '-clone');
         var scale = node.parentNode.parentNode.offsetWidth/item.split('_')[2];
-        if(scale < 0.2){scale = 0.2};
+        if(scale < 0.1){scale = 0.1};
         if(scale > 1.5){scale = 1.5}
         node.parentNode.style.width = item.split('_')[2] * scale + 'px';
         node.parentNode.style.height = item.split('_')[3] * scale + 'px';
@@ -569,54 +584,6 @@ async function exportOne(e){
     if(zyAllname.length > 0){
         zyName = zyAllname[e]
     }
-    /*
-    var svgElem = [...zyNode.querySelectorAll('image'),...zyNode.querySelectorAll('img')];
-    //console.log(svgElem)
-    if(svgElem && svgElem.length > 0){
-        svgElem.forEach(function(node,index) {
-            var href = node.getAttributeNS("http://www.w3.org/1999/xlink", "xlink:href");
-            if(!href){
-                href = node.getAttribute('xlink:href');
-                if(!href){
-                    href = node.src
-                    //console.log(href)
-                }
-            }
-            if (href.split('/').length > 1 && href.split('data').length > 1){
-                //console.log('链接',node.id)
-                // 使用fetch获取图片
-                fetch(href)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.blob();
-                })
-                .then(blob => {
-                    var reader = new FileReader();
-                    reader.onloadend = async function() {
-                        var dataURL = reader.result;
-                        //await node.setAttribute("href", dataURL);
-                        await node.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', dataURL );
-                        if(index == svgElem.length - 1){
-                            exportOneAs(zyNode,zyType,zyName,w,h)
-                        }
-                    };
-                    reader.readAsDataURL(blob);
-                })
-                .catch(error => console.error('Error loading image:', error));
-            }else{
-                if(index == svgElem.length - 1){
-                    exportOneAs(zyNode,zyType,zyName,w,h)
-                }
-            }
-            
-            
-        });
-    }else{
-        exportOneAs(zyNode,zyType,zyName,w,h)
-    }
-        */
     exportOneAs(zyNode,zyType,zyName,w,h)
 
 }
@@ -629,7 +596,7 @@ async function exportOneAs(node,type,name,w,h){
     }
     
     /* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
-    if(type == 'jpeg' || type == 'jpg'){
+    if(type == 'jpeg' || type == 'jpg' || type == 'webp'){
         setTimeout(()=>{
             domtoimage.toJpeg(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {
@@ -645,7 +612,7 @@ async function exportOneAs(node,type,name,w,h){
             },500)
         },500)
     }
-    if(type == 'png'){
+    if(type == 'png' || type == 'gif'){
         setTimeout(()=>{
             domtoimage.toPng(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {

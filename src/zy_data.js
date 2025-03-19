@@ -239,7 +239,12 @@ const userImgData = {
         title:["主要标题文案","备用标题文案"],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
         sectitle:["主要副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
         game:["--",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
-        bg:{/*图层*/
+        layout:{/*图层*/
+            bg_main:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:"",
+                async:"",
+            },
             bg_bg:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
                 image:"",

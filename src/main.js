@@ -19,6 +19,7 @@ var lightTheme = {
 "mainColor":"#2b2b2b",
 "mainColor2":"#4deba3",
 "mainColor3":"#000",
+"mainColor4":"#d1abff",
 "boxBod":"#aeaeae",
 "boxBak":"#eeeeee",
 "boxGry":"#dddddd",
@@ -33,6 +34,7 @@ var darkTheme = {
 "mainColor":"#acacac",
 "mainColor2":"#378360",
 "mainColor3":"#fff",
+"mainColor4":"#805dab",
 "boxBod":"#5d5d5d",
 "boxBak":"#202020",
 "boxGry":"#393939",
@@ -95,11 +97,13 @@ window.onload = ()=>{
 window.onresize = ()=>{
     moDautoZoom();
     isMobile();
-    if(window.getComputedStyle(modelView).display !== 'none'){
-        appendImg();
-        imgAutoScale()
-    }
-    
+    var reClone;
+    if(reClone){
+        clearTimeout(reClone)
+    };
+    reClone = setTimeout(()=>{
+        reimgClone();
+    },500)
 }
 
 window.onbeforeunload = ()=>{

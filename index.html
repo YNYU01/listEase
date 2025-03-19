@@ -38,6 +38,7 @@
 
 <body class="noselect">
     <div id="noise" class="noise"></div>
+    <div id="watermark" class="watermark"></div>
     <!--全局tips-->
     <div id="tips-all" class="ww tips-all" style="display: none;">
         <div id="tips-box" class="tips-box" >
@@ -57,7 +58,7 @@
                         模板解析及批量延展器
                     </div>
                     <div id="tool-list-3" class="tool-option">
-                        AI助理及H5模板生成器
+                        AI小助手及素材编辑器
                     </div>
                 </div>
                 <div id="tool-name" style="width:100%; "></div>
@@ -417,7 +418,7 @@
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="title-main-1" class="moDsearch-box" maxlength="14" 
-                                            value="主要主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,1);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="主要主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,1);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,1);" onKeyPress="if(window.event.keyCode==13){tipsAll('文案如需换行，用逗号隔开即可~',3000,3);this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="title-main-1-num"> 6 </span>/
                                                 <span>14</span>
@@ -425,7 +426,7 @@
                                         </div>
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="title-main-2" class="moDsearch-box" maxlength="14" 
-                                            value="备用主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,2);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="备用主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,2);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,2);" onKeyPress="if(window.event.keyCode==13){tipsAll('文案如需换行，用逗号隔开即可~',3000,3);this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
                                                 <span id="title-main-2-num"> 6 </span>/
                                                 <span>14</span>
@@ -534,7 +535,140 @@
                                         </label>
                                     </div>
                                     <div class="w100 df-ffc" style="gap:2px;">
+
+                                        <div class="df w100" style="gap:2px;">
+                                            <input id="gift-show-1" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            <label for="gift-show-1" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
+                                            <div class="df-ffc w100" style="gap: 2px;">
+                                                <div class="df w100" style="align-items: center;">
+                                                    <input id="gift-icon-1" type="file" style="font-size: 10px; --file-type:'图标-1';"/>
+                                                </div>
+                                                <div class="df w100" style="gap:4px; position: relative;">
+                                                    <div class="pos-r w100">
+                                                        <input type="text" id="gift-name-1" class="moDsearch-box" maxlength="8" 
+                                                        value="奖励名称1" oninput="getTextNum(this);setimgMain('giftname',this.value,1);" onchange="setTextMust(this,'奖励名称1');setimgMain('giftname',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
+                                                            <span id="gift-name-1-num"> 5 </span>/
+                                                            <span>8</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="df" style="width: 80px;">
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="x" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-key" value="2" class="moDsearch-box" >
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="df w100" style="gap:2px;">
+                                            <input id="gift-show-2" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            <label for="gift-show-2" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
+                                            <div class="df-ffc w100" style="gap: 2px;">
+                                                <div class="df w100" style="align-items: center;">
+                                                    <input id="gift-icon-2" type="file" style="font-size: 10px; --file-type:'图标-2';"/>
+                                                </div>
+                                                <div class="df w100" style="gap:4px; position: relative;">
+                                                    <div class="pos-r w100">
+                                                        <input type="text" id="gift-name-2" class="moDsearch-box" maxlength="8" 
+                                                        value="奖励名称2" oninput="getTextNum(this);setimgMain('giftname',this.value,2);" onchange="setTextMust(this,'奖励名称2');setimgMain('giftname',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
+                                                            <span id="gift-name-2-num"> 5 </span>/
+                                                            <span>8</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="df" style="width: 80px;">
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="x" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-key" value="3" class="moDsearch-box" >
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="df w100" style="gap:2px;">
+                                            <input id="gift-show-3" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            <label for="gift-show-3" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
+                                            <div class="df-ffc w100" style="gap: 2px;">
+                                                <div class="df w100" style="align-items: center;">
+                                                    <input id="gift-icon-3" type="file" style="font-size: 10px; --file-type:'图标-3';"/>
+                                                </div>
+                                                <div class="df w100" style="gap:4px; position: relative;">
+                                                    <div class="pos-r w100">
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" 
+                                                        value="奖励名称3" oninput="getTextNum(this);setimgMain('giftname',this.value,3);" onchange="setTextMust(this,'奖励名称3');setimgMain('giftname',this.value,3);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
+                                                            <span id="gift-name-3-num"> 5 </span>/
+                                                            <span>8</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="df" style="width: 80px;">
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="x" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-key" value="4" class="moDsearch-box" >
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
                                         
+                                        <div class="df w100" style="gap:2px;">
+                                            <input id="gift-show-4" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            <label for="gift-show-4" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
+                                            <div class="df-ffc w100" style="gap: 2px;">
+                                                <div class="df w100" style="align-items: center;">
+                                                    <input id="gift-icon-4" type="file" style="font-size: 10px; --file-type:'图标-4';"/>
+                                                </div>
+                                                <div class="df w100" style="gap:4px; position: relative;">
+                                                    <div class="pos-r w100">
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" 
+                                                        value="奖励名称4" oninput="getTextNum(this);setimgMain('giftname',this.value,4);" onchange="setTextMust(this,'奖励名称4');setimgMain('giftname',this.value,4);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
+                                                            <span id="gift-name-4-num"> 5 </span>/
+                                                            <span>8</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="df" style="width: 80px;">
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="x" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-key" value="5" class="moDsearch-box" >
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
+                                </div>
+
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <div class="w100">
+                                        <input id="layout-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <label for="layout-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-背景-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="w100 df-ffc" style="gap:2px;">
+                                        <div class="df w100" style="align-items: center;">
+                                            <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"/>
+                                        </div>
+                                        <div class="df w100 pos-r" style="align-items: center;">
+                                            <input id="layout-bg" type="file" style="font-size: 10px; --file-type:'背景填充';"/>
+                                            <div class="btn-text cc " onclick="viewPage(3)" style="min-width: 9ch;height: 20px; background-color:var(--mainColor4) ; border-radius: 10px;border:1px var(--mainColor4) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
+                                                <div class="cc" style="gap:2px; font-size: 10px;">
+                                                    <div style="width: 12px; height: 12px;"><btn-set style="--mainColor:#2b2b2b"></btn-set></div>
+                                                    <div style="margin-top: 1px; line-height: 12px;">前往编辑</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                 </div>
@@ -552,7 +686,7 @@
                                             onchange="pickImg(this.value);">
                                                 <!--在此填充选项项-->
                                             </select>
-                                            <div class="btn-text cc" onclick="viewPage(1)" style="width: 12ch;background-color:var(--mainColor2) ; border-radius: 10px;border:1px var(--mainColor2) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
+                                            <div class="btn-text cc" onclick="viewPage(1)" style="min-width: 9ch;background-color:var(--mainColor2) ; border-radius: 10px;border:1px var(--mainColor2) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
                                                 <div class="cc" style="gap:2px; font-size: 10px;">
                                                     <div style="width: 12px; height: 12px;"><btn-add style="--mainColor:#2b2b2b"></btn-add></div>
                                                     <div style="margin-top: 1px; line-height: 12px;">前往添加</div>

@@ -564,6 +564,7 @@ async function exportAll(){
         node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
         node.style.transform = 'scale(1)';
         exportOne(index);
+        /*
         setTimeout(()=>{        
             node.parentNode.style.filter = '';
             node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
@@ -571,6 +572,7 @@ async function exportAll(){
         if(index == zyAllId.length - 1){
             imgAutoScale();
         }
+        */
     });
     //imgAutoScale();
 }
@@ -586,17 +588,12 @@ async function exportOne(e){
     if(zyAllname.length > 0){
         zyName = zyAllname[e]
     }
-    exportOneAs(zyNode,zyType,zyName,w,h)
-
+    exportOneAs(zyNode,zyType,zyName,w,h,e)
+    
 }
 
-async function exportOneAs(node,type,name,w,h){
-    var display = true;
-    if(node.style.display == 'none'){
-        display = false;
-        node.style.display = 'block';
-    }
-    
+async function exportOneAs(node,type,name,w,h,e){
+
     /* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
     if(type == 'jpeg' || type == 'jpg' || type == 'webp'){
         setTimeout(()=>{
@@ -608,8 +605,10 @@ async function exportOneAs(node,type,name,w,h){
                 link.click();
             });
             setTimeout(()=>{
-                if(!display){
-                    node.style.display = 'none'
+                node.parentNode.style.filter = '';
+                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
+                if(e == zyAllId.length - 1){
+                    imgAutoScale();
                 }
             },500)
         },500)
@@ -624,8 +623,10 @@ async function exportOneAs(node,type,name,w,h){
                 link.click();
             });
             setTimeout(()=>{
-                if(!display){
-                    node.style.display = 'none'
+                node.parentNode.style.filter = '';
+                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
+                if(e == zyAllId.length - 1){
+                    imgAutoScale();
                 }
             },500)
         },500)

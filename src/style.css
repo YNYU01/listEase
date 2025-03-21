@@ -1304,6 +1304,9 @@ input[type="checkbox"]:checked + .chk-round{
         padding: 10px;
         overflow-x: scroll;
     }
+    #model-list-box{
+        padding: 10px;
+    }
     .model-box{
         width: 100%;
         height: 140px;

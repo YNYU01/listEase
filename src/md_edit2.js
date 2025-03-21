@@ -32,6 +32,7 @@ const imgViewUp = document.getElementById("imgView-size-up");//控制资源放�
 const imgViewDown = document.getElementById("imgView-size-down");//控制资源缩小
 const imgViewAuto = document.getElementById("imgView-size-auto");//自动缩放到合适大小
 const zoomNum = document.getElementById("zoom-num");//显示当前缩放大小的容器
+const toPlugin = document.getElementById("to-plugin")
 var exportAllname = '';//提单信息中的资源名汇总，格式应该为：KV+ XXX资源位：资源名称(+重复编号) 宽×高
 var zyAllname = [];//所选资源生成的node所对应的名称，格式应该为:资源名称(+重复编号) 宽×高
 var zyAllId = [];//所选资源生成的node所对应的ID，格式应该为:zy_序号_宽_高
@@ -64,6 +65,19 @@ imgViewDown.onclick = ()=>{
 };
 imgViewAuto.onclick = ()=>{
     moDautoZoom();
+}
+
+/*
+toPlugin.ondragstart = (event)=>{
+    var text = JSON.stringify(userImgData);
+    event.dataTransfer.setData('text/plain',text);
+    console.log(text)
+}*/
+
+function sendData(event){
+    var text = JSON.stringify(userImgData);
+    event.dataTransfer.setData('text/plain',text);
+    //console.log(text)
 }
 
 //展开配置项
@@ -125,11 +139,13 @@ function addModelList(){
         </label>`;
         modelList.appendChild(node);
     })
+    
     var node = document.createElement('div');
     node.className = "model-info-tips cc";
-    node.innerHTML = `<div style="opacity:0.5;">更多需要</div><div style="opacity:0.5;">请联系定制~<div>`;
+    node.innerHTML = `<div class="wh100 model-info-tips cc" style="background:none; border:none" id="to-plugin" draggable="true" ondragstart="sendData(event)"><div style="opacity:0.5;" >更多需要</div><div style="opacity:0.5;">请联系定制~<div><div>`;
     modelList.appendChild(node);
 }
+
 
 //动态生成资源
 function addZYtable(){

@@ -76,6 +76,7 @@ toPlugin.ondragstart = (event)=>{
 
 function sendData(event,isDown){
     var text = JSON.stringify(userImgData);
+    console.log(text)
     if(isDown){
         var blob = new Blob([text],{type:'text/plain'})
         var link = document.createElement('a');
@@ -85,7 +86,7 @@ function sendData(event,isDown){
         link.remove();
     } else {
         event.dataTransfer.setData('text/plain',text);
-    //console.log(text)
+    
     } 
 }
 
@@ -237,13 +238,17 @@ function addZYtable(){
                 //console.log(ww,hh,findW,userImgData.public.fontsize[index])
                 if((index - 1) < 0){
                     fontsizes =  userImgData.public.fontsize[0];
+                    userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                 }else {
                     fontsizes =  userImgData.public.fontsize[index];
+                    userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     if (info[1] == 0){
                         fontsizes =  userImgData.public.fontsize[index + 1];
+                        userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     }
                     if (info[2] == 1 || info[4] == 1){
                         fontsizes =  userImgData.public.fontsize[index - 1];
+                        userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     }
                 }
                 
@@ -257,13 +262,17 @@ function addZYtable(){
                 //console.log(ww,hh,findH,userImgData.public.fontsize[index])
                 if((index - 1) < 0){
                     fontsizes =  userImgData.public.fontsize[0];
+                    userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                 } else {
                     fontsizes =  userImgData.public.fontsize[index];
+                    userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     if (info[1] == 0){
                         fontsizes =  userImgData.public.fontsize[index + 1];
+                        userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     }
                     if (info[2] == 1 || info[4] == 1){
                         fontsizes =  userImgData.public.fontsize[index - 1];
+                        userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     }
                 }
                 

@@ -296,22 +296,22 @@ const userImgData = {
         title:{/*默认样式*/
             type:"COLOR",/* COLOR | COMPONENT */
             color:"var(--mainColor)",
-            fontfamily:"SourceHanSansSC",
+            fontfamily:"Source Han Sans CN",
             async:"",
         },
         sectitle:{/*默认样式*/
             type:"COLOR",/* COLOR | COMPONENT */
             color:"var(--mainColor)",
-            fontfamily:"SourceHanSansSC",
+            fontfamily:"Source Han Sans CN",
             async:"",
         },
         giftname:{/*默认样式*/
             color:"var(--mainColor)",
-            fontfamily:"SourceHanSansSC",
+            fontfamily:"Source Han Sans CN",
         },
         tags:{/*默认样式*/
             color:"var(--mainColor3)",
-            fontfamily:"SourceHanSansSC",
+            fontfamily:"Source Han Sans CN",
         },
     },
     zy:[/*有哪些资源位*/
@@ -321,6 +321,7 @@ const userImgData = {
             set:{
                 titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
                 gift:0,/*奖励数量，0则隐藏*/
+                fontsize:[],
             },
         },
     ],

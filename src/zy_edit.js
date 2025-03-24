@@ -279,6 +279,7 @@ function reExportInfo(){
                     set:{
                         titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
                         gift:0,/*奖励数量，0则隐藏*/
+                        fontsize:[]
                     },
                 })
             }

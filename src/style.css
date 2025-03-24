@@ -336,7 +336,7 @@ input[type="file" i]::after{
 }
 
 .cloneimg{
-    width: 100%;
+    width: calc(100% - 2px);
     border-radius: 8px;
     border: 1px solid var(--boxBod);
     box-sizing: border-box;
@@ -970,7 +970,7 @@ input[type="checkbox"]:checked+.show {
 .moDside{
     min-width: 260px;
     max-width: 260px;
-    height: calc(100% - 51px);
+    height: calc(100% - 49px);
     padding: 10px;
     background-color: var(--boxGry);
     flex:0 0 auto;

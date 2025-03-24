@@ -366,23 +366,7 @@
             </div>
             <!--三种编辑视图-->
             <div class="page-main noscrollbar" id="page-main-2" style="padding: 0;">
-                <div style="width: 100%; height: 100%; overflow: hidden; border: var(--boxBod) 1px solid; ">
-                    <div id="model-view" class="wh100 noscrollbar"  style="overflow-y: scroll; box-sizing: border-box;  display: none;">
-                        <div  class="df" style="padding: 10px; gap: 10px;">
-                            <div id="cloneImg-view-1" class="df-ffc" style="width: 100%; gap: 10px;">
-                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
-                            </div>
-                            <div id="cloneImg-view-2" class="df-ffc wh100" style="width: 100%; gap: 10px;">
-                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
-                            </div>
-                            <div id="cloneImg-view-3" class="df-ffc wh100" style="width: 100%; gap: 10px;">
-                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
-                            </div>
-                            <div id="cloneImg-view-4" class="df-ffc wh100" style="width: 100%; gap: 10px;">
-                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="wh100 ovh pos-r" >  
                     <canvas id="model-flow" width="2560" height="2560" style="display: none; width: 2560px; height: 2560px;" ></canvas>
                     <div id="model-data" class="wh100 df" style="display: flex;">
                         <!--侧边栏-->
@@ -437,8 +421,8 @@
                                             <select id="title-font" class="select"
                                             onchange="setimgMain('fontFamily-main',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
                                             <optgroup label="通用">
-                                                <option value="SourceHanSansSC">思源黑体</option>
-                                                <option value="SourceHanSerifCN">思源宋体</option>
+                                                <option value="Source Han Sans CN">思源黑体</option>
+                                                <option value="Source Han Serif CN">思源宋体</option>
                                             </optgroup>
                                             <optgroup id="fontList-smain" label="风格">
                                                 <option value="FZYaSongS-B-GB">方正粗雅宋</option>
@@ -496,8 +480,8 @@
                                             <select id="sectitle-font" class="select"
                                             onchange="setimgMain('fontFamily-sec',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
                                             <optgroup label="通用">
-                                                <option value="SourceHanSansSC">思源黑体</option>
-                                                <option value="SourceHanSerifCN">思源宋体</option>
+                                                <option value="Source Han Sans CN">思源黑体</option>
+                                                <option value="Source Han Serif CN">思源宋体</option>
                                             </optgroup>
                                             <optgroup id="fontList-sec" label="风格">
                                                 <option value="FZYaSongS-B-GB">方正粗雅宋</option>
@@ -735,6 +719,22 @@
                             <button id="imgView-size-auto"  class="btn-viewSize" style="font-size: 10px; font-weight: 700; border-radius: 30%; border: var(--boxBod) 2px solid;">
                                 <span style="opacity: 0.8;">自动</span>
                             </button>
+                        </div>
+                    </div>
+                    <div id="model-view" class="wh100 noscrollbar "  style=" overflow-y: scroll; box-sizing: border-box;  display: none;">
+                        <div  class="df" style="padding: 10px; gap: 8px;">
+                            <div id="cloneImg-view-1" class="df-ffc" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-2" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-3" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
+                            <div id="cloneImg-view-4" class="df-ffc wh100" style="width: 100%; gap: 10px;">
+                                <div style="width: 100%; height: 300px; background: var(--boxGry); flex: 0 0 auto;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

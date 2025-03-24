@@ -74,10 +74,19 @@ toPlugin.ondragstart = (event)=>{
     console.log(text)
 }*/
 
-function sendData(event){
+function sendData(event,isDown){
     var text = JSON.stringify(userImgData);
-    event.dataTransfer.setData('text/plain',text);
+    if(isDown){
+        var blob = new Blob([text],{type:'text/plain'})
+        var link = document.createElement('a');
+        link.download = userImgData.main.title[0] + '.zy';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        link.remove();
+    } else {
+        event.dataTransfer.setData('text/plain',text);
     //console.log(text)
+    } 
 }
 
 //展开配置项
@@ -142,7 +151,7 @@ function addModelList(){
     
     var node = document.createElement('div');
     node.className = "model-info-tips cc";
-    node.innerHTML = `<div class="wh100 model-info-tips cc" style="background:none; border:none" id="to-plugin" draggable="true" ondragstart="sendData(event)"><div style="opacity:0.5;" >更多需要</div><div style="opacity:0.5;">请联系定制~<div><div>`;
+    node.innerHTML = `<div class="wh100 model-info-tips cc" style="background:none; border:none" id="to-plugin" draggable="true" ondragstart="sendData(event,false)" onclick="sendData(event,true)"><div style="opacity:0.5;" >更多需要</div><div style="opacity:0.5;">请联系定制~<div><div>`;
     modelList.appendChild(node);
 }
 

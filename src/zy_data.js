@@ -329,24 +329,26 @@ const userImgData = {
 const userZy = [
     {
         name:"预设1",
-        group:{
-            channel:"大神",
-            zy:[
-                {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
-                {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[]},
-                {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,1,1,0],safa:[]},
-                {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
-                {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
-                {name:"负一屏-预约banner",w:969,h:228,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
-                {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
-                {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
-                {name:"内容流-双图",w:335,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
-                {name:"内容流-单图",w:690,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
-                {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
-                {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
-                {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
-            ]
-        }
+        group:[
+                {
+                channel:"大神",
+                zy:[
+                    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+                    {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[]},
+                    {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,1,1,0],safa:[]},
+                    {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
+                    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
+                    {name:"负一屏-预约banner",w:969,h:228,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
+                    {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
+                    {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+                    {name:"内容流-双图",w:335,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
+                    {name:"内容流-单图",w:690,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
+                    {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
+                    {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
+                    {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
+                ]
+            }
+        ],
     }
     
 ]

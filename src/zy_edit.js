@@ -213,24 +213,18 @@ function closeImg(e,ee){
 
 
 function reImgInfo(e,ee,name){
-    //console.log('reImgInfo',name);
-    //console.log(e,ee,name);
     if (name !== '选择资源位'){
         if (name){
-            allImg[e][ee] = name
-            ///console.log(666,name);
-            reExportInfo()
+            allImg[e][ee] = name;
+            reExportInfo();
         } else {
-            //console.log('reImgInfo','删除');
             allImg[e][ee] = ''
-            //console.log(777);
-            reExportInfo()
+            reExportInfo();
         }
     }   
 }
 
 function reKeysInfo(e,key){
-    //console.log('reKeysInfo');
     if ( key !== '选择渠道'){
         allKey[e] = key;
         allImg[e] = [];
@@ -239,9 +233,7 @@ function reKeysInfo(e,key){
         } else {
             var keys = '_' + key;
         }
-        //console.log(keys)
         allImg[e][0] = '';
-        //console.log(allKey,allImg);
         reExportInfo()
     }
     
@@ -317,4 +309,21 @@ function reClick(type,e,ee){
         document.getElementById("add-" + e).parentNode.style.opacity = 1;
         document.getElementById("add-" + e).parentNode.style.pointerEvents = 'auto'
     }
+}
+
+function addUserList(name){
+    document.getElementById("page-main-1").innerHTML = '';
+    var pickUserZy = userZy.filter(item => item.name == name);
+    pickUserZy[0].group.forEach((item,i) => {
+        addList(i);
+        document.getElementById("select-area-" + i).value = item.channel;
+        document.getElementById("imgs-" + i).innerHTML = '';
+        reKeysInfo(i,item.channel)
+        item.zy.forEach((items,e) => {  
+            addImg(i,e,item.channel)
+            document.getElementById("select-img-" + i + '-' + e).value = items.name;
+            reImgInfo(i,e,items.name)
+        })
+        
+    })
 }

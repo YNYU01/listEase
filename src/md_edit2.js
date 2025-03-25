@@ -808,7 +808,7 @@ link.remove();
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
-                    imgAutoScale();
+                    //imgAutoScale();
                 }
             },500)
         },500)

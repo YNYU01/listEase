@@ -726,6 +726,7 @@ function addFontStyle(){
     <option value="FZYaSongS-B-GB">方正粗雅宋</option>
     <option value="FZJinLS-B-GB">方正粗金陵</option>
     <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
+    <option value="HYXiaoLiShuJ">汉仪小隶书</option>
     <option value="Aa诗宋体">Aa诗宋体</option>
     <option value="AaJianHaoTi">Aa剑豪体</option>
     <option value="临海体">临海隶书</option>

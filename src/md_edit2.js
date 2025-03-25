@@ -417,18 +417,26 @@ function addZYtable(){
     `+ titleNode + sectitleNode + giftNode +`
     </div>`;
 
+var logos =`
+        <div class="df cc logos" >
+        <img data-logo-game src="img/game/永劫无间_黑.png"/>
+        <img data-logo-channel src="img/channel/大神_深.png">
+        </div>
+        `;
+ 
+
     if(info[3] == 1){
         logoNode = `
-        <logo-group class="pos-a" style="top: ` + fontsizes[0] + `; left: ` + fontsizes[0] + `; z-index: 20; 
+        <div class="pos-a" style="top: ` + fontsizes[0] + `; left: ` + fontsizes[0] + `; z-index: 20; 
         transform:scale(` + fontsizes[1]/64 + `);
         transform-origin: top left;
-        "></logo-group>`;
+        ">`+ logos +`</div>`;
         if(w < 300 || h < 300){
             logoNode = `
-            <logo-group class="pos-a" style="top: ` + fontsizes[0]/2 + `; left: ` + fontsizes[0]/2 + `; z-index: 20; 
+            <div class="pos-a" style="top: ` + fontsizes[0]/2 + `; left: ` + fontsizes[0]/2 + `; z-index: 20; 
             transform:scale(` + fontsizes[1]/64 * 0.8 + `);
             transform-origin: top left;
-            "></logo-group>`;
+            ">`+ logos +`</div>`;
         }
     }
     
@@ -443,10 +451,10 @@ function addZYtable(){
         
         if(safa[0][4]){
             logoNode = `
-            <logo-group class="pos-a" style="top: ` + (fontsizes[0] + safa[0][1] )+ `; left: ` + (fontsizes[0] + safa[0][0]) + `; z-index: 20; 
+            <div class="pos-a" style="top: ` + (fontsizes[0] + safa[0][1] )+ `; left: ` + (fontsizes[0] + safa[0][0]) + `; z-index: 20; 
             transform:scale(` + fontsizes[1]/64 + `);
             transform-origin: top left;
-            "></logo-group>`;
+            ">`+ logos +`</div>`;
         }
     }
 

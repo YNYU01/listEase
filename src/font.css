@@ -68,7 +68,7 @@
 
 @font-face {
     font-family: "AaJianHaoTi";
-    src: url(‘https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@af0609c0ba414f6e363b8489643da8358d78848d/fonts/Aa%E5%89%91%E8%B1%AA%E4%BD%93.ttf) format('truetype');
+    src: url(‘https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@af0609c0ba414f6e363b8489643da8358d78848d/fonts/Aa%E5%89%91%E8%B1%AA%E4%BD%93.ttf') format('truetype');
 }
 
 @font-face {
@@ -78,7 +78,7 @@
 
 @font-face {
     font-family: "CKTKingKong";
-    src: url(’https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@af0609c0ba414f6e363b8489643da8358d78848d/fonts/%E5%88%9B%E5%AE%A2%E8%B4%B4%E9%87%91%E5%88%9A%E4%BD%93.otf) format('opentype');
+    src: url(’https://cdn.jsdelivr.net/gh/YNYU01/ModelTools@af0609c0ba414f6e363b8489643da8358d78848d/fonts/%E5%88%9B%E5%AE%A2%E8%B4%B4%E9%87%91%E5%88%9A%E4%BD%93.otf') format('opentype');
 }
 
 @font-face {

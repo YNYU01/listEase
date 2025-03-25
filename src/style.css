@@ -144,6 +144,15 @@ body::-webkit-scrollbar,
     pointer-events: none;
 }
 
+.logos{
+    gap:var(--logo-gap,200px); 
+    /*width:300px; 
+    height:64px;*/
+    filter:drop-shadow(0 0 10px var(--logo-sd-clr,rgba(0,0,0,0.2)));
+    transform:scale(0.11);
+    transform-origin: top left;
+}
+
 optgroup {
     color:var(--mainColor3);
     text-align: left;

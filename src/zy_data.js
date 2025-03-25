@@ -13,12 +13,12 @@
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
 info的值分别对应[主标题，副标题，奖励图，LOGO，按钮]，1表示允许，0表示不允许；
 s的值要带k,作为string传入；
-safa记录安全区数据，每组数据对应[x,y,w,h,noInfo],其中noInfo既非文字安全区，用1表示，正常的文字安全区该值可为空；
+safa记录安全区数据，每组数据对应[x,y,w,h,islogo],如有多个安全区，请将文字所在安全区放首位，其中islogo表示是否影响logo的位置，是则用1表示；
 每个渠道配备一个用户预设，用渠道加_user区分，首次生成需用户保存预设，也支持手动导入预设；
 允许添加用户自定义尺寸集，首次生成需用户保存设置，也支持手动导入；
  */
 const 大神 = [
-    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120,1]]},
     {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[[0,60,580,662]]},
     {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,1,1,0],safa:[]},
     {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
@@ -35,7 +35,7 @@ const 大神 = [
     {name:"内容流-单图",w:690,h:188,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[]},
     {name:"内容流-四图",w:158,h:158,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
     {name:"内容流-双排流广告图",w:543,h:720,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[[0,430,543,250]]},
-    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.03,view:false,info:[1,0,0,0,0],safa:[[0,23,702,121,1],[168,23,358,121]]},
+    {name:"内容流-游戏分发入口",w:702,h:144,s:"300k",type:"png",d:0.03,view:false,info:[1,0,0,0,0],safa:[[168,23,358,121],[0,23,702,121]]},
     {name:"游戏发现页-大事记背景图",w:656,h:544,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,0,0],safa:[[18,80,620,210]]},
     {name:"游戏发现页-新游预约",w:640,h:336,s:"300k",type:"jpg",d:0.03,view:false,info:[0,0,0,1,0],safa:[]},
     {name:"游戏发现页-游戏分类推荐页",w:520,h:202,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},
@@ -210,6 +210,33 @@ const 手机管家 = [
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
 ];
     
+const games = [
+    {name:"永劫无间",src:["img/game/永劫无间_黑.png","img/game/永劫无间_白.png",]},
+    {name:"永劫无间手游",src:["img/game/永劫无间手游_黑.png","img/game/永劫无间手游_白.png",]},
+    {name:"梦幻西游端游",src:["img/game/梦幻西游端游.png","img/game/梦幻西游端游.png",]},
+    {name:"梦幻西游手游",src:["img/game/梦幻西游手游.png","img/game/梦幻西游手游.png",]},
+    {name:"炉石传说",src:["img/game/炉石传说.png","img/game/炉石传说.png",]},
+    {name:"燕云十六声",src:["img/game/燕云十六声_白.png","img/game/燕云十六声_白.png",]},
+    {name:"新倩女幽魂",src:["img/game/新倩女幽魂.png","img/game/新倩女幽魂.png",]},
+    {name:"倩女幽魂手游",src:["img/game/倩女幽魂手游.png","img/game/倩女幽魂手游.png",]},
+    {name:"天下3",src:["img/game/天下3.png","img/game/天下3.png",]},
+    {name:"天下贰",src:["img/game/天下贰.png","img/game/天下贰.png",]},
+    {name:"天谕手游",src:["img/game/天谕手游.png","img/game/天谕手游.png",]},
+    {name:"一梦江湖",src:["img/game/一梦江湖_黑.png","img/game/一梦江湖_白.png",]},
+    {name:"第五人格",src:["img/game/第五人格_黑.png","img/game/第五人格_白.png",]},
+    {name:"蛋仔派对",src:["img/game/蛋仔派对.png","img/game/蛋仔派对.png",]},
+    {name:"光遇",src:["img/game/光遇_蓝.png","img/game/光遇_白.png",]},
+    {name:"界外狂潮",src:["img/game/界外狂潮.png","img/game/界外狂潮.png",]},
+    {name:"七日世界",src:["img/game/七日世界.png","img/game/七日世界.png",]},
+    {name:"荒野行动",src:["img/game/荒野行动.png","img/game/荒野行动.png",]},
+    {name:"无烬星河",src:["img/game/无烬星河_白.png","img/game/无烬星河_白.png",]},
+]
+
+const channels = [
+    {name:"大神",src:["img/channel/大神_深.png","img/channel/大神_白.png",]},
+    {name:"CC直播",src:["img/channel/CC直播_黑.png","img/channel/CC直播_白.png",]},
+    {name:"网易游戏",src:["img/channel/网易游戏.png","img/channel/网易游戏.png",]},
+]
 
 var sheet = {
     "大神":[...大神,...大神_user],
@@ -238,7 +265,7 @@ const userImgData = {
     main:{/*全局配置项*/
         title:["主要标题文案","备用标题文案"],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
         sectitle:["主要副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
-        game:["--",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+        game:["永劫无间",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         layout:{/*图层*/
             bg_main:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
@@ -318,7 +345,7 @@ const userImgData = {
     zy:[/*有哪些资源位*/
         {
             img:{name:"KV-示例",w:1920,h:1080,s:"",type:"jpg",d:0.6,view:false,info:[1,1,1,1,0],safa:[]},
-            channel:["--",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+            channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
             set:{
                 titleNum:[0,0],/*主标题文案序号,副标题文案序号*/
                 gift:0,/*奖励数量，0则隐藏*/
@@ -335,7 +362,7 @@ const userZy = [
                 {
                 channel:"大神",
                 zy:[
-                    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120]]},
+                    {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120,1]]},
                     {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[[0,60,580,662]]},
                     {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,1,1,0],safa:[]},
                     {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},

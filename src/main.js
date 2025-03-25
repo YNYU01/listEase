@@ -59,6 +59,11 @@ window.onload = ()=>{
         document.getElementById('theme').checked = false;
         setTheme(document.getElementById('theme'));
     }
+    if(!localStorage.getItem('userTheme')){
+        document.getElementById('theme').checked = false;
+        setTheme(document.getElementById('theme'));
+        localStorage.setItem('userTheme','light');
+    }
     addOption("select-area-",sheet,0);
     addOption("select-area-",sheet,'ai');
     addOption("select-img-",[],0);
@@ -92,6 +97,7 @@ window.onload = ()=>{
     addFlowEditor();
     isMobile(true);
     moDautoZoom();
+    addGame();
     addFontStyle();
 }
 

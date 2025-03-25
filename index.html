@@ -631,6 +631,11 @@
                                         </label>
                                     </div>
                                     <div class="w100 df-ffc" style="gap:2px;">
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 游戏 </a><span> :</span>
+                                            <select id="game-pick" class="select" onchange="setimgMain('game',this.value)">
+                                            </select>
+                                        </div>
                                         <div class="df w100" style="align-items: center;">
                                             <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"/>
                                         </div>
@@ -679,7 +684,7 @@
                         <div class="moDside" id="moDside-area" style="background: none; border: none; margin: 10px;"></div>
                         <!--画布-->
                         <div id="imgView" class="df-ffc cc ovh" style=" position: relative;">
-                            <div class="loadding" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
+                            <div class="loadding pos-r" style="filter:drop-shadow(0 0 1px var(--boxBod)); ">
                                 <div id="imgView-box" class="df pos-r ovh" style="width: fit-content; flex: 0,0,auto; transform: scale(0.4); transition: transform 0.5s ;  ">
 
                                 </div>

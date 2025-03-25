@@ -134,8 +134,11 @@ function addModelList(){
         }
         var node = document.createElement('div')
         node.className = "model-info"
-        node.innerHTML = `
-        <input type="checkbox" id="model-pick-` + index + `" style="display: none;" 
+        var inputs = `<input type="checkbox" id="model-pick-`
+        if(index == 0){
+            inputs = `<input type="checkbox" checked="true" id="model-pick-`
+        }
+        node.innerHTML = inputs + index + `" style="display: none;" 
         onchange="
         if(this.checked){
         onlyTab(this,this.parentNode.parentNode);
@@ -217,8 +220,8 @@ function addZYtable(){
         //console.log(imgnode)
     });
     reimgClone();
-    setimgMain('fontFamily-main','Source Han Sans CN');
-    setimgMain('fontFamily-sec','Source Han Sans CN');
+    setimgMain('fontFamily-main',userImgData.style.title.fontfamily);
+    setimgMain('fontFamily-sec',userImgData.style.sectitle.fontfamily);
 }
  function setImgLayout(node,imgid,imgInfo,imgNum){
     var w = imgInfo.w, h = imgInfo.h, type = imgInfo.type, safa = imgInfo.safa , info = imgInfo.info;
@@ -408,6 +411,45 @@ function addZYtable(){
         bgLayout = '<img width="100%" height="100" src="" data-layout-bg/>'
     };
 
+    var logoNode = '';
+    var infoNode = `
+    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px">
+    `+ titleNode + sectitleNode + giftNode +`
+    </div>`;
+
+    if(info[3] == 1){
+        logoNode = `
+        <logo-group class="pos-a" style="top: ` + fontsizes[0] + `; left: ` + fontsizes[0] + `; z-index: 20; 
+        transform:scale(` + fontsizes[1]/64 + `);
+        transform-origin: top left;
+        "></logo-group>`;
+        if(w < 300 || h < 300){
+            logoNode = `
+            <logo-group class="pos-a" style="top: ` + fontsizes[0]/2 + `; left: ` + fontsizes[0]/2 + `; z-index: 20; 
+            transform:scale(` + fontsizes[1]/64 * 0.8 + `);
+            transform-origin: top left;
+            "></logo-group>`;
+        }
+    }
+    
+
+    if(safa && safa[0] ){
+        if( ww <= hh){
+            infoNode = `
+            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + (fontsizes[0] + (h - (safa[0][1] + safa[0][3] ))) + `px;">
+            `+ titleNode + sectitleNode + giftNode +`
+            </div>`;
+        }
+        
+        if(safa[0][4]){
+            logoNode = `
+            <logo-group class="pos-a" style="top: ` + (fontsizes[0] + safa[0][1] )+ `; left: ` + (fontsizes[0] + safa[0][0]) + `; z-index: 20; 
+            transform:scale(` + fontsizes[1]/64 + `);
+            transform-origin: top left;
+            "></logo-group>`;
+        }
+    }
+
     node.id = imgid;
     node.style.width = w + 'px';
     node.style.height = h + 'px';
@@ -415,10 +457,10 @@ function addZYtable(){
     node.style.fontWeight = '400';
     node.className = 'ovh pos-r zySSS';
 
-    node.innerHTML = `
-    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px">
-    `+ titleNode + sectitleNode + giftNode +`
-    </div>
+    
+
+
+    node.innerHTML = logoNode + infoNode +`
     <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
     ` + mainLayout + bgLayout
 
@@ -587,6 +629,12 @@ function setimgMain(type,value,num){
             userImgData.main.gift.name[(num - 1)] = value;
         })
     }
+    if(type == 'game'){
+        var gameNode = document.querySelectorAll('[data-logo-game]')
+        gameNode.forEach(item => {
+            item.src = games.filter(items => items.name == value)[0].src[0];
+        })
+    }
 }
 
 function reimgClone(){
@@ -688,6 +736,15 @@ function addFontStyle(){
     })
 }
 
+function addGame(){
+    games.forEach(item => {
+        var node = document.createElement('option')
+        node.value = item.name;
+        node.innerHTML = item.name;
+        document.getElementById('game-pick').appendChild(node)
+    })
+    
+}
 //导出
 async function exportAll(){
     zyAllId.forEach((item,index)=>{

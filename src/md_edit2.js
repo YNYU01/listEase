@@ -76,7 +76,7 @@ toPlugin.ondragstart = (event)=>{
 
 function sendData(event,isDown){
     var text = JSON.stringify(userImgData);
-    console.log(text)
+    //console.log(text)
     if(isDown){
         var blob = new Blob([text],{type:'text/plain'})
         var link = document.createElement('a');
@@ -217,8 +217,9 @@ function addZYtable(){
         //console.log(imgnode)
     });
     reimgClone();
+    setimgMain('fontFamily-main','Source Han Sans CN');
+    setimgMain('fontFamily-sec','Source Han Sans CN');
 }
-
  function setImgLayout(node,imgid,imgInfo,imgNum){
     var w = imgInfo.w, h = imgInfo.h, type = imgInfo.type, safa = imgInfo.safa , info = imgInfo.info;
     if(!info){info = [1,1,0,1,0]};
@@ -290,8 +291,7 @@ function addZYtable(){
         style="font-size:` + fontsizes[2] + `px; 
         line-height:` + fontsizes[2] + `px; 
         color:` + userImgData.style.title.color + `;
-        font-family:'` + userImgData.style.title.fontfamily + `';
-        font-weight: 900;" 
+        font-family:'` + userImgData.style.title.fontfamily + `';" 
         data-title="0">`
          + userImgData.main.title[0].replace('，','<br>') +
         `</div>`;
@@ -301,21 +301,27 @@ function addZYtable(){
         style="font-size: ` + fontsizes[1] + `px; 
         line-height:` + fontsizes[1] + `px; 
         color:` + userImgData.style.sectitle.color + `;
-        font-family:'` + userImgData.style.sectitle.fontfamily + `';
-        font-weight: 700;" 
+        font-family:'` + userImgData.style.sectitle.fontfamily + `';" 
         data-sectitle="0">` 
         + userImgData.main.sectitle[0].replace('，','<br>') +
         `</div>`;
     };
+
+    var isgiftview1,isgiftview2,isgiftview3,isgiftview4;
+    var isgiftview = userImgData.main.gift.isview;
+    isgiftview[0]?isgiftview1 = 'flex':isgiftview1 = 'none';
+    isgiftview[1]?isgiftview2 = 'flex':isgiftview2 = 'none';
+    isgiftview[2]?isgiftview3 = 'flex':isgiftview3 = 'none';
+    isgiftview[3]?isgiftview4 = 'flex':isgiftview4 = 'none';
+
     if(info[2] == 1){
         giftNode = `
         <div class="cc w100" style="gap:` + fontsizes[1] + `px;">
-            <div class="pos-r df-ffc cc" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; ">
+            <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview1 + ` ">
                 <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
                     <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    font-family:'` + userImgData.style.tags.fontfamily + `';
-                    font-weight: 400;" >
+                    font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-before="0"></div>
                         <div data-tag-num="0">`+ userImgData.main.gift.num[0] +`</div>
                         <div data-tag-after="0"></div>
@@ -325,19 +331,17 @@ function addZYtable(){
                 <div class="gift-name-box">
                     <div data-gift-name="0" style="font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';
-                    font-weight: 400;" >`
+                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[0] +
                     `</div>
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; ">
+            <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview2 + `">
                 <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
                     <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    font-family:'` + userImgData.style.tags.fontfamily + `';
-                    font-weight: 400;" >
+                    font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-before="1"></div>
                         <div data-tag-num="1">`+ userImgData.main.gift.num[1] +`</div>
                         <div data-tag-after="1"></div>
@@ -347,19 +351,17 @@ function addZYtable(){
                 <div class="gift-name-box">
                     <div data-gift-name="1" style="font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';
-                    font-weight: 400;" >`
+                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[1] +
                     `</div>
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; ">
+            <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview3 + `">
                 <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
                     <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    font-family:'` + userImgData.style.tags.fontfamily + `';
-                    font-weight: 400;" >
+                    font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-before="2"></div>
                         <div data-tag-num="2">`+ userImgData.main.gift.num[2] +`</div>
                         <div data-tag-after="2"></div>
@@ -369,19 +371,17 @@ function addZYtable(){
                 <div class="gift-name-box">
                     <div data-gift-name="2" style="font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';
-                    font-weight: 400;" >`
+                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[2] +
                     `</div>
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; ">
+            <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview4 + `">
                 <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
                     <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    font-family:'` + userImgData.style.tags.fontfamily + `';
-                    font-weight: 400;" >
+                    font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-before="3"></div>
                         <div data-tag-num="3">`+ userImgData.main.gift.num[3] +`</div>
                         <div data-tag-after="3"></div>
@@ -391,8 +391,7 @@ function addZYtable(){
                 <div class="gift-name-box">
                     <div data-gift-name="3" style="font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';
-                    font-weight: 400;" >`
+                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[3] +
                     `</div>
                 </div>  
@@ -413,6 +412,7 @@ function addZYtable(){
     node.style.width = w + 'px';
     node.style.height = h + 'px';
     node.style.flex = '0,0,auto';
+    node.style.fontWeight = '400';
     node.className = 'ovh pos-r zySSS';
 
     node.innerHTML = `
@@ -425,6 +425,7 @@ function addZYtable(){
 
 }
 
+//切换资源位以单独编辑
 function pickImg(key){
     var zys = userImgData.zy;
     var num = key.split('_')[1];
@@ -439,16 +440,17 @@ function pickImg(key){
     document.getElementById('zy-info-game').textContent = userImgData.main.game[0];
 }
 
+//修改信息
 function setimgMain(type,value,num){
     
     var title1 = document.querySelectorAll('[data-title="0"]');
     var title2 = document.querySelectorAll('[data-title="1"]');
     var sectitle1 = document.querySelectorAll('[data-sectitle="0"]');
     var sectitle2 = document.querySelectorAll('[data-sectitle="1"]');
-    var giftname1 = document.querySelectorAll('[data-title="0"]');
-    var giftname2 = document.querySelectorAll('[data-title="1"]');
-    var giftname3 = document.querySelectorAll('[data-sectitle="0"]');
-    var giftname4 = document.querySelectorAll('[data-sectitle="1"]');
+    var giftview1 = document.querySelectorAll('[data-gift="0"]');
+    var giftview2 = document.querySelectorAll('[data-gift="1"]');
+    var giftview3 = document.querySelectorAll('[data-gift="2"]');
+    var giftview4 = document.querySelectorAll('[data-gift="3"]');
 
     if((type + num) == 'title1'){
         userImgData.main.title[0] = value;
@@ -496,21 +498,95 @@ function setimgMain(type,value,num){
         userImgData.style.title.fontfamily = value;
         title1.forEach(item => {
             item.style.fontFamily = value;
+            if(value.split('Source').length > 1){
+                item.style.fontWeight = '900'
+            }else{
+                item.style.fontWeight = '400'
+            }
         })
         title2.forEach(item => {
             item.style.fontFamily = value;
+            if(value.split('Source').length > 1){
+                item.style.fontWeight = '900'
+            }else{
+                item.style.fontWeight = '400'
+            }
         })
     }
     if(type == 'fontFamily-sec'){
         userImgData.style.sectitle.fontfamily = value;
         sectitle1.forEach(item => {
             item.style.fontFamily = value;
+            if(value.split('Source').length > 1){
+                item.style.fontWeight = '700'
+            }else{
+                item.style.fontWeight = '400'
+            }
         })
         sectitle2.forEach(item => {
             item.style.fontFamily = value;
+            if(value.split('Source').length > 1){
+                item.style.fontWeight = '700'
+            }else{
+                item.style.fontWeight = '400'
+            }
         })
     }
-    
+    if(type == 'isGift'){
+        if(num == 1){
+            giftview1.forEach(item => {
+                if(!value){
+                    item.style.display = 'none';
+                    userImgData.main.gift.isview[0] = 0;
+                }else{
+                    item.style.display = 'flex';
+                    userImgData.main.gift.isview[0] = 1;
+                }
+            })
+        };
+        if(num == 2){
+            giftview2.forEach(item => {
+                if(!value){
+                    item.style.display = 'none';
+                    userImgData.main.gift.isview[1] = 0;
+                }else{
+                    item.style.display = 'flex';
+                    userImgData.main.gift.isview[1] = 1;
+                }
+            })
+        };
+        if(num == 3){
+            giftview3.forEach(item => {
+                if(!value){
+                    item.style.display = 'none';
+                    userImgData.main.gift.isview[2] = 0;
+                }else{
+                    item.style.display = 'flex';
+                    userImgData.main.gift.isview[2] = 1;
+                }
+            })
+        };
+        if(num == 4){
+            giftview4.forEach(item => {
+                if(!value){
+                    item.style.display = 'none';
+                    userImgData.main.gift.isview[3] = 0;
+                }else{
+                    item.style.display = 'flex';
+                    userImgData.main.gift.isview[3] = 1;
+                }
+            })
+        };
+        
+        
+    }
+    if(type == 'giftname'){
+        var giftnamenode = document.querySelectorAll('[data-gift-name="' + (num - 1) + '"]');
+        giftnamenode.forEach(item => {
+            item.textContent = value;
+            userImgData.main.gift.name[(num - 1)] = value;
+        })
+    }
 }
 
 function reimgClone(){
@@ -586,6 +662,29 @@ function imgAutoScale(){
         node.parentNode.style.width = item.split('_')[2] * scale + 'px';
         node.parentNode.style.height = item.split('_')[3] * scale + 'px';
         node.style.transform = 'scale(' + scale + ')';
+    })
+}
+
+function addFontStyle(){
+    var allFont = `
+    <option value="FZYaSongS-B-GB">方正粗雅宋</option>
+    <option value="FZJinLS-B-GB">方正粗金陵</option>
+    <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
+    <option value="Aa诗宋体">Aa诗宋体</option>
+    <option value="AaJianHaoTi">Aa剑豪体</option>
+    <option value="临海体">临海隶书</option>
+    <option value="三极泼墨体">三极泼墨体</option>
+    <option value="SJsanjililiangtijian-cu">三极力量体简</option>
+    <option value="PangMenZhengDao">庞门正道标题体</option>
+    <option value="CKTKingKong">创客贴金刚体</option>
+    <option value="ZhenyanGB">锐字真言体</option>
+    <option value="LogoSC Unbounded Sans">标小智无界黑</option>
+    <option value="HYDiWRGJ">汉仪第五人格简</option>
+    <option value="Hangyaku">叛逆明朝</option>
+    `
+    var fontSelect = document.querySelectorAll('[data-font-style]');
+    fontSelect.forEach(item => {
+        item.innerHTML = allFont;
     })
 }
 

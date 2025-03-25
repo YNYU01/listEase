@@ -73,7 +73,7 @@
             <div id="TV" class="TV cc">
                 <div id="TV-move" class="df" >
                     <div style="min-width: 7ch;" >💬公告:</div>
-                    <div id="TV-info" class="df">[测试阶段]全渠道活动资源助手，可用于查阅、提单、衔接设计工具</div>  
+                    <div id="TV-info" class="df">[Beta]全渠道活动资源助手，可用于查阅、提单、衔接设计工具，商业使用需自行处理版权</div>  
                 </div>  
             </div>
         </div>
@@ -424,12 +424,7 @@
                                                 <option value="Source Han Sans CN">思源黑体</option>
                                                 <option value="Source Han Serif CN">思源宋体</option>
                                             </optgroup>
-                                            <optgroup id="fontList-smain" label="风格">
-                                                <option value="FZYaSongS-B-GB">方正粗雅宋</option>
-                                                <option value="FZJinLS-B-GB">方正粗金陵</option>
-                                                <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
-                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option>
-                                            </optgroup>
+                                            <optgroup data-font-style label="风格"></optgroup>
                                             </select>
                                         </div>
                                         <div class="df cc" style="gap:4px;">
@@ -483,12 +478,7 @@
                                                 <option value="Source Han Sans CN">思源黑体</option>
                                                 <option value="Source Han Serif CN">思源宋体</option>
                                             </optgroup>
-                                            <optgroup id="fontList-sec" label="风格">
-                                                <option value="FZYaSongS-B-GB">方正粗雅宋</option>
-                                                <option value="FZJinLS-B-GB">方正粗金陵</option>
-                                                <option value="FZShengShiKaiShuS-EB-GB">方正盛世楷书</option>
-                                                <option value="HYXiaoLiShuJ">汉仪小隶书</option>
-                                            </optgroup>
+                                            <optgroup data-font-style label="风格"></optgroup>
                                             </select>
                                         </div>
                                         <div class="df cc" style="gap:4px;">
@@ -522,7 +512,7 @@
 
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-1" checked="true" type="checkbox" style="display: none;" 
-                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGift',this.checked,1);"/>
                                             <label for="gift-show-1" class="chk-pick">
                                                 <chk-pick></chk-pick>
                                             </label>
@@ -549,7 +539,7 @@
 
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-2" checked="true" type="checkbox" style="display: none;" 
-                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGift',this.checked,2);"/>
                                             <label for="gift-show-2" class="chk-pick">
                                                 <chk-pick></chk-pick>
                                             </label>
@@ -576,7 +566,7 @@
 
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-3" checked="true" type="checkbox" style="display: none;" 
-                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGift',this.checked,3);"/>
                                             <label for="gift-show-3" class="chk-pick">
                                                 <chk-pick></chk-pick>
                                             </label>
@@ -603,7 +593,7 @@
                                         
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-4" checked="true" type="checkbox" style="display: none;" 
-                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;}"/>
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGift',this.checked,4);"/>
                                             <label for="gift-show-4" class="chk-pick">
                                                 <chk-pick></chk-pick>
                                             </label>

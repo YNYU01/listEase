@@ -90,8 +90,9 @@ window.onload = ()=>{
     
     addModelList();
     addFlowEditor();
-    isMobile(true)
-    moDautoZoom(); 
+    isMobile(true);
+    moDautoZoom();
+    addFontStyle();
 }
 
 window.onresize = ()=>{

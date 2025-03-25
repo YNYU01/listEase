@@ -802,6 +802,7 @@ async function exportOneAs(node,type,name,w,h,e){
                 link.download = name + '.jpg';
                 link.href = dataUrl;
                 link.click();
+link.remove();
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
@@ -820,12 +821,13 @@ async function exportOneAs(node,type,name,w,h,e){
                 link.download = name + '.png';
                 link.href = dataUrl;
                 link.click();
+link.remove();
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
-                    imgAutoScale();
+                    //imgAutoScale();
                 }
             },500)
         },500)

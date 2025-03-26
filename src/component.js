@@ -116,18 +116,6 @@ class btnset extends HTMLElement {
 }
 customElements.define('btn-set', btnset);
 
-class logos extends HTMLElement {
-    constructor() {
-        super();
-        this.innerHTML =`
-        <div class="df cc logos" >
-        <img data-logo-game src="img/game/永劫无间_黑.png"/>
-        <img data-logo-channel src="img/channel/大神_深.png">
-        </div>
-        `;
-    }
-}
-customElements.define('logo-group', logos);
 
 
 

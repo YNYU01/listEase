@@ -699,7 +699,7 @@ function appendImg(){
         imgViewBox.appendChild(item.node);
         
         cloneImgViewBoxs.appendChild(imgViewBox);
-        cloneImgViewBoxs.innerHTML += `<div class="wh100 df" style="align-items: center; padding:10px; height:40px; border-top:1px solid var(--boxBod); background:var(--boxBak); box-sizing: border-box;" >` + item.name + '.' + item.type +` </div>`;
+        cloneImgViewBoxs.innerHTML += `<div class="wh100 df" ondblclick="exportOne(`+ index +`)" style="align-items: center; padding:10px; height:40px; border-top:1px solid var(--boxBod); background:var(--boxBak); box-sizing: border-box;" >` + item.name + '.' + item.type +` </div>`;
         zyClonsBoxs.push({node:cloneImgViewBoxs,hh:item.name.split('×')[1] * item.scale,});
         //cloneViews[index%cloneViews.length].appendChild(cloneImgViewBoxs);
     })
@@ -755,55 +755,72 @@ function addGame(){
     
 }
 //导出
+var dataurls = [];
 async function exportAll(){
-    zyAllId.forEach((item,index)=>{
-        var node = document.getElementById(item + '-clone');
-        node.parentNode.style.filter = 'blur(10px)';
-        node.parentNode.style.transition = 'filter 0.5s';
-        node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
-        node.style.transform = 'scale(1)';
-        //exportOne(index);
-    });
-    for(var i = 0; i < zyAllId.length; i++){
-        exportOne(i);
+    
+    if(zyAllId.length == 1){//单个导出
+        exportOne(0);
+    }else{
+        dataurls = [];
+        for(var i = 0; i < zyAllId.length; i++){
+            exportOne(i,true)
+            //exportOne(i)
+        }
     }
-}
+    }
+    
 
-async function exportOne(e){
+async function exportOne(e,isAll){
+    var id = zyAllId[e]
+    var zyNode = document.getElementById(id + '-clone');
+    zyNode.parentNode.style.filter = 'blur(10px)';
+    zyNode.parentNode.style.transition = 'filter 0.5s';
+    zyNode.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
+    zyNode.style.transform = 'scale(1)';
+
     var w = userImgData.zy[e].img.w;
     var h = userImgData.zy[e].img.h
-    var imgid = 'zy_' + (e + 1) + '_' + w + '_' + h + '-clone';
-    var zyNode = document.getElementById(imgid);
-    //console.log(zyNode)
+
     var zyType = userImgData.zy[e].img.type;
     var zyName = 'img' 
     if(zyAllname.length > 0){
         zyName = zyAllname[e]
     }
-    exportOneAs(zyNode,zyType,zyName,w,h,e)
+    if(isAll){
+        exportOneAs(zyNode,zyType,zyName,w,h,e,true)
+    }else{
+        exportOneAs(zyNode,zyType,zyName,w,h,e)
+        tipsAll('后台正在创建下载，请耐心等待~',3000)
+    }
     
 }
 
-async function exportOneAs(node,type,name,w,h,e){
-
-    /* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} */
+async function exportOneAs(node,type,name,w,h,e,isAll){
+    /* toJpeg(node,{quality:number}) | toPng(node) | toPixelData(node).then(function(pixels){} | toBlob(node)*/
     if(type == 'jpeg' || type == 'jpg' || type == 'webp'){
         setTimeout(()=>{
-            domtoimage.toJpeg(node, { quality: 1,with:w,height:h})
+            domtoimage.toJpeg(node, { quality: 0.9,with:w,height:h})
             .then(function (dataUrl) {
-                var link = document.createElement('a');
-                link.download = '导出/' + name + '.jpg';
-                link.href = dataUrl;
-                link.click();
-                link.remove();
+                if(isAll){
+                    dataurls.push(dataURLtoBlob(dataUrl));
+                    if(dataurls.length == zyAllId.length){
+                        console.log(dataurls)
+                        createZipAndDownload(dataurls)
+                    }
+                }else{
+                    var link = document.createElement('a');
+                    link.download = name + '.jpg';
+                    link.href = dataUrl;
+                    link.click();
+                    link.remove();
+                }
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-                if(e == zyAllId.length - 1){
-                    imgAutoScale();
-                    tipsAll('后台正在创建下载，请耐心等待~',3000)
-                }
+                //if(e == zyAllId.length - 1){
+                    imgAutoScale();  
+                //}
             },500)
         },500)
     }
@@ -811,21 +828,75 @@ async function exportOneAs(node,type,name,w,h,e){
         setTimeout(()=>{
             domtoimage.toPng(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {
-                var link = document.createElement('a');
-                link.download = '导出/' + name + '.png';
-                link.href = dataUrl;
-                link.click();
-                link.remove();
+                if(isAll){
+                    dataurls.push(dataURLtoBlob(dataUrl));
+                    if(dataurls.length == zyAllId.length){
+                        console.log(dataurls)
+                        createZipAndDownload(dataurls)
+                    }
+                }else{
+                    var link = document.createElement('a');
+                    link.download = name + '.png';
+                    link.href = dataUrl;
+                    link.click();
+                    link.remove();
+                }
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-                if(e == zyAllId.length - 1){
+                //if(e == zyAllId.length - 1){
                     imgAutoScale();
-                    tipsAll('后台正在创建下载，请耐心等待~',3000)
-                }
+                //}
             },500)
         },500)
     }
+    
 }
 
+// 创建ZIP文件并提供下载
+function createZipAndDownload(compressedImages) {
+    var MN = new Date()
+    var M = String(MN.getMonth() + 1).padStart(2, '0');
+    var N = String(MN.getDate()).padStart(2, '0');
+    var HHMMSS = String(MN.getHours()).padStart(2, '0') + String(MN.getMinutes()).padStart(2, '0') + String(MN.getSeconds()).padStart(2, '0');
+    var zip = new JSZip();
+
+
+    compressedImages.forEach((blob,index) => {
+        var path = zyAllname[index].split('/');
+        var name = path.pop() + '.png';
+        if (zyAllname[index].split('/').length == 2) {
+            var folder = zip.folder(path[0]);
+            folder.file(name,blob);
+        } else if (zyAllname[index].split('/').length == 3) {
+            var folder1 = zip.folder(path[0]);
+            var folder2 = folder1.folder(path[1]);
+            folder2.file(name,blob);
+        } else {
+            zip.file(name,blob);
+        }
+        });
+
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+        saveAs(content, '导出' + '-' + M + N + '_' + HHMMSS + '.zip');
+    });
+}
+
+ function dataURLtoBlob(dataURL) {
+    // 按逗号分隔Data URL
+    var parts = dataURL.split(',');
+    // 获取MIME类型
+    var mime = parts[0].match(/:(.*?);/)[1];
+    // 解码Base64数据
+    var bstr = atob(parts[1]);
+    // 创建Uint8Array
+    var n = bstr.length;
+    //console.log(n)
+    var u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    // 创建Blob对象
+    return new Blob([u8arr], { type: mime });
+}

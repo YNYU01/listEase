@@ -523,17 +523,31 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-1" class="moDsearch-box" maxlength="8" 
-                                                        value="奖励名称1" oninput="getTextNum(this);setimgMain('giftname',this.value,1);" onchange="setTextMust(this,'奖励名称1');setimgMain('giftname',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <input type="text" id="gift-name-1" class="moDsearch-box" maxlength="8" value="奖励名称1" 
+                                                        oninput="getTextNum(this);setimgMain('giftname',this.value,1);" 
+                                                        onchange="setTextMust(this,'奖励名称1');setimgMain('giftname',this.value,1);" 
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-1-num"> 5 </span>/
                                                             <span>8</span>
                                                         </div>
                                                     </div>
+                                                    <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="x" class="moDsearch-box" >
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-key" value="2" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="×" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagNum',this.value,1)"
+                                                        onchange="setimgMain('giftTagNum',this.value,1)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-key" value="2" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagKey',this.value,1)"
+                                                        onchange="setimgMain('giftTagKey',this.value,1)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
                                                     </div>  
+                                                    <input id="gift-tag-1-show" checked="true" type="checkbox" style="display: none;" 
+                                                    onchange="setimgMain('isGiftTag',this.checked,1)">
+                                                    <label for="gift-tag-1-show" class="switch"></label> 
                                                 </div>
                                             </div>
                                         </div>
@@ -551,17 +565,31 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-2" class="moDsearch-box" maxlength="8" 
-                                                        value="奖励名称2" oninput="getTextNum(this);setimgMain('giftname',this.value,2);" onchange="setTextMust(this,'奖励名称2');setimgMain('giftname',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <input type="text" id="gift-name-2" class="moDsearch-box" maxlength="8" value="奖励名称2" 
+                                                        oninput="getTextNum(this);setimgMain('giftname',this.value,2);" 
+                                                        onchange="setTextMust(this,'奖励名称2');setimgMain('giftname',this.value,2);" 
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-2-num"> 5 </span>/
                                                             <span>8</span>
                                                         </div>
                                                     </div>
+                                                    <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="x" class="moDsearch-box" >
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-key" value="3" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="×" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagNum',this.value,2)"
+                                                        onchange="setimgMain('giftTagNum',this.value,2)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-key" value="3" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagKey',this.value,2)"
+                                                        onchange="setimgMain('giftTagKey',this.value,2)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
                                                     </div>  
+                                                    <input id="gift-tag-2-show" checked="true" type="checkbox" style="display: none;" 
+                                                    onchange="setimgMain('isGiftTag',this.checked,2)">
+                                                    <label for="gift-tag-2-show" class="switch"></label> 
                                                 </div>
                                             </div>
                                         </div>
@@ -579,17 +607,31 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" 
-                                                        value="奖励名称3" oninput="getTextNum(this);setimgMain('giftname',this.value,3);" onchange="setTextMust(this,'奖励名称3');setimgMain('giftname',this.value,3);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称3" 
+                                                        oninput="getTextNum(this);setimgMain('giftname',this.value,3);" 
+                                                        onchange="setTextMust(this,'奖励名称3');setimgMain('giftname',this.value,3);" 
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-3-num"> 5 </span>/
                                                             <span>8</span>
                                                         </div>
                                                     </div>
+                                                    <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="x" class="moDsearch-box" >
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-key" value="4" class="moDsearch-box" >
-                                                    </div>  
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="×" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagNum',this.value,3)"
+                                                        onchange="setimgMain('giftTagNum',this.value,3)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-key" value="4" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagKey',this.value,3)"
+                                                        onchange="setimgMain('giftTagKey',this.value,3)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
+                                                    </div> 
+                                                    <input id="gift-tag-3-show" checked="true" type="checkbox" style="display: none;" 
+                                                    onchange="setimgMain('isGiftTag',this.checked,3)">
+                                                    <label for="gift-tag-3-show" class="switch"></label> 
                                                 </div>
                                             </div>
                                         </div>
@@ -607,22 +649,62 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" 
-                                                        value="奖励名称4" oninput="getTextNum(this);setimgMain('giftname',this.value,4);" onchange="setTextMust(this,'奖励名称4');setimgMain('giftname',this.value,4);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称4" 
+                                                        oninput="getTextNum(this);setimgMain('giftname',this.value,4);" 
+                                                        onchange="setTextMust(this,'奖励名称4');setimgMain('giftname',this.value,4);" 
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-4-num"> 5 </span>/
                                                             <span>8</span>
                                                         </div>
                                                     </div>
+                                                    <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="x" class="moDsearch-box" >
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-key" value="5" class="moDsearch-box" >
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="×" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagNum',this.value,4)"
+                                                        onchange="setimgMain('giftTagNum',this.value,4)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-key" value="5" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagKey',this.value,4)"
+                                                        onchange="setimgMain('giftTagKey',this.value,4)"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        />
                                                     </div>  
+                                                    <input id="gift-tag-4-show" checked="true" type="checkbox" style="display: none;" 
+                                                    onchange="setimgMain('isGiftTag',this.checked,4)">
+                                                    <label for="gift-tag-4-show" class="switch"></label>
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                        
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 字体 </a><span> :</span>
+                                            <select id="gift-name-font" class="select"
+                                            onchange="setimgMain('fontFamily-main',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
+                                            <optgroup label="通用">
+                                                <option value="Source Han Sans CN">思源黑体</option>
+                                                <option value="Source Han Serif CN">思源宋体</option>
+                                            </optgroup>
+                                            <optgroup data-font-style label="风格"></optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <a> 染色 </a><span> :</span>
+                                            <input id="gift-name-colorBox" type="color" class="moDsearch-box" style="width: 80px;padding: 2px;" value="#acacac" 
+                                            oninput="
+                                            document.getElementById('gift-name-color').value = this.value;
+                                            setimgMain('giftNameColor',this.value);"/>
+                                            <input id="gift-name-color" class="moDsearch-box" type="text" value="#acacac" 
+                                            onKeyPress="if(window.event.keyCode==13){this.blur();
+                                            reColorText(this);
+                                            document.getElementById('gift-name-colorBox').value = this.value;
+                                            setimgMain('fontColor-main',this.value);}"
+                                            onchange="
+                                            reColorText(this);
+                                            document.getElementById('gift-name-colorBox').value = this.value;
+                                            setimgMain('giftNameColor',this.value);"/>
+                                        </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
                                 </div>

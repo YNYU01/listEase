@@ -163,16 +163,31 @@ body::-webkit-scrollbar,
 .switch::after{
     content: '';
     position: absolute;
-    width: var(--swi-h,18px);
-    height: var(--swi-h,18px);
-    border: 1px solid var(--boxBod);
+    width: var(--swi-h,14px);
+    height: var(--swi-h,14px);
+    border: 1px solid var(--mainColor3);
     box-sizing: border-box;
-    background: var(--boxGry);
-    top: 0;
-    left: 0;
+    top: 2;
+    left: 2;
     flex: 0 0 auto;
     border-radius:var(--swi-r,9px) ;
     transition:transform 0.2s ease-out;
+    background: 
+    linear-gradient(296.5deg,
+    rgba(0,0,0,0) 16.7%,
+    var(--boxBod) 16.7%,
+    var(--boxBod) 33.3%,
+    rgba(0,0,0,0) 33.3%,
+    rgba(0,0,0,0) 50%,
+    var(--boxBod) 50%,
+    var(--boxBod) 66.7%,
+    rgba(0,0,0,0) 66.7%,
+    rgba(0,0,0,0) 83.3%,
+    var(--boxBod) 83.3%
+    ) 0 0/50px 50px,var(--mainColor) 
+    ;
+    opacity: 0.2;
+    animation: skewliner linear 10s infinite;
 }
 input[type="checkbox"]:checked+.switch::after {
     transform: translateX(var(--swi-h,18px));

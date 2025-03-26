@@ -317,22 +317,33 @@ function addZYtable(){
     isgiftview[2]?isgiftview3 = 'flex':isgiftview3 = 'none';
     isgiftview[3]?isgiftview4 = 'flex':isgiftview4 = 'none';
 
+    var istagview1,istagview2,istagview3,istagview4;
+    var istagview = userImgData.main.gift.tagview;
+    istagview[0]?istagview1 = 'flex':istagview1 = 'none';
+    istagview[1]?istagview2 = 'flex':istagview2 = 'none';
+    istagview[2]?istagview3 = 'flex':istagview3 = 'none';
+    istagview[3]?istagview4 = 'flex':istagview4 = 'none';
+
     if(info[2] == 1){
+        var keyScale = 1;
+        if(hh < 300){
+            keyScale = 0.8;
+        }
         giftNode = `
-        <div class="cc w100" style="gap:` + fontsizes[1] + `px;">
-            <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview1 + ` ">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
-                    <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+        <div class="cc w100" style="gap:` + fontsizes[1] + `px; ">
+            <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview1 + ` ">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                    <div data-tag="0" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
+                    display:` + istagview1 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-before="0"></div>
                         <div data-tag-num="0">`+ userImgData.main.gift.num[0] +`</div>
-                        <div data-tag-after="0"></div>
+                        <div data-tag-key="0">`+ userImgData.main.gift.key[0] +`</div>
                     </div>
                     <img data-gift-icon="0" class="w100" src="` + userImgData.main.gift.icon[0] + `">
                 </div>
-                <div class="gift-name-box">
-                    <div data-gift-name="0" style="font-size: ` + fontsizes[0] + `px; 
+                <div class="gift-name-box df">
+                    <div data-gift-name="0" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
                     font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[0] +
@@ -340,19 +351,19 @@ function addZYtable(){
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview2 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
-                    <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+            <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview2 + `">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                    <div data-tag="1" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
+                    display:` + istagview2 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-before="1"></div>
                         <div data-tag-num="1">`+ userImgData.main.gift.num[1] +`</div>
-                        <div data-tag-after="1"></div>
+                        <div data-tag-key="1">`+ userImgData.main.gift.key[1] +`</div>
                     </div>
                     <img data-gift-icon="1" class="w100" src="` + userImgData.main.gift.icon[1] + `">
                 </div>
-                <div class="gift-name-box">
-                    <div data-gift-name="1" style="font-size: ` + fontsizes[0] + `px; 
+                <div class="gift-name-box df">
+                    <div data-gift-name="1" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
                     font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[1] +
@@ -360,19 +371,19 @@ function addZYtable(){
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview3 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
-                    <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+            <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview3 + `">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                    <div data-tag="2" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
+                    display:` + istagview3 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-before="2"></div>
                         <div data-tag-num="2">`+ userImgData.main.gift.num[2] +`</div>
-                        <div data-tag-after="2"></div>
+                        <div data-tag-key="2">`+ userImgData.main.gift.key[2] +`</div>
                     </div>
                     <img data-gift-icon="2" class="w100" src="` + userImgData.main.gift.icon[2] + `">
                 </div>
-                <div class="gift-name-box">
-                    <div data-gift-name="2" style="font-size: ` + fontsizes[0] + `px; 
+                <div class="gift-name-box df">
+                    <div data-gift-name="2" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
                     font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[2] +
@@ -380,19 +391,19 @@ function addZYtable(){
                 </div>  
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5 + `px; box-sizing: border-box; display:` + isgiftview4 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5 + `; height:` + fontsizes[2]*1.5 + `; padding:` + fontsizes[0]*0.5 + `px;">
-                    <div class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+            <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview4 + `">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                    <div data-tag="3"  class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
+                    display:` + istagview4 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-before="3"></div>
                         <div data-tag-num="3">`+ userImgData.main.gift.num[3] +`</div>
-                        <div data-tag-after="3"></div>
+                        <div data-tag-key="3">`+ userImgData.main.gift.key[3] +`</div>
                     </div>
                     <img data-gift-icon="3" class="w100" src="` + userImgData.main.gift.icon[3] + `">
                 </div>
-                <div class="gift-name-box">
-                    <div data-gift-name="3" style="font-size: ` + fontsizes[0] + `px; 
+                <div class="gift-name-box df">
+                    <div data-gift-name="3" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
                     color:` + userImgData.style.giftname.color + `;
                     font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                     + userImgData.main.gift.name[3] +
@@ -403,24 +414,32 @@ function addZYtable(){
 
         </div>`
     };
-    
-    if(userImgData.main.layout.bg_main.image){
-        mainLayout = '<img width="100%" height="100" src="" data-layout-main/>'
-    };
-    if(userImgData.main.layout.bg_bg.image){
-        bgLayout = '<img width="100%" height="100" src="" data-layout-bg/>'
-    };
 
+    if(imgInfo.type !== 'png'){
+        mainLayout = '<img src="' + userImgData.main.layout.bg_main.image + '" data-layout-main class="pos-a-cc"/>'
+        bgLayout = '<img src="' + userImgData.main.layout.bg_bg.image + '" data-layout-bg class="pos-a-cc"/>'
+    }
+    
     var logoNode = '';
     var infoNode = `
-    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px">
+    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; z-index:20;">
     `+ titleNode + sectitleNode + giftNode +`
     </div>`;
 
-var logos =`
+    var gameView,channelView;
+    userImgData.main.logoview[0]?gameView = 'block':gameView = 'none';
+    userImgData.main.logoview[1]?channelView = 'block':channelView = 'none';
+
+    var logos =`
         <div class="df cc logos" >
-        <img data-logo-game="`+ imgNum +`" src="` + games[0].src[0] + `"/>
-        <img data-logo-channel="`+ imgNum +`" src="` + channels[0].src[0] + `">
+        <img data-logo-game="`+ imgNum +`" 
+        src="` + games.filter(item => item.name == userImgData.main.game[0])[0].src[userImgData.main.game[1]] + `"
+        style="display:`+ gameView +`"
+        />
+        <img data-logo-channel="`+ imgNum +`" 
+        src="` +  channels.filter(item => item.name == userImgData.main.channel[0])[0].src[userImgData.main.channel[1]] + `"
+        style="display:`+ channelView +`"
+        />
         </div>
         `;
  
@@ -433,8 +452,8 @@ var logos =`
         ">`+ logos +`</div>`;
         if(w < 300 || h < 300){
             logoNode = `
-            <div class="pos-a" style="top: ` + fontsizes[0]/2 + `; left: ` + fontsizes[0]/2 + `; z-index: 20; 
-            transform:scale(` + fontsizes[1]/64 * 0.8 + `);
+            <div class="pos-a" style="top: ` + fontsizes[0]/1.5 + `; left: ` + fontsizes[0] + `; z-index: 20; 
+            transform:scale(` + fontsizes[1]/64 * 0.6 + `);
             transform-origin: top left;
             ">`+ logos +`</div>`;
         }
@@ -444,7 +463,7 @@ var logos =`
     if(safa && safa[0] ){
         if( ww <= hh){
             infoNode = `
-            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + (fontsizes[0] + (h - (safa[0][1] + safa[0][3] ))) + `px;">
+            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + (fontsizes[0] + (h - (safa[0][1] + safa[0][3] ))) + `px; z-index:20;">
             `+ titleNode + sectitleNode + giftNode +`
             </div>`;
         }
@@ -536,7 +555,7 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'fontFamily-sec'){
-        var sectitleNode = document.querySelectorAll('[data-title]');
+        var sectitleNode = document.querySelectorAll('[data-sectitle]');
         userImgData.style.sectitle.fontfamily = value;
         sectitleNode.forEach(item => {
             item.style.fontFamily = value;
@@ -549,7 +568,7 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'isGift'){
-        var giftNode = document.querySelectorAll('[data-gift-name="' + (num - 1) + '"]');
+        var giftNode = document.querySelectorAll('[data-gift="' + (num - 1) + '"]');
         giftNode.forEach(item => {
             if(!value){
                 item.style.display = 'none';
@@ -569,22 +588,33 @@ function setimgMain(type,value,num){
         })
     }
 
+    if(type == 'giftIcon'){
+        var giftIconNode = document.querySelectorAll('[data-gift-iicon="' + (num - 1) + '"]');
+    }
+
     if(type == 'game'){
-        var gameNode = document.querySelectorAll('[data-logo-game]')
+        var gameNode = document.querySelectorAll('[data-logo-game]');
+        userImgData.main.game[0] = value;
         gameNode.forEach(item => {
             item.src = games.filter(items => items.name == value)[0].src[0];
         })
     }
 
     if(type == 'channel'){
-        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        var channelNode = document.querySelectorAll('[data-logo-channel]');
+        userImgData.main.channel[0] = value;
         channelNode.forEach(item => {
             item.src = channels.filter(items => items.name == value)[0].src[0];
         })
     }
 
     if(type == 'isGame'){
-        var gameNode = document.querySelectorAll('[data-logo-game]')
+        var gameNode = document.querySelectorAll('[data-logo-game]');
+        if(!value){
+            userImgData.main.logoview[0] = 0;
+        }else{
+            userImgData.main.logoview[0] = 1;
+        }
         gameNode.forEach(item => {
             if(!value){
                 item.style.display = 'none';
@@ -595,7 +625,12 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'isChannel'){
-        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        var channelNode = document.querySelectorAll('[data-logo-channel]');
+        if(!value){
+            userImgData.main.logoview[1] = 0;
+        }else{
+            userImgData.main.logoview[1] = 1;
+        }
         channelNode.forEach(item => {
             if(!value){
                 item.style.display = 'none';
@@ -606,7 +641,12 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'gameTheme'){
-        var gameNode = document.querySelectorAll('[data-logo-game]')
+        var gameNode = document.querySelectorAll('[data-logo-game]');
+        if(!value){
+            userImgData.main.game[1] = 1;
+        }else{
+            userImgData.main.game[1] = 0;
+        }
         gameNode.forEach(item => {
             if(!value){
                 item.src = games.filter(items => items.name == document.getElementById('game-pick').value)[0].src[1];
@@ -617,7 +657,12 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'channelTheme'){
-        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        var channelNode = document.querySelectorAll('[data-logo-channel]');
+        if(!value){
+            userImgData.main.channel[1] = 1;
+        }else{
+            userImgData.main.channel[1] = 0;
+        }
         channelNode.forEach(item => {
             if(!value){
                 item.src = channels.filter(items => items.name == document.getElementById('channel-pick').value)[0].src[1];
@@ -628,8 +673,39 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'bg'){
-        var bgNode = document.querySelectorAll('[data-layout-bg')
+        var bgNode = document.querySelectorAll('[data-layout-bg]');
+        //console.log(bgNode)
+        var reader = new FileReader();
+        reader.readAsDataURL(value);
+        reader.onload = (data)=>{
+            var dataURL = data.target.result;
+            userImgData.main.layout.bg_bg.image = dataURL;
+            var img = new Image();
+            img.src = dataURL;
+            img.onload = ()=>{
+                var w = img.width;
+                var h = img.height;
+                //console.log(w,h)
+                bgNode.forEach(item => {
+                    var ww =  item.parentNode.id.split('_')[2].split('-')[0];
+                    var hh = item.parentNode.id.split('_')[3].split('-')[0];
+                    //console.log(ww,hh,ww/hh,w/h)
+                    if(ww/hh > w/h){
+                        item.width = ww;
+                        item.src = dataURL;
+                    } else {
+                        item.height = hh;
+                        item.src = dataURL;
+                    }
+                    
+                    
+                })
+            }
+        }
+            
     }
+
+    
 }
 
 function reimgClone(){
@@ -763,18 +839,23 @@ async function exportAll(){
     
 
 async function exportOne(e,isAll){
-    var id = zyAllId[e]
-    var zyNode = document.getElementById(id + '-clone');
-    zyNode.parentNode.style.filter = 'blur(10px)';
-    zyNode.parentNode.style.transition = 'filter 0.5s';
-    zyNode.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
-    zyNode.style.transform = 'scale(1)';
-
+    var id = zyAllId[e];
+    var zyType = userImgData.zy[e].img.type;
     var w = userImgData.zy[e].img.w;
     var h = userImgData.zy[e].img.h
+    var zyName = 'img' ;
+    var zyNode = document.getElementById(id + '-clone');
+    //zyNode.parentNode.style.filter = 'blur(10px)';
+    //zyNode.parentNode.style.transition = 'filter 0.5s';
+    zyNode.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing';
+    if (zyType == 'png'){
+        zyNode.style.transform = 'scale(1)';
+    } else {
+        zyNode.style.transform = 'scale(' + (w + 12)/w  + ')';
+    }
 
-    var zyType = userImgData.zy[e].img.type;
-    var zyName = 'img' 
+    
+
     if(zyAllname.length > 0){
         zyName = zyAllname[e]
     }
@@ -808,7 +889,7 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
                 }
             });
             setTimeout(()=>{
-                node.parentNode.style.filter = '';
+                //node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 //if(e == zyAllId.length - 1){
                     imgAutoScale();  
@@ -835,7 +916,7 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
                 }
             });
             setTimeout(()=>{
-                node.parentNode.style.filter = '';
+                //node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 //if(e == zyAllId.length - 1){
                     imgAutoScale();
@@ -857,7 +938,7 @@ function createZipAndDownload(compressedImages) {
 
     compressedImages.forEach((blob,index) => {
         var path = zyAllname[index].split('/');
-        var name = path.pop() + '.png';
+        var name = path.pop() + '.' + userImgData.zy[index].img.type;
         if (zyAllname[index].split('/').length == 2) {
             var folder = zip.folder(path[0]);
             folder.file(name,blob);
@@ -871,7 +952,7 @@ function createZipAndDownload(compressedImages) {
         });
 
     zip.generateAsync({ type: "blob" }).then(function (content) {
-        saveAs(content, '导出' + '-' + M + N + '_' + HHMMSS + '.zip');
+        saveAs(content,'【' + userImgData.main.game[0] + '】' + userImgData.main.title[0].replace('，','_') + ' ' + M + N + '_' + HHMMSS + '.zip');
     });
 }
 

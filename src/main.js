@@ -249,6 +249,10 @@ function setTheme(e){
             document.getElementById('sectitle-colorBox').value = lightTheme.mainColor;
             document.getElementById('sectitle-color').value = lightTheme.mainColor;
         }
+        if(document.getElementById('gift-name-colorBox').value == darkTheme.mainColor ){
+            document.getElementById('gift-name-colorBox').value = lightTheme.mainColor;
+            document.getElementById('gift-name-color').value = lightTheme.mainColor;
+        }
     } else {
         console.log('深色主题')
         for (var i = 0; i < styleKey2.length; i++) {
@@ -263,6 +267,10 @@ function setTheme(e){
         if(document.getElementById('sectitle-colorBox').value == lightTheme.mainColor){
             document.getElementById('sectitle-colorBox').value = darkTheme.mainColor;
             document.getElementById('sectitle-color').value = darkTheme.mainColor;
+        }
+        if(document.getElementById('gift-name-colorBox').value == lightTheme.mainColor ){
+            document.getElementById('gift-name-colorBox').value = darkTheme.mainColor;
+            document.getElementById('gift-name-color').value = darkTheme.mainColor;
         }
     }
 }

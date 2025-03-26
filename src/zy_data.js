@@ -7,7 +7,7 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
-
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@46ba9d250b17f34e6d424e42012da6f8a584bdc0/"
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
@@ -210,7 +210,6 @@ const 手机管家 = [
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
 ];
 
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@cc5d1b57e255cfe2e648d389178b66f12159bee4/"
     
 const games = [
     {name:"永劫无间",src:[haxi + "img/game/永劫无间_黑.png",haxi + "img/game/永劫无间_白.png",]},
@@ -269,54 +268,56 @@ const userImgData = {
         sectitle:["主要副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
         game:["永劫无间",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
+        logoview:[1,1],
         layout:{/*图层*/
             bg_main:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
-                image:"",
+                image:haxi + "/img/bg.png",
                 async:"",
             },
             bg_bg:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
-                image:"",
+                image:haxi + "/img/bg.png",
                 async:"",
             },
             bg_gift:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
-                image:"",
+                image:haxi + "/img/bg.png",
                 async:"",
             },
             bg_secTitle:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
-                image:"",
+                image:haxi + "/img/bg.png",
                 async:"",
             },
         },
         gift:{/*按资源位给定的数量按顺序显示*/
             icon:[
-                "https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png",
-                "https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png",
-                "https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png",
-                "https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png",
+                haxi + "/img/Icon-ListEase_200-5.png",
+                haxi + "/img/Icon-ListEase_200-5.png",
+                haxi + "/img/Icon-ListEase_200-5.png",
+                haxi + "/img/Icon-ListEase_200-5.png",
             ],/*用户上传，最多4个，自动转base64*/
             name:["奖励名称1","奖励名称2","奖励名称3","奖励名称4",],/*用户编辑*/
-            num:[2,3,4,5,],/*按顺序给定数量，0-1则隐藏*/
-            tagsZh:[null,null,'二','三','四','五','六','七','八','九','十'],/*数字转中文*/
+            num:["×","×","×","×"],
+            key:[2,3,4,5,],/*按顺序给定数量，0-1则隐藏*/
+            tagview:[1,1,1,1],
             isview:[1,1,1,1],/*控制单个奖励显隐*/
         }
     },
     public:{/*全局规范*/
         fontsize:[//将最小字号(实际字高)、副标题字号(实际字高)、标题字号分6级(实际字高)
             [12,12,12],
-            [12,22,28],
-            [14,24,32],
-            [16,32,52],
-            [20,40,64],
-            [22,48,84],
-            [24,56,94],
-            [26,64,110],
-            [28,64,120],
-            [36,64,130], 
-            [36,82,180],
+            [12,20,26],
+            [14,20,32],
+            [16,30,46],
+            [20,30,64],
+            [22,48,82],
+            [24,48,92],
+            [26,58,110],
+            [28,58,120],
+            [36,58,130], 
+            [36,78,180],
         ],
         framesize:{//将画布按竖版（含方版）和横板分6级，用于对应6级字号,中间值向上取值
             hh:[54,104,256,460,500,660,840,960,1080,1400,1920],//竖版以宽为极值
@@ -341,7 +342,7 @@ const userImgData = {
             fontfamily:"Source Han Sans CN",
         },
         tags:{/*默认样式*/
-            color:"var(--mainColor3)",
+            color:"#ffffff",
             fontfamily:"Source Han Sans CN",
         },
     },

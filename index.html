@@ -518,7 +518,8 @@
                                             </label>
                                             <div class="df-ffc w100" style="gap: 2px;">
                                                 <div class="df w100" style="align-items: center;">
-                                                    <input id="gift-icon-1" type="file" style="font-size: 10px; --file-type:'图标-1';"/>
+                                                    <input id="gift-icon-1" type="file" style="font-size: 10px; --file-type:'图标-1';"
+                                                    onchange="setimgMain('giftIcon',this.files[0],1)"/>
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
@@ -545,7 +546,8 @@
                                             </label>
                                             <div class="df-ffc w100" style="gap: 2px;">
                                                 <div class="df w100" style="align-items: center;">
-                                                    <input id="gift-icon-2" type="file" style="font-size: 10px; --file-type:'图标-2';"/>
+                                                    <input id="gift-icon-2" type="file" style="font-size: 10px; --file-type:'图标-2';"
+                                                    onchange="setimgMain('giftIcon',this.files[0],2)"/>
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
@@ -572,7 +574,8 @@
                                             </label>
                                             <div class="df-ffc w100" style="gap: 2px;">
                                                 <div class="df w100" style="align-items: center;">
-                                                    <input id="gift-icon-3" type="file" style="font-size: 10px; --file-type:'图标-3';"/>
+                                                    <input id="gift-icon-3" type="file" style="font-size: 10px; --file-type:'图标-3';"
+                                                    onchange="setimgMain('giftIcon',this.files[0],3)"/>
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
@@ -599,7 +602,8 @@
                                             </label>
                                             <div class="df-ffc w100" style="gap: 2px;">
                                                 <div class="df w100" style="align-items: center;">
-                                                    <input id="gift-icon-4" type="file" style="font-size: 10px; --file-type:'图标-4';"/>
+                                                    <input id="gift-icon-4" type="file" style="font-size: 10px; --file-type:'图标-4';"
+                                                    onchange="setimgMain('giftIcon',this.files[0],4)"/>
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
@@ -640,6 +644,7 @@
                                             <a> 游戏 </a><span> :</span>
                                             <select id="game-pick" class="select" onchange="setimgMain('game',this.value)">
                                             </select>
+                                            <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶亮/暗</span>
                                             <input id="game-theme" checked="true" type="checkbox" style="display: none;" 
                                             onchange="setimgMain('gameTheme',this.checked);"/>
                                             <label for="game-theme" class="switch">
@@ -654,6 +659,7 @@
                                             <a> 渠道 </a><span> :</span>
                                             <select id="channel-pick" class="select" onchange="setimgMain('channel',this.value)">
                                             </select>
+                                            <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶亮/暗</span>
                                             <input id="channel-theme" checked="true" type="checkbox" style="display: none;" 
                                             onchange="setimgMain('channelTheme',this.checked);"/>
                                             <label for="channel-theme" class="switch">
@@ -663,7 +669,8 @@
                                             <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"/>
                                         </div>
                                         <div class="df w100 pos-r" style="align-items: center;">
-                                            <input id="layout-bg" type="file" style="font-size: 10px; --file-type:'背景填充';"/>
+                                            <input id="layout-bg" type="file" style="font-size: 10px; --file-type:'背景填充';"
+                                            onchange="setimgMain('bg',this.files[0])"/>
                                             <div class="btn-text cc " onclick="viewPage(3)" style="min-width: 9ch;height: 20px; background-color:var(--mainColor4) ; border-radius: 10px;border:1px var(--mainColor4) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
                                                 <div class="cc" style="gap:2px; font-size: 10px;">
                                                     <div style="width: 12px; height: 12px;"><btn-set style="--mainColor:#2b2b2b"></btn-set></div>

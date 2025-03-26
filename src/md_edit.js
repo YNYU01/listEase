@@ -419,8 +419,8 @@ function addZYtable(){
 
 var logos =`
         <div class="df cc logos" >
-        <img data-logo-game src="` + games[0].src[0] + `"/>
-        <img data-logo-channel src="` + channels[0].src[0] + `">
+        <img data-logo-game="`+ imgNum +`" src="` + games[0].src[0] + `"/>
+        <img data-logo-channel="`+ imgNum +`" src="` + channels[0].src[0] + `">
         </div>
         `;
  
@@ -465,9 +465,6 @@ var logos =`
     node.style.fontWeight = '400';
     node.className = 'ovh pos-r zySSS';
 
-    
-
-
     node.innerHTML = logoNode + infoNode +`
     <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
     ` + mainLayout + bgLayout
@@ -493,68 +490,42 @@ function pickImg(key){
 //修改信息
 function setimgMain(type,value,num){
     
-    var title1 = document.querySelectorAll('[data-title="0"]');
-    var title2 = document.querySelectorAll('[data-title="1"]');
-    var sectitle1 = document.querySelectorAll('[data-sectitle="0"]');
-    var sectitle2 = document.querySelectorAll('[data-sectitle="1"]');
-    var giftview1 = document.querySelectorAll('[data-gift="0"]');
-    var giftview2 = document.querySelectorAll('[data-gift="1"]');
-    var giftview3 = document.querySelectorAll('[data-gift="2"]');
-    var giftview4 = document.querySelectorAll('[data-gift="3"]');
-
-    if((type + num) == 'title1'){
-        userImgData.main.title[0] = value;
-        title1.forEach(item => {
+    if(type == 'title'){
+        var titleNode = document.querySelectorAll('[data-title="'+ (num - 1) + '"]');
+        userImgData.main.title[num - 1] = value;
+        titleNode.forEach(item => {
             item.innerHTML = value.replace('，','<br>');
         })
     }
-    if((type + num) == 'title2'){
-        userImgData.main.title[1] = value;
-        title2.forEach(item => {
-            item.textContent = value.replace('，','<br>');
-        })
-    }
-    if((type + num) == 'sectitle1'){
-        userImgData.main.sectitle[0] = value;
-        sectitle1.forEach(item => {
+
+    if(type == 'sectitle'){
+        var sectitleNode = document.querySelectorAll('[data-sectitle="'+ (num - 1) + '"]');
+        userImgData.main.sectitle[num - 1] = value;
+        sectitleNode.forEach(item => {
             item.textContent = value;
         })
     }
-    if((type + num) == 'sectitle2'){
-        userImgData.main.sectitle[1] = value;
-        sectitle2.forEach(item => {
-            item.textContent = value;
-        })
-    }
+
     if(type == 'fontColor-main'){
+        var titleNode = document.querySelectorAll('[data-title]');
         userImgData.style.title.color = value;
-        title1.forEach(item => {
-            item.style.color = value;
-        })
-        title2.forEach(item => {
+        titleNode.forEach(item => {
             item.style.color = value;
         })
     }
+
     if(type == 'fontColor-sec'){
+        var sectitleNode = document.querySelectorAll('[data-sectitle]');
         userImgData.style.sectitle.color = value;
-        sectitle1.forEach(item => {
-            item.style.color = value;
-        })
-        sectitle2.forEach(item => {
+        sectitleNode.forEach(item => {
             item.style.color = value;
         })
     }
+
     if(type == 'fontFamily-main'){
+        var titleNode = document.querySelectorAll('[data-title]');
         userImgData.style.title.fontfamily = value;
-        title1.forEach(item => {
-            item.style.fontFamily = value;
-            if(value.split('Source').length > 1){
-                item.style.fontWeight = '900'
-            }else{
-                item.style.fontWeight = '400'
-            }
-        })
-        title2.forEach(item => {
+        titleNode.forEach(item => {
             item.style.fontFamily = value;
             if(value.split('Source').length > 1){
                 item.style.fontWeight = '900'
@@ -563,17 +534,11 @@ function setimgMain(type,value,num){
             }
         })
     }
+
     if(type == 'fontFamily-sec'){
+        var sectitleNode = document.querySelectorAll('[data-title]');
         userImgData.style.sectitle.fontfamily = value;
-        sectitle1.forEach(item => {
-            item.style.fontFamily = value;
-            if(value.split('Source').length > 1){
-                item.style.fontWeight = '700'
-            }else{
-                item.style.fontWeight = '400'
-            }
-        })
-        sectitle2.forEach(item => {
+        sectitleNode.forEach(item => {
             item.style.fontFamily = value;
             if(value.split('Source').length > 1){
                 item.style.fontWeight = '700'
@@ -582,73 +547,42 @@ function setimgMain(type,value,num){
             }
         })
     }
+
     if(type == 'isGift'){
-        if(num == 1){
-            giftview1.forEach(item => {
-                if(!value){
-                    item.style.display = 'none';
-                    userImgData.main.gift.isview[0] = 0;
-                }else{
-                    item.style.display = 'flex';
-                    userImgData.main.gift.isview[0] = 1;
-                }
-            })
-        };
-        if(num == 2){
-            giftview2.forEach(item => {
-                if(!value){
-                    item.style.display = 'none';
-                    userImgData.main.gift.isview[1] = 0;
-                }else{
-                    item.style.display = 'flex';
-                    userImgData.main.gift.isview[1] = 1;
-                }
-            })
-        };
-        if(num == 3){
-            giftview3.forEach(item => {
-                if(!value){
-                    item.style.display = 'none';
-                    userImgData.main.gift.isview[2] = 0;
-                }else{
-                    item.style.display = 'flex';
-                    userImgData.main.gift.isview[2] = 1;
-                }
-            })
-        };
-        if(num == 4){
-            giftview4.forEach(item => {
-                if(!value){
-                    item.style.display = 'none';
-                    userImgData.main.gift.isview[3] = 0;
-                }else{
-                    item.style.display = 'flex';
-                    userImgData.main.gift.isview[3] = 1;
-                }
-            })
-        };
-        
-        
+        var giftNode = document.querySelectorAll('[data-gift-name="' + (num - 1) + '"]');
+        giftNode.forEach(item => {
+            if(!value){
+                item.style.display = 'none';
+                userImgData.main.gift.isview[0] = 0;
+            }else{
+                item.style.display = 'flex';
+                userImgData.main.gift.isview[0] = 1;
+            }
+        }) 
     }
+
     if(type == 'giftname'){
-        var giftnamenode = document.querySelectorAll('[data-gift-name="' + (num - 1) + '"]');
-        giftnamenode.forEach(item => {
+        var giftnameNode = document.querySelectorAll('[data-gift-name="' + (num - 1) + '"]');
+        giftnameNode.forEach(item => {
             item.textContent = value;
             userImgData.main.gift.name[(num - 1)] = value;
         })
     }
+
     if(type == 'game'){
         var gameNode = document.querySelectorAll('[data-logo-game]')
         gameNode.forEach(item => {
             item.src = games.filter(items => items.name == value)[0].src[0];
         })
     }
+
     if(type == 'channel'){
         var channelNode = document.querySelectorAll('[data-logo-channel]')
         channelNode.forEach(item => {
             item.src = channels.filter(items => items.name == value)[0].src[0];
         })
     }
+
     if(type == 'isGame'){
         var gameNode = document.querySelectorAll('[data-logo-game]')
         gameNode.forEach(item => {
@@ -659,6 +593,7 @@ function setimgMain(type,value,num){
             }
         })
     }
+
     if(type == 'isChannel'){
         var channelNode = document.querySelectorAll('[data-logo-channel]')
         channelNode.forEach(item => {
@@ -669,6 +604,7 @@ function setimgMain(type,value,num){
             }
         })
     }
+
     if(type == 'gameTheme'){
         var gameNode = document.querySelectorAll('[data-logo-game]')
         gameNode.forEach(item => {
@@ -679,6 +615,7 @@ function setimgMain(type,value,num){
             }
         })
     }
+
     if(type == 'channelTheme'){
         var channelNode = document.querySelectorAll('[data-logo-channel]')
         channelNode.forEach(item => {
@@ -688,6 +625,10 @@ function setimgMain(type,value,num){
                 item.src = channels.filter(items => items.name == document.getElementById('channel-pick').value)[0].src[0];
             }
         })
+    }
+
+    if(type == 'bg'){
+        var bgNode = document.querySelectorAll('[data-layout-bg')
     }
 }
 

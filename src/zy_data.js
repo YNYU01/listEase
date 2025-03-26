@@ -210,7 +210,7 @@ const 手机管家 = [
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
 ];
 
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@6f20cc2049f10fa80cf794a8ee0c7cf2ccd2006f/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@cc5d1b57e255cfe2e648d389178b66f12159bee4/"
     
 const games = [
     {name:"永劫无间",src:[haxi + "img/game/永劫无间_黑.png",haxi + "img/game/永劫无间_白.png",]},

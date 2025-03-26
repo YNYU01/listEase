@@ -632,9 +632,32 @@
                                     </div>
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df cc" style="gap:4px;">
+                                            <input id="game-show" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGame',this.checked);"/>
+                                            <label for="game-show" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
                                             <a> 游戏 </a><span> :</span>
                                             <select id="game-pick" class="select" onchange="setimgMain('game',this.value)">
                                             </select>
+                                            <input id="game-theme" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="setimgMain('gameTheme',this.checked);"/>
+                                            <label for="game-theme" class="switch">
+                                            </label>
+                                        </div>
+                                        <div class="df cc" style="gap:4px;">
+                                            <input id="channel-show" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isChannel',this.checked);"/>
+                                            <label for="channel-show" class="chk-pick">
+                                                <chk-pick></chk-pick>
+                                            </label>
+                                            <a> 渠道 </a><span> :</span>
+                                            <select id="channel-pick" class="select" onchange="setimgMain('channel',this.value)">
+                                            </select>
+                                            <input id="channel-theme" checked="true" type="checkbox" style="display: none;" 
+                                            onchange="setimgMain('channelTheme',this.checked);"/>
+                                            <label for="channel-theme" class="switch">
+                                            </label>
                                         </div>
                                         <div class="df w100" style="align-items: center;">
                                             <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"/>

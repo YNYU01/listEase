@@ -151,6 +151,33 @@ body::-webkit-scrollbar,
     filter:drop-shadow(0 0 20px var(--logo-sd-clr,rgba(0,0,0,0.2)));
 }
 
+.switch{
+    height: var(--swi-h,18px);
+    width: var(--swi-h,36px);
+    border: 1px solid var(--boxBod);
+    position: relative;
+    background: var(--boxBak);
+    flex: 0 0 auto;
+    border-radius:var(--swi-r,10px) ;
+}
+.switch::after{
+    content: '';
+    position: absolute;
+    width: var(--swi-h,18px);
+    height: var(--swi-h,18px);
+    border: 1px solid var(--boxBod);
+    box-sizing: border-box;
+    background: var(--boxGry);
+    top: 0;
+    left: 0;
+    flex: 0 0 auto;
+    border-radius:var(--swi-r,9px) ;
+    transition:transform 0.2s ease-out;
+}
+input[type="checkbox"]:checked+.switch::after {
+    transform: translateX(var(--swi-h,18px));
+}
+
 optgroup {
     color:var(--mainColor3);
     text-align: left;

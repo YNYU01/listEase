@@ -643,6 +643,52 @@ function setimgMain(type,value,num){
             item.src = games.filter(items => items.name == value)[0].src[0];
         })
     }
+    if(type == 'channel'){
+        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        channelNode.forEach(item => {
+            item.src = channels.filter(items => items.name == value)[0].src[0];
+        })
+    }
+    if(type == 'isGame'){
+        var gameNode = document.querySelectorAll('[data-logo-game]')
+        gameNode.forEach(item => {
+            if(!value){
+                item.style.display = 'none';
+            }else{
+                item.style.display = 'flex';
+            }
+        })
+    }
+    if(type == 'isChannel'){
+        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        channelNode.forEach(item => {
+            if(!value){
+                item.style.display = 'none';
+            }else{
+                item.style.display = 'flex';
+            }
+        })
+    }
+    if(type == 'gameTheme'){
+        var gameNode = document.querySelectorAll('[data-logo-game]')
+        gameNode.forEach(item => {
+            if(!value){
+                item.src = games.filter(items => item.src.split(items.name).length > 1)[0].src[1];
+            }else{
+                item.src = games.filter(items => item.src.split(items.name).length > 1)[0].src[0];
+            }
+        })
+    }
+    if(type == 'channelTheme'){
+        var channelNode = document.querySelectorAll('[data-logo-channel]')
+        channelNode.forEach(item => {
+            if(!value){
+                item.src = channels.filter(items => item.src.split(items.name).length > 1)[0].src[1];
+            }else{
+                item.src = channels.filter(items => item.src.split(items.name).length > 1)[0].src[0];
+            }
+        })
+    }
 }
 
 function reimgClone(){
@@ -752,7 +798,12 @@ function addGame(){
         node.innerHTML = item.name;
         document.getElementById('game-pick').appendChild(node)
     })
-    
+    channels.forEach(item => {
+        var node = document.createElement('option')
+        node.value = item.name;
+        node.innerHTML = item.name;
+        document.getElementById('channel-pick').appendChild(node)
+    })
 }
 //导出
 var dataurls = [];

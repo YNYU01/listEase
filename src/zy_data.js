@@ -237,7 +237,7 @@ const games = [
 const channels = [
     {name:"大神",src:[haxi + "img/channel/大神_深.png",haxi + "img/channel/大神_白.png",]},
     {name:"CC直播",src:[haxi + "img/channel/CC直播_黑.png",haxi + "img/channel/CC直播_白.png",]},
-    {name:"网易游戏",src:[haxi + "img/channel/网易游戏.png",haxi + "img/channel/网易游戏.png",]},
+    {name:"网易游戏",src:[haxi + "img/channel/网易游戏_红.png",haxi + "img/channel/网易游戏_白.png",]},
 ]
 
 var sheet = {

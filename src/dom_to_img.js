@@ -474,7 +474,7 @@
 
                 request.onreadystatechange = done;
                 request.ontimeout = timeout;
-                request.responseType = 'text';/*blob*/
+                request.responseType = 'blob';/*text*/
                 request.timeout = TIMEOUT;
                 request.open('GET', url, true);
                 request.send();

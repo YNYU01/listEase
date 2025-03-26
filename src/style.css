@@ -145,12 +145,10 @@ body::-webkit-scrollbar,
 }
 
 .logos{
-    gap:var(--logo-gap,200px); 
+    gap:var(--logo-gap,20px); 
     /*width:300px; 
     height:64px;*/
     filter:drop-shadow(0 0 10px var(--logo-sd-clr,rgba(0,0,0,0.2)));
-    transform:scale(0.11);
-    transform-origin: top left;
 }
 
 optgroup {

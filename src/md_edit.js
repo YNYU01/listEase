@@ -419,8 +419,8 @@ function addZYtable(){
 
 var logos =`
         <div class="df cc logos" >
-        <img data-logo-game src="img/game/永劫无间_黑.png"/>
-        <img data-logo-channel src="img/channel/大神_深.png">
+        <img data-logo-game src="` + games[0].src[0] + `"/>
+        <img data-logo-channel src="` + channels[0].src[0] + `">
         </div>
         `;
  
@@ -792,7 +792,7 @@ async function exportOneAs(node,type,name,w,h,e){
             domtoimage.toJpeg(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {
                 var link = document.createElement('a');
-                link.download = name + '.jpg';
+                link.download = '导出/' + name + '.jpg';
                 link.href = dataUrl;
                 link.click();
                 link.remove();
@@ -802,6 +802,7 @@ async function exportOneAs(node,type,name,w,h,e){
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
                     imgAutoScale();
+                    tipsAll('后台正在创建下载，请耐心等待~',3000)
                 }
             },500)
         },500)
@@ -811,7 +812,7 @@ async function exportOneAs(node,type,name,w,h,e){
             domtoimage.toPng(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {
                 var link = document.createElement('a');
-                link.download = name + '.png';
+                link.download = '导出/' + name + '.png';
                 link.href = dataUrl;
                 link.click();
                 link.remove();
@@ -821,6 +822,7 @@ async function exportOneAs(node,type,name,w,h,e){
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
                     imgAutoScale();
+                    tipsAll('后台正在创建下载，请耐心等待~',3000)
                 }
             },500)
         },500)

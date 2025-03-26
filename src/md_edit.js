@@ -673,9 +673,9 @@ function setimgMain(type,value,num){
         var gameNode = document.querySelectorAll('[data-logo-game]')
         gameNode.forEach(item => {
             if(!value){
-                item.src = games.filter(items => item.src.split(items.name).length > 1)[0].src[1];
+                item.src = games.filter(items => items.name == document.getElementById('game-pick').value)[0].src[1];
             }else{
-                item.src = games.filter(items => item.src.split(items.name).length > 1)[0].src[0];
+                item.src = games.filter(items => items.name == document.getElementById('game-pick').value)[0].src[0];
             }
         })
     }
@@ -683,9 +683,9 @@ function setimgMain(type,value,num){
         var channelNode = document.querySelectorAll('[data-logo-channel]')
         channelNode.forEach(item => {
             if(!value){
-                item.src = channels.filter(items => item.src.split(items.name).length > 1)[0].src[1];
+                item.src = channels.filter(items => items.name == document.getElementById('channel-pick').value)[0].src[1];
             }else{
-                item.src = channels.filter(items => item.src.split(items.name).length > 1)[0].src[0];
+                item.src = channels.filter(items => items.name == document.getElementById('channel-pick').value)[0].src[0];
             }
         })
     }

@@ -210,10 +210,10 @@ const 手机管家 = [
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
 ];
 
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@15fb8d3d57875a3d64745d03fa6a5bb4dc3332b3/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@6f20cc2049f10fa80cf794a8ee0c7cf2ccd2006f/"
     
 const games = [
-    {name:"永劫无间",src:[haxi + "img/game/永劫无间_黑.png",haxi + haxi + "img/game/永劫无间_白.png",]},
+    {name:"永劫无间",src:[haxi + "img/game/永劫无间_黑.png",haxi + "img/game/永劫无间_白.png",]},
     {name:"永劫无间手游",src:[haxi + "img/game/永劫无间手游_黑.png",haxi + "img/game/永劫无间手游_白.png",]},
     {name:"梦幻西游端游",src:[haxi + "img/game/梦幻西游端游.png",haxi + "img/game/梦幻西游端游.png",]},
     {name:"梦幻西游手游",src:[haxi + "img/game/梦幻西游手游.png",haxi + "img/game/梦幻西游手游.png",]},
@@ -367,8 +367,6 @@ const userZy = [
                     {name:"启动页",w:1080,h:1620,s:"500k",type:"jpg",d:0.2,view:false,info:[1,1,1,1,0],safa:[[135,210,810,1120,1]]},
                     {name:"弹窗",w:580,h:870,s:"700k",type:"png",d:0.1,view:false,info:[1,1,1,1,1],safa:[[0,60,580,662]]},
                     {name:"系统信息推送图",w:642,h:280,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,1,1,0],safa:[]},
-                    {name:"我页活动icon图",w:54,h:54,s:"300k",type:"png",d:0.01,view:false,info:[0,0,0,0,0],safa:[]},
-                    {name:"圈子全局广告",w:120,h:120,s:"300k",type:"png",d:0.03,view:false,info:[0,0,0,0,0],safa:[]},
                     {name:"负一屏-预约banner",w:969,h:228,s:"300k",type:"jpg",d:0.03,view:false,info:[1,0,0,0,0],safa:[]},
                     {name:"负一屏-小横屏banner",w:1029,h:180,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,0,0],safa:[[46,24,937,132]]},
                     {name:"搜索页-推广小图",w:320,h:122,s:"300k",type:"jpg",d:0.03,view:false,info:[1,1,0,1,0],safa:[]},

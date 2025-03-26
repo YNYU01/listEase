@@ -209,33 +209,35 @@ const 手机管家 = [
     {name:"测试1",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
     {name:"测试2",w:100,h:100,s:"300k",type:"jpg",d:0.1,view:false,safa:[]},
 ];
+
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@15fb8d3d57875a3d64745d03fa6a5bb4dc3332b3/"
     
 const games = [
-    {name:"永劫无间",src:["img/game/永劫无间_黑.png","img/game/永劫无间_白.png",]},
-    {name:"永劫无间手游",src:["img/game/永劫无间手游_黑.png","img/game/永劫无间手游_白.png",]},
-    {name:"梦幻西游端游",src:["img/game/梦幻西游端游.png","img/game/梦幻西游端游.png",]},
-    {name:"梦幻西游手游",src:["img/game/梦幻西游手游.png","img/game/梦幻西游手游.png",]},
-    {name:"炉石传说",src:["img/game/炉石传说.png","img/game/炉石传说.png",]},
-    {name:"燕云十六声",src:["img/game/燕云十六声_白.png","img/game/燕云十六声_白.png",]},
-    {name:"新倩女幽魂",src:["img/game/新倩女幽魂.png","img/game/新倩女幽魂.png",]},
-    {name:"倩女幽魂手游",src:["img/game/倩女幽魂手游.png","img/game/倩女幽魂手游.png",]},
-    {name:"天下3",src:["img/game/天下3.png","img/game/天下3.png",]},
-    {name:"天下贰",src:["img/game/天下贰.png","img/game/天下贰.png",]},
-    {name:"天谕手游",src:["img/game/天谕手游.png","img/game/天谕手游.png",]},
-    {name:"一梦江湖",src:["img/game/一梦江湖_黑.png","img/game/一梦江湖_白.png",]},
-    {name:"第五人格",src:["img/game/第五人格_黑.png","img/game/第五人格_白.png",]},
-    {name:"蛋仔派对",src:["img/game/蛋仔派对.png","img/game/蛋仔派对.png",]},
-    {name:"光遇",src:["img/game/光遇_蓝.png","img/game/光遇_白.png",]},
-    {name:"界外狂潮",src:["img/game/界外狂潮.png","img/game/界外狂潮.png",]},
-    {name:"七日世界",src:["img/game/七日世界.png","img/game/七日世界.png",]},
-    {name:"荒野行动",src:["img/game/荒野行动.png","img/game/荒野行动.png",]},
-    {name:"无烬星河",src:["img/game/无烬星河_白.png","img/game/无烬星河_白.png",]},
+    {name:"永劫无间",src:[haxi + "img/game/永劫无间_黑.png",haxi + haxi + "img/game/永劫无间_白.png",]},
+    {name:"永劫无间手游",src:[haxi + "img/game/永劫无间手游_黑.png",haxi + "img/game/永劫无间手游_白.png",]},
+    {name:"梦幻西游端游",src:[haxi + "img/game/梦幻西游端游.png",haxi + "img/game/梦幻西游端游.png",]},
+    {name:"梦幻西游手游",src:[haxi + "img/game/梦幻西游手游.png",haxi + "img/game/梦幻西游手游.png",]},
+    {name:"炉石传说",src:[haxi + "img/game/炉石传说.png",haxi + "img/game/炉石传说.png",]},
+    {name:"燕云十六声",src:[haxi + "img/game/燕云十六声_白.png",haxi + "img/game/燕云十六声_白.png",]},
+    {name:"新倩女幽魂",src:[haxi + "img/game/新倩女幽魂.png",haxi + "img/game/新倩女幽魂.png",]},
+    {name:"倩女幽魂手游",src:[haxi + "img/game/倩女幽魂手游.png",haxi + "img/game/倩女幽魂手游.png",]},
+    {name:"天下3",src:[haxi + "img/game/天下3.png",haxi + "img/game/天下3.png",]},
+    {name:"天下贰",src:[haxi + "img/game/天下贰.png",haxi + "img/game/天下贰.png",]},
+    {name:"天谕手游",src:[haxi + "img/game/天谕手游.png",haxi + "img/game/天谕手游.png",]},
+    {name:"一梦江湖",src:[haxi + "img/game/一梦江湖_黑.png",haxi + "img/game/一梦江湖_白.png",]},
+    {name:"第五人格",src:[haxi + "img/game/第五人格_黑.png",haxi + "img/game/第五人格_白.png",]},
+    {name:"蛋仔派对",src:[haxi + "img/game/蛋仔派对.png",haxi + "img/game/蛋仔派对.png",]},
+    {name:"光遇",src:[haxi + "img/game/光遇_蓝.png",haxi + "img/game/光遇_白.png",]},
+    {name:"界外狂潮",src:[haxi + "img/game/界外狂潮.png",haxi + "img/game/界外狂潮.png",]},
+    {name:"七日世界",src:[haxi + "img/game/七日世界.png",haxi + "img/game/七日世界.png",]},
+    {name:"荒野行动",src:[haxi + "img/game/荒野行动.png",haxi + "img/game/荒野行动.png",]},
+    {name:"无烬星河",src:[haxi + "img/game/无烬星河_白.png",haxi + "img/game/无烬星河_白.png",]},
 ]
 
 const channels = [
-    {name:"大神",src:["img/channel/大神_深.png","img/channel/大神_白.png",]},
-    {name:"CC直播",src:["img/channel/CC直播_黑.png","img/channel/CC直播_白.png",]},
-    {name:"网易游戏",src:["img/channel/网易游戏.png","img/channel/网易游戏.png",]},
+    {name:"大神",src:[haxi + "img/channel/大神_深.png",haxi + "img/channel/大神_白.png",]},
+    {name:"CC直播",src:[haxi + "img/channel/CC直播_黑.png",haxi + "img/channel/CC直播_白.png",]},
+    {name:"网易游戏",src:[haxi + "img/channel/网易游戏.png",haxi + "img/channel/网易游戏.png",]},
 ]
 
 var sheet = {

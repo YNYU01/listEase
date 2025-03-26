@@ -762,18 +762,11 @@ async function exportAll(){
         node.parentNode.style.transition = 'filter 0.5s';
         node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg downing'
         node.style.transform = 'scale(1)';
-        exportOne(index);
-        /*
-        setTimeout(()=>{        
-            node.parentNode.style.filter = '';
-            node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-        },1000 * (zyAllId.length - index))
-        if(index == zyAllId.length - 1){
-            imgAutoScale();
-        }
-        */
+        //exportOne(index);
     });
-    //imgAutoScale();
+    for(var i = 0; i < zyAllId.length; i++){
+        exportOne(i);
+    }
 }
 
 async function exportOne(e){
@@ -802,13 +795,13 @@ async function exportOneAs(node,type,name,w,h,e){
                 link.download = name + '.jpg';
                 link.href = dataUrl;
                 link.click();
-link.remove();
+                link.remove();
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
-                    //imgAutoScale();
+                    imgAutoScale();
                 }
             },500)
         },500)
@@ -821,13 +814,13 @@ link.remove();
                 link.download = name + '.png';
                 link.href = dataUrl;
                 link.click();
-link.remove();
+                link.remove();
             });
             setTimeout(()=>{
                 node.parentNode.style.filter = '';
                 node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
                 if(e == zyAllId.length - 1){
-                    //imgAutoScale();
+                    imgAutoScale();
                 }
             },500)
         },500)

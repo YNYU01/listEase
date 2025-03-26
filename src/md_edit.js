@@ -422,7 +422,7 @@ function addZYtable(){
     
     var logoNode = '';
     var infoNode = `
-    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; z-index:20;">
+    <div class="cc df-ffc pos-a-cc w100" data-info style="gap:` + fontsizes[0]*0.8 + `px;    filter:drop-shadow(0 0 `+ fontsizes[1]*0.2 +`px var(--title-sd-clr,rgba(0,0,0,0.2))); z-index:20;">
     `+ titleNode + sectitleNode + giftNode +`
     </div>`;
 
@@ -463,7 +463,7 @@ function addZYtable(){
     if(safa && safa[0] ){
         if( ww <= hh){
             infoNode = `
-            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + (fontsizes[0] + (h - (safa[0][1] + safa[0][3] ))) + `px; z-index:20;">
+            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + (fontsizes[0] + (h - (safa[0][1] + safa[0][3] ))) + `px; filter:drop-shadow(0 0 `+ fontsizes[1]*0.2 +`px var(--title-sd-clr,rgba(0,0,0,0.2))); z-index:20;">
             `+ titleNode + sectitleNode + giftNode +`
             </div>`;
         }

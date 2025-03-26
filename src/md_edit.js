@@ -804,7 +804,7 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
                 if(isAll){
                     dataurls.push(dataURLtoBlob(dataUrl));
                     if(dataurls.length == zyAllId.length){
-                        console.log(dataurls)
+                        //console.log(dataurls)
                         createZipAndDownload(dataurls)
                     }
                 }else{
@@ -831,7 +831,7 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
                 if(isAll){
                     dataurls.push(dataURLtoBlob(dataUrl));
                     if(dataurls.length == zyAllId.length){
-                        console.log(dataurls)
+                        //console.log(dataurls)
                         createZipAndDownload(dataurls)
                     }
                 }else{

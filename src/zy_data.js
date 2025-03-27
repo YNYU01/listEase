@@ -7,7 +7,7 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@46ba9d250b17f34e6d424e42012da6f8a584bdc0/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@f9a1e2e47b602d4aec8fb2b4e31e2abcc539a1bf/"
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
@@ -305,10 +305,10 @@ const userImgData = {
         },
         gift:{/*按资源位给定的数量按顺序显示*/
             icon:[
-                haxi + "/img/Icon-ListEase_200-5.png",
-                haxi + "/img/Icon-ListEase_200-5.png",
-                haxi + "/img/Icon-ListEase_200-5.png",
-                haxi + "/img/Icon-ListEase_200-5.png",
+                haxi + "/img/bg.png",
+                haxi + "/img/bg.png",
+                haxi + "/img/bg.png",
+                haxi + "/img/bg.png",
             ],/*用户上传，最多4个，自动转base64*/
             name:["奖励名称1","奖励名称2","奖励名称3","奖励名称4",],/*用户编辑*/
             num:["三，连","六，连","八，连","十，连"],

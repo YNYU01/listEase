@@ -327,97 +327,312 @@ function addZYtable(){
             keyScale = 0.8;
         }
         giftNode = `
-        <div class="cc w100 cc" style="gap:` + fontsizes[1]*1.5 + `px; ">
-            <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview1 + ` ">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
+        <div class="cc w100 cc" style="gap:` + fontsizes[1]*1.5 + `px; padding:` + fontsizes[0] + `px;">
+            <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview1 + ` ">
+                <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
                     <div data-tag="0" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    display:` + istagview1 + `;
+                    display:` + istagview1 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-num="0">`+ userImgData.main.gift.num[0].replace('，','<br>') +`</div>
                     </div>
 
-                    <img data-gift-icon="0" class="w100" src="` + userImgData.main.gift.icon[0] + `">
-                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+                    <img data-gift-icon="0" class="w100" src="` + userImgData.main.gift.icon[0] + `" style="z-index:2;">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*2*keyScale + `px" height="` + fontsizes[2]*2*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
 
-                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                    <div class="df pos-a cc" style="bottom:-` + fontsizes[0] + `px;">
                         <div data-gift-name="0" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                        color:` + userImgData.style.giftname.color + `;
+                        color:` + userImgData.style.giftname.color + `; z-index:2;
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[0] +
                         `</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="calc(100% + ` + fontsizes[0]*0.5 + `px)" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) calc(100% + ` + fontsizes[1] + `)" 
+                        class="pos-a-cc">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="100%" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="100%" rx="0" fill="#b2b2b2" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="top:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="bottom:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
                     </div>  
                 </div>
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview2 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
+            <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview2 + `">
+                <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
                     <div data-tag="1" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    display:` + istagview2 + `;
+                    display:` + istagview2 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-num="1">`+ userImgData.main.gift.num[1].replace('，','<br>') +`</div>
                     </div>
 
-                    <img data-gift-icon="1" class="w100" src="` + userImgData.main.gift.icon[1] + `">
-                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+                    <img data-gift-icon="1" class="w100" src="` + userImgData.main.gift.icon[1] + `" style="z-index:2;">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*2*keyScale + `px" height="` + fontsizes[2]*2*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
 
-                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                    <div class="df pos-a cc" style="bottom:-` + fontsizes[0] + `px;">
                         <div data-gift-name="1" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                        color:` + userImgData.style.giftname.color + `;
+                        color:` + userImgData.style.giftname.color + `; z-index:2;
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[1] +
                         `</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="calc(100% + ` + fontsizes[0]*0.5 + `px)" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) calc(100% + ` + fontsizes[1] + `)" 
+                        class="pos-a-cc">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="100%" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="100%" rx="0" fill="#b2b2b2" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="top:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="bottom:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
                     </div>  
                 </div>
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview3 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
+            <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview3 + `">
+                <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
                     <div data-tag="2" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    display:` + istagview3 + `;
+                    display:` + istagview3 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-num="2">`+ userImgData.main.gift.num[2].replace('，','<br>') +`</div>
                     </div>
 
-                    <img data-gift-icon="2" class="w100" src="` + userImgData.main.gift.icon[2] + `">
-                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+                    <img data-gift-icon="2" class="w100" src="` + userImgData.main.gift.icon[2] + `" style="z-index:2;">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*2*keyScale + `px" height="` + fontsizes[2]*2*keyScale + `px" 
+                    class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
 
-                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                    <div class="df pos-a cc" style="bottom:-` + fontsizes[0] + `px;">
                         <div data-gift-name="2" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                        color:` + userImgData.style.giftname.color + `;
+                        color:` + userImgData.style.giftname.color + `; z-index:2;
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[2] +
                         `</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="calc(100% + ` + fontsizes[0]*0.5 + `px)" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) calc(100% + ` + fontsizes[1] + `)" 
+                        class="pos-a-cc">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="100%" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="100%" rx="0" fill="#b2b2b2" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="top:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="bottom:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
                     </div>  
                 </div>
             </div>
 
-            <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview4 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
+            <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview4 + `">
+                <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
                     <div data-tag="3"  class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
-                    display:` + istagview4 + `;
+                    display:` + istagview4 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
                         <div data-tag-num="3">`+ userImgData.main.gift.num[3].replace('，','<br>') +`</div>
                     </div>
 
-                    <img data-gift-icon="3" class="w100" src="` + userImgData.main.gift.icon[3] + `">
-                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+                    <img data-gift-icon="3" class="w100" src="` + userImgData.main.gift.icon[3] + `" style="z-index:2;">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*2*keyScale + `px" height="` + fontsizes[2]*2*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
 
-                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                    <div class="df pos-a cc" style="bottom:-` + fontsizes[0] + `px;">
                         <div data-gift-name="3" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                        color:` + userImgData.style.giftname.color + `;
+                        color:` + userImgData.style.giftname.color + `; z-index:2;
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[3] +
                         `</div>
                     </div>  
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="calc(100% + ` + fontsizes[0]*0.5 + `px)" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) calc(100% + ` + fontsizes[1] + `)" 
+                        class="pos-a-cc">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="100%" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="100%" rx="0" fill="#b2b2b2" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="top:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" 
+                        width="calc(100% + ` + fontsizes[1] + `px)" height="2" viewBox="0 0 calc(100% + ` + fontsizes[1] + `) 2" 
+                        class="pos-a" style="bottom:-` + fontsizes[0]*0.25 + `px;">
+                            <defs>
+                                <linearGradient x1="1" y1="0.5" x2="0" y2="0.5" id="master_svg0_sa1_0292">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                    <stop offset="20%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="80%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="master_svg1_sa1_0088" style="mask-type:alpha" maskUnits="objectBoundingBox">
+                                    <rect x="0" y="0" width="100%" height="2" rx="0" fill="url(#master_svg0_sa1_0292)" fill-opacity="1"/>
+                                </mask>
+                            </defs>
+                            <g mask="url(#master_svg1_sa1_0088)">
+                                <rect x="0" y="0" width="100%" height="2" rx="0" fill="#2b2b2b" fill-opacity="1"/>
+                            </g>
+                        </svg>
                 </div>
                 
             </div>
-            
-
         </div>`
     };
 

@@ -7,7 +7,7 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@48d6c3fecaf40bab92b41d185d319583ab3ef355/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@f68677a554b5ca740954944c3d20bb726c504ab7/"
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；

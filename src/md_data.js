@@ -1,9 +1,14 @@
-var md_布局示意 = [];
-var md_清新古风 = [
+var md_布局示意 = [
     {type:'giftIconBg',value:haxi + '/img/bg_icon.png',num:null,},
-    {type:'fontFamily-main',value:'',num:null,},
-    {type:'fontFamily-sec',value:'',num:null,},
-    {type:'fontFamily-gift',value:'',num:null,},
+    {type:'fontFamily-main',value:'Source Han Sans CN',num:null,},
+    {type:'fontFamily-sec',value:'Source Han Sans CN',num:null,},
+    {type:'fontFamily-gift',value:'Source Han Sans CN',num:null,},
+];
+var md_清新古风 = [
+    {type:'giftIconBg',value:haxi + '/img/model/gufeng/bg_icon.png',num:null,},
+    {type:'fontFamily-main',value:'FZYaSongS-B-GB',num:null,},
+    {type:'fontFamily-sec',value:'FZJinLS-B-GB',num:null,},
+    {type:'fontFamily-gift',value:'FZJinLS-B-GB',num:null,},
 ];
 var md_江湖快意 = [];
 var md_艺术书法 = [];

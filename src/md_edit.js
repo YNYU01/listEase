@@ -274,10 +274,7 @@ function addZYtable(){
                         fontsizes =  userImgData.public.fontsize[index + 1];
                         userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
                     }
-                    if (info[2] == 1 || info[4] == 1){
-                        fontsizes =  userImgData.public.fontsize[index - 1];
-                        userImgData.zy[imgNum - 1].set.fontsize = fontsizes;
-                    }
+                    
                 }
                 
             }
@@ -330,94 +327,108 @@ function addZYtable(){
             keyScale = 0.8;
         }
         giftNode = `
-        <div class="cc w100" style="gap:` + fontsizes[1] + `px; ">
+        <div class="cc w100 cc" style="gap:` + fontsizes[1]*1.5 + `px; ">
             <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview1 + ` ">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
                     <div data-tag="0" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview1 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-num="0">`+ userImgData.main.gift.num[0] +`</div>
-                        <div data-tag-key="0">`+ userImgData.main.gift.key[0] +`</div>
+                        <div data-tag-num="0">`+ userImgData.main.gift.num[0].replace('，','<br>') +`</div>
                     </div>
+
                     <img data-gift-icon="0" class="w100" src="` + userImgData.main.gift.icon[0] + `">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+
+                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                        <div data-gift-name="0" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
+                        color:` + userImgData.style.giftname.color + `;
+                        font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
+                        + userImgData.main.gift.name[0] +
+                        `</div>
+                    </div>  
                 </div>
-                <div class="gift-name-box df">
-                    <div data-gift-name="0" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                    color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
-                    + userImgData.main.gift.name[0] +
-                    `</div>
-                </div>  
             </div>
 
             <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview2 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
                     <div data-tag="1" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview2 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-num="1">`+ userImgData.main.gift.num[1] +`</div>
-                        <div data-tag-key="1">`+ userImgData.main.gift.key[1] +`</div>
+                        <div data-tag-num="1">`+ userImgData.main.gift.num[1].replace('，','<br>') +`</div>
                     </div>
+
                     <img data-gift-icon="1" class="w100" src="` + userImgData.main.gift.icon[1] + `">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+
+                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                        <div data-gift-name="1" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
+                        color:` + userImgData.style.giftname.color + `;
+                        font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
+                        + userImgData.main.gift.name[1] +
+                        `</div>
+                    </div>  
                 </div>
-                <div class="gift-name-box df">
-                    <div data-gift-name="1" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                    color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
-                    + userImgData.main.gift.name[1] +
-                    `</div>
-                </div>  
             </div>
 
             <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview3 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
                     <div data-tag="2" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview3 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-num="2">`+ userImgData.main.gift.num[2] +`</div>
-                        <div data-tag-key="2">`+ userImgData.main.gift.key[2] +`</div>
+                        <div data-tag-num="2">`+ userImgData.main.gift.num[2].replace('，','<br>') +`</div>
                     </div>
+
                     <img data-gift-icon="2" class="w100" src="` + userImgData.main.gift.icon[2] + `">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+
+                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                        <div data-gift-name="2" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
+                        color:` + userImgData.style.giftname.color + `;
+                        font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
+                        + userImgData.main.gift.name[2] +
+                        `</div>
+                    </div>  
                 </div>
-                <div class="gift-name-box df">
-                    <div data-gift-name="2" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                    color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
-                    + userImgData.main.gift.name[2] +
-                    `</div>
-                </div>  
             </div>
 
             <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5*keyScale + `px; box-sizing: border-box; display:` + isgiftview4 + `">
-                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `; height:` + fontsizes[2]*1.5*keyScale + `; padding:` + fontsizes[0]*0.5 + `px;">
+                <div class="gift-box pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px; padding:` + fontsizes[0]*0.8 + `px;">
                     <div data-tag="3"  class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview4 + `;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
-                        <div data-tag-num="3">`+ userImgData.main.gift.num[3] +`</div>
-                        <div data-tag-key="3">`+ userImgData.main.gift.key[3] +`</div>
+                        <div data-tag-num="3">`+ userImgData.main.gift.num[3].replace('，','<br>') +`</div>
                     </div>
+
                     <img data-gift-icon="3" class="w100" src="` + userImgData.main.gift.icon[3] + `">
+                    <img data-gift-icon-bg width="` + fontsizes[2]*1.5*keyScale + `px" height="` + fontsizes[2]*1.5*keyScale + `px" class="pos-a-cc" src="` + userImgData.main.layout.bg_gift_icon.image + `">
+
+                    <div class="df pos-a" style="bottom:-` + fontsizes[0] + `px;">
+                        <div data-gift-name="3" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
+                        color:` + userImgData.style.giftname.color + `;
+                        font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
+                        + userImgData.main.gift.name[3] +
+                        `</div>
+                    </div>  
                 </div>
-                <div class="gift-name-box df">
-                    <div data-gift-name="3" style=" flex: 0 0 auto; font-size: ` + fontsizes[0] + `px; 
-                    color:` + userImgData.style.giftname.color + `;
-                    font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
-                    + userImgData.main.gift.name[3] +
-                    `</div>
-                </div>  
+                
             </div>
             
 
         </div>`
     };
 
+    var setMainSize = '',setBgSize = '';
+    w/h > userImgData.main.layout.bg_main.w/userImgData.main.layout.bg_main.h ? setMainSize = 'height="'+ h +'px"' : setMainSize = 'width="'+ w +'px"';//主体元素不能裁切
+    w/h > userImgData.main.layout.bg_bg.w/userImgData.main.layout.bg_bg.h ? setBgSize = 'width="'+ w +'px"' : setBgSize = 'height="'+ h +'px"';//背景元素充满画面，可裁切
+
+    mainLayout = '<img ' + setMainSize + ' src="' + userImgData.main.layout.bg_main.image + '" data-layout-main class="pos-a-cc" style="z-index:2"/>'
+
     if(imgInfo.type !== 'png'){
-        mainLayout = '<img src="' + userImgData.main.layout.bg_main.image + '" data-layout-main class="pos-a-cc"/>'
-        bgLayout = '<img src="' + userImgData.main.layout.bg_bg.image + '" data-layout-bg class="pos-a-cc"/>'
+        bgLayout = '<img ' + setBgSize + ' src="' + userImgData.main.layout.bg_bg.image + '" data-layout-bg class="pos-a-cc"/>'
     }
     
     var logoNode = '';
@@ -453,7 +464,7 @@ function addZYtable(){
         if(w < 300 || h < 300){
             logoNode = `
             <div class="pos-a" style="top: ` + fontsizes[0]/1.5 + `; left: ` + fontsizes[0] + `; z-index: 20; 
-            transform:scale(` + fontsizes[1]/64 * 0.6 + `);
+            transform:scale(` + fontsizes[1]/64 + `);
             transform-origin: top left;
             ">`+ logos +`</div>`;
         }
@@ -477,6 +488,13 @@ function addZYtable(){
         }
     }
 
+    if((w < 300 || h < 300 ) && info[1] && info[3] ){
+        infoNode = `
+            <div class="cc df-ffc pos-a w100" data-info style="gap:` + fontsizes[0]*0.8 + `px; bottom:` + fontsizes[1] + `px; filter:drop-shadow(0 0 `+ fontsizes[1]*0.2 +`px var(--title-sd-clr,rgba(0,0,0,0.2))); z-index:20;">
+            `+ titleNode + sectitleNode + giftNode +`
+            </div>`;
+    }
+
     node.id = imgid;
     node.style.width = w + 'px';
     node.style.height = h + 'px';
@@ -485,7 +503,7 @@ function addZYtable(){
     node.className = 'ovh pos-r zySSS';
 
     node.innerHTML = logoNode + infoNode +`
-    <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();"/>
+    <img width="`+ (Math.min(w,h) - Math.min(w,h)/10) +`px" src="https://cdn.jsdelivr.net/gh/YNYU01/listEase@1ba86723ad86e7a244ed6ef8404e4a903784bcfc/img/Icon-ListEase_200-5.png" class="pos-a-cc"  style="opacity: 0.1; filter: brightness();z-index:3;"/>
     ` + mainLayout + bgLayout
 
 
@@ -572,10 +590,10 @@ function setimgMain(type,value,num){
         giftNode.forEach(item => {
             if(!value){
                 item.style.display = 'none';
-                userImgData.main.gift.isview[0] = 0;
+                userImgData.main.gift.isview[(num - 1)] = 0;
             }else{
                 item.style.display = 'flex';
-                userImgData.main.gift.isview[0] = 1;
+                userImgData.main.gift.isview[(num - 1)] = 1;
             }
         }) 
     }
@@ -589,22 +607,63 @@ function setimgMain(type,value,num){
     }
 
     if(type == 'giftIcon'){
-        var giftIconNode = document.querySelectorAll('[data-gift-iicon="' + (num - 1) + '"]');
+        var giftIconNode = document.querySelectorAll('[data-gift-icon="' + (num - 1) + '"]');
+        var reader = new FileReader();
+        reader.readAsDataURL(value);
+        reader.onload = (data)=>{
+            var dataURL = data.target.result;
+            userImgData.main.gift.icon[(num - 1)] = dataURL;
+            giftIconNode.forEach(item => {
+                item.src = dataURL;
+            })
+        }
     }
 
-    if(type == 'game'){
-        var gameNode = document.querySelectorAll('[data-logo-game]');
-        userImgData.main.game[0] = value;
-        gameNode.forEach(item => {
-            item.src = games.filter(items => items.name == value)[0].src[0];
+    if(type == 'isGiftTag'){
+        var giftTagNode = document.querySelectorAll('[data-tag="' + (num - 1) + '"]');
+        if(!value){
+            userImgData.main.gift.tagview[(num - 1)] = 0;
+        }else{
+            userImgData.main.gift.tagview[(num - 1)] = 1;
+        }
+        giftTagNode.forEach(item => {
+            if(!value){
+                item.style.display = 'none';
+            }else{
+                item.style.display = 'flex';
+            }
         })
     }
 
-    if(type == 'channel'){
-        var channelNode = document.querySelectorAll('[data-logo-channel]');
-        userImgData.main.channel[0] = value;
-        channelNode.forEach(item => {
-            item.src = channels.filter(items => items.name == value)[0].src[0];
+    if(type == 'giftTagNum'){
+        var giftTagNumNode = document.querySelectorAll('[data-tag-num="' + (num - 1) + '"]');
+        userImgData.main.gift.num[(num - 1)] = value;
+        giftTagNumNode.forEach(item => {
+            item.innerHTML = value.replace('，','<br>')
+        })
+    }
+
+    if(type == 'fontFamily-gift'){
+        var giftNameNode = document.querySelectorAll('[data-gift-name]');
+        var giftTagNode = document.querySelectorAll('[data-tag]');
+        userImgData.style.giftname.fontfamily = value;
+        userImgData.style.tags.fontfamily = value;
+        giftNameNode.forEach(item => {
+            item.style.fontFamily = value;
+        })
+        giftTagNode.forEach(item => {
+            item.style.fontFamily = value;
+        })
+    }
+
+    if(type == 'giftNameColor'){
+        var giftNameNode = document.querySelectorAll('[data-gift-name]');
+        userImgData.style.giftname.color = value;
+        giftNameNode.forEach(item => {
+            item.style.color = value;
+        })
+        giftTagNode.forEach(item => {
+            item.style.color = value;
         })
     }
 
@@ -637,6 +696,22 @@ function setimgMain(type,value,num){
             }else{
                 item.style.display = 'flex';
             }
+        })
+    }
+
+    if(type == 'game'){
+        var gameNode = document.querySelectorAll('[data-logo-game]');
+        userImgData.main.game[0] = value;
+        gameNode.forEach(item => {
+            item.src = games.filter(items => items.name == value)[0].src[userImgData.main.game[1]];
+        })
+    }
+
+    if(type == 'channel'){
+        var channelNode = document.querySelectorAll('[data-logo-channel]');
+        userImgData.main.channel[0] = value;
+        channelNode.forEach(item => {
+            item.src = channels.filter(items => items.name == value)[0].src[userImgData.main.channel[1]];
         })
     }
 
@@ -685,6 +760,8 @@ function setimgMain(type,value,num){
             img.onload = ()=>{
                 var w = img.width;
                 var h = img.height;
+                userImgData.main.layout.bg_bg.w = w;
+                userImgData.main.layout.bg_bg.h = h;
                 //console.log(w,h)
                 bgNode.forEach(item => {
                     var ww =  item.parentNode.id.split('_')[2].split('-')[0];
@@ -697,14 +774,41 @@ function setimgMain(type,value,num){
                         item.height = hh;
                         item.src = dataURL;
                     }
-                    
-                    
                 })
             }
         }
-            
     }
 
+    if(type == 'main'){
+        var mainNode = document.querySelectorAll('[data-layout-main]');
+        var reader = new FileReader();
+        reader.readAsDataURL(value);
+        reader.onload = (data)=>{
+            var dataURL = data.target.result;
+            userImgData.main.layout.bg_main.image = dataURL;
+            var img = new Image();
+            img.src = dataURL;
+            img.onload = ()=>{
+                var w = img.width;
+                var h = img.height;
+                userImgData.main.layout.bg_main.w = w;
+                userImgData.main.layout.bg_main.h = h;
+                mainNode.forEach(item => {
+                    var ww =  item.parentNode.id.split('_')[2].split('-')[0];
+                    var hh = item.parentNode.id.split('_')[3].split('-')[0];
+                    if(ww/hh > w/h){
+                        item.height = hh;
+                        item.src = dataURL;
+                    } else {
+                        item.width = ww;
+                        item.src = dataURL;
+                    }
+                })
+            }
+        }
+    }
+
+    
     
 }
 
@@ -972,4 +1076,8 @@ function createZipAndDownload(compressedImages) {
     }
     // 创建Blob对象
     return new Blob([u8arr], { type: mime });
+}
+
+async function toCanvasData(){
+    
 }

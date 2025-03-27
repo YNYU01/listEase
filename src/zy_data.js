@@ -273,23 +273,35 @@ const userImgData = {
             bg_main:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
                 image:haxi + "/img/bg.png",
+                w:100,/*记录素材的宽高以选择合适的缩放方式*/
+                h:100,
                 async:"",
             },
             bg_bg:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
                 image:haxi + "/img/bg.png",
-                async:"",
-            },
-            bg_gift:{
-                type:"IMAGE",/* IMAGE | COMPONENT */
-                image:haxi + "/img/bg.png",
+                w:100,
+                h:100,
                 async:"",
             },
             bg_secTitle:{
                 type:"IMAGE",/* IMAGE | COMPONENT */
                 image:haxi + "/img/bg.png",
+                w:100,
+                h:100,
                 async:"",
             },
+            bg_gift_icon:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:haxi + "/img/bg_icon.png",
+                async:"",
+            },
+            bg_gift_name:{
+                type:"IMAGE",/* IMAGE | COMPONENT */
+                image:haxi + "/img/bg.png",
+                async:"",
+            },
+
         },
         gift:{/*按资源位给定的数量按顺序显示*/
             icon:[
@@ -299,25 +311,24 @@ const userImgData = {
                 haxi + "/img/Icon-ListEase_200-5.png",
             ],/*用户上传，最多4个，自动转base64*/
             name:["奖励名称1","奖励名称2","奖励名称3","奖励名称4",],/*用户编辑*/
-            num:["×","×","×","×"],
-            key:[2,3,4,5,],/*按顺序给定数量，0-1则隐藏*/
-            tagview:[1,1,1,1],
-            isview:[1,1,1,1],/*控制单个奖励显隐*/
+            num:["三，连","六，连","八，连","十，连"],
+            tagview:[1,1,1,1],/*控制单个奖励标签显隐*/
+            isview:[1,1,1,0],/*控制单个奖励显隐*/
         }
     },
     public:{/*全局规范*/
         fontsize:[//将最小字号(实际字高)、副标题字号(实际字高)、标题字号分6级(实际字高)
             [12,12,12],
             [12,20,26],
-            [14,20,32],
-            [16,30,46],
-            [20,30,64],
-            [22,48,82],
+            [14,20,36],
+            [16,26,46],
+            [20,26,64],
+            [22,36,82],
             [24,48,92],
-            [26,58,110],
-            [28,58,120],
-            [36,58,130], 
-            [36,78,180],
+            [24,48,110],
+            [28,54,120],
+            [28,54,130], 
+            [36,68,180],
         ],
         framesize:{//将画布按竖版（含方版）和横板分6级，用于对应6级字号,中间值向上取值
             hh:[54,104,256,460,500,660,840,960,1080,1400,1920],//竖版以宽为极值

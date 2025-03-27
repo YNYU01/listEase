@@ -111,7 +111,8 @@ body::-webkit-scrollbar,
 
 .pos-a-cc{
     position: absolute;
-    top:50%; left:50%;
+    top:50%;
+    left:50%;
     transform:translate(-50%,-50%)
 }
 
@@ -468,13 +469,9 @@ input[type="checkbox"]:checked+.model-pick {
 
 .gift-tag{
     background:var(--gift-tag-bg,rgb(236, 64, 64));
-    border-radius: var(--gift-tag-r,4px);
+    border-radius: var(--gift-tag-r,10px);
     top:0;
     right:0;
-    /*
-    width: var(--gift-tag-w,40px);
-    height: var(--gift-tag-h,40px);
-    */
 }
 
 .chk-pick{

@@ -336,18 +336,7 @@
                             <div style="box-shadow:0 0 6px 2px #3fffa555 inset,0 0 10px  #65fdc8b4; opacity: var(--btn-op); background-color:#00ba798e;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative" >
                             </div>
                             <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 参数模式</div>
-                            </div>
-                        </label>
-
-                        <input type="checkbox" style="display: none;"  id="editor-flow" 
-                        onchange="onlyTab(this,this.parentNode,true);
-                        changeDisplay([['model-flow','block'],['model-data','none'],['model-view','none']]);">
-                        <label class="btn-editor" for="editor-flow" >
-                            <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
-                            </div>
-                            <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 节点模式</div>
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 编辑模式</div>
                             </div>
                         </label>
 
@@ -358,9 +347,21 @@
                             <div style="box-shadow:0 0 6px 2px #848aea69 inset,0 0 10px  #6579fdb4; opacity: var(--btn-op); background-color:#5c6672b9;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative;">
                             </div>
                             <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
-                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -20px;z-index: 30;"> 预览模式</div>
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -30px;z-index: 30;"> 预览模式</div>
                             </div>
                         </label>
+                        
+                        <input type="checkbox" style="display: none;"  id="editor-flow" 
+                        onchange="onlyTab(this,this.parentNode,true);
+                        changeDisplay([['model-flow','block'],['model-data','none'],['model-view','none']]);">
+                        <label class="btn-editor" for="editor-flow" >
+                            <div style="box-shadow:0 0 6px 2px #fff23f69 inset,0 0 10px  #fdd465b4; opacity: var(--btn-op); background-color:#f1902ead;  width: 18px; height: 18px; box-sizing: border-box; border: rgba(255, 255, 255,var(--hl-op)) 1px solid; border-radius: 9px; position: relative">
+                            </div>
+                            <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
+                                <div class="tags-search-toast" style="width: 60px; bottom: -28px; right: -20px;z-index: 30;"> 节点模式</div>
+                            </div>
+                        </label>
+
                     </div>
                 </div>           
             </div>
@@ -503,12 +504,12 @@
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
                                     <div class="w100">
-                                        <input id="gift-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <input id="gift-show" checked="true" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
                                         <label for="gift-show" class="w100 show">
                                             <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-奖励-] </div>
                                         </label>
                                     </div>
-                                    <div class="w100 df-ffc" style="gap:2px;">
+                                    <div class="w100 df-ffc" style="gap:2px; display: none;">
 
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-1" checked="true" type="checkbox" style="display: none;" 
@@ -534,14 +535,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="×" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="三，连" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,1)"
                                                         onchange="setimgMain('giftTagNum',this.value,1)"
-                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
-                                                        />
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-key" value="2" class="moDsearch-box" 
-                                                        oninput="setimgMain('giftTagKey',this.value,1)"
-                                                        onchange="setimgMain('giftTagKey',this.value,1)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div>  
@@ -576,14 +572,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="×" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="六，连" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,2)"
                                                         onchange="setimgMain('giftTagNum',this.value,2)"
-                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
-                                                        />
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-key" value="3" class="moDsearch-box" 
-                                                        oninput="setimgMain('giftTagKey',this.value,2)"
-                                                        onchange="setimgMain('giftTagKey',this.value,2)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div>  
@@ -618,14 +609,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="×" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="八，连" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,3)"
                                                         onchange="setimgMain('giftTagNum',this.value,3)"
-                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
-                                                        />
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-key" value="4" class="moDsearch-box" 
-                                                        oninput="setimgMain('giftTagKey',this.value,3)"
-                                                        onchange="setimgMain('giftTagKey',this.value,3)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div> 
@@ -636,8 +622,8 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="df w100" style="gap:2px;">
-                                            <input id="gift-show-4" checked="true" type="checkbox" style="display: none;" 
+                                        <div class="df w100" style="gap:2px; opacity:0.3;">
+                                            <input id="gift-show-4" type="checkbox" style="display: none;" 
                                             onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGift',this.checked,4);"/>
                                             <label for="gift-show-4" class="chk-pick">
                                                 <chk-pick></chk-pick>
@@ -660,14 +646,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="×" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="十，连" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,4)"
                                                         onchange="setimgMain('giftTagNum',this.value,4)"
-                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
-                                                        />
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-key" value="5" class="moDsearch-box" 
-                                                        oninput="setimgMain('giftTagKey',this.value,4)"
-                                                        onchange="setimgMain('giftTagKey',this.value,4)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div>  
@@ -681,7 +662,7 @@
                                         <div class="df cc" style="gap:4px;">
                                             <a> 字体 </a><span> :</span>
                                             <select id="gift-name-font" class="select"
-                                            onchange="setimgMain('fontFamily-main',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
+                                            onchange="setimgMain('fontFamily-gift',this.value);tipsAll('字体文件较大，首次加载有延迟，请耐心等待~',3000,3);">
                                             <optgroup label="通用">
                                                 <option value="Source Han Sans CN">思源黑体</option>
                                                 <option value="Source Han Serif CN">思源宋体</option>
@@ -711,12 +692,12 @@
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
                                     <div class="w100">
-                                        <input id="layout-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <input id="layout-show" checked="true" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
                                         <label for="layout-show" class="w100 show">
                                             <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-背景-] </div>
                                         </label>
                                     </div>
-                                    <div class="w100 df-ffc" style="gap:2px;">
+                                    <div class="w100 df-ffc" style="gap:2px; display: none;">
                                         <div class="df cc" style="gap:4px;">
                                             <input id="game-show" checked="true" type="checkbox" style="display: none;" 
                                             onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGame',this.checked);"/>
@@ -748,7 +729,8 @@
                                             </label>
                                         </div>
                                         <div class="df w100" style="align-items: center;">
-                                            <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"/>
+                                            <input id="layout-main" type="file" style="font-size: 10px; --file-type:'主体元素';"
+                                            onchange="setimgMain('main',this.files[0])"/>
                                         </div>
                                         <div class="df w100 pos-r" style="align-items: center;">
                                             <input id="layout-bg" type="file" style="font-size: 10px; --file-type:'背景填充';"
@@ -762,6 +744,20 @@
                                         </div>
                                     </div>
                                     <div class="w100" style="background: var(--boxBod); height: 1px;opacity: 0.5;margin: 4px 0;"></div>
+                                </div>
+
+                                <div class="df-ffc" style="gap:4px; line-height: 21px;">
+                                    <div class="w100">
+                                        <input id="set-zy-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <label for="set-zy-show" class="w100 show">
+                                            <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-装饰-] </div>
+                                        </label>
+                                    </div>
+                                    <div class="df" style="gap:4px; position: relative;">
+                                        <div class="w100 df" style="gap:4px;">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">

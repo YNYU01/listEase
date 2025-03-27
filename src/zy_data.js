@@ -7,7 +7,7 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@f68677a554b5ca740954944c3d20bb726c504ab7/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@8e6eaf9093092c85c2c7eabfe766b179a164cbff/"
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
@@ -322,7 +322,7 @@ const userImgData = {
             [12,20,26],
             [14,20,36],
             [16,26,46],
-            [20,26,64],
+            [18,26,64],
             [22,36,82],
             [24,48,92],
             [24,48,110],

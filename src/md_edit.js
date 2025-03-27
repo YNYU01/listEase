@@ -454,7 +454,7 @@ function addZYtable(){
         <div class="cc w100 cc" style="gap:` + fontsizes[1]*1.5 + `px; padding:` + fontsizes[0] + `px;">
             <div class="pos-r df-ffc cc" data-gift="0" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview1 + ` ">
                 <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
-                    <div data-tag="0" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+                    <div data-tag="0" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8*keyScale + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview1 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
@@ -477,7 +477,7 @@ function addZYtable(){
 
             <div class="pos-r df-ffc cc" data-gift="1" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview2 + `">
                 <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
-                    <div data-tag="1" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+                    <div data-tag="1" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8*keyScale + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview2 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
@@ -500,7 +500,7 @@ function addZYtable(){
 
             <div class="pos-r df-ffc cc" data-gift="2" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview3 + `">
                 <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
-                    <div data-tag="2" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+                    <div data-tag="2" class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8*keyScale + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview3 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
@@ -524,7 +524,7 @@ function addZYtable(){
 
             <div class="pos-r df-ffc cc" data-gift="3" style="width:` + fontsizes[2]*1.5*keyScale + `px;  display:` + isgiftview4 + `">
                 <div class="pos-r cc" style="width:` + fontsizes[2]*1.5*keyScale + `px; height:` + fontsizes[2]*1.5*keyScale + `px;">
-                    <div data-tag="3"  class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8 + `px; padding:` + fontsizes[0]*0.2 + `px;
+                    <div data-tag="3"  class="gift-tag pos-a df cc" style="font-size: ` + fontsizes[0]*0.8*keyScale + `px; padding:` + fontsizes[0]*0.2 + `px;
                     color:` + userImgData.style.tags.color + `;
                     display:` + istagview4 + `; z-index:3;
                     font-family:'` + userImgData.style.tags.fontfamily + `';" >
@@ -748,6 +748,7 @@ function setimgMain(type,value,num){
 
     if(type == 'giftIconBg'){
         var giftIconBg = document.querySelectorAll('[data-gift-icon-bg]');
+        userImgData.main.layout.bg_gift_icon.image = value;
         giftIconBg.forEach(item => {
             item.src = value;
         })
@@ -794,9 +795,6 @@ function setimgMain(type,value,num){
         var giftNameNode = document.querySelectorAll('[data-gift-name]');
         userImgData.style.giftname.color = value;
         giftNameNode.forEach(item => {
-            item.style.color = value;
-        })
-        giftTagNode.forEach(item => {
             item.style.color = value;
         })
     }
@@ -959,9 +957,21 @@ function cloneImgs(){
     //console.log(zyAllId);
     zyAllId.forEach((item,index)=>{
         var cloneImg = document.getElementById(item).cloneNode(true);
-        var hasID = cloneImg.querySelectorAll('[id]')
+        var hasID = cloneImg.querySelectorAll('[id]');
+        var hasMask = cloneImg.querySelectorAll('[mask]');
+        var hasFill = cloneImg.querySelectorAll('[fill]');
         hasID.forEach(element => {
             element.id = element.id + '-clone';
+        });
+        hasMask.forEach(element => {
+            var ids = element.getAttribute('mask').split('#')[1].split(')')[0];
+            element.setAttribute('mask','url(#' + ids + '-clone)');
+        });
+        hasFill.forEach(element => {
+            if(element.getAttribute('fill').split('url').length > 1){
+                var ids = element.getAttribute('fill').split('#')[1].split(')')[0];
+            element.setAttribute('fill','url(#' + ids + '-clone)');
+            }
         })
         cloneImg.id = cloneImg.id + '-clone';
         cloneImg.style.display = 'flex';
@@ -1117,10 +1127,30 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
             domtoimage.toJpeg(node, { quality: 0.9,with:w,height:h})
             .then(function (dataUrl) {
                 if(isAll){
-                    dataurls.push(dataURLtoBlob(dataUrl));
-                    if(dataurls.length == zyAllId.length){
-                        //console.log(dataurls)
-                        createZipAndDownload(dataurls)
+                    var img = new Image();
+                    img.src = dataUrl;
+                    img.onload = ()=>{
+                        var ww = img.width;
+                        var hh = img.height;
+                        if(w == ww && h == hh){
+                            dataurls.push(dataURLtoBlob(dataUrl));
+                            if(dataurls.length == zyAllId.length){
+                                //console.log(dataurls)
+                                createZipAndDownload(dataurls)
+                            }
+                        }else{
+                            var canvas = document.createElement('canvas');
+                            canvas.width = w;
+                            canvas.height = h;
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img,0,0,w,h,0,0,w,h);
+                            var newDataUrl = canvas.toDataURL('image/jpeg');
+                            dataurls.push(dataURLtoBlob(newDataUrl));
+                            if(dataurls.length == zyAllId.length){
+                                //console.log(dataurls)
+                                createZipAndDownload(dataurls)
+                            }
+                        }
                     }
                 }else{
                     var img = new Image();
@@ -1135,20 +1165,26 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
                             link.click();
                             link.remove();
                         }else{
+                            //console.log('尺寸异常')
                             var canvas = document.createElement('canvas');
+                            canvas.width = w;
+                            canvas.height = h;
                             var ctx = canvas.getContext('2d');
-                            ctx.drawImage(img,0,0,w,h,0,0,w,h)
+                            ctx.drawImage(img,0,0,w,h,0,0,w,h);
+                            var newDataUrl = canvas.toDataURL('image/jpeg');
+                            var link = document.createElement('a');
+                            link.download = name + '.jpg';
+                            link.href = newDataUrl;
+                            link.click();
+                            link.remove();
                         }
                     }
                     
                 }
             });
             setTimeout(()=>{
-                //node.parentNode.style.filter = '';
-                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-                //if(e == zyAllId.length - 1){
-                    imgAutoScale();  
-                //}
+                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg';
+                imgAutoScale();  
             },500)
         },500)
     }
@@ -1157,25 +1193,64 @@ async function exportOneAs(node,type,name,w,h,e,isAll){
             domtoimage.toPng(node, { quality: 1,with:w,height:h})
             .then(function (dataUrl) {
                 if(isAll){
-                    dataurls.push(dataURLtoBlob(dataUrl));
-                    if(dataurls.length == zyAllId.length){
-                        //console.log(dataurls)
-                        createZipAndDownload(dataurls)
+                    var img = new Image();
+                    img.src = dataUrl;
+                    img.onload = ()=>{
+                        var ww = img.width;
+                        var hh = img.height;
+                        if(w == ww && h == hh){
+                            dataurls.push(dataURLtoBlob(dataUrl));
+                            if(dataurls.length == zyAllId.length){
+                                //console.log(dataurls)
+                                createZipAndDownload(dataurls)
+                            }
+                        }else{
+                            var canvas = document.createElement('canvas');
+                            canvas.width = w;
+                            canvas.height = h;
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img,0,0,w,h,0,0,w,h);
+                            var newDataUrl = canvas.toDataURL('image/png');
+                            dataurls.push(dataURLtoBlob(newDataUrl));
+                            if(dataurls.length == zyAllId.length){
+                                //console.log(dataurls)
+                                createZipAndDownload(dataurls)
+                            }
+                        }
                     }
                 }else{
-                    var link = document.createElement('a');
-                    link.download = name + '.png';
-                    link.href = dataUrl;
-                    link.click();
-                    link.remove();
+                    var img = new Image();
+                    img.src = dataUrl;
+                    img.onload = ()=>{
+                        var ww = img.width;
+                        var hh = img.height;
+                        if(w == ww && h == hh){
+                            var link = document.createElement('a');
+                            link.download = name + '.png';
+                            link.href = dataUrl;
+                            link.click();
+                            link.remove();
+                        }else{
+                            //console.log('尺寸异常')
+                            var canvas = document.createElement('canvas');
+                            canvas.width = w;
+                            canvas.height = h;
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img,0,0,w,h,0,0,w,h);
+                            var newDataUrl = canvas.toDataURL('image/png');
+                            var link = document.createElement('a');
+                            link.download = name + '.png';
+                            link.href = newDataUrl;
+                            link.click();
+                            link.remove();
+                        }
+                    }
+                    
                 }
             });
             setTimeout(()=>{
-                //node.parentNode.style.filter = '';
-                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg'
-                //if(e == zyAllId.length - 1){
-                    imgAutoScale();
-                //}
+                node.parentNode.parentNode.className = 'df-ffc cc ovh cloneimg';
+                imgAutoScale();
             },500)
         },500)
     }
@@ -1189,8 +1264,7 @@ function createZipAndDownload(compressedImages) {
     var N = String(MN.getDate()).padStart(2, '0');
     var HHMMSS = String(MN.getHours()).padStart(2, '0') + String(MN.getMinutes()).padStart(2, '0') + String(MN.getSeconds()).padStart(2, '0');
     var zip = new JSZip();
-
-
+    /*
     compressedImages.forEach((blob,index) => {
         var path = zyAllname[index].split('/');
         var name = path.pop() + '.' + userImgData.zy[index].img.type;
@@ -1204,7 +1278,13 @@ function createZipAndDownload(compressedImages) {
         } else {
             zip.file(name,blob);
         }
-        });
+    });
+    */
+
+    for(var i = 0; i < compressedImages.length; i++){
+        var name = zyAllname[i] + '.' + userImgData.zy[i].img.type;
+        zip.file(name,compressedImages[i]);
+    }
 
     zip.generateAsync({ type: "blob" }).then(function (content) {
         saveAs(content,'【' + userImgData.main.game[0] + '】' + userImgData.main.title[0].replace('，','_') + ' ' + M + N + '_' + HHMMSS + '.zip');
@@ -1227,8 +1307,4 @@ function createZipAndDownload(compressedImages) {
     }
     // 创建Blob对象
     return new Blob([u8arr], { type: mime });
-}
-
-async function toCanvasData(){
-    
 }

@@ -7,7 +7,7 @@
 - 引用开源库的部分应遵循对应许可
 - 使用当前代码时禁止删除或修改本声明
 */
-var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@f9a1e2e47b602d4aec8fb2b4e31e2abcc539a1bf/"
+var haxi = "https://cdn.jsdelivr.net/gh/YNYU01/listEase@48d6c3fecaf40bab92b41d185d319583ab3ef355/"
 /* 
 纯数字的键名要带下划线，避免被识别成数字序号；
 name的结构为>位置-名称<，生成option时会自动分组，如无则归为通用组；
@@ -264,8 +264,8 @@ var sheet = {
 //模拟数据
 const userImgData = {
     main:{/*全局配置项*/
-        title:["主要标题文案","备用标题文案"],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
-        sectitle:["主要副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
+        title:["主标题文案","备用主标题文案"],/*标题文案，允许配置2个文案，为不同尺寸提供选项*/
+        sectitle:["副标题文案文案文案文案","备用副标题文案文案文案文案"],/*副标题文案，允许配置2个文案，为不同尺寸提供选项*/
         game:["永劫无间",0],/*游戏，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         channel:["大神",0],/*渠道，作为logo,按序号指定库中LOGO版本，如彩-暗/彩-亮/黑/白*/
         logoview:[1,1],
@@ -310,7 +310,7 @@ const userImgData = {
                 haxi + "/img/bg.png",
                 haxi + "/img/bg.png",
             ],/*用户上传，最多4个，自动转base64*/
-            name:["奖励名称1","奖励名称2","奖励名称3","奖励名称4",],/*用户编辑*/
+            name:["奖励名称名称","奖励名称名称","奖励名称名称","奖励名称名称",],/*用户编辑*/
             num:["三，连","六，连","八，连","十，连"],
             tagview:[1,1,1,1],/*控制单个奖励标签显隐*/
             isview:[1,1,1,0],/*控制单个奖励显隐*/
@@ -347,10 +347,14 @@ const userImgData = {
             color:"var(--mainColor)",
             fontfamily:"Source Han Sans CN",
             async:"",
+            stroke:"var(--mainColor)",
+            background:"var(--boxGry)",
         },
         giftname:{/*默认样式*/
             color:"var(--mainColor)",
             fontfamily:"Source Han Sans CN",
+            stroke:"var(--mainColor)",
+            background:"var(--boxGry)",
         },
         tags:{/*默认样式*/
             color:"#ffffff",

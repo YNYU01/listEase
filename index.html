@@ -403,9 +403,9 @@
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="title-main-1" class="moDsearch-box" maxlength="14" 
-                                            value="主要主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,1);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,1);" onKeyPress="if(window.event.keyCode==13){tipsAll('文案如需换行，用逗号隔开即可~',3000,3);this.blur();}; "/>
+                                            value="主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,1);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,1);" onKeyPress="if(window.event.keyCode==13){tipsAll('文案如需换行，用逗号隔开即可~',3000,3);this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                                <span id="title-main-1-num"> 6 </span>/
+                                                <span id="title-main-1-num"> 5 </span>/
                                                 <span>14</span>
                                             </div>
                                         </div>
@@ -413,7 +413,7 @@
                                             <input type="text" id="title-main-2" class="moDsearch-box" maxlength="14" 
                                             value="备用主标题文案" oninput="getTextNum(this);setimgMain('title',this.value,2);" onchange="setTextMust(this,'文案文案文案');setimgMain('title',this.value,2);" onKeyPress="if(window.event.keyCode==13){tipsAll('文案如需换行，用逗号隔开即可~',3000,3);this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                                <span id="title-main-2-num"> 6 </span>/
+                                                <span id="title-main-2-num"> 7 </span>/
                                                 <span>14</span>
                                             </div>
                                         </div>
@@ -457,17 +457,17 @@
                                     <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="sectitle-main-1" class="moDsearch-box" maxlength="18" 
-                                            value="主要副标题文案文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,1);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="副标题文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,1);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,1);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                                <span id="sectitle-main-1-num"> 13 </span>/
+                                                <span id="sectitle-main-1-num"> 9 </span>/
                                                 <span>18</span>
                                             </div>
                                         </div>
                                         <div class="df" style="gap:4px; position: relative;">
                                             <input type="text" id="sectitle-main-2" class="moDsearch-box" maxlength="18" 
-                                            value="备用副标题文案文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,2);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
+                                            value="备用副标题文案文案文案" oninput="getTextNum(this);setimgMain('sectitle',this.value,2);" onchange="setTextMust(this,'文案文案文案文案文案文案');setimgMain('sectitle',this.value,2);" onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                             <div style="position: absolute; font-size: 8px; right: 4px; z-index: 2;">
-                                                <span id="sectitle-main-2-num"> 13 </span>/
+                                                <span id="sectitle-main-2-num"> 11 </span>/
                                                 <span>18</span>
                                             </div>
                                         </div>
@@ -504,12 +504,12 @@
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
                                     <div class="w100">
-                                        <input id="gift-show" checked="true" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <input id="gift-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
                                         <label for="gift-show" class="w100 show">
                                             <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-奖励-] </div>
                                         </label>
                                     </div>
-                                    <div class="w100 df-ffc" style="gap:2px; display: none;">
+                                    <div class="w100 df-ffc" style="gap:2px;">
 
                                         <div class="df w100" style="gap:2px;">
                                             <input id="gift-show-1" checked="true" type="checkbox" style="display: none;" 
@@ -524,9 +524,9 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-1" class="moDsearch-box" maxlength="8" value="奖励名称1" 
+                                                        <input type="text" id="gift-name-1" class="moDsearch-box" maxlength="8" value="奖励名称名称" 
                                                         oninput="getTextNum(this);setimgMain('giftname',this.value,1);" 
-                                                        onchange="setTextMust(this,'奖励名称1');setimgMain('giftname',this.value,1);" 
+                                                        onchange="setTextMust(this,'奖励名称名称');setimgMain('giftname',this.value,1);" 
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-1-num"> 5 </span>/
@@ -561,9 +561,9 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-2" class="moDsearch-box" maxlength="8" value="奖励名称2" 
+                                                        <input type="text" id="gift-name-2" class="moDsearch-box" maxlength="8" value="奖励名称名称" 
                                                         oninput="getTextNum(this);setimgMain('giftname',this.value,2);" 
-                                                        onchange="setTextMust(this,'奖励名称2');setimgMain('giftname',this.value,2);" 
+                                                        onchange="setTextMust(this,'奖励名称名称');setimgMain('giftname',this.value,2);" 
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-2-num"> 5 </span>/
@@ -598,9 +598,9 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称3" 
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称名称" 
                                                         oninput="getTextNum(this);setimgMain('giftname',this.value,3);" 
-                                                        onchange="setTextMust(this,'奖励名称3');setimgMain('giftname',this.value,3);" 
+                                                        onchange="setTextMust(this,'奖励名称名称');setimgMain('giftname',this.value,3);" 
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-3-num"> 5 </span>/
@@ -635,9 +635,9 @@
                                                 </div>
                                                 <div class="df w100" style="gap:4px; position: relative;">
                                                     <div class="pos-r w100">
-                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称4" 
+                                                        <input type="text" id="gift-name-3" class="moDsearch-box" maxlength="8" value="奖励名称名称" 
                                                         oninput="getTextNum(this);setimgMain('giftname',this.value,4);" 
-                                                        onchange="setTextMust(this,'奖励名称4');setimgMain('giftname',this.value,4);" 
+                                                        onchange="setTextMust(this,'奖励名称名称');setimgMain('giftname',this.value,4);" 
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();}; "/>
                                                         <div style="position: absolute; font-size: 8px; top: 0; right: 4px; z-index: 2;">
                                                             <span id="gift-name-4-num"> 5 </span>/
@@ -692,12 +692,12 @@
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
                                     <div class="w100">
-                                        <input id="layout-show" checked="true" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <input id="layout-show"  type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
                                         <label for="layout-show" class="w100 show">
                                             <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-背景-] </div>
                                         </label>
                                     </div>
-                                    <div class="w100 df-ffc" style="gap:2px; display: none;">
+                                    <div class="w100 df-ffc" style="gap:2px;">
                                         <div class="df cc" style="gap:4px;">
                                             <input id="game-show" checked="true" type="checkbox" style="display: none;" 
                                             onchange="if(this.checked){this.parentNode.style.opacity = 1} else {this.parentNode.style.opacity = 0.3;};setimgMain('isGame',this.checked);"/>

@@ -97,14 +97,12 @@ function moDshowSet(){
         moDsideArea.style.display = 'flex';
         moDside.style.overflow = 'hidden';
         moDside.className = 'df-ffc moDside ovh';
-        imgViewInfo.style.top = '10px';
     }else{
         modelTable.style.display = 'none';
         moDside.style.overflow = 'visible';
         moDsideArea.style.display = 'none';
         moDside.className = 'df-ffc moDside-float ovh';
         imgView.style.width = '100%';
-        imgViewInfo.style.top = '60px';
     };
 }
 //自动缩放
@@ -215,9 +213,6 @@ function addZYtable(){
         if(index == 0){
             imgnode.style.display = 'block';
             setnode.style.display = 'flex';  
-            document.getElementById('zy-info-size').textContent = item.img.w + '×' + item.img.h;
-            document.getElementById('zy-info-channel').textContent = item.channel[0];
-            document.getElementById('zy-info-game').textContent = userImgData.main.game[0];
         } else {
             imgnode.style.display = 'none';
             setnode.style.display = 'none';
@@ -229,6 +224,7 @@ function addZYtable(){
     reimgClone();
     setimgMain('fontFamily-main',userImgData.style.title.fontfamily);
     setimgMain('fontFamily-sec',userImgData.style.sectitle.fontfamily);
+    document.getElementById('pick-img-name').textContent = zyAllname[0]
 }
  function setImgLayout(node,imgid,imgInfo,imgNum){
     var w = imgInfo.w, h = imgInfo.h, type = imgInfo.type, safa = imgInfo.safa , info = imgInfo.info;
@@ -493,7 +489,7 @@ function addZYtable(){
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[1] +
                         `</div>
-                        ` + boxDefGift + `
+                        ` + boxDefGift.replace(/ww_1/g,'ww_3') + `
                     </div>  
                 </div>
             </div>
@@ -517,7 +513,7 @@ function addZYtable(){
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[2] +
                         `</div>
-                        ` + boxDefGift + `
+                        ` + boxDefGift.replace(/ww_1/g,'ww_4') + `
                     </div>  
                 </div>
             </div>
@@ -540,10 +536,9 @@ function addZYtable(){
                         font-family:'` + userImgData.style.giftname.fontfamily + `';" >`
                         + userImgData.main.gift.name[3] +
                         `</div>
+                        ` + boxDefGift.replace(/ww_1/g,'ww_5') + `
                     </div>  
-                    ` + boxDefGift + `
                 </div>
-                
             </div>
         </div>`
     };
@@ -646,9 +641,7 @@ function pickImg(key){
     }
     document.getElementById('zy_' + num + '_' + zys[(num - 1)].img.w + '_' + zys[(num - 1)].img.h).style.display = 'flex'
     moDautoZoom();
-    document.getElementById('zy-info-size').textContent = zys[(num - 1)].img.w + '×' + zys[(num - 1)].img.h;
-    document.getElementById('zy-info-channel').textContent = zys[(num - 1)].channel[0];
-    document.getElementById('zy-info-game').textContent = userImgData.main.game[0];
+    document.getElementById('pick-img-name').textContent = zyAllname[(num - 1)]
 }
 
 //修改信息
@@ -1073,6 +1066,10 @@ function addGame(){
         node.innerHTML = item.name;
         document.getElementById('channel-pick').appendChild(node)
     })
+}
+
+function seeSafa(){
+    
 }
 //导出
 var dataurls = [];

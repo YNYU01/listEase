@@ -201,6 +201,7 @@
                         <use xlink:href="#icon_mini_stroke"></use>
                     </svg>
                 </div>
+                <div>『云即』温馨提示：<span id="load-tips"></span>~</div>
                 <div class="load-line pos-r"></div>
             </div>
         </div>
@@ -535,9 +536,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="三，连" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-1-num" value="三，连" maxlength="3" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,1)"
-                                                        onchange="setimgMain('giftTagNum',this.value,1)"
+                                                        onchange="setTextMust(this,'99+');setimgMain('giftTagNum',this.value,1)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div>  
@@ -572,9 +573,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="六，连" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-2-num" value="六，连" maxlength="3" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,2)"
-                                                        onchange="setimgMain('giftTagNum',this.value,2)"
+                                                        onchange="setTextMust(this,'99+');setimgMain('giftTagNum',this.value,2)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div>  
@@ -609,9 +610,9 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="八，连" class="moDsearch-box" 
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-3-num" value="八，连" maxlength="3" class="moDsearch-box" 
                                                         oninput="setimgMain('giftTagNum',this.value,3)"
-                                                        onchange="setimgMain('giftTagNum',this.value,3)"
+                                                        onchange="setTextMust(this,'99+');setimgMain('giftTagNum',this.value,3)"
                                                         onKeyPress="if(window.event.keyCode==13){this.blur();};"
                                                         />
                                                     </div> 
@@ -646,10 +647,10 @@
                                                     </div>
                                                     <span style="flex:0 0 auto; opacity: 0.8; font-size: 10px;"> ▶标签</span>
                                                     <div class="df" style="width: 80px;">
-                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="十，连" class="moDsearch-box" 
-                                                        oninput="setimgMain('giftTagNum',this.value,4)"
-                                                        onchange="setimgMain('giftTagNum',this.value,4)"
-                                                        onKeyPress="if(window.event.keyCode==13){this.blur();};"
+                                                        <input style="padding: 0; text-align: center;" type="text" id="gift-tag-4-num" value="十，连" maxlength="3" class="moDsearch-box" 
+                                                        oninput="setimgMain('giftTagNum',this.value,4);"
+                                                        onchange="setTextMust(this,'99+');setimgMain('giftTagNum',this.value,4);"
+                                                        onKeyPress="if(window.event.keyCode==13){this.blur()};"
                                                         />
                                                     </div>  
                                                     <input id="gift-tag-4-show" checked="true" type="checkbox" style="display: none;" 
@@ -748,8 +749,8 @@
 
                                 <div class="df-ffc" style="gap:4px; line-height: 21px;">
                                     <div class="w100">
-                                        <input id="set-zy-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
-                                        <label for="set-zy-show" class="w100 show">
+                                        <input id="set-model-show" type="checkbox" style="display: none;" onchange="this.checked? this.parentNode.nextElementSibling.style.display = 'none':this.parentNode.nextElementSibling.style.display = 'flex'">
+                                        <label for="set-model-show" class="w100 show">
                                             <div class="w100" style="background: var(--boxGry);margin-top: 4px;">[-装饰-] </div>
                                         </label>
                                     </div>
@@ -769,17 +770,16 @@
                                         </label>
                                     </div>
                                     <div class="df" style="gap:4px; position: relative;">
-                                        <div class="w100 df" style="gap:4px;">
-                                            <select id="select-zy" class="input-btn-skill" name="资源位" style=" color: var(--mainColor); font-size: 12px; text-align: left;" 
-                                            onchange="pickImg(this.value);">
-                                                <!--在此填充选项项-->
-                                            </select>
-                                            <div class="btn-text cc" onclick="viewPage(1)" style="min-width: 9ch;background-color:var(--mainColor2) ; border-radius: 10px;border:1px var(--mainColor2) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
-                                                <div class="cc" style="gap:2px; font-size: 10px;">
-                                                    <div style="width: 12px; height: 12px;"><btn-add style="--mainColor:#2b2b2b"></btn-add></div>
-                                                    <div style="margin-top: 1px; line-height: 12px;">前往添加</div>
+                                        <div class="w100 df" style="gap:4px; align-items: center;">
+                                            <div id="pick-img-name" class="w100 ovh"></div>
+                                            <input type="checkbox" id="set-zy-safa" style="display: none;" 
+                                            onchange="seeSafa(this.checked);">
+                                            <label for="set-zy-safa" class=" df cc btn-safa pos-r" > 
+                                                ◐
+                                                <div class="tags-search-toast-area" style="right: 0; bottom: -1px;width: 18px; ">
+                                                    <div class="tags-search-toast" style="width: 120px; bottom: 4px; right: 0;z-index: 30;"> 显示/隐藏安全区</div>
                                                 </div>
-                                            </div>
+                                            </label>
                                         </div>
                                         <!--在此填充配置项-->
                                     </div>
@@ -800,17 +800,22 @@
                             </div>
                             
                             <!--视窗信息-->
-                            <div id="imgView-info" style="position: absolute; top:20px; left: 10px;">
-                                <div class="df" style="min-width: 400px; gap:14px; padding: 4px; opacity: 0.5; height: auto; font-size: 12px;">
-                                    <span>缩放：<span id="zoom-num" style="color: var(--mainColor3);">40</span></span>
-                                    <span>尺寸：<span id="zy-info-size">--</span></span>
-                                    <span>渠道：<span id="zy-info-channel">--</span></span>
-                                    <span>游戏：<span id="zy-info-game">--</span></span>
+                            <div id="imgView-info" class="df cc pos-a" style="width: calc(100% - 20px);">
+                                <select id="select-zy" class="input-btn-skill" name="资源位" style="min-width: 140px; max-width: 232px; color: var(--mainColor); font-size: 12px; text-align: left;" 
+                                onchange="pickImg(this.value);">
+                                    <!--在此填充选项项-->
+                                </select>
+                                <div class="btn-text cc" onclick="viewPage(1)" style="min-width: 9ch; height: 18px; background-color:var(--mainColor2) ; border-radius: 10px;border:1px var(--mainColor2) solid; color:#2b2b2b;padding: 0 4px 0 3px;"> 
+                                    <div class="cc" style="gap:2px; font-size: 10px;">
+                                        <div style="width: 12px; height: 12px;"><btn-add style="--mainColor:#2b2b2b"></btn-add></div>
+                                        <div style="margin-top: 1px; line-height: 12px;">前往添加</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!--放大器-->
                         <div id="imgView-size" class="df-ffc cc" style=" gap:10px; position: absolute; transform: scale(0.8); transform-origin: right bottom;">
+                            <span id="zoom-num" style="color: var(--mainColor3);">40</span>
                             <button id="imgView-size-up" class="btn-viewSize"> + </button>
 
                             <div id="imgView-size-range" class="cc" >
@@ -864,7 +869,26 @@
                 </svg>
             </div>
             ListEase 0.1.0 『云即·资源助手』 </div>
-        <div>©YNYU @lvynyu2.gmail.com</div>
+        <div class="df cc" style="gap: 4px;">
+            <div style="height: 12px;">
+                <svg width="100%" height="100%" viewBox="0 0 350 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M312 17.9812V19.068C312 24.0333 313.756 28.2715 317.267 31.7826C320.778 35.2937 325.016 37.0492 329.981 37.0492H331.068C336.033 37.0492 340.272 35.2937 343.783 31.7826C347.294 28.2715 349.049 24.0333 349.049 19.068V17.9812C349.049 13.0159 347.294 8.77766 343.783 5.26658C340.272 1.75553 336.033 0 331.068 0H329.981C325.016 0 320.778 1.75553 317.267 5.26658C313.756 8.77766 312 13.0159 312 17.9812ZM321.754 27.2951C319.482 25.0232 318.346 22.2809 318.346 19.068V17.9812C318.346 14.7683 319.482 12.026 321.754 9.75411C324.026 7.48225 326.768 6.34632 329.981 6.34632H331.068C334.281 6.34632 337.023 7.48225 339.295 9.75411C341.567 12.026 342.703 14.7683 342.703 17.9812V19.068C342.703 22.2809 341.567 25.0232 339.295 27.2951C337.023 29.567 334.281 30.7029 331.068 30.7029H329.981C326.768 30.7029 324.026 29.567 321.754 27.2951ZM334.362 9.44696C335.231 9.44696 336.215 9.65174 337.315 10.0613V17.0984C335.9 16.2283 334.916 15.7933 334.362 15.7933H329.42C328.969 15.7933 328.587 15.9517 328.274 16.2686C327.953 16.5922 327.793 16.9878 327.793 17.4554V19.5936C327.793 20.0613 327.953 20.4569 328.274 20.7805C328.587 21.0974 328.969 21.2558 329.42 21.2558H334.362C334.573 21.2558 334.98 21.1125 335.581 20.826C336.095 20.5812 336.673 20.2545 337.315 19.846V26.9651C336.218 27.3898 335.234 27.6021 334.362 27.6021H329.42C327.204 27.6021 325.318 26.8164 323.763 25.2449C322.219 23.6848 321.447 21.8011 321.447 19.5936V17.4554C321.447 15.248 322.219 13.3642 323.763 11.8041C325.318 10.2327 327.204 9.44696 329.42 9.44696H334.362ZM122.739 45.4885C128.057 42.2516 132.787 37.5808 136.93 31.4761L117.07 18C114.879 21.2287 112.61 23.5578 110.261 24.9875C108.344 26.1544 106.257 26.7379 104 26.738H19V50.738H104C110.743 50.738 116.99 48.9882 122.739 45.4885ZM142 130.903C133.053 146.968 122.208 155 109.465 155H13.438L44.6292 93.6444C45.3056 92.3138 44.339 90.738 42.8464 90.738H0V66.738H150V90.738H77.3239C74.6893 90.738 72.2779 92.2173 71.084 94.5658L52.562 131H109.465C111.218 131 113.223 129.773 115.479 127.319C117.022 125.641 118.548 123.535 120.058 121L142 130.903ZM293.34 122.276C286.316 129.324 276.482 132.737 263.839 132.514L264.226 108.388C270.543 108.499 274.93 107.322 277.387 104.857C279.76 102.475 280.947 98.1599 280.947 91.9118V43.3934H258.855V156H235.803V19.2634H302C303.105 19.2634 304 20.1588 304 21.2634V91.9118C304 105.023 300.447 115.145 293.34 122.276ZM176.971 156H220.567C198.982 145.831 186.24 135.16 182.342 123.987C181.917 122.771 182.865 121.552 184.153 121.552H229.079V19H160C158.895 19 158 19.8954 158 21V116.525C158 131.036 164.324 144.194 176.971 156ZM206.026 97.4225H181.053V84.3412C181.053 83.2367 181.948 82.3412 183.053 82.3412H204.026C205.131 82.3412 206.026 83.2367 206.026 84.3412V97.4225ZM204.026 58.2112H183.053C181.948 58.2112 181.053 57.3158 181.053 56.2112V43.13H206.026V56.2112C206.026 57.3158 205.131 58.2112 204.026 58.2112Z"
+                    fill="var(--mainColor)" fill-rule="evenodd" clip-rule="evenodd" />
+                </svg>        
+            </div>   
+            ×    
+            <div class="df" style="margin-top: 1px; font-weight: 900;">
+                <!--div style="height: 12px;">
+                    <svg width="100%" height="100%" viewBox="0 0 199 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M163.719 79.2867C163.719 79.2867 163.721 79.3339 163.716 79.4099H163.703C163.721 79.2211 163.742 79.0297 163.758 78.8383C164.101 77.5798 167.624 72.5691 179.208 65.7178C188.659 60.1225 197.947 56.5697 198.042 56.5356L191.609 39.2828C188.007 29.5683 175.735 25.6537 165.634 31.0392C163.215 32.3319 160.7 33.7451 158.177 35.2685C136.485 48.368 124.875 62.9647 123.661 78.6574C123.347 79.8976 119.919 84.9056 108.468 91.8093C106.858 92.7821 105.251 93.692 103.694 94.5336C100.071 96.4975 95.7123 96.5159 92.3585 94.5834C90.9046 93.7444 89.4085 92.8372 87.915 91.8671C81.4424 87.6666 77.896 84.1557 76.0859 81.7802C74.8457 80.1467 75.0172 77.8498 76.5028 76.2216C78.6718 73.8408 82.7432 70.3325 89.8465 66.1295C99.3009 60.5367 108.589 56.9839 108.647 56.9603L108.808 56.9027C109.354 56.6903 122.318 51.6639 135.559 43.5278C137.841 42.1277 140.01 40.7066 142.068 39.2723C160.547 26.3826 152.634 0.10226 130.321 0.10226H129.551C129.556 0.0393323 129.564 0 129.564 0C129.279 1.21399 125.872 6.24036 114.36 13.1939C110.549 15.4934 106.763 17.4547 103.605 18.9754C100.662 17.452 97.1503 15.4855 93.6673 13.1729C83.1997 6.23512 80.5479 1.21136 80.445 0C80.445 0 80.4476 0.0367103 80.4423 0.10226H79.693C57.3461 0.10226 45.5275 26.4193 62.1168 39.3117C62.2725 39.4323 62.4308 39.5529 62.5891 39.6761C60.7262 40.9452 58.953 42.2273 57.2722 43.5252C54.0953 40.7092 50.4856 37.9561 46.4352 35.2685C44.1422 33.7451 41.8387 32.3319 39.6116 31.0392C30.3209 25.6537 17.46 29.5657 12.4017 39.2802L3.41443 56.5461C3.49623 56.5802 11.9241 59.9992 20.4101 65.4399C31.3236 72.4354 34.1733 77.5719 34.3211 78.8462H34.3158C34.3132 78.8986 34.3106 78.9484 34.3079 78.9983C34.3026 79.0507 34.2974 79.1005 34.2921 79.1503H34.3C34.2921 79.2395 34.2894 79.3234 34.2842 79.4099H34.2736C34.2789 79.3339 34.2894 79.2867 34.2894 79.2867C33.9834 80.5059 30.4845 85.5402 18.8348 92.4334C9.38045 98.0261 0.0923533 101.579 0 101.613L6.43306 118.868C10.0322 128.586 22.3073 132.495 32.4054 127.109C34.8277 125.819 37.3397 124.406 39.8623 122.883C44.3559 120.169 48.4116 117.39 52.0371 114.553C55.0795 117.193 58.5045 119.781 62.3173 122.319C74.4869 130.397 86.8437 135.363 87.3635 135.568C92.1949 137.495 97.7942 137.477 102.9 135.515C103.446 135.306 116.413 130.285 129.653 122.154C133.691 119.676 137.374 117.146 140.704 114.568C143.897 117.403 147.528 120.174 151.604 122.883C153.9 124.406 156.201 125.819 158.428 127.109C167.719 132.495 180.58 128.586 185.638 118.868L194.628 101.603C194.543 101.568 186.116 98.152 177.632 92.7113C166.674 85.6844 163.845 80.5374 163.719 79.2867ZM34.3237 78.7387H34.3317C34.329 78.7754 34.3237 78.8095 34.3211 78.8462C34.3211 78.8305 34.3211 78.7964 34.3237 78.7387Z"
+                        fill="var(--mainColor)" fill-rule="evenodd" clip-rule="evenodd"/>
+                    </svg>
+                </div-->
+                ©YNYU
+            </div>
+            <div></div>
+            <div style="margin-top: -2px; transform: skewX(-8deg);"> @lvynyu2.gmail.com</div>
+        </div>
     </div>
     <svg style="display: none;">
         <filter id="sharpness">

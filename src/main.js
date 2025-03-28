@@ -64,6 +64,9 @@ window.onload = ()=>{
         setTheme(document.getElementById('theme'));
         localStorage.setItem('userTheme','light');
     }
+    var tousertips = toUser[Math.floor(Math.random()*10)]
+    document.getElementById('load-tips').textContent = tousertips;
+    console.log(tousertips)
     addOption("select-area-",sheet,0);
     addOption("select-area-",sheet,'ai');
     addOption("select-img-",[],0);
@@ -76,11 +79,11 @@ window.onload = ()=>{
     
     if(localStorage.getItem('userTime')){
         var getUserTime = localStorage.getItem('userTime').split(','); 
-        if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 600){
+        if(getUserTime[0] != M || getUserTime[1] != N || HHMMSS - getUserTime[2] > 30){
             load.style.display = 'block';
             setTimeout(() => {
                 viewPage(2);
-            },1800);
+            },2000);
         } else {
             load.style.display = 'none';
             viewPage(2);
@@ -89,7 +92,7 @@ window.onload = ()=>{
         load.style.display = 'block';
         setTimeout(() => {
             viewPage(2);
-        },1800);
+        },2000);
     }
     localStorage.setItem('userTime',M + ',' + N + ',' + HHMMSS); 
     

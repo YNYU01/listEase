@@ -185,13 +185,47 @@ body::-webkit-scrollbar,
     rgba(0,0,0,0) 66.7%,
     rgba(0,0,0,0) 83.3%,
     var(--boxBod) 83.3%
-    ) 0 0/50px 50px,var(--mainColor) 
+    ) 0 0/100px 100px,var(--mainColor) 
     ;
     opacity: 0.2;
+    /*
     animation: skewliner linear 10s infinite;
+    will-change: background-position;/*神奇的防抖*/
 }
 input[type="checkbox"]:checked+.switch::after {
     transform: translateX(var(--swi-h,18px));
+}
+
+.btn-safa{
+    color:var(--mainColor3);
+    min-width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    border: 1px solid var(--mainColor3);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.btn-safa::after{
+    content: '';
+    position: absolute;
+    width: calc(100% + 6px);
+    height: 1px;
+    transform: rotate(45deg);
+    background-color: var(--mainColor3);
+    border-bottom: 2px solid var(--boxGry);
+    border-left: 2px solid var(--boxGry);
+    border-right: 2px solid var(--boxGry);
+}
+
+input[type="checkbox"]:checked+.btn-safa{
+    background: var(--mainColor2);
+}
+
+input[type="checkbox"]:checked+.btn-safa::after{
+    background: rgba(0,0,0,0);
+    border-bottom: none;
 }
 
 optgroup {
@@ -789,6 +823,8 @@ input[type="checkbox"]:checked+.btn-editor {
 
 .show{
     position: relative;
+    display: flex;
+    flex: 0 0 auto;
 }
 .show::after{
     content: '';
@@ -1206,6 +1242,12 @@ input[type="checkbox"]:checked + .chk-round{
     width: calc(100% - 300px);
 }
 
+#imgView-info {
+    justify-content: right;
+    top:20px;
+    right: 10px;
+}
+
 #imgView-size-range{
     width: 20px; 
     height: 80px;
@@ -1378,9 +1420,6 @@ input[type="checkbox"]:checked + .chk-round{
         height: 100%;
     }
 
-    #imgView-info span{
-        font-size: 10px;
-    }
 
     #imgView-size{
         flex-flow: nowrap;
@@ -1419,6 +1458,11 @@ input[type="checkbox"]:checked + .chk-round{
         --boxGry:var(--mod-table);
         min-width: calc(100% - 40px);
         max-height: calc(100% - 40px);
+    }
+    #imgView-info {
+        justify-content: space-between;
+        top:60px;
+        left: 10px;
     }
 }
 
